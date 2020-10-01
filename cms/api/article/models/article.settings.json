@@ -29,7 +29,15 @@
       "plugin": "upload",
       "required": false
     },
-    "author": {
+    "category": {
+      "collection": "category",
+      "via": "article"
+    },
+    "authors": {
+      "model": "author",
+      "via": "articles"
+    },
+    "user": {
       "plugin": "users-permissions",
       "model": "user",
       "via": "articles"
