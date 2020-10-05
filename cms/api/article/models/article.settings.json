@@ -33,11 +33,7 @@
       "collection": "category",
       "via": "article"
     },
-    "authors": {
-      "model": "author",
-      "via": "articles"
-    },
-    "user": {
+    "author": {
       "plugin": "users-permissions",
       "model": "user",
       "via": "articles"

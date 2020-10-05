@@ -54,7 +54,7 @@
       "configurable": false
     },
     "articles": {
-      "via": "user",
+      "via": "author",
       "collection": "article"
     }
   }
