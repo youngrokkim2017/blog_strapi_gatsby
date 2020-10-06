@@ -11,6 +11,10 @@
   "attributes": {
     "name": {
       "type": "string"
+    },
+    "articles": {
+      "collection": "article",
+      "via": "author"
     }
   }
 }
