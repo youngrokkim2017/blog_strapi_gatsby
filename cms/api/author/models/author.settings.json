@@ -13,8 +13,8 @@
       "type": "string"
     },
     "articles": {
-      "collection": "article",
-      "via": "author"
+      "via": "submitter",
+      "collection": "article"
     }
   }
 }

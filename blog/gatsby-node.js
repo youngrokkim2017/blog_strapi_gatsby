@@ -81,4 +81,33 @@ exports.createPages = ({ actions, graphql }) => {
 
   // Queries for articles and authors nodes to use in creating pages.
   return Promise.all([getArticles, getAuthors])
+
+  // const getAuthors = makeRequest(
+  //   graphql,
+  //   `
+  //   {
+  //     allStrapiAuthor {
+  //       edges {
+  //         node {
+  //           id
+  //         }
+  //       }
+  //     }
+  //   }
+  //   `
+  // ).then(result => {
+  //   // Create pages for each user.
+  //   result.data.allStrapiAuthor.edges.forEach(({ node }) => {
+  //     createPage({
+  //       path: `/authors/${node.id}`,
+  //       component: path.resolve(`src/templates/author.js`),
+  //       context: {
+  //         id: node.id,
+  //       },
+  //     })
+  //   })
+  // })
+
+  // // Queries for articles and authors nodes to use in creating pages.
+  // return Promise.all([getArticles, getAuthors])
 }

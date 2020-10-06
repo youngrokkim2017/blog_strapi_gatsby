@@ -33,14 +33,14 @@
       "collection": "category",
       "via": "article"
     },
-    "user": {
-      "via": "articles",
-      "plugin": "users-permissions",
-      "model": "user"
-    },
     "author": {
-      "via": "articles",
-      "model": "author"
+      "plugin": "users-permissions",
+      "model": "user",
+      "via": "articles"
+    },
+    "submitter": {
+      "model": "author",
+      "via": "articles"
     }
   }
 }
