@@ -46,6 +46,9 @@ const ArticleTemplate = ({ data }) => (
       by{" "}
       <Link to={`/authors/User_${data.strapiArticle.author.id}`}>
         {data.strapiArticle.author.username}
+
+        {/* ADD THE ACTUAL WRITER'S NAME */}
+        {/* {data.strapiArticle.submitter.name} */}
       </Link>
     </p>
     <Img fluid={data.strapiArticle.image.childImageSharp.fluid} />
