@@ -6,9 +6,9 @@ import Layout from "../components/layout"
 
 const IndexPage = ({ data }) => (
   <Layout>
-    <h1>Hi people</h1>
+    {/* <h1>Hi people</h1>
     <p>Welcome to your new Gatsby site.</p>
-    <p>Now go build something great.</p>
+    <p>Now go build something great.</p> */}
 
     <ul>
       {data.allStrapiArticle.edges.map(document => (

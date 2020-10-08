@@ -1,6 +1,6 @@
 module.exports = {
   siteMetadata: {
-    title: `My Blog`,
+    title: `Berkeley Science Review`,
     description: `Gatsby blog with Strapi as headless CMS`,
     author: `@gatsbyjs and @strapi`,
   },
