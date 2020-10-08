@@ -18,7 +18,7 @@ const IndexPage = ({ data }) => (
               {document.node.title}
             </Link>
           </h2>
-          <h3>By{" "}{document.node.author}</h3>
+          <h4>By{" "}{document.node.author}</h4>
           <Img fixed={document.node.image.childImageSharp.fixed} />
           <p>{document.node.content}</p>
         </li>
@@ -26,7 +26,7 @@ const IndexPage = ({ data }) => (
     </ul>
 
     <Link to="/page-2/">Go to page 2</Link> <br />
-    <Link to="/using-typescript/">Go to "Using TypeScript"</Link>
+    {/* <Link to="/using-typescript/">Go to "Using TypeScript"</Link> */}
   </Layout>
 )
 
