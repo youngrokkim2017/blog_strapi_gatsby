@@ -8,7 +8,7 @@ const ArticleTemplate = ({ data }) => (
   <Layout>
     <h1>{data.strapiArticle.title}</h1>
     <p>
-      by{" "}
+      By{" "}
       {/* <Link to={`/authors/User_${data.strapiArticle.user.id}`}>
         {data.strapiArticle.user.username}
       </Link> */}

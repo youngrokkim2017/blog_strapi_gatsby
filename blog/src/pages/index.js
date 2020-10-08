@@ -18,6 +18,7 @@ const IndexPage = ({ data }) => (
               {document.node.title}
             </Link>
           </h2>
+          <h3>By{" "}{document.node.author}</h3>
           <Img fixed={document.node.image.childImageSharp.fixed} />
           <p>{document.node.content}</p>
         </li>
@@ -46,6 +47,7 @@ export const pageQuery = graphql`
             }
           }
           title
+          author
           content
         }
       }
