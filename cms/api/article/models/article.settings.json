@@ -34,13 +34,9 @@
       "collection": "category",
       "via": "article"
     },
-    "user": {
+    "admin": {
       "plugin": "users-permissions",
       "model": "user",
-      "via": "articles"
-    },
-    "submitter": {
-      "model": "author",
       "via": "articles"
     },
     "author": {
