@@ -60,6 +60,7 @@ export const query = graphql`
       articles {
         id
         title
+        author
         content
       }
     }

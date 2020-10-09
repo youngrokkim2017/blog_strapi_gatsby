@@ -14,6 +14,7 @@ const Header = ({ siteTitle }) => (
         margin: `0 auto`,
         maxWidth: 960,
         padding: `1.45rem 1.0875rem`,
+        display: `flex`,
       }}
     >
       <h1 style={{ margin: 0 }}>
@@ -27,7 +28,21 @@ const Header = ({ siteTitle }) => (
           {siteTitle}
         </Link>
       </h1>
+      <div
+        style={{
+          display: `flex`,
+          color: `white`,
+          marginTop: `15px`
+        }}
+      >
+        <h4 style={{padding:`0 10px 0 100px`}}>Blog</h4>
+        <h4>Magazine</h4>
+      </div>
     </div>
+    {/* <div>
+      <h4>Blog</h4>
+      <h4>Magazine</h4>
+    </div> */}
   </header>
 )
 
