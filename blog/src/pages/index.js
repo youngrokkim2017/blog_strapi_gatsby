@@ -19,7 +19,14 @@ const IndexPage = ({ data }) => (
             </Link>
           </h2>
           <h4>By{" "}{document.node.author}</h4>
-          <Img fixed={document.node.image.childImageSharp.fixed} />
+          {/* <Img fixed={document.node.image.childImageSharp.fixed} /> */}
+          {
+            document.node.image.childImageSharp.fixed 
+            ? 
+            <Img fixed={document.node.image.childImageSharp.fixed} />
+            :
+            ""
+          }
           <p>{document.node.content}</p>
         </li>
       ))}

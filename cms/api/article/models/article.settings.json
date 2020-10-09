@@ -16,7 +16,8 @@
       "minLength": 10
     },
     "content": {
-      "type": "richtext"
+      "type": "richtext",
+      "required": true
     },
     "image": {
       "model": "file",
@@ -43,7 +44,8 @@
       "via": "articles"
     },
     "author": {
-      "type": "string"
+      "type": "string",
+      "required": true
     }
   }
 }
