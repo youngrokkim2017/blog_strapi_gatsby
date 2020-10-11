@@ -10,4 +10,17 @@
  * See more details here: https://strapi.io/documentation/v3.x/concepts/configurations.html#bootstrap
  */
 
-module.exports = () => {};
+module.exports = () => {
+    // var test = require('fs').readFileSync('./export.js', 'utf8');
+    // var test = JSON.parse(test);
+    // // console.log(test[test.length-1]);
+
+    // test.forEach(post => {
+    //     strapi.services.article.create({
+    //         title: post.title,
+    //         content: post.markdown,
+    //         author: post.author,
+    //         image: post.featured_image
+    //     });
+    // });
+};
