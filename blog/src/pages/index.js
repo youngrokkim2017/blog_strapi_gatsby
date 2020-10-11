@@ -21,7 +21,7 @@ const IndexPage = ({ data }) => (
           <h4>By{" "}{document.node.author}</h4>
           {/* <Img fixed={document.node.image.childImageSharp.fixed} /> */}
           {
-            document.node.image
+            document.node.image.childImageSharp
             ? 
             <Img fixed={document.node.image.childImageSharp.fixed} />
             :
