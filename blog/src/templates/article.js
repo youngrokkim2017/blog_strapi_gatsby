@@ -17,7 +17,7 @@ const ArticleTemplate = ({ data }) => (
     </p>
     {/* <Img fluid={data.strapiArticle.image.childImageSharp.fluid} /> */}
     {
-      data.strapiArticle.image.childImageSharp
+      data.strapiArticle.image
         ?
         <Img fluid={data.strapiArticle.image.childImageSharp.fluid} />
         :
