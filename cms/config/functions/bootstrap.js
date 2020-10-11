@@ -11,15 +11,16 @@
  */
 
 module.exports = () => {
-    const jsonData = require('fs').readFileSync('./export.js');
-    const importData = JSON.parse(jsonData);
+    // var test = require('fs').readFileSync('./export.js', 'utf8');
+    // var test = JSON.parse(test);
+    // // console.log(test[test.length-1]);
 
-    importData.forEach((entry) => {
-        strapi.services.article.create({
-            title: entry.title,
-            content: entry.markdown,
-            author: entry.author,
-            image: entry.featured_image,
-        });
-    });
+    // test.forEach(post => {
+    //     strapi.services.article.create({
+    //         title: post.title,
+    //         content: post.markdown,
+    //         author: post.author,
+    //         image: post.featured_image
+    //     });
+    // });
 };
