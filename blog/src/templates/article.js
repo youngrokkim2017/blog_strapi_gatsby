@@ -15,7 +15,6 @@ const ArticleTemplate = ({ data }) => (
       </Link> */}
       {data.strapiArticle.author}
     </p>
-    {/* <Img fluid={data.strapiArticle.image.childImageSharp.fluid} /> */}
     {
       data.strapiArticle.image
         ?
