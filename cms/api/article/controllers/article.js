@@ -5,4 +5,10 @@
  * to customize this controller
  */
 
-module.exports = {};
+module.exports = {
+    // update article record
+
+    // async update(ctx) {
+
+    // }
+};
