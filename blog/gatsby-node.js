@@ -96,7 +96,7 @@ exports.createPages = ({ actions, graphql }) => {
   //   // Create pages for each Category.
   //   result.data.allStrapiCategory.edges.forEach(({ node }) => {
   //     createPage({
-  //       path: `/${node.id}`,
+  //       path: `/categories/${node.id}`,
   //       component: path.resolve(`src/templates/category.js`),
   //       context: {
   //         id: node.id,
