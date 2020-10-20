@@ -51,6 +51,10 @@ export const pageQuery = graphql`
           title
           author
           content
+          category {
+            id
+            title
+          }
         }
       }
     }

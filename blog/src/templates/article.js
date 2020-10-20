@@ -45,6 +45,10 @@ export const query = graphql`
           }
         }
       }
+      category {
+        id
+        title
+      }
     }
   }
 `
