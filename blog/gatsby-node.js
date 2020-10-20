@@ -79,17 +79,11 @@ exports.createPages = ({ actions, graphql }) => {
   //   })
   // })
 
-  // Queries for articles and authors nodes to use in creating pages.
-  return Promise.all([
-    getArticles, 
-    // getAuthors
-  ])
-
-  // const getWriters = makeRequest(
+  // const getCategories = makeRequest(
   //   graphql,
   //   `
   //   {
-  //     allStrapiAuthor {
+  //     allStrapiCategory {
   //       edges {
   //         node {
   //           id
@@ -99,11 +93,11 @@ exports.createPages = ({ actions, graphql }) => {
   //   }
   //   `
   // ).then(result => {
-  //   // Create pages for each user.
-  //   result.data.allStrapiAuthor.edges.forEach(({ node }) => {
+  //   // Create pages for each Category.
+  //   result.data.allStrapiCategory.edges.forEach(({ node }) => {
   //     createPage({
-  //       path: `/writers/${node.id}`,
-  //       component: path.resolve(`src/templates/writer.js`),
+  //       path: `/categories/${node.id}`,
+  //       component: path.resolve(`src/templates/category.js`),
   //       context: {
   //         id: node.id,
   //       },
@@ -111,10 +105,10 @@ exports.createPages = ({ actions, graphql }) => {
   //   })
   // })
 
-  // // Queries for articles and authors nodes to use in creating pages.
-  // return Promise.all([
-  //   getArticles, 
-  //   getAuthors, 
-  //   getWriters
-  // ])
+  // Queries for articles and authors nodes to use in creating pages.
+  return Promise.all([
+    getArticles, 
+    // getAuthors,
+    // getCategories,
+  ])
 }

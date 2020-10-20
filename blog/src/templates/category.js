@@ -19,6 +19,12 @@
 //   query CategoryTemplate($id: String!) {
 //     strapiCategory(id: { eq: $id }) {
 //       title
+//       article {
+//           id
+//           title
+//           author
+//           content
+//       }
 //     }
 //   }
 // `

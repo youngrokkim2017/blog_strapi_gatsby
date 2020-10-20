@@ -35,8 +35,8 @@ const Header = ({ siteTitle }) => (
           marginTop: `15px`
         }}
       >
-        <h4 style={{padding:`0 10px 0 100px`}}>Blog</h4>
-        <h4>Magazine</h4>
+        {/* <h4 style={{padding:`0 10px 0 100px`}}>Blog</h4> */}
+        {/* <h4>Magazine</h4> */}
       </div>
     </div>
     {/* <div>

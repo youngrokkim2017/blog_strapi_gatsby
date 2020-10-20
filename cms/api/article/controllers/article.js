@@ -5,4 +5,11 @@
  * to customize this controller
  */
 
-module.exports = {};
+module.exports = {
+    // update article record
+    // https://youtu.be/ITk-pYtOCnQ?t=297
+
+    // async update(ctx) {}
+
+    
+};

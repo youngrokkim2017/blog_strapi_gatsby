@@ -15,6 +15,16 @@ const ArticleTemplate = ({ data }) => (
       </Link> */}
       {data.strapiArticle.author}
     </p>
+    <p>
+      Tags: 
+      {
+        data.strapiArticle.category.title
+        ?
+        data.strapiArticle.category.title
+        :
+        'N/A'
+      }
+    </p>
     {
       data.strapiArticle.image
         ?
@@ -44,6 +54,10 @@ export const query = graphql`
             ...GatsbyImageSharpFluid
           }
         }
+      }
+      category {
+        id
+        title
       }
     }
   }
