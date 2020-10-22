@@ -43,6 +43,12 @@ const Header = ({ siteTitle }) => (
         <h4>
           <Link to="/magazine/">Magazine</Link> 
         </h4>
+        <h4>
+          <Link to="/about-us/">About Us</Link> 
+        </h4>
+        <h4>
+          <Link to="/donate-subscribe/">Donate and Subscribe</Link> 
+        </h4>
       </div>
     </div>
     {/* <div>
