@@ -8,6 +8,7 @@ const DonateSubscribePage = () => (
   <Layout>
     <SEO title="Donate and subscribe page" />
     <Link to="/">Go back to the homepage</Link>
+    <br /> 
     <h1>GIVE TO THE BSR</h1>
     <p>
       The BSR is a student organization dedicated to providing all of our 
@@ -44,7 +45,7 @@ const DonateSubscribePage = () => (
     <p>
       If you would like to receive a yearly subscription (two issues) of the 
       Berkeley Science Review in the mail, please donate a suggested minimum of 
-      $15 (to offset shipping and printing costs) and 
+      $15 (to offset shipping and printing costs) and&nbsp;
       <a href="mailto:sciencereview@gmail.com">send us an e-mail </a>
       with your mailing address. If you’d like more than one copy of a single 
       issue, e-mail us and we can work something out.
@@ -56,7 +57,7 @@ const DonateSubscribePage = () => (
       Berkeley Science Review, c/o LEAD Center, 432 Eshleman Hall, Berkeley, CA 94720-4500
     </p>
     <p>
-      We are a subset of the 
+      We are a subset of the&nbsp;
       <a href="http://www.asuc.org/">ASUC</a>
       , a registered 501(c)(3) non-profit organization.  Checks made out to the 
       BSR are tax-deductible.

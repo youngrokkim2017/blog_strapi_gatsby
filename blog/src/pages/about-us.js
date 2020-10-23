@@ -8,6 +8,7 @@ const AboutPage = () => (
   <Layout>
     <SEO title="About us page" />
     <Link to="/">Go back to the homepage</Link>
+    <br /> 
     <h1>ABOUT THE BSR</h1>
     <p>The Berkeley Science Review is a graduate student-run magazine that aims 
       to highlight the groundbreaking research occurring at UC Berkeley in a 
