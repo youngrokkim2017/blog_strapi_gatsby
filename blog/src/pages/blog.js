@@ -7,9 +7,9 @@ import SEO from "../components/seo"
 const BlogPage = () => (
   <Layout>
     <SEO title="Blog page" />
+    <Link to="/" style={{textDecoration: `none`}}>Go back to the homepage</Link>
     <h1>Hi from the blog page</h1>
     <p>Welcome to blog page</p>
-    <Link to="/">Go back to the homepage</Link>
   </Layout>
 )
 

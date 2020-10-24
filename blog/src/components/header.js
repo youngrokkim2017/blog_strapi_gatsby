@@ -5,7 +5,8 @@ import React from "react"
 const Header = ({ siteTitle }) => (
   <header
     style={{
-      background: `rebeccapurple`,
+      // background: `rebeccapurple`,
+      background: `black`,
       marginBottom: `1.45rem`,
     }}
   >
@@ -36,18 +37,50 @@ const Header = ({ siteTitle }) => (
         }}
       >
         {/* <h4 style={{padding:`0 10px 0 100px`}}>Blog</h4> */}
-        <h4 style={{padding:`0 10px 0 100px`}}>
-          <Link to="/blog/">Blog</Link> 
+        <h4 style={{padding:`0 10px 0 25px`}}>
+          <Link 
+            to="/blog/"
+            style={{
+            color: `white`,
+            textDecoration: `none`,
+          }}
+          >
+            Blog
+          </Link> 
         </h4>
         {/* <h4>Magazine</h4> */}
-        <h4>
-          <Link to="/magazine/">Magazine</Link> 
+        <h4 style={{padding:`0 10px 0 0`}}>
+          <Link 
+            to="/magazine/"
+            style={{
+            color: `white`,
+            textDecoration: `none`,
+          }}
+          >
+            Magazine
+          </Link> 
+        </h4>
+        <h4 style={{padding:`0 10px 0 0`}}>
+          <Link 
+            to="/about-us/"
+            style={{
+            color: `white`,
+            textDecoration: `none`,
+          }}
+          >
+            About Us
+          </Link> 
         </h4>
         <h4>
-          <Link to="/about-us/">About Us</Link> 
-        </h4>
-        <h4>
-          <Link to="/donate-subscribe/">Donate and Subscribe</Link> 
+          <Link 
+            to="/donate-subscribe/"
+            style={{
+            color: `white`,
+            textDecoration: `none`,
+          }}
+          >
+            Donate and Subscribe
+          </Link> 
         </h4>
       </div>
     </div>

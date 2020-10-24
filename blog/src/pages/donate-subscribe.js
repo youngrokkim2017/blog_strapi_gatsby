@@ -7,7 +7,7 @@ import SEO from "../components/seo"
 const DonateSubscribePage = () => (
   <Layout>
     <SEO title="Donate and subscribe page" />
-    <Link to="/">Go back to the homepage</Link>
+    <Link to="/" style={{textDecoration: `none`}}>Go back to the homepage</Link>
     <br /> 
     <h1>GIVE TO THE BSR</h1>
     <p>
