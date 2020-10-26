@@ -21,6 +21,12 @@ module.exports = {
           `article`,
           `user`,
         ],
+        singleTypes: [
+          `about`,
+          `blog`, 
+          `magazine`,
+          `subscribe`,
+        ],
         queryLimit: 1000,
       },
     },
