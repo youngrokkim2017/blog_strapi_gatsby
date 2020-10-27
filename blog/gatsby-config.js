@@ -20,6 +20,7 @@ module.exports = {
         contentTypes: [
           `article`,
           `user`,
+          `category`,
         ],
         singleTypes: [
           `about`,
