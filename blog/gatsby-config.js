@@ -20,7 +20,14 @@ module.exports = {
         contentTypes: [
           `article`,
           `user`,
+          `category`,
         ],
+        // singleTypes: [
+        //   `about`,
+        //   `blog`, 
+        //   `magazine`,
+        //   `subscribe`,
+        // ],
         queryLimit: 1000,
       },
     },

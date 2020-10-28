@@ -1,0 +1,19 @@
+{
+  "kind": "singleType",
+  "collectionName": "magazines",
+  "info": {
+    "name": "magazine"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "content": {
+      "type": "richtext"
+    }
+  }
+}
