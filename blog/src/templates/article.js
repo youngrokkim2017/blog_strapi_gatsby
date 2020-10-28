@@ -1,6 +1,6 @@
 import React from "react"
-// import { Link, graphql } from "gatsby"
-import { graphql } from "gatsby"
+import { Link, graphql } from "gatsby"
+// import { graphql } from "gatsby"
 import Img from "gatsby-image"
 import Layout from "../components/layout"
 import Reactmarkdown from "react-markdown"
@@ -20,7 +20,9 @@ const ArticleTemplate = ({ data }) => (
       {
         data.strapiArticle.category
         ?
-        data.strapiArticle.category.map(c => <span>{c.title}</span>)
+        // data.strapiArticle.category.map(c => <span>{c.title}</span>)
+        data.strapiArticle.category.map(c => <Link to={`/categories/Category_${c.id}`}>{c.title}</Link>)
+        // data.strapiArticle.category.map(c => <Link to={`/Category_${c.id}`}>{c.title}</Link>)
         :
         'N/A'
       }

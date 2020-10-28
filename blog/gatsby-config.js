@@ -23,7 +23,6 @@ module.exports = {
           `category`,
         ],
         // singleTypes: [
-          // `site-information`,
         //   `about`,
         //   `blog`, 
         //   `magazine`,
