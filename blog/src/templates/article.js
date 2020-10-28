@@ -18,9 +18,9 @@ const ArticleTemplate = ({ data }) => (
     <p>
       Tags: 
       {
-        data.strapiArticle.category.title
+        data.strapiArticle.category
         ?
-        data.strapiArticle.category.title
+        data.strapiArticle.category.map(c => <span>{c.title}</span>)
         :
         'N/A'
       }
