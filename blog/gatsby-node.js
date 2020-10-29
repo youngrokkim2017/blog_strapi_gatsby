@@ -187,6 +187,33 @@ exports.createPages = ({ actions, graphql }) => {
     })
   })
 
+  const getMagazine = makeRequest(
+    graphql,
+    `
+    {
+      allStrapiMagazine {
+        edges {
+          node {
+            id
+          }
+        }
+      }
+    }
+    `
+  ).then(result => {
+    // Create pages for each Magazine.
+    result.data.allStrapiMagazine.edges.forEach(({ node }) => {
+      createPage({
+        path: `/magazine/`,
+        // path: `/${node.id}`,
+        component: path.resolve(`src/templates/magazine.js`),
+        context: {
+          id: node.id,
+        },
+      })
+    })
+  })
+
   // Queries for articles and authors nodes to use in creating pages.
   return Promise.all([
     getArticles, 
@@ -195,5 +222,6 @@ exports.createPages = ({ actions, graphql }) => {
     getAbout,
     getSubscribe,
     getBlog,
+    getMagazine,
   ])
 }
