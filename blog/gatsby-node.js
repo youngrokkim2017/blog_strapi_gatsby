@@ -160,6 +160,33 @@ exports.createPages = ({ actions, graphql }) => {
     })
   })
 
+  const getBlog = makeRequest(
+    graphql,
+    `
+    {
+      allStrapiBlog {
+        edges {
+          node {
+            id
+          }
+        }
+      }
+    }
+    `
+  ).then(result => {
+    // Create pages for each Blog.
+    result.data.allStrapiBlog.edges.forEach(({ node }) => {
+      createPage({
+        path: `/blog/`,
+        // path: `/${node.id}`,
+        component: path.resolve(`src/templates/blog.js`),
+        context: {
+          id: node.id,
+        },
+      })
+    })
+  })
+
   // Queries for articles and authors nodes to use in creating pages.
   return Promise.all([
     getArticles, 
@@ -167,5 +194,6 @@ exports.createPages = ({ actions, graphql }) => {
     getCategories,
     getAbout,
     getSubscribe,
+    getBlog,
   ])
 }
