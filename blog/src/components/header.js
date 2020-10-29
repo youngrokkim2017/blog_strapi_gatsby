@@ -73,7 +73,7 @@ const Header = ({ siteTitle }) => (
         </h4>
         <h4>
           <Link 
-            to="/donate-subscribe/"
+            to="/subscribe/"
             style={{
             color: `white`,
             textDecoration: `none`,

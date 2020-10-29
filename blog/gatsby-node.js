@@ -133,11 +133,39 @@ exports.createPages = ({ actions, graphql }) => {
     })
   })
 
+  const getSubscribe = makeRequest(
+    graphql,
+    `
+    {
+      allStrapiSubscribe {
+        edges {
+          node {
+            id
+          }
+        }
+      }
+    }
+    `
+  ).then(result => {
+    // Create pages for each Subscribe.
+    result.data.allStrapiSubscribe.edges.forEach(({ node }) => {
+      createPage({
+        path: `/subscribe/`,
+        // path: `/${node.id}`,
+        component: path.resolve(`src/templates/subscribe.js`),
+        context: {
+          id: node.id,
+        },
+      })
+    })
+  })
+
   // Queries for articles and authors nodes to use in creating pages.
   return Promise.all([
     getArticles, 
     // getAuthors,
     getCategories,
     getAbout,
+    getSubscribe,
   ])
 }
