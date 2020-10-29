@@ -106,10 +106,38 @@ exports.createPages = ({ actions, graphql }) => {
     })
   })
 
+  const getAbout = makeRequest(
+    graphql,
+    `
+    {
+      allStrapiAbout {
+        edges {
+          node {
+            id
+          }
+        }
+      }
+    }
+    `
+  ).then(result => {
+    // Create pages for each About.
+    result.data.allStrapiAbout.edges.forEach(({ node }) => {
+      createPage({
+        path: `/about/`,
+        // path: `/${node.id}`,
+        component: path.resolve(`src/templates/about.js`),
+        context: {
+          id: node.id,
+        },
+      })
+    })
+  })
+
   // Queries for articles and authors nodes to use in creating pages.
   return Promise.all([
     getArticles, 
     // getAuthors,
     getCategories,
+    getAbout,
   ])
 }
