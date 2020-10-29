@@ -106,10 +106,122 @@ exports.createPages = ({ actions, graphql }) => {
     })
   })
 
+  const getAbout = makeRequest(
+    graphql,
+    `
+    {
+      allStrapiAbout {
+        edges {
+          node {
+            id
+          }
+        }
+      }
+    }
+    `
+  ).then(result => {
+    // Create pages for each About.
+    result.data.allStrapiAbout.edges.forEach(({ node }) => {
+      createPage({
+        path: `/about/`,
+        // path: `/${node.id}`,
+        component: path.resolve(`src/templates/about.js`),
+        context: {
+          id: node.id,
+        },
+      })
+    })
+  })
+
+  const getSubscribe = makeRequest(
+    graphql,
+    `
+    {
+      allStrapiSubscribe {
+        edges {
+          node {
+            id
+          }
+        }
+      }
+    }
+    `
+  ).then(result => {
+    // Create pages for each Subscribe.
+    result.data.allStrapiSubscribe.edges.forEach(({ node }) => {
+      createPage({
+        path: `/subscribe/`,
+        // path: `/${node.id}`,
+        component: path.resolve(`src/templates/subscribe.js`),
+        context: {
+          id: node.id,
+        },
+      })
+    })
+  })
+
+  const getBlog = makeRequest(
+    graphql,
+    `
+    {
+      allStrapiBlog {
+        edges {
+          node {
+            id
+          }
+        }
+      }
+    }
+    `
+  ).then(result => {
+    // Create pages for each Blog.
+    result.data.allStrapiBlog.edges.forEach(({ node }) => {
+      createPage({
+        path: `/blog/`,
+        // path: `/${node.id}`,
+        component: path.resolve(`src/templates/blog.js`),
+        context: {
+          id: node.id,
+        },
+      })
+    })
+  })
+
+  const getMagazine = makeRequest(
+    graphql,
+    `
+    {
+      allStrapiMagazine {
+        edges {
+          node {
+            id
+          }
+        }
+      }
+    }
+    `
+  ).then(result => {
+    // Create pages for each Magazine.
+    result.data.allStrapiMagazine.edges.forEach(({ node }) => {
+      createPage({
+        path: `/magazine/`,
+        // path: `/${node.id}`,
+        component: path.resolve(`src/templates/magazine.js`),
+        context: {
+          id: node.id,
+        },
+      })
+    })
+  })
+
   // Queries for articles and authors nodes to use in creating pages.
   return Promise.all([
     getArticles, 
     // getAuthors,
     getCategories,
+    getAbout,
+    getSubscribe,
+    getBlog,
+    getMagazine,
   ])
 }

@@ -10,10 +10,11 @@ const IndexPage = ({ data }) => (
     <Link to="/magazine/" style={{textDecoration: `none`}}>Magazine</Link> 
 
     <ul>
-      {data.allStrapiArticle.edges.map(document => (
+      {/* {data.allStrapiArticle.edges.map(document => ( */}
+      {data.allStrapiArticle.edges.reverse().map(document => (
         <li key={document.node.id}>
           <h2>
-            <Link to={`/${document.node.id}`}>
+            <Link to={`/${document.node.id}`} style={{textDecoration: `none`}}>
               {document.node.title}
             </Link>
           </h2>

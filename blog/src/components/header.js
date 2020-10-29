@@ -62,7 +62,7 @@ const Header = ({ siteTitle }) => (
         </h4>
         <h4 style={{padding:`0 10px 0 0`}}>
           <Link 
-            to="/about-us/"
+            to="/about/"
             style={{
             color: `white`,
             textDecoration: `none`,
@@ -73,7 +73,7 @@ const Header = ({ siteTitle }) => (
         </h4>
         <h4>
           <Link 
-            to="/donate-subscribe/"
+            to="/subscribe/"
             style={{
             color: `white`,
             textDecoration: `none`,

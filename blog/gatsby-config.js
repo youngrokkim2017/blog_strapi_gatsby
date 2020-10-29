@@ -22,12 +22,12 @@ module.exports = {
           `user`,
           `category`,
         ],
-        // singleTypes: [
-        //   `about`,
-        //   `blog`, 
-        //   `magazine`,
-        //   `subscribe`,
-        // ],
+        singleTypes: [
+          `about`,
+          `blog`, 
+          `magazine`,
+          `subscribe`,
+        ],
         queryLimit: 1000,
       },
     },
