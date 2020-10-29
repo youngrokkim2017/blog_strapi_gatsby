@@ -14,7 +14,7 @@ const IndexPage = ({ data }) => (
       {data.allStrapiArticle.edges.reverse().map(document => (
         <li key={document.node.id}>
           <h2>
-            <Link to={`/${document.node.id}`}>
+            <Link to={`/${document.node.id}`} style={{textDecoration: `none`}}>
               {document.node.title}
             </Link>
           </h2>
