@@ -18,9 +18,11 @@ module.exports = {
       options: {
         apiURL: `http://localhost:1337`,
         contentTypes: [
-          `article`,
           `user`,
+          `article`,
           `category`,
+          `issue`,
+          `tag`,
         ],
         singleTypes: [
           `about`,
