@@ -135,6 +135,33 @@ exports.createPages = ({ actions, graphql }) => {
     })
   })
 
+  const getTags = makeRequest(
+    graphql,
+    `
+    {
+      allStrapiTag {
+        edges {
+          node {
+            id
+          }
+        }
+      }
+    }
+    `
+  ).then(result => {
+    // Create pages for each Tag.
+    result.data.allStrapiTag.edges.forEach(({ node }) => {
+      createPage({
+        // path: `/${node.id}`,
+        path: `/tags/${node.id}`,
+        component: path.resolve(`src/templates/tag.js`),
+        context: {
+          id: node.id,
+        },
+      })
+    })
+  })
+
   // SINGLE TYPES
   const getAbout = makeRequest(
     graphql,
@@ -250,6 +277,7 @@ exports.createPages = ({ actions, graphql }) => {
     getArticles, 
     getCategories,
     getIssues,
+    getTags,
     getAbout,
     getSubscribe,
     getBlog,
