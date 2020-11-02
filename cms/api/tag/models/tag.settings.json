@@ -1,8 +1,8 @@
 {
-  "kind": "singleType",
-  "collectionName": "magazines",
+  "kind": "collectionType",
+  "collectionName": "tags",
   "info": {
-    "name": "magazine"
+    "name": "tag"
   },
   "options": {
     "increments": true,
@@ -12,11 +12,10 @@
     "title": {
       "type": "string"
     },
-    "content": {
-      "type": "richtext"
-    },
     "issue": {
-      "collection": "issue"
+      "collection": "issue",
+      "via": "tag",
+      "dominant": true
     }
   }
 }

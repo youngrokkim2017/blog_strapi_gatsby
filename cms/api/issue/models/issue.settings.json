@@ -1,0 +1,37 @@
+{
+  "kind": "collectionType",
+  "collectionName": "issues",
+  "info": {
+    "name": "issue"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "content": {
+      "type": "richtext"
+    },
+    "author": {
+      "type": "string"
+    },
+    "image": {
+      "collection": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos"
+      ],
+      "plugin": "upload",
+      "required": false
+    },
+    "tag": {
+      "via": "issue",
+      "collection": "tag"
+    }
+  }
+}

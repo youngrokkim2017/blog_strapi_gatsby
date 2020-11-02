@@ -27,32 +27,6 @@ const makeRequest = (graphql, request) =>
 exports.createPages = ({ actions, graphql }) => {
   const { createPage } = actions
 
-  const getArticles = makeRequest(
-    graphql,
-    `
-    {
-      allStrapiArticle {
-        edges {
-          node {
-            id
-          }
-        }
-      }
-    }
-    `
-  ).then(result => {
-    // Create pages for each article.
-    result.data.allStrapiArticle.edges.forEach(({ node }) => {
-      createPage({
-        path: `/${node.id}`,
-        component: path.resolve(`src/templates/article.js`),
-        context: {
-          id: node.id,
-        },
-      })
-    })
-  })
-
   // const getAuthors = makeRequest(
   //   graphql,
   //   `
@@ -78,6 +52,33 @@ exports.createPages = ({ actions, graphql }) => {
   //     })
   //   })
   // })
+
+  // BLOG CONTENT TYPES
+  const getArticles = makeRequest(
+    graphql,
+    `
+    {
+      allStrapiArticle {
+        edges {
+          node {
+            id
+          }
+        }
+      }
+    }
+    `
+  ).then(result => {
+    // Create pages for each article.
+    result.data.allStrapiArticle.edges.forEach(({ node }) => {
+      createPage({
+        path: `/${node.id}`,
+        component: path.resolve(`src/templates/article.js`),
+        context: {
+          id: node.id,
+        },
+      })
+    })
+  })
 
   const getCategories = makeRequest(
     graphql,
@@ -106,6 +107,62 @@ exports.createPages = ({ actions, graphql }) => {
     })
   })
 
+  // MAGAZINE CONTENT TYPES
+  const getIssues = makeRequest(
+    graphql,
+    `
+    {
+      allStrapiIssue {
+        edges {
+          node {
+            id
+          }
+        }
+      }
+    }
+    `
+  ).then(result => {
+    // Create pages for each Issue.
+    result.data.allStrapiIssue.edges.forEach(({ node }) => {
+      createPage({
+        path: `/${node.id}`,
+        // path: `/page-2/${node.id}`,
+        component: path.resolve(`src/templates/issue.js`),
+        context: {
+          id: node.id,
+        },
+      })
+    })
+  })
+
+  const getTags = makeRequest(
+    graphql,
+    `
+    {
+      allStrapiTag {
+        edges {
+          node {
+            id
+          }
+        }
+      }
+    }
+    `
+  ).then(result => {
+    // Create pages for each Tag.
+    result.data.allStrapiTag.edges.forEach(({ node }) => {
+      createPage({
+        // path: `/${node.id}`,
+        path: `/tags/${node.id}`,
+        component: path.resolve(`src/templates/tag.js`),
+        context: {
+          id: node.id,
+        },
+      })
+    })
+  })
+
+  // SINGLE TYPES
   const getAbout = makeRequest(
     graphql,
     `
@@ -216,9 +273,11 @@ exports.createPages = ({ actions, graphql }) => {
 
   // Queries for articles and authors nodes to use in creating pages.
   return Promise.all([
-    getArticles, 
     // getAuthors,
+    getArticles, 
     getCategories,
+    getIssues,
+    getTags,
     getAbout,
     getSubscribe,
     getBlog,
