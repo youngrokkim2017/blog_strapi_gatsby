@@ -14,9 +14,6 @@
     },
     "content": {
       "type": "richtext"
-    },
-    "article": {
-      "collection": "article"
     }
   }
 }

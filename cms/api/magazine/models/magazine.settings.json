@@ -14,9 +14,6 @@
     },
     "content": {
       "type": "richtext"
-    },
-    "issue": {
-      "collection": "issue"
     }
   }
 }
