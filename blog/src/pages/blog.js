@@ -43,7 +43,7 @@ const BlogPage = ({ data }) => (
 export default BlogPage;
 
 // gql query
-export const pageQuery = graphql`
+export const blogQuery = graphql`
   query BlogQuery {
     allStrapiArticle {
       edges {
