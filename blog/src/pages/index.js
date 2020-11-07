@@ -3,30 +3,34 @@ import { Link, graphql } from "gatsby"
 import Img from 'gatsby-image';
 
 import Layout from "../components/layout"
+import Reactmarkdown from "react-markdown"
 
 const IndexPage = ({ data }) => (
   <Layout>
-    <Link to="/blog/" style={{textDecoration: `none`}}>Blog</Link> 
-    <Link to="/magazine/" style={{textDecoration: `none`}}>Magazine</Link> 
+    <Link to="/blog/" style={{ textDecoration: `none` }}>Blog</Link>
+    <Link to="/magazine/" style={{ textDecoration: `none` }}>Magazine</Link>
 
     <ul>
       {/* {data.allStrapiArticle.edges.map(document => ( */}
       {data.allStrapiArticle.edges.reverse().map(document => (
         <li key={document.node.id}>
           <h2>
-            <Link to={`/${document.node.id}`} style={{textDecoration: `none`}}>
+            <Link to={`/{document.node.id}`} style={{ textDecoration: `none` }}>
               {document.node.title}
             </Link>
           </h2>
           <h4>By{" "}{document.node.author}</h4>
           {
             document.node.image
-            ? 
-            <Img fixed={document.node.image.childImageSharp.fixed} />
-            :
-            ""
+              ?
+              <Img fixed={document.node.image.childImageSharp.fixed} />
+              :
+              ""
           }
-          <p>{document.node.content}</p>
+          <Reactmarkdown
+            source={document.node.content}
+            transformImageUri={uri => uri.startsWith('http') ? uri : `${process.env.IMAGE_BASE_URL}${uri}`}
+          />
         </li>
       ))}
     </ul>
