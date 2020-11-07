@@ -71,7 +71,8 @@ exports.createPages = ({ actions, graphql }) => {
     // Create pages for each article.
     result.data.allStrapiArticle.edges.forEach(({ node }) => {
       createPage({
-        path: `/${node.id}`,
+        // path: `/${node.id}`,
+        path: `/blog/${node.id}`,
         component: path.resolve(`src/templates/article.js`),
         context: {
           id: node.id,
@@ -125,8 +126,9 @@ exports.createPages = ({ actions, graphql }) => {
     // Create pages for each Issue.
     result.data.allStrapiIssue.edges.forEach(({ node }) => {
       createPage({
-        path: `/${node.id}`,
+        // path: `/${node.id}`,
         // path: `/page-2/${node.id}`,
+        path: `/magazine/${node.id}`,
         component: path.resolve(`src/templates/issue.js`),
         context: {
           id: node.id,
@@ -217,59 +219,59 @@ exports.createPages = ({ actions, graphql }) => {
     })
   })
 
-  const getBlog = makeRequest(
-    graphql,
-    `
-    {
-      allStrapiBlog {
-        edges {
-          node {
-            id
-          }
-        }
-      }
-    }
-    `
-  ).then(result => {
-    // Create pages for each Blog.
-    result.data.allStrapiBlog.edges.forEach(({ node }) => {
-      createPage({
-        path: `/blog/`,
-        // path: `/${node.id}`,
-        component: path.resolve(`src/templates/blog.js`),
-        context: {
-          id: node.id,
-        },
-      })
-    })
-  })
+  // const getBlog = makeRequest(
+  //   graphql,
+  //   `
+  //   {
+  //     allStrapiBlog {
+  //       edges {
+  //         node {
+  //           id
+  //         }
+  //       }
+  //     }
+  //   }
+  //   `
+  // ).then(result => {
+  //   // Create pages for each Blog.
+  //   result.data.allStrapiBlog.edges.forEach(({ node }) => {
+  //     createPage({
+  //       path: `/blog/`,
+  //       // path: `/${node.id}`,
+  //       component: path.resolve(`src/templates/blog.js`),
+  //       context: {
+  //         id: node.id,
+  //       },
+  //     })
+  //   })
+  // })
 
-  const getMagazine = makeRequest(
-    graphql,
-    `
-    {
-      allStrapiMagazine {
-        edges {
-          node {
-            id
-          }
-        }
-      }
-    }
-    `
-  ).then(result => {
-    // Create pages for each Magazine.
-    result.data.allStrapiMagazine.edges.forEach(({ node }) => {
-      createPage({
-        path: `/magazine/`,
-        // path: `/${node.id}`,
-        component: path.resolve(`src/templates/magazine.js`),
-        context: {
-          id: node.id,
-        },
-      })
-    })
-  })
+  // const getMagazine = makeRequest(
+  //   graphql,
+  //   `
+  //   {
+  //     allStrapiMagazine {
+  //       edges {
+  //         node {
+  //           id
+  //         }
+  //       }
+  //     }
+  //   }
+  //   `
+  // ).then(result => {
+  //   // Create pages for each Magazine.
+  //   result.data.allStrapiMagazine.edges.forEach(({ node }) => {
+  //     createPage({
+  //       path: `/magazine/`,
+  //       // path: `/${node.id}`,
+  //       component: path.resolve(`src/templates/magazine.js`),
+  //       context: {
+  //         id: node.id,
+  //       },
+  //     })
+  //   })
+  // })
 
   // Queries for articles and authors nodes to use in creating pages.
   return Promise.all([
@@ -280,7 +282,7 @@ exports.createPages = ({ actions, graphql }) => {
     getTags,
     getAbout,
     getSubscribe,
-    getBlog,
-    getMagazine,
+    // getBlog,
+    // getMagazine,
   ])
 }
