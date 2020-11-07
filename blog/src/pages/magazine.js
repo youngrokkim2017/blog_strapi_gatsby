@@ -27,7 +27,7 @@ const MagazinePage = ({ data }) => (
       ))}
     </ul>
 
-    <Link to="/page-2/">Go to page 2</Link> <br />
+    {/* <Link to="/page-2/">Go to page 2</Link> <br /> */}
   </Layout>
 )
 

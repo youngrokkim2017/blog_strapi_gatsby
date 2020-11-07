@@ -12,7 +12,8 @@ const BlogPage = ({ data }) => (
 
     <ul>
       {/* {data.allStrapiArticle.edges.map(document => ( */}
-      {data.allStrapiArticle.edges.reverse().map(document => (
+      {/* {data.allStrapiArticle.edges.reverse().map(document => ( */}
+      {data.allStrapiArticle.edges.reverse().slice(0, 5).map(document => (
         <li key={document.node.id}>
           <h2>
             <Link to={`/blog/${document.node.id}`} style={{ textDecoration: `none` }}>
