@@ -4,9 +4,11 @@ import Img from 'gatsby-image';
 
 import Layout from "../components/layout"
 import Reactmarkdown from "react-markdown"
+import SEO from "../components/seo"
 
 const BlogPage = ({ data }) => (
   <Layout>
+    <SEO title="Blog index page" />
     {/* <Link to="/blog/" style={{ textDecoration: `none` }}>Blog</Link> */}
     {/* <Link to="/magazine/" style={{ textDecoration: `none` }}>Magazine</Link> */}
 
