@@ -2,6 +2,8 @@ module.exports = {
   siteMetadata: {
     title: `Berkeley Science Review`,
     description: `Gatsby blog with Strapi as headless CMS`,
+    // url: ,
+    // image: ,
     author: `@gatsbyjs and @strapi`,
   },
   plugins: [
