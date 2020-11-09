@@ -7,6 +7,17 @@ module.exports = {
     author: `@gatsbyjs and @strapi`,
   },
   plugins: [
+    {
+      resolve: 'gatsby-plugin-lunr',
+      options: {
+        languages: [{ nane: 'en' }],
+        fields: [
+          { name: 'title', store: true },
+          { name: 'author', store: true },
+          { name: 'content', store: true },
+        ],
+      }
+    },
     `gatsby-plugin-react-helmet`,
     {
       resolve: `gatsby-source-filesystem`,
