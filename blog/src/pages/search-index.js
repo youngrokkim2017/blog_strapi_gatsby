@@ -25,7 +25,7 @@ const SearchPage = ({ data }) => {
     console.log(results);
 
     // const searchResults = results.map(result => result.item)
-    const searchResults = query ? results.map(result => result.item) : unsortedData;
+    const searchResults = query ? results.map(result => result.item) : unsortedData.reverse();
     // console.log(searchResults);
     // console.log(query);
 
