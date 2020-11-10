@@ -3,9 +3,11 @@ import { Link, graphql } from "gatsby"
 // import Img from 'gatsby-image';
 
 import Layout from "../components/layout"
+import SEO from "../components/seo"
 
 const MagazinePage = ({ data }) => (
   <Layout>
+    <SEO title="Magazine index page" />
     <ul>
       {data.allStrapiIssue.edges.reverse().map(document => (
         <li key={document.node.id}>
@@ -27,7 +29,7 @@ const MagazinePage = ({ data }) => (
       ))}
     </ul>
 
-    <Link to="/page-2/">Go to page 2</Link> <br />
+    {/* <Link to="/page-2/">Go to page 2</Link> <br /> */}
   </Layout>
 )
 

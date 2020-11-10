@@ -2,9 +2,22 @@ module.exports = {
   siteMetadata: {
     title: `Berkeley Science Review`,
     description: `Gatsby blog with Strapi as headless CMS`,
+    // url: ,
+    // image: ,
     author: `@gatsbyjs and @strapi`,
   },
   plugins: [
+    // {
+    //   resolve: `gatsby-plugin-lunr`,
+    //   options: {
+    //     languages: [{ nane: 'en' }],
+    //     fields: [
+    //       { name: `title`, store: true },
+    //       { name: `author`, store: true },
+    //       { name: `content`, store: true },
+    //     ],
+    //   }
+    // },
     `gatsby-plugin-react-helmet`,
     {
       resolve: `gatsby-source-filesystem`,

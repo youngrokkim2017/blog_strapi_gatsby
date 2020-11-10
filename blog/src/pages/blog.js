@@ -4,15 +4,18 @@ import Img from 'gatsby-image';
 
 import Layout from "../components/layout"
 import Reactmarkdown from "react-markdown"
+import SEO from "../components/seo"
 
 const BlogPage = ({ data }) => (
   <Layout>
+    <SEO title="Blog index page" />
     {/* <Link to="/blog/" style={{ textDecoration: `none` }}>Blog</Link> */}
     {/* <Link to="/magazine/" style={{ textDecoration: `none` }}>Magazine</Link> */}
 
     <ul>
       {/* {data.allStrapiArticle.edges.map(document => ( */}
-      {data.allStrapiArticle.edges.reverse().map(document => (
+      {/* {data.allStrapiArticle.edges.reverse().map(document => ( */}
+      {data.allStrapiArticle.edges.reverse().slice(0, 5).map(document => (
         <li key={document.node.id}>
           <h2>
             <Link to={`/blog/${document.node.id}`} style={{ textDecoration: `none` }}>
