@@ -1,3 +1,128 @@
+import React, { useState } from "react"
+import { Link, graphql } from "gatsby"
+import Img from 'gatsby-image';
+import Layout from "../components/layout"
+import Reactmarkdown from "react-markdown"
+import SEO from "../components/seo"
+import Fuse from "fuse.js"  // fuzzy search
+
+const SearchPage = ({ data }) => {
+    const [query, setQuery] = useState('');
+
+    const unsortedData = data.allStrapiArticle.edges;
+    // console.log(unsortedData);
+    const fuse = new Fuse(unsortedData, {
+        keys: [
+            'node.title',
+            // 'node.author',
+            // 'node.content',
+        ],
+        includeScore: true,
+    });
+    // console.log('fuse', fuse);
+    // const results = fuse.search('science');
+    const results = fuse.search(query);
+    // console.log(results);
+
+    // const searchResults = results.map(result => result.item)
+    const searchResults = query ? results.map(result => result.item) : unsortedData;
+
+    function handleOnSearch({ currentTarget = {} }) {
+        const { value } = currentTarget;
+        setQuery(value);
+    }
+
+    return (
+        <Layout>
+        <SEO title="Search index page" />
+
+        <div>
+            <form>
+                <input type="text" placeholder="Search" value={query} onChange={handleOnSearch} />
+            </form>
+        </div>
+
+        {/* <ul>
+            {data.allStrapiArticle.edges.reverse().map(document => (
+                <li key={document.node.id}>
+                    <h2>
+                        <Link to={`/blog/${document.node.id}`} style={{ textDecoration: `none` }}>
+                            {document.node.title}
+                        </Link>
+                    </h2>
+                    <h4>By{" "}{document.node.author}</h4>
+                {
+                    document.node.image
+                    ?
+                    <Img fixed={document.node.image.childImageSharp.fixed} />
+                    :
+                    ""
+                }
+                <Reactmarkdown
+                    source={document.node.content}
+                    transformImageUri={uri => uri.startsWith('http') ? uri : `${process.env.IMAGE_BASE_URL}${uri}`}
+                />
+                </li>
+            ))}
+        </ul> */}
+
+        <ul>
+            {searchResults.reverse().map(document => (
+                <li key={document.node.id}>
+                    <h2>
+                        <Link to={`/blog/${document.node.id}`} style={{ textDecoration: `none` }}>
+                            {document.node.title}
+                        </Link>
+                    </h2>
+                    <h4>By{" "}{document.node.author}</h4>
+                {
+                    document.node.image
+                    ?
+                    <Img fixed={document.node.image.childImageSharp.fixed} />
+                    :
+                    ""
+                }
+                <Reactmarkdown
+                    source={document.node.content}
+                    transformImageUri={uri => uri.startsWith('http') ? uri : `${process.env.IMAGE_BASE_URL}${uri}`}
+                />
+                </li>
+            ))}
+        </ul>
+
+        </Layout>
+    )
+}
+
+export default SearchPage;
+
+// gql query
+export const searchQuery = graphql`
+  query SearchQuery {
+    allStrapiArticle {
+      edges {
+        node {
+          id
+          image {
+            childImageSharp {
+              fixed(width: 200, height: 125) {
+                ...GatsbyImageSharpFixed
+              }
+            }
+          }
+          title
+          author
+          content
+          category {
+            id
+            title
+          }
+        }
+      }
+    }
+  }
+`
+
 // import React, { useReact } from "react"
 // import { Link, graphql } from "gatsby"
 
