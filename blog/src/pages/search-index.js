@@ -26,6 +26,8 @@ const SearchPage = ({ data }) => {
 
     // const searchResults = results.map(result => result.item)
     const searchResults = query ? results.map(result => result.item) : unsortedData;
+    // console.log(searchResults);
+    // console.log(query);
 
     function handleOnSearch({ currentTarget = {} }) {
         const { value } = currentTarget;
