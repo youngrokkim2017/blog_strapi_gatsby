@@ -29,6 +29,9 @@ const SearchPage = ({ data }) => {
     // console.log(searchResults);
     // console.log(query);
 
+    // const sortedResults = results.sort((a, b) => a.score - b.score);
+    // const sortedResults = searchResults.sort((a, b) => a.score - b.score);
+
     function handleOnSearch({ currentTarget = {} }) {
         const { value } = currentTarget;
         setQuery(value);
