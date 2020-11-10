@@ -19,15 +19,18 @@ const SearchPage = ({ data }) => {
         ],
         includeScore: true,
     });
-    // console.log('fuse', fuse);
+    console.log('fuse', fuse);
     // const results = fuse.search('science');
     const results = fuse.search(query);
-    // console.log(results);
+    console.log(results);
 
     // const searchResults = results.map(result => result.item)
-    const searchResults = query ? results.map(result => result.item) : unsortedData;
+    const searchResults = query ? results.map(result => result.item) : unsortedData.reverse();
     // console.log(searchResults);
     // console.log(query);
+
+    // const sortedResults = results.sort((a, b) => a.score - b.score);
+    // const sortedResults = searchResults.sort((a, b) => a.score - b.score);
 
     function handleOnSearch({ currentTarget = {} }) {
         const { value } = currentTarget;
@@ -69,7 +72,8 @@ const SearchPage = ({ data }) => {
         </ul> */}
 
         <ul>
-            {searchResults.reverse().map(document => (
+            {/* {searchResults.reverse().map(document => ( */}
+            {searchResults.map(document => (
                 <li key={document.node.id}>
                     <h2>
                         <Link to={`/blog/${document.node.id}`} style={{ textDecoration: `none` }}>
