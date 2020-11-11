@@ -19,23 +19,34 @@ const SearchPage = ({ data }) => {
         includeScore: true,
     };
 
-    const optionsWeighted = {
+    // const optionsWeighted = {
+    //     keys: [
+    //         {
+    //             name: 'node.title',
+    //             weight: 0.6,
+    //         },
+    //         {
+    //             name: 'node.author',
+    //             weight: 0.1,
+    //         },
+    //         {
+    //             name: 'node.content',
+    //             weight: 0.3,
+    //         },
+    //     ],
+    //     includeScore: true,
+    // };
+    
+    const optionsIndexed = {
         keys: [
-            {
-                name: 'node.title',
-                weight: 0.6,
-            },
-            {
-                name: 'node.author',
-                weight: 0.1,
-            },
-            {
-                name: 'node.content',
-                weight: 0.3,
-            },
+            'node.title',
+            // 'node.author',
+            // 'node.content',
         ],
         includeScore: true,
-    };
+    }
+    const newIndex = Fuse.createIndex(options.keys, unsortedData);
+    const fuse = new Fuse(unsortedData, optionsIndexed, newIndex);
 
     // const fuse = new Fuse(unsortedData, {
     //     keys: [
