@@ -19,6 +19,24 @@ const SearchPage = ({ data }) => {
         includeScore: true,
     };
 
+    const optionsWeighted = {
+        keys: [
+            {
+                name: 'node.title',
+                weight: 0.6,
+            },
+            {
+                name: 'node.author',
+                weight: 0.1,
+            },
+            {
+                name: 'node.content',
+                weight: 0.3,
+            },
+        ],
+        includeScore: true,
+    };
+
     // const fuse = new Fuse(unsortedData, {
     //     keys: [
     //         'node.title',
