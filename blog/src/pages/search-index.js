@@ -19,6 +19,7 @@ const SearchPage = ({ data }) => {
         includeScore: true,
     };
 
+    // WEIGHTED SEARCH
     // const optionsWeighted = {
     //     keys: [
     //         {
@@ -37,16 +38,17 @@ const SearchPage = ({ data }) => {
     //     includeScore: true,
     // };
     
-    const optionsIndexed = {
-        keys: [
-            'node.title',
-            // 'node.author',
-            // 'node.content',
-        ],
-        includeScore: true,
-    }
-    const newIndex = Fuse.createIndex(options.keys, unsortedData);
-    const fuse = new Fuse(unsortedData, optionsIndexed, newIndex);
+    // PRE-GENERATED INDEX SEARCH
+    // const optionsIndexed = {
+    //     keys: [
+    //         'node.title',
+    //         // 'node.author',
+    //         // 'node.content',
+    //     ],
+    //     includeScore: true,
+    // }
+    // const newIndex = Fuse.createIndex(options.keys, unsortedData);
+    // const fuse = new Fuse(unsortedData, optionsIndexed, newIndex);
 
     // const fuse = new Fuse(unsortedData, {
     //     keys: [
