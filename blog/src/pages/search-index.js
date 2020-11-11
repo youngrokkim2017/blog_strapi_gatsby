@@ -10,19 +10,30 @@ const SearchPage = ({ data }) => {
     const [query, setQuery] = useState('');
 
     const unsortedData = data.allStrapiArticle.edges;
-    // console.log(unsortedData);
-    const fuse = new Fuse(unsortedData, {
+    const options = {
         keys: [
             'node.title',
             // 'node.author',
             // 'node.content',
         ],
         includeScore: true,
-    });
-    console.log('fuse', fuse);
+    };
+
+    // const fuse = new Fuse(unsortedData, {
+    //     keys: [
+    //         'node.title',
+    //         // 'node.author',
+    //         // 'node.content',
+    //     ],
+    //     includeScore: true,
+    // });
+
+    const fuse = new Fuse(unsortedData, options);
+
+    // console.log('fuse', fuse);
     // const results = fuse.search('science');
     const results = fuse.search(query);
-    console.log(results);
+    // console.log(results);
 
     // const searchResults = results.map(result => result.item)
     const searchResults = query ? results.map(result => result.item) : unsortedData.reverse();
