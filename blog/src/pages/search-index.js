@@ -8,6 +8,7 @@ import Fuse from "fuse.js"  // fuzzy search
 
 const SearchPage = ({ data }) => {
     const [query, setQuery] = useState('');
+    // const [input, setInput] = useState('');
 
     const unsortedData = data.allStrapiArticle.edges.reverse();
     const options = {
@@ -77,6 +78,7 @@ const SearchPage = ({ data }) => {
     // const searchResults = results.map(result => result.item)
     // const searchResults = query ? results.map(result => result.item) : unsortedData.reverse();
     const searchResults = query.length > 3 ? results.map(result => result.item) : unsortedData.slice(0, 5);
+    // const searchResults = input ? results.map(result => result.item) : unsortedData.slice(0, 5);
     // console.log(searchResults);
     // console.log(query);
 
@@ -87,6 +89,11 @@ const SearchPage = ({ data }) => {
         const { value } = currentTarget;
         setQuery(value);
     }
+
+    // function handleOnSubmit(e) {
+    //     setInput(query)
+    //     e.preventDefault();
+    // }
 
     return (
         <Layout>
@@ -101,6 +108,15 @@ const SearchPage = ({ data }) => {
                     onChange={handleOnSearch} 
                 />
             </form>
+            {/* <form onSubmit={handleOnSubmit}>
+                <input 
+                    type="text" 
+                    placeholder="Search" 
+                    value={query} 
+                    onChange={handleOnSearch} 
+                />
+                <input type="submit" value="submit" />
+            </form> */}
         </div>
 
         <ul>
