@@ -19,7 +19,10 @@ const SearchPage = ({ data }) => {
         includeScore: true,
     };
 
-    // WEIGHTED SEARCH
+    const fuse = new Fuse(unsortedData, options);
+
+
+    // // WEIGHTED SEARCH
     // const optionsWeighted = {
     //     keys: [
     //         {
@@ -38,7 +41,7 @@ const SearchPage = ({ data }) => {
     //     includeScore: true,
     // };
     
-    // PRE-GENERATED INDEX SEARCH
+    // // PRE-GENERATED INDEX SEARCH
     // const optionsIndexed = {
     //     keys: [
     //         'node.title',
@@ -47,9 +50,11 @@ const SearchPage = ({ data }) => {
     //     ],
     //     includeScore: true,
     // }
-    // const newIndex = Fuse.createIndex(options.keys, unsortedData);
+    // const newIndex = Fuse.createIndex(optionsIndexed.keys, unsortedData);
     // const fuse = new Fuse(unsortedData, optionsIndexed, newIndex);
+    // console.log(fuse)
 
+    // FUSE JS 
     // const fuse = new Fuse(unsortedData, {
     //     keys: [
     //         'node.title',
@@ -59,7 +64,8 @@ const SearchPage = ({ data }) => {
     //     includeScore: true,
     // });
 
-    const fuse = new Fuse(unsortedData, options);
+    // const fuse = new Fuse(unsortedData, options);
+    // 
 
     // console.log('fuse', fuse);
     // const results = fuse.search('science');
