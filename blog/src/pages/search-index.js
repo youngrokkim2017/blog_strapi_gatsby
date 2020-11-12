@@ -9,7 +9,7 @@ import Fuse from "fuse.js"  // fuzzy search
 const SearchPage = ({ data }) => {
     const [query, setQuery] = useState('');
 
-    const unsortedData = data.allStrapiArticle.edges;
+    const unsortedData = data.allStrapiArticle.edges.reverse();
     const options = {
         keys: [
             'node.title',
@@ -76,7 +76,7 @@ const SearchPage = ({ data }) => {
 
     // const searchResults = results.map(result => result.item)
     // const searchResults = query ? results.map(result => result.item) : unsortedData.reverse();
-    const searchResults = query ? results.map(result => result.item) : unsortedData.reverse().slice(0, 5);
+    const searchResults = query.length > 3 ? results.map(result => result.item) : unsortedData.slice(0, 5);
     // console.log(searchResults);
     // console.log(query);
 
@@ -94,13 +94,16 @@ const SearchPage = ({ data }) => {
 
         <div>
             <form>
-                <input type="text" placeholder="Search" value={query} onChange={handleOnSearch} />
+                <input 
+                    type="text" 
+                    placeholder="Search" 
+                    value={query} 
+                    onChange={handleOnSearch} 
+                />
             </form>
         </div>
 
         <ul>
-            {/* data.allStrapiArticle.edges.reverse().map(document => ( */}
-            {/* {searchResults.reverse().map(document => ( */}
             {searchResults.map(document => (
                 <li key={document.node.id}>
                     <h2>
@@ -117,13 +120,13 @@ const SearchPage = ({ data }) => {
                     ""
                 }
                 <Reactmarkdown
-                    source={document.node.content}
+                    // source={document.node.content}
+                    source={`${document.node.content.slice(0,500)}...`}
                     transformImageUri={uri => uri.startsWith('http') ? uri : `${process.env.IMAGE_BASE_URL}${uri}`}
                 />
                 </li>
             ))}
         </ul>
-
         </Layout>
     )
 }
