@@ -43,7 +43,7 @@ module.exports = {
           `magazine`,
           `subscribe`,
         ],
-        queryLimit: 1000,
+        queryLimit: 1000000,
       },
     },
     `gatsby-transformer-sharp`,
