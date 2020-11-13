@@ -37,6 +37,7 @@ const ArticleTemplate = ({ data }) => (
     <Reactmarkdown
       source={data.strapiArticle.content}
       transformImageUri={uri => uri.startsWith('http') ? uri : `${process.env.IMAGE_BASE_URL}${uri}`}
+      className="prose prose-lg mx-auto"
     />
   </Layout>
 
