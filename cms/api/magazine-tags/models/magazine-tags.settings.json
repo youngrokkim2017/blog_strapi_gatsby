@@ -1,0 +1,17 @@
+{
+  "kind": "collectionType",
+  "collectionName": "magazine_tags",
+  "info": {
+    "name": "Magazine Tags"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "title": {
+      "type": "string"
+    }
+  }
+}
