@@ -2,11 +2,13 @@
   "kind": "collectionType",
   "collectionName": "issues",
   "info": {
-    "name": "issue"
+    "name": "issue",
+    "description": ""
   },
   "options": {
     "increments": true,
-    "timestamps": true
+    "timestamps": true,
+    "draftAndPublish": false
   },
   "attributes": {
     "title": {
@@ -19,7 +21,7 @@
       "type": "string"
     },
     "image": {
-      "collection": "file",
+      "model": "file",
       "via": "related",
       "allowedTypes": [
         "images",
@@ -30,8 +32,8 @@
       "required": false
     },
     "tag": {
-      "via": "issue",
-      "collection": "tag"
+      "collection": "tag",
+      "via": "issue"
     }
   }
 }

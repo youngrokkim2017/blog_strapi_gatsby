@@ -13,8 +13,8 @@
       "type": "string"
     },
     "issue": {
-      "collection": "issue",
       "via": "tag",
+      "collection": "issue",
       "dominant": true
     }
   }
