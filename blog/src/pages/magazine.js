@@ -1,6 +1,6 @@
 import React from "react"
 import { Link, graphql } from "gatsby"
-// import Img from 'gatsby-image';
+import Img from 'gatsby-image';
 
 import Layout from "../components/layout"
 import SEO from "../components/seo"
@@ -17,13 +17,13 @@ const MagazinePage = ({ data }) => (
             </Link>
           </h2>
           <h4>By{" "}{document.node.author}</h4>
-          {/* {
+          {
             document.node.image
             ? 
             <Img fixed={document.node.image.childImageSharp.fixed} />
             :
             ""
-          } */}
+          }
           <p>{document.node.content}</p>
         </li>
       ))}
@@ -45,6 +45,13 @@ export const magazineQuery = graphql`
           title
           author
           content
+          image {
+            childImageSharp {
+              fixed(width: 200, height: 125) {
+                ...GatsbyImageSharpFixed
+              }
+            }
+          }
           tag {
             id
             title
