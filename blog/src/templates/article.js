@@ -7,38 +7,39 @@ import Reactmarkdown from "react-markdown"
 
 const ArticleTemplate = ({ data }) => (
   <Layout>
-    <h1>{data.strapiArticle.title}</h1>
-    <p>
-      By{" "}
-      {/* <Link to={`/authors/User_${data.strapiArticle.user.id}`}>
+    <article className="prose prose-sm sm:prose lg:prose-lg mx-auto antialiased text-gray-900">
+      <h2>{data.strapiArticle.title}</h2>
+      <p>
+        By{" "}
+        {/* <Link to={`/authors/User_${data.strapiArticle.user.id}`}>
         {data.strapiArticle.user.username}
       </Link> */}
-      {data.strapiArticle.author}
-    </p>
-    <p>
-      Tags: 
+        {data.strapiArticle.author}
+      </p>
+      <p>
+        Tags:
       {
-        data.strapiArticle.category
-        ?
-        // data.strapiArticle.category.map(c => <span>{c.title}</span>)
-        data.strapiArticle.category.map(c => <Link to={`/categories/Category_${c.id}`}>{c.title}</Link>)
-        // data.strapiArticle.category.map(c => <Link to={`/Category_${c.id}`}>{c.title}</Link>)
-        :
-        'N/A'
+          data.strapiArticle.category
+            ?
+            // data.strapiArticle.category.map(c => <span>{c.title}</span>)
+            data.strapiArticle.category.map(c => <Link to={`/categories/Category_${c.id}`}>{c.title}</Link>)
+            // data.strapiArticle.category.map(c => <Link to={`/Category_${c.id}`}>{c.title}</Link>)
+            :
+            'N/A'
+        }
+      </p>
+      {
+        data.strapiArticle.image
+          ?
+          <Img fluid={data.strapiArticle.image.childImageSharp.fluid} />
+          :
+          ""
       }
-    </p>
-    {
-      data.strapiArticle.image
-        ?
-        <Img fluid={data.strapiArticle.image.childImageSharp.fluid} />
-        :
-        ""
-    }
-    <Reactmarkdown
-      source={data.strapiArticle.content}
-      transformImageUri={uri => uri.startsWith('http') ? uri : `${process.env.IMAGE_BASE_URL}${uri}`}
-      className="prose prose-lg mx-auto"
-    />
+      <Reactmarkdown
+        source={data.strapiArticle.content}
+        transformImageUri={uri => uri.startsWith('http') ? uri : `${process.env.IMAGE_BASE_URL}${uri}`}
+      />
+    </article>
   </Layout>
 
 )
