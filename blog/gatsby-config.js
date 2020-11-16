@@ -39,8 +39,6 @@ module.exports = {
         ],
         singleTypes: [
           `about`,
-          `blog`, 
-          `magazine`,
           `subscribe`,
         ],
         queryLimit: 1000000,
