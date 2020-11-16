@@ -13,6 +13,10 @@
   "attributes": {
     "title": {
       "type": "string"
+    },
+    "magazine_issues": {
+      "via": "magazine_tags",
+      "collection": "magazine-issues"
     }
   }
 }

@@ -13,6 +13,10 @@
   "attributes": {
     "title": {
       "type": "string"
+    },
+    "blog_articles": {
+      "via": "blog_tags",
+      "collection": "blog-articles"
     }
   }
 }

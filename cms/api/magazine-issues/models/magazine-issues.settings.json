@@ -13,6 +13,28 @@
   "attributes": {
     "title": {
       "type": "string"
+    },
+    "author": {
+      "type": "string"
+    },
+    "content": {
+      "type": "richtext"
+    },
+    "image": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos"
+      ],
+      "plugin": "upload",
+      "required": false
+    },
+    "magazine_tags": {
+      "collection": "magazine-tags",
+      "via": "magazine_issues",
+      "dominant": true
     }
   }
 }
