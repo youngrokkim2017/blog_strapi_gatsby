@@ -1,0 +1,22 @@
+{
+  "kind": "singleType",
+  "collectionName": "navs",
+  "info": {
+    "name": "nav",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "body": {
+      "type": "dynamiczone",
+      "components": [
+        "menu.link",
+        "menu.dropdown"
+      ]
+    }
+  }
+}
