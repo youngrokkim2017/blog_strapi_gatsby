@@ -7,17 +7,6 @@ module.exports = {
     author: `@gatsbyjs and @strapi`,
   },
   plugins: [
-    // {
-    //   resolve: `gatsby-plugin-lunr`,
-    //   options: {
-    //     languages: [{ nane: 'en' }],
-    //     fields: [
-    //       { name: `title`, store: true },
-    //       { name: `author`, store: true },
-    //       { name: `content`, store: true },
-    //     ],
-    //   }
-    // },
     `gatsby-plugin-react-helmet`,
     {
       resolve: `gatsby-source-filesystem`,
@@ -36,11 +25,13 @@ module.exports = {
           `category`,
           `issue`,
           `tag`,
+          `blog-article`,
+          `blog-tag`,
+          `magazine-issue`,
+          `magazine-tag`,
         ],
         singleTypes: [
           `about`,
-          `blog`, 
-          `magazine`,
           `subscribe`,
         ],
         queryLimit: 1000000,
