@@ -25,6 +25,10 @@ module.exports = {
           `category`,
           `issue`,
           `tag`,
+          `blog-article`,
+          `blog-tag`,
+          `magazine-issue`,
+          `magazine-tag`,
         ],
         singleTypes: [
           `about`,
