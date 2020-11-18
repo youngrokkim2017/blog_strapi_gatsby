@@ -2,11 +2,13 @@
   "kind": "singleType",
   "collectionName": "abouts",
   "info": {
-    "name": "about"
+    "name": "about",
+    "description": ""
   },
   "options": {
     "increments": true,
-    "timestamps": true
+    "timestamps": true,
+    "draftAndPublish": false
   },
   "attributes": {
     "title": {

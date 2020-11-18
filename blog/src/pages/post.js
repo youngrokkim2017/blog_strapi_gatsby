@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Layout from '../components/layout';
-// import axios from 'axios';
+import axios from 'axios';
 // import CreateForm from '../components/create_form';
 
 function Form() {
@@ -21,18 +21,26 @@ function Form() {
     }, []);
 
     async function getPosts() {
-        try {
-            // fetch is JS built in
-            // could also use axios instead of fetch
-            // const res = await axios.get('http://localhost:1337/posts');
-            const res = await fetch('http://localhost:1337/posts');
-            const data = await res.json();
+        // try {
+        //     // fetch is JS built in
+        //     // could also use axios instead of fetch
+        //     // const res = await fetch('http://localhost:1337/posts');
+        //     const data = await res.json();
 
-            console.log(data);
-            setPosts(data);
-        } catch (err) {
-            console.error(err);
-        }
+        //     console.log(data);
+        //     setPosts(data);
+        // } catch (err) {
+        //     console.error(err);
+        // }
+
+        // axios.get('http://localhost:1337/posts')
+        //     .then((response) => {
+        //         console.log(response.data);
+        //         setPosts(response.data);
+        //     })
+        //     .catch((error) => {
+        //         console.log(error);
+        //     });
     }
 
     return (
@@ -57,10 +65,20 @@ function CreateForm() {
     function handleSubmit(e) {
         e.preventDefault();
 
-        fetch('http://localhost:1337/posts', {
-            method: 'POST',
-            body: JSON.stringify({ title }),
-        });
+        // fetch('http://localhost:1337/posts', {
+        //     method: 'POST',
+        //     body: JSON.stringify({ title }),
+        // });
+
+        // axios.post('http://localhost:1337/posts', {
+        //     title: title,
+        // })
+        // .then((response) => {
+        //     console.log(response);
+        // })
+        // .catch((error) => {
+        //     console.log(error);
+        // });
     }
 
     return (
