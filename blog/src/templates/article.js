@@ -88,6 +88,7 @@ const ArticleTemplate = ({ data }) => {
           name="content"
           value={content}
           onChange={(e) => setContent(e.target.value)}
+          style={{border:'1px solid black'}}
         />
         <button type="submit">Submit</button>
       </form>
@@ -95,11 +96,22 @@ const ArticleTemplate = ({ data }) => {
       {
         data.strapiArticle.comments
         ?
-        data.strapiArticle.comments.map((comment, idx) => (
-          <div>
-            {comment.content}
-          </div>
-        ))
+        // data.strapiArticle.comments.map((comment, idx) => (
+        //   <div>
+        //     {comment.content}
+        //   </div>
+        // ))
+        <ul>
+          {data.strapiArticle.comments.map((comment, idx) => {
+            return (
+              <li key={idx}>
+                <div>
+                  {comment.content}
+                </div>
+              </li>
+            )
+          })}
+        </ul>
         :
         ""
       }
