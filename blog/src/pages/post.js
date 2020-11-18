@@ -1,16 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import Layout from '../components/layout';
 import axios from 'axios';
-// import CreateForm from '../components/create_form';
 
 function Form() {
-    // function getPosts() {
-    //     fetch('http://localhost:1337/posts')
-    //     .then((res) => res.json())
-    //     .then(console.log)
-    //     .catch()
-    // }
-
     // useState is used to store variables that are going to be rendered
     const [posts, setPosts] = useState([]);
 
