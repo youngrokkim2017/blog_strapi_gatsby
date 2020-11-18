@@ -16,7 +16,7 @@ const IssueTemplate = ({ data }) => (
       {
         data.strapiIssue.tag
         ?
-        data.strapiIssue.tag.map(t => <Link to={`/tags/Tag_${t.id}`}>{t.title}</Link>)
+        data.strapiIssue.tag.map((t, idx) => <Link to={`/tags/Tag_${t.id}`} key={idx}>{t.title}</Link>)
         :
         'N/A'
       }

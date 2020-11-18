@@ -5,15 +5,15 @@ import Layout from "../components/layout"
 
 const TagTemplate = ({ data }) => (
   <Layout>
-    <p>
+    <div>
       {/* <Link to={`/Tag_${data.strapiTag.title}`}> */}
         <h3>{data.strapiTag.title}</h3>
       {/* </Link> */}
-    </p>
-    <p>
-        {data.strapiTag.issue.map(a => {
+    </div>
+    <div>
+        {data.strapiTag.issue.map((a, idx) => {
             return (
-                <ul>
+                <ul key={idx}>
                     <li>
                         <Link to={`/Issue_${a.id}`}>{a.title}</Link>
                         <div>{a.content}</div>
@@ -21,7 +21,7 @@ const TagTemplate = ({ data }) => (
                 </ul>
             )
         })}
-    </p>
+    </div>
   </Layout>
 )
 
