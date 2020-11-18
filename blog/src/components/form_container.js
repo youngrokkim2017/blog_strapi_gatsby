@@ -2,13 +2,6 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
 function FormContainer() {
-    // function getPosts() {
-    //     fetch('http://localhost:1337/posts')
-    //     .then((res) => res.json())
-    //     .then(console.log)
-    //     .catch()
-    // }
-
     // useState is used to store variables that are going to be rendered
     const [posts, setPosts] = useState([]);
 
@@ -22,7 +15,6 @@ function FormContainer() {
         // try {
         //     // fetch is JS built in
         //     // could also use axios instead of fetch
-        //     // const res = await axios.get('http://localhost:1337/posts');
         //     const res = await fetch('http://localhost:1337/posts');
         //     const data = await res.json();
 

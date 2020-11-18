@@ -1,13 +1,42 @@
-import React from "react"
+import React, { useState } from "react"
 import { Link, graphql } from "gatsby"
 // import { graphql } from "gatsby"
 import Img from "gatsby-image"
 import Layout from "../components/layout"
 import Reactmarkdown from "react-markdown"
+import axios from 'axios';
 
-import FormContainer from '../components/form_container';
+// import CreateForm from '../components/create_form';
 
-const ArticleTemplate = ({ data }) => (
+const ArticleTemplate = ({ data }) => {
+  const [content, setContent] = useState('');
+
+  function handleSubmit(e) {
+    e.preventDefault();
+
+    // fetch('http://localhost:1337/posts', {
+    //     method: 'POST',
+    //     body: JSON.stringify({ title }),
+    // });
+
+    axios.post('http://localhost:1337/comments', {
+      article: data.strapiArticle.id.split('_')[1],
+      title: data.strapiArticle.title,
+      content: content,
+    })
+    .then((response) => {
+      console.log(response);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+
+    // window.location.reload(false);
+    setContent('');
+    }
+
+    // console.log(data.strapiArticle.id)
+  return (
   <Layout>
     <article className="prose prose-sm sm:prose lg:prose-lg mx-auto antialiased text-gray-900">
       <h2>{data.strapiArticle.title}</h2>
@@ -23,9 +52,7 @@ const ArticleTemplate = ({ data }) => (
       {
           data.strapiArticle.category
             ?
-            // data.strapiArticle.category.map(c => <span>{c.title}</span>)
             data.strapiArticle.category.map((c, idx) => <Link to={`/categories/Category_${c.id}`} key={idx}>{c.title}</Link>)
-            // data.strapiArticle.category.map(c => <Link to={`/Category_${c.id}`}>{c.title}</Link>)
             :
             'N/A'
         }
@@ -42,12 +69,57 @@ const ArticleTemplate = ({ data }) => (
         transformImageUri={uri => uri.startsWith('http') ? uri : `${process.env.IMAGE_BASE_URL}${uri}`}
       />
 
-      <FormContainer key={data.strapiArticle.id} />
+      
+      {/* <CreateForm /> */}
+
+      <form onSubmit={handleSubmit}>
+        <input 
+          type="hidden"
+          name="article"
+          value={data.strapiArticle.id}
+        />
+        <input 
+          type="hidden"
+          name="title"
+          value={data.strapiArticle.title}
+        />
+        <input
+          type="text"
+          name="content"
+          value={content}
+          onChange={(e) => setContent(e.target.value)}
+          style={{border:'1px solid black'}}
+        />
+        <button type="submit">Submit</button>
+      </form>
+
+      {
+        data.strapiArticle.comments
+        ?
+        // data.strapiArticle.comments.map((comment, idx) => (
+        //   <div>
+        //     {comment.content}
+        //   </div>
+        // ))
+        <ul>
+          {data.strapiArticle.comments.map((comment, idx) => {
+            return (
+              <li key={idx}>
+                <div>
+                  {comment.content}
+                </div>
+              </li>
+            )
+          })}
+        </ul>
+        :
+        ""
+      }
     </article>
 
   </Layout>
-
-)
+  )
+}
 
 export default ArticleTemplate
 
@@ -68,6 +140,11 @@ export const query = graphql`
       category {
         id
         title
+      }
+      comments {
+        id
+        title
+        content
       }
     }
   }

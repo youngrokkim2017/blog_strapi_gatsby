@@ -15,6 +15,9 @@
       "model": "article",
       "via": "comments"
     },
+    "title": {
+      "type": "string"
+    },
     "content": {
       "type": "text"
     }
