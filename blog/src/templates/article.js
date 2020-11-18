@@ -19,7 +19,8 @@ const ArticleTemplate = ({ data }) => {
     //     body: JSON.stringify({ title }),
     // });
 
-    axios.post('http://localhost:1337/posts', {
+    axios.post('http://localhost:1337/comments', {
+      article: data.strapiArticle.id.split('_')[1],
       title: data.strapiArticle.title,
       content: content,
     })
@@ -34,6 +35,7 @@ const ArticleTemplate = ({ data }) => {
     setContent('');
     }
 
+    // console.log(data.strapiArticle.id)
   return (
   <Layout>
     <article className="prose prose-sm sm:prose lg:prose-lg mx-auto antialiased text-gray-900">
@@ -73,6 +75,11 @@ const ArticleTemplate = ({ data }) => {
       <form onSubmit={handleSubmit}>
         <input 
           type="hidden"
+          name="article"
+          value={data.strapiArticle.id}
+        />
+        <input 
+          type="hidden"
           name="title"
           value={data.strapiArticle.title}
         />
@@ -85,17 +92,17 @@ const ArticleTemplate = ({ data }) => {
         <button type="submit">Submit</button>
       </form>
 
-      {/* {
-        data.strapiArticle.comment
+      {
+        data.strapiArticle.comments
         ?
-        data.strapiArticle.comment.map((com, idx) => (
+        data.strapiArticle.comments.map((comment, idx) => (
           <div>
-            {com.content}
+            {comment.content}
           </div>
         ))
         :
         ""
-      } */}
+      }
     </article>
 
   </Layout>
@@ -121,6 +128,11 @@ export const query = graphql`
       category {
         id
         title
+      }
+      comments {
+        id
+        title
+        content
       }
     }
   }
