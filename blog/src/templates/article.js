@@ -24,7 +24,7 @@ const ArticleTemplate = ({ data }) => (
           data.strapiArticle.category
             ?
             // data.strapiArticle.category.map(c => <span>{c.title}</span>)
-            data.strapiArticle.category.map(c => <Link to={`/categories/Category_${c.id}`}>{c.title}</Link>)
+            data.strapiArticle.category.map((c, idx) => <Link to={`/categories/Category_${c.id}`} key={idx}>{c.title}</Link>)
             // data.strapiArticle.category.map(c => <Link to={`/Category_${c.id}`}>{c.title}</Link>)
             :
             'N/A'
