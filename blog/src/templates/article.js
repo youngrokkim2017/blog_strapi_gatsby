@@ -5,6 +5,8 @@ import Img from "gatsby-image"
 import Layout from "../components/layout"
 import Reactmarkdown from "react-markdown"
 
+import FormContainer from '../components/form_container';
+
 const ArticleTemplate = ({ data }) => (
   <Layout>
     <article className="prose prose-sm sm:prose lg:prose-lg mx-auto antialiased text-gray-900">
@@ -39,7 +41,10 @@ const ArticleTemplate = ({ data }) => (
         source={data.strapiArticle.content}
         transformImageUri={uri => uri.startsWith('http') ? uri : `${process.env.IMAGE_BASE_URL}${uri}`}
       />
+
+      <FormContainer key={data.strapiArticle.id} />
     </article>
+
   </Layout>
 
 )
@@ -49,6 +54,7 @@ export default ArticleTemplate
 export const query = graphql`
   query ArticleTemplate($id: String!) {
     strapiArticle(id: { eq: $id }) {
+      id
       title
       author
       content
