@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-// import axios from 'axios';
+import axios from 'axios';
 
 function FormContainer() {
     // function getPosts() {
@@ -19,18 +19,27 @@ function FormContainer() {
     }, []);
 
     async function getPosts() {
-        try {
-            // fetch is JS built in
-            // could also use axios instead of fetch
-            // const res = await axios.get('http://localhost:1337/posts');
-            const res = await fetch('http://localhost:1337/posts');
-            const data = await res.json();
+        // try {
+        //     // fetch is JS built in
+        //     // could also use axios instead of fetch
+        //     // const res = await axios.get('http://localhost:1337/posts');
+        //     const res = await fetch('http://localhost:1337/posts');
+        //     const data = await res.json();
 
-            // console.log(data);
-            setPosts(data);
-        } catch (err) {
-            console.error(err);
-        }
+        //     // console.log(data);
+        //     setPosts(data);
+        // } catch (err) {
+        //     console.error(err);
+        // }
+
+        axios.get('http://localhost:1337/posts')
+            .then((response) => {
+                console.log(response.data);
+                setPosts(response.data);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
     }
 
     return (

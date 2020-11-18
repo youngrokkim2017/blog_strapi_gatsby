@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 
 function CreateForm() {
     const [title, setTitle] = useState('');
@@ -6,9 +7,19 @@ function CreateForm() {
     function handleSubmit(e) {
         e.preventDefault();
 
-        fetch('http://localhost:1337/posts', {
-            method: 'POST',
-            body: JSON.stringify({ title }),
+        // fetch('http://localhost:1337/posts', {
+        //     method: 'POST',
+        //     body: JSON.stringify({ title }),
+        // });
+
+        axios.post('http://localhost:1337/posts', {
+            title: title,
+        })
+        .then((response) => {
+            console.log(response);
+        })
+        .catch((error) => {
+            console.log(error);
         });
     }
 

@@ -33,14 +33,14 @@ function Form() {
         //     console.error(err);
         // }
 
-        // axios.get('http://localhost:1337/posts')
-        //     .then((response) => {
-        //         console.log(response.data);
-        //         setPosts(response.data);
-        //     })
-        //     .catch((error) => {
-        //         console.log(error);
-        //     });
+        axios.get('http://localhost:1337/posts')
+            .then((response) => {
+                console.log(response.data);
+                setPosts(response.data);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
     }
 
     return (
@@ -70,15 +70,15 @@ function CreateForm() {
         //     body: JSON.stringify({ title }),
         // });
 
-        // axios.post('http://localhost:1337/posts', {
-        //     title: title,
-        // })
-        // .then((response) => {
-        //     console.log(response);
-        // })
-        // .catch((error) => {
-        //     console.log(error);
-        // });
+        axios.post('http://localhost:1337/posts', {
+            title: title,
+        })
+        .then((response) => {
+            console.log(response);
+        })
+        .catch((error) => {
+            console.log(error);
+        });
     }
 
     return (
