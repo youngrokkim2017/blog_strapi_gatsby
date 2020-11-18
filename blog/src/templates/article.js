@@ -1,13 +1,40 @@
-import React from "react"
+import React, { useState } from "react"
 import { Link, graphql } from "gatsby"
 // import { graphql } from "gatsby"
 import Img from "gatsby-image"
 import Layout from "../components/layout"
 import Reactmarkdown from "react-markdown"
+import axios from 'axios';
 
-import CreateForm from '../components/create_form';
+// import CreateForm from '../components/create_form';
 
-const ArticleTemplate = ({ data }) => (
+const ArticleTemplate = ({ data }) => {
+  const [content, setContent] = useState('');
+
+  function handleSubmit(e) {
+    e.preventDefault();
+
+    // fetch('http://localhost:1337/posts', {
+    //     method: 'POST',
+    //     body: JSON.stringify({ title }),
+    // });
+
+    axios.post('http://localhost:1337/posts', {
+      title: data.strapiArticle.title,
+      content: content,
+    })
+    .then((response) => {
+      console.log(response);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+
+    // window.location.reload(false);
+    setContent('');
+    }
+
+  return (
   <Layout>
     <article className="prose prose-sm sm:prose lg:prose-lg mx-auto antialiased text-gray-900">
       <h2>{data.strapiArticle.title}</h2>
@@ -23,9 +50,7 @@ const ArticleTemplate = ({ data }) => (
       {
           data.strapiArticle.category
             ?
-            // data.strapiArticle.category.map(c => <span>{c.title}</span>)
             data.strapiArticle.category.map((c, idx) => <Link to={`/categories/Category_${c.id}`} key={idx}>{c.title}</Link>)
-            // data.strapiArticle.category.map(c => <Link to={`/Category_${c.id}`}>{c.title}</Link>)
             :
             'N/A'
         }
@@ -43,7 +68,23 @@ const ArticleTemplate = ({ data }) => (
       />
 
       
-      <CreateForm />
+      {/* <CreateForm /> */}
+
+      <form onSubmit={handleSubmit}>
+        <input 
+          type="hidden"
+          name="title"
+          value={data.strapiArticle.title}
+        />
+        <input
+          type="text"
+          name="content"
+          value={content}
+          onChange={(e) => setContent(e.target.value)}
+        />
+        <button type="submit">Submit</button>
+      </form>
+
       {/* {
         data.strapiArticle.comment
         ?
@@ -58,8 +99,8 @@ const ArticleTemplate = ({ data }) => (
     </article>
 
   </Layout>
-
-)
+  )
+}
 
 export default ArticleTemplate
 
