@@ -72,7 +72,8 @@ function CreateForm() {
             console.log(error);
         });
 
-        window.location.reload(false);
+        // window.location.reload(false);
+        setTitle('');
     }
 
     return (
