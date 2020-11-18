@@ -5,7 +5,6 @@ import Img from "gatsby-image"
 import Layout from "../components/layout"
 import Reactmarkdown from "react-markdown"
 
-// import FormContainer from '../components/form_container';
 import CreateForm from '../components/create_form';
 
 const ArticleTemplate = ({ data }) => (
@@ -44,7 +43,6 @@ const ArticleTemplate = ({ data }) => (
       />
 
       
-      {/* <FormContainer /> */}
       <CreateForm />
       {/* {
         data.strapiArticle.comment
