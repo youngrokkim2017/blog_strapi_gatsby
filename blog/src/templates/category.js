@@ -6,18 +6,18 @@ import Layout from "../components/layout"
 
 const CategoryTemplate = ({ data }) => (
   <Layout>
-    <p>
+    <div>
       {/* <Link to={`/Category_${data.strapiCategory.title}`}> */}
         <h3>{data.strapiCategory.title}</h3>
       {/* </Link> */}
-    </p>
-    <p>
+    </div>
+    <div>
         {/* {data.strapiCategory.article.map(a => <div>{a.title}</div>)} */}
         {/* {data.strapiCategory.article.map(a => <p><Link to={`/Article_${a.id}`}><div>{a.title}</div></Link><div>{a.content}</div></p>)} */}
         {/* {data.strapiCategory.article.map(a => <ul><li><Link to={`/Article_${a.id}`}><div>{a.title}</div></Link><div>{a.content}</div></li></ul>)} */}
-        {data.strapiCategory.article.map(a => {
+        {data.strapiCategory.article.map((a, idx) => {
             return (
-                <ul>
+                <ul key={idx}>
                     <li>
                         <Link to={`/Article_${a.id}`}>{a.title}</Link>
                         <div>{a.content}</div>
@@ -25,7 +25,7 @@ const CategoryTemplate = ({ data }) => (
                 </ul>
             )
         })}
-    </p>
+    </div>
   </Layout>
 )
 
