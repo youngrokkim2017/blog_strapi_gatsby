@@ -21,6 +21,8 @@ function CreateForm() {
         .catch((error) => {
             console.log(error);
         });
+
+        window.location.reload(false);
     }
 
     return (
@@ -31,7 +33,7 @@ function CreateForm() {
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
             />
-
+            <button type="submit">Submit</button>
         </form>
     )
 }
