@@ -35,6 +35,9 @@
       "collection": "magazine-tags",
       "via": "magazine_issues",
       "dominant": true
+    },
+    "imageURL": {
+      "type": "string"
     }
   }
 }

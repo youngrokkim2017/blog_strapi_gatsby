@@ -35,6 +35,9 @@
       "collection": "blog-tags",
       "via": "blog_articles",
       "dominant": true
+    },
+    "imageURL": {
+      "type": "string"
     }
   }
 }

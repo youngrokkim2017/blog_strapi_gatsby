@@ -43,6 +43,9 @@
     "comments": {
       "via": "article",
       "collection": "comment"
+    },
+    "imageURL": {
+      "type": "string"
     }
   }
 }
