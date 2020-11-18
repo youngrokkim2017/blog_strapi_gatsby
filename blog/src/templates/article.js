@@ -5,7 +5,8 @@ import Img from "gatsby-image"
 import Layout from "../components/layout"
 import Reactmarkdown from "react-markdown"
 
-import FormContainer from '../components/form_container';
+// import FormContainer from '../components/form_container';
+// import CreateForm from '../components/create_form';
 
 const ArticleTemplate = ({ data }) => (
   <Layout>
@@ -42,7 +43,9 @@ const ArticleTemplate = ({ data }) => (
         transformImageUri={uri => uri.startsWith('http') ? uri : `${process.env.IMAGE_BASE_URL}${uri}`}
       />
 
-      <FormContainer key={data.strapiArticle.id} />
+      
+      {/* <FormContainer />
+      <CreateForm /> */}
     </article>
 
   </Layout>
