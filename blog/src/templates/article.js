@@ -73,16 +73,6 @@ const ArticleTemplate = ({ data }) => {
       {/* <CreateForm /> */}
 
       <form onSubmit={handleSubmit}>
-        <input 
-          type="hidden"
-          name="article"
-          value={data.strapiArticle.id}
-        />
-        <input 
-          type="hidden"
-          name="title"
-          value={data.strapiArticle.title}
-        />
         <input
           type="text"
           name="content"
