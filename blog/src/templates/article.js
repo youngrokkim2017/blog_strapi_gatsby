@@ -11,12 +11,12 @@ import axios from 'axios';
 
 const ArticleTemplate = ({ data }) => {
   const [content, setContent] = useState('');
-  // // const [articles, setArticles] = useState('');
+  // const [articles, setArticles] = useState('');
   // const [comments, setComments] = useState('');
 
   // useEffect(() => {
   //   // getArticles();
-  //   // getComments();
+  //   getComments();
   // }, []);
 
   // // async function getArticles() {

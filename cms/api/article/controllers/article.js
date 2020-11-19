@@ -55,3 +55,13 @@ module.exports = {
 //     return sanitizeEntity(entity, { model: strapi.models.comment });
 //   },
 // };
+
+// // in /api/article/config/routes.jsoin
+// // // {
+//          "method": "POST",
+//          "path": "/articles/:id/comment",
+//          "handler": "article.comment",
+//          "config": {
+//              "policies": []
+//          }
+//       }
