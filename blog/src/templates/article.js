@@ -1,4 +1,5 @@
 import React, { useState } from "react"
+// import React, { useEffect, useState } from "react"
 import { Link, graphql } from "gatsby"
 // import { graphql } from "gatsby"
 import Img from "gatsby-image"
@@ -10,6 +11,27 @@ import axios from 'axios';
 
 const ArticleTemplate = ({ data }) => {
   const [content, setContent] = useState('');
+  // // const [articles, setArticles] = useState('');
+  // const [comments, setComments] = useState('');
+
+  // useEffect(() => {
+  //   // getArticles();
+  //   // getComments();
+  // }, []);
+
+  // // async function getArticles() {
+  // async function getComments() {
+  //       // axios.get('http://localhost:1337/articles')
+  //       axios.get('http://localhost:1337/comments')
+  //           .then((response) => {
+  //               console.log(response.data);
+  //               // setArticles(response.data);
+  //               setComments(response.data);
+  //           })
+  //           .catch((error) => {
+  //               console.log(error);
+  //           });
+  // }
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -96,11 +118,6 @@ const ArticleTemplate = ({ data }) => {
       {
         data.strapiArticle.comments
         ?
-        // data.strapiArticle.comments.map((comment, idx) => (
-        //   <div>
-        //     {comment.content}
-        //   </div>
-        // ))
         <ul>
           {data.strapiArticle.comments.map((comment, idx) => {
             return (
@@ -111,6 +128,20 @@ const ArticleTemplate = ({ data }) => {
               </li>
             )
           })}
+          {/* {comments.map((comment, idx) => {
+            return (
+              <li key={idx}>
+                {comment.article.id === data.strapiArticle.id.split('_')[1]
+                  ?
+                  <div>
+                    {comment.content}
+                  </div>
+                  :
+                  ""
+                }
+              </li>
+            )
+          })} */}
         </ul>
         :
         ""
