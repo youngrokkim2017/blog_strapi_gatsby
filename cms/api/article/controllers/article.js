@@ -1,19 +1,20 @@
-// // 'use strict';
+'use strict';
 
-// // /**
-// //  * Read the documentation (https://strapi.io/documentation/v3.x/concepts/controllers.html#core-controllers)
-// //  * to customize this controller
-// //  */
+/**
+ * Read the documentation (https://strapi.io/documentation/v3.x/concepts/controllers.html#core-controllers)
+ * to customize this controller
+ */
 
-// // module.exports = {
-// //     // update article record
-// //     // https://youtu.be/ITk-pYtOCnQ?t=297
+module.exports = {
+    // update article record
+    // https://youtu.be/ITk-pYtOCnQ?t=297
 
-// //     // async update(ctx) {}
+    // async update(ctx) {}
 
     
-// // };
+};
 
+// // CUSTOM API FOR FILTERING BASED ON PUBLISHED
 // const { sanitizeEntity } = require('strapi-utils');
 
 // module.exports = {
@@ -37,19 +38,30 @@
 //   },
 // };
 
-const { parseMultipartData, sanitizeEntity } = require('strapi-utils');
+// // CUSTOM API FOR POST COMMENTS
+// const { parseMultipartData, sanitizeEntity } = require('strapi-utils');
 
-module.exports = {
-  async comment(ctx) {
-    let entity;
-    if (ctx.is('multipart')) {
-      const { data, files } = parseMultipartData(ctx);
-      entity = await strapi.services.comment.create(data, { files });
-    } else {
-        ctx.request.body.article = ctx.params.id;
+// module.exports = {
+//   async comment(ctx) {
+//     let entity;
+//     if (ctx.is('multipart')) {
+//       const { data, files } = parseMultipartData(ctx);
+//       entity = await strapi.services.comment.create(data, { files });
+//     } else {
+//         ctx.request.body.article = ctx.params.id;
 
-      entity = await strapi.services.comment.create(ctx.request.body);
-    }
-    return sanitizeEntity(entity, { model: strapi.models.comment });
-  },
-};
+//       entity = await strapi.services.comment.create(ctx.request.body);
+//     }
+//     return sanitizeEntity(entity, { model: strapi.models.comment });
+//   },
+// };
+
+// // in /api/article/config/routes.jsoin
+// // // {
+//          "method": "POST",
+//          "path": "/articles/:id/comment",
+//          "handler": "article.comment",
+//          "config": {
+//              "policies": []
+//          }
+//       }

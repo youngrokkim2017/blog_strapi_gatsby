@@ -1,4 +1,5 @@
 import React, { useState } from "react"
+// import React, { useEffect, useState } from "react"
 import { Link, graphql } from "gatsby"
 // import { graphql } from "gatsby"
 import Img from "gatsby-image"
@@ -35,7 +36,6 @@ const ArticleTemplate = ({ data }) => {
     setContent('');
     }
 
-    // console.log(data.strapiArticle.id)
   return (
   <Layout>
     <article className="prose prose-sm sm:prose lg:prose-lg mx-auto antialiased text-gray-900">
@@ -73,16 +73,6 @@ const ArticleTemplate = ({ data }) => {
       {/* <CreateForm /> */}
 
       <form onSubmit={handleSubmit}>
-        <input 
-          type="hidden"
-          name="article"
-          value={data.strapiArticle.id}
-        />
-        <input 
-          type="hidden"
-          name="title"
-          value={data.strapiArticle.title}
-        />
         <input
           type="text"
           name="content"
@@ -96,11 +86,6 @@ const ArticleTemplate = ({ data }) => {
       {
         data.strapiArticle.comments
         ?
-        // data.strapiArticle.comments.map((comment, idx) => (
-        //   <div>
-        //     {comment.content}
-        //   </div>
-        // ))
         <ul>
           {data.strapiArticle.comments.map((comment, idx) => {
             return (
