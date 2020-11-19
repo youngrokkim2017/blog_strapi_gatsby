@@ -11,27 +11,6 @@ import axios from 'axios';
 
 const ArticleTemplate = ({ data }) => {
   const [content, setContent] = useState('');
-  // const [articles, setArticles] = useState('');
-  // const [comments, setComments] = useState('');
-
-  // useEffect(() => {
-  //   // getArticles();
-  //   getComments();
-  // }, []);
-
-  // // async function getArticles() {
-  // async function getComments() {
-  //       // axios.get('http://localhost:1337/articles')
-  //       axios.get('http://localhost:1337/comments')
-  //           .then((response) => {
-  //               console.log(response.data);
-  //               // setArticles(response.data);
-  //               setComments(response.data);
-  //           })
-  //           .catch((error) => {
-  //               console.log(error);
-  //           });
-  // }
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -57,7 +36,6 @@ const ArticleTemplate = ({ data }) => {
     setContent('');
     }
 
-    // console.log(data.strapiArticle.id)
   return (
   <Layout>
     <article className="prose prose-sm sm:prose lg:prose-lg mx-auto antialiased text-gray-900">
@@ -128,20 +106,6 @@ const ArticleTemplate = ({ data }) => {
               </li>
             )
           })}
-          {/* {comments.map((comment, idx) => {
-            return (
-              <li key={idx}>
-                {comment.article.id === data.strapiArticle.id.split('_')[1]
-                  ?
-                  <div>
-                    {comment.content}
-                  </div>
-                  :
-                  ""
-                }
-              </li>
-            )
-          })} */}
         </ul>
         :
         ""
