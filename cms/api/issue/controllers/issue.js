@@ -5,4 +5,10 @@
  * to customize this controller
  */
 
-module.exports = {};
+// module.exports = {};
+
+module.exports = {
+  import: async ctx => {
+    ctx.send('imported')
+  }
+};
