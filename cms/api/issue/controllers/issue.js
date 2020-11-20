@@ -7,8 +7,15 @@
 
 // module.exports = {};
 
+const axios = require('axios');
+
 module.exports = {
   import: async ctx => {
-    ctx.send('imported')
+    // ctx.send('imported')
+    const { data } = await axios.get('https://www.example.com/wp-json/wp/v2/posts?per_page=3');
+
+    const posts = await Promise.all(data.map(post => new Promise(async (resolve, reject) => {
+      const { title: { rendered: titleRendered }, slug, content: { rendered: contentRendered }, date, featured_image } = post;
+    })));
   }
 };
