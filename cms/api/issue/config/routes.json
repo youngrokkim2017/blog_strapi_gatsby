@@ -2,6 +2,14 @@
   "routes": [
     {
       "method": "GET",
+      "path": "/issues/import",
+      "handler": "issue.import",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
       "path": "/issues",
       "handler": "issue.find",
       "config": {
