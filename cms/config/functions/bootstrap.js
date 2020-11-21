@@ -37,19 +37,20 @@ module.exports = () => {
     //     });
     // });
 
-    // var test = require('fs').readFileSync('./image-urls.js', 'utf8');
+    // var test = require('fs').readFileSync('./image-urls.json', 'utf8');
     // var test = JSON.parse(test);
     // // console.log(test[test.length-1]);
 
     // test.forEach(post => {
-    //     // const downloaded = strapi.config.functions.download(post.featured_image);
-    //     // const [{ id: fileId }] = strapi.config.functions.upload(downloaded);
+    //     const downloaded = strapi.config.functions.download(post.featured_image);
+    //     const [{ id: fileId }] = strapi.config.functions.upload(downloaded);
 
-    //     strapi.services.test.create({
-    //         title: post.title,
-    //         content: post.markdown,
-    //         author: post.author,
-    //         imageURL: post.featured_image || "",
+    //     strapi.services.testimage.create({
+    //         // title: post.title,
+    //         // content: post.markdown,
+    //         // author: post.author,
+    //         // imageURL: post.featured_image || "",
+    //         image: fileId,
     //     });
     // });
 };
