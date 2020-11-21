@@ -25,84 +25,105 @@ const ArticleTemplate = ({ data }) => {
       title: data.strapiArticle.title,
       content: content,
     })
-    .then((response) => {
-      console.log(response);
-    })
-    .catch((error) => {
-      console.log(error);
-    });
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
 
     // window.location.reload(false);
     setContent('');
-    }
+  }
+
+  function handleDate(e) {
+    var d = new Date(e);
+    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+    return d.toLocaleDateString(undefined, options)
+  }
 
   return (
-  <Layout>
-    <article className="prose prose-sm sm:prose lg:prose-lg mx-auto antialiased text-gray-900">
-      <h2>{data.strapiArticle.title}</h2>
-      <p>
-        By{" "}
-        {/* <Link to={`/authors/User_${data.strapiArticle.user.id}`}>
-        {data.strapiArticle.user.username}
-      </Link> */}
-        {data.strapiArticle.author}
-      </p>
-      <p>
-        Tags:
-      {
-          data.strapiArticle.category
+    <Layout>
+      <article className="prose prose-sm sm:prose lg:prose-lg mx-auto antialiased leading-relaxed">
+        <h2>{data.strapiArticle.title}</h2>
+        <div className="meta text-black text-sm not-italic leading-5">
+          <p className='my-0'>
+            By <Link to={"#"}> {" "}
+              {/* <Link to={`/authors/User_${data.strapiArticle.user.id}`}>
+          {data.strapiArticle.user.username}
+        </Link> */}
+              {data.strapiArticle.author}
+            </Link>
+          </p>
+          <p className='my-0'>
+            {
+              handleDate(data.strapiArticle.published_at) === handleDate(data.strapiArticle.updated_at)
+                ?
+                handleDate(data.strapiArticle.published_at)
+                :
+                (<><span className='mr-2'>{`Published ${handleDate(data.strapiArticle.published_at)}`}</span><span>{`Updated ${handleDate(data.strapiArticle.updated_at)}`}</span></>)
+          }
+          </p>
+          <p className='my-0'>
+            {/* Tags: */}
+          {
+              data.strapiArticle.category
+                ?
+                data.strapiArticle.category.map((c, idx) => <Link to={`/categories/Category_${c.id}`} key={idx}>{c.title}</Link>)
+                :
+                'N/A'
+            }
+          </p>
+        </div>
+        {
+          data.strapiArticle.image
             ?
-            data.strapiArticle.category.map((c, idx) => <Link to={`/categories/Category_${c.id}`} key={idx}>{c.title}</Link>)
+            <Img fluid={data.strapiArticle.image.childImageSharp.fluid} />
             :
-            'N/A'
+            ""
         }
-      </p>
-      {
-        data.strapiArticle.image
-          ?
-          <Img fluid={data.strapiArticle.image.childImageSharp.fluid} />
-          :
-          ""
-      }
-      <Reactmarkdown
-        source={data.strapiArticle.content}
-        transformImageUri={uri => uri.startsWith('http') ? uri : `${process.env.IMAGE_BASE_URL}${uri}`}
-      />
-
-      
-      {/* <CreateForm /> */}
-
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          name="content"
-          value={content}
-          onChange={(e) => setContent(e.target.value)}
-          style={{border:'1px solid black'}}
+        <Reactmarkdown
+          source={data.strapiArticle.content}
+          transformImageUri={uri => uri.startsWith('http') ? uri : `${process.env.IMAGE_BASE_URL}${uri}`}
         />
-        <button type="submit">Submit</button>
-      </form>
 
-      {
-        data.strapiArticle.comments
-        ?
-        <ul>
-          {data.strapiArticle.comments.map((comment, idx) => {
-            return (
-              <li key={idx}>
-                <div>
-                  {comment.content}
-                </div>
-              </li>
-            )
-          })}
-        </ul>
-        :
-        ""
-      }
-    </article>
 
-  </Layout>
+        {/* <CreateForm /> */}
+
+
+        <h4>Comments</h4>
+        <form onSubmit={handleSubmit} className="mt-6 bg-gray-100 border border-gray-300 text-gray-600 flex items-center rounded-lg py-2 px-4 pr-2 focus-within:border-blue-600">
+          <input
+            type="text"
+            name="content"
+            value={content}
+            onChange={(e) => setContent(e.target.value)}
+            className='appearance-none bg-transparent border-none w-full placeholder-gray-600 leading-tight focus:outline-none mr-4'
+          />
+          <button type="submit" className="inline-block text-lg px-4 py-2 leading-none rounded text-white bg-blue-600 shadow-lg flex-shrink-0">Submit</button>
+        </form>
+
+
+        {
+          data.strapiArticle.comments
+            ?
+            <ul className='list-none'>
+              {data.strapiArticle.comments.map((comment, idx) => {
+                return (
+                  <li key={idx}>
+                    <div>
+                      {comment.content}
+                    </div>
+                  </li>
+                )
+              })}
+            </ul>
+            :
+            ""
+        }
+      </article>
+
+    </Layout>
   )
 }
 
@@ -114,6 +135,8 @@ export const query = graphql`
       id
       title
       author
+      published_at
+      updated_at
       content
       image {
         childImageSharp {
