@@ -1,41 +1,13 @@
-import React, { useState } from "react"
+import React from "react"
+// import React, { useState } from "react"
 // import React, { useEffect, useState } from "react"
 import { Link, graphql } from "gatsby"
 // import { graphql } from "gatsby"
 import Img from "gatsby-image"
 import Layout from "../components/layout"
 import Reactmarkdown from "react-markdown"
-import axios from 'axios';
-
-// import CreateForm from '../components/create_form';
 
 const ArticleTemplate = ({ data }) => {
-  const [content, setContent] = useState('');
-
-  function handleSubmit(e) {
-    e.preventDefault();
-
-    // fetch('http://localhost:1337/posts', {
-    //     method: 'POST',
-    //     body: JSON.stringify({ title }),
-    // });
-
-    axios.post('http://localhost:1337/comments', {
-      article: data.strapiArticle.id.split('_')[1],
-      title: data.strapiArticle.title,
-      content: content,
-    })
-      .then((response) => {
-        console.log(response);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-
-    // window.location.reload(false);
-    setContent('');
-  }
-
   function handleDate(e) {
     var d = new Date(e);
     const options = { year: 'numeric', month: 'long', day: 'numeric' };
@@ -86,8 +58,16 @@ const ArticleTemplate = ({ data }) => {
           source={data.strapiArticle.content}
           transformImageUri={uri => uri.startsWith('http') ? uri : `${process.env.IMAGE_BASE_URL}${uri}`}
         />
+        <div>
+          <h2>SHARE</h2>
+          <div>
+            
+          </div>
+        </div>
       </article>
 
+      {/* SIDEBAR */}
+      <div></div>
     </Layout>
   )
 }
@@ -121,9 +101,11 @@ export const query = graphql`
 // export const query = graphql`
 //   query ArticleTemplate($id: String!) {
 //     strapiArticle(id: { eq: $id }) {
+//       id
 //       title
-//       author
 //       content
+//       published_at
+//       created_at
 //       image {
 //         childImageSharp {
 //           fluid(maxWidth: 500) {
@@ -131,9 +113,11 @@ export const query = graphql`
 //           }
 //         }
 //       }
-//       user {
+//       author {
 //         id
-//         username
+//         name
+//         twitterURL
+//         about
 //       }
 //     }
 //   }

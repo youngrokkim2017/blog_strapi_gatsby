@@ -29,7 +29,6 @@ module.exports = {
           `blog-tag`,
           `magazine-issue`,
           `magazine-tag`,
-          `comment`,
         ],
         singleTypes: [
           `about`,
