@@ -1,46 +1,42 @@
-import React, { useState } from "react"
+import React from "react"
+// import React, { useState } from "react"
 // import React, { useEffect, useState } from "react"
 import { Link, graphql } from "gatsby"
 // import { graphql } from "gatsby"
 import Img from "gatsby-image"
 import Layout from "../components/layout"
-import Reactmarkdown from "react-markdown"
-import axios from 'axios';
-
-// import CreateForm from '../components/create_form';
+import ReactMarkdown from "react-markdown"
+// import RelatedArticles from '../components/relatedArticles';
+// import Fuse from "fuse.js"  // fuzzy search
 
 const ArticleTemplate = ({ data }) => {
-  const [content, setContent] = useState('');
-
-  function handleSubmit(e) {
-    e.preventDefault();
-
-    // fetch('http://localhost:1337/posts', {
-    //     method: 'POST',
-    //     body: JSON.stringify({ title }),
-    // });
-
-    axios.post('http://localhost:1337/comments', {
-      article: data.strapiArticle.id.split('_')[1],
-      title: data.strapiArticle.title,
-      content: content,
-    })
-      .then((response) => {
-        console.log(response);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-
-    // window.location.reload(false);
-    setContent('');
-  }
-
   function handleDate(e) {
     var d = new Date(e);
     const options = { year: 'numeric', month: 'long', day: 'numeric' };
     return d.toLocaleDateString(undefined, options)
   }
+  
+  // const { relatedArticles } = this.props.pathContext;
+  // const { relatedArticles } = this.props.pageContext;
+
+  // const unsortedData = data.allStrapiArticle.edges;
+  // // const query = data.strapiArticle.category.title;
+
+  // const options = {
+  //     keys: [
+  //         'node.category.title',
+  //     ],
+  //     includeScore: true,
+  // };
+  // const fuse = new Fuse(unsortedData, options);
+  // // const results = fuse.search(query);
+  // const results = fuse.search(data.strapiArticle.category.title);
+  // const searchResults = results.map(result => result.item);
+
+  // const relatedArticles = data.allStrapiArticle.edges.filter((document) => document.node.category.title === data.strapiArticle.category.title).slice(0,3);
+  // const relatedArticles = data.allStrapiArticle.edges
+  //   .filter((article) => article.node.category.title === data.strapiArticle.category.title)
+  //   .slice(0, 3)
 
   return (
     <Layout>
@@ -66,13 +62,14 @@ const ArticleTemplate = ({ data }) => {
           </p>
           <p className='my-0'>
             {/* Tags: */}
-          {
+            {/* {
               data.strapiArticle.category
-                ?
-                data.strapiArticle.category.map((c, idx) => <Link to={`/categories/Category_${c.id}`} key={idx}>{c.title}</Link>)
-                :
-                'N/A'
-            }
+              ?
+              data.strapiArticle.category.map((c, idx) => <Link to={`/categories/Category_${c.id}`} key={idx}>{c.title}</Link>)
+              :
+              'N/A'
+            } */}
+            <Link to={`/categories/Category_${data.strapiArticle.category.id}`} key={data.strapiArticle.category.id}>{data.strapiArticle.category.title}</Link>
           </p>
         </div>
         {
@@ -82,45 +79,56 @@ const ArticleTemplate = ({ data }) => {
             :
             ""
         }
-        <Reactmarkdown
+        <ReactMarkdown
           source={data.strapiArticle.content}
           transformImageUri={uri => uri.startsWith('http') ? uri : `${process.env.IMAGE_BASE_URL}${uri}`}
         />
+        <div>
+          <h2>SHARE</h2>
+          <div>
+            
+          </div>
+        </div>
 
-
-        {/* <CreateForm /> */}
-
-
-        <h4>Comments</h4>
-        <form onSubmit={handleSubmit} className="mt-6 bg-gray-100 border border-gray-300 text-gray-600 flex items-center rounded-lg py-2 px-4 pr-2 focus-within:border-blue-600">
-          <input
-            type="text"
-            name="content"
-            value={content}
-            onChange={(e) => setContent(e.target.value)}
-            className='appearance-none bg-transparent border-none w-full placeholder-gray-600 leading-tight focus:outline-none mr-4'
-          />
-          <button type="submit" className="inline-block text-lg px-4 py-2 leading-none rounded text-white bg-blue-600 shadow-lg flex-shrink-0">Submit</button>
-        </form>
-
-
+      {/* SIDEBAR */}
+      {/* <div>
         {
-          data.strapiArticle.comments
-            ?
-            <ul className='list-none'>
-              {data.strapiArticle.comments.map((comment, idx) => {
-                return (
-                  <li key={idx}>
-                    <div>
-                      {comment.content}
-                    </div>
-                  </li>
-                )
-              })}
-            </ul>
-            :
-            ""
+          relatedArticles.length 
+          ? 
+          <RelatedArticles articles={relatedArticles} />
+          :
+          ""
         }
+      </div> */}
+
+      {/* RELATED ARTICLES */}
+      <div>
+        <h2>RECOMMENDED READING</h2>
+        <ul>
+            {/* {relatedArticles.map(document => ( */}
+            {/* {data.allStrapiArticle.edges */}
+            {data.allStrapiArticle.edges.reverse().slice(0, 3).map(document => (
+              // .filter((article) => article.node.category.title === data.strapiArticle.category.title)
+              // .slice(0, 3)
+              // .map(document => (
+                <li key={document.node.id}>
+                    <h2>
+                        <Link to={`/blog/${document.node.id}`} style={{ textDecoration: `none` }}>
+                            {document.node.title}
+                        </Link>
+                    </h2>
+                    <h4>By{" "}{document.node.author}</h4>
+                {
+                    document.node.image
+                    ?
+                    <Img fixed={document.node.image.childImageSharp.fixed} />
+                    :
+                    ""
+                }
+                </li>
+            ))}
+        </ul>
+      </div>
       </article>
 
     </Layout>
@@ -149,10 +157,26 @@ export const query = graphql`
         id
         title
       }
-      comments {
-        id
-        title
-        content
+    }
+    allStrapiArticle {
+      edges {
+        node {
+          id
+          image {
+            childImageSharp {
+              fixed(width: 200, height: 125) {
+                ...GatsbyImageSharpFixed
+              }
+            }
+          }
+          title
+          author
+          content
+          category {
+            id
+            title
+          }
+        }
       }
     }
   }
@@ -161,9 +185,11 @@ export const query = graphql`
 // export const query = graphql`
 //   query ArticleTemplate($id: String!) {
 //     strapiArticle(id: { eq: $id }) {
+//       id
 //       title
-//       author
 //       content
+//       published_at
+//       created_at
 //       image {
 //         childImageSharp {
 //           fluid(maxWidth: 500) {
@@ -171,9 +197,11 @@ export const query = graphql`
 //           }
 //         }
 //       }
-//       user {
+//       author {
 //         id
-//         username
+//         name
+//         twitterURL
+//         about
 //       }
 //     }
 //   }

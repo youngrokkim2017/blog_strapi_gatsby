@@ -15,7 +15,7 @@
       "type": "string"
     },
     "blog_articles": {
-      "via": "blog_tags",
+      "via": "blog_tag",
       "collection": "blog-articles"
     }
   }

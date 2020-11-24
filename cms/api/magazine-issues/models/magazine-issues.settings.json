@@ -31,10 +31,9 @@
       "plugin": "upload",
       "required": false
     },
-    "magazine_tags": {
-      "collection": "magazine-tags",
-      "via": "magazine_issues",
-      "dominant": true
+    "magazine_tag": {
+      "model": "magazine-tags",
+      "via": "magazine_issues"
     },
     "imageURL": {
       "type": "string"

@@ -15,7 +15,7 @@
       "type": "string"
     },
     "magazine_issues": {
-      "via": "magazine_tags",
+      "via": "magazine_tag",
       "collection": "magazine-issues"
     }
   }

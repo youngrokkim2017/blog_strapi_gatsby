@@ -1,8 +1,8 @@
 {
   "kind": "collectionType",
-  "collectionName": "sections",
+  "collectionName": "authors",
   "info": {
-    "name": "section"
+    "name": "authors"
   },
   "options": {
     "increments": true,
@@ -10,13 +10,14 @@
     "draftAndPublish": true
   },
   "attributes": {
-    "label": {
+    "name": {
       "type": "string"
     },
-    "links": {
-      "type": "component",
-      "repeatable": true,
-      "component": "menu.link"
+    "twitterURL": {
+      "type": "string"
+    },
+    "about": {
+      "type": "text"
     }
   }
 }

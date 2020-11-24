@@ -11,7 +11,7 @@ const TagTemplate = ({ data }) => (
       {/* </Link> */}
     </div>
     <div>
-        {data.strapiTag.issue.map((a, idx) => {
+        {data.strapiTag.issues.map((a, idx) => {
             return (
                 <ul key={idx}>
                     <li>
@@ -31,7 +31,7 @@ export const query = graphql`
   query TagTemplate($id: String!) {
     strapiTag(id: { eq: $id }) {
       title
-      issue {
+      issues {
           id
           title
           author

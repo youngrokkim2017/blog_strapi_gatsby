@@ -19,6 +19,7 @@
     "gatsby-source-filesystem": "^2.3.37",
     "gatsby-source-strapi": "0.0.12",
     "gatsby-transformer-sharp": "^2.5.20",
+    "lodash": "^4.17.20",
     "node-sass": "^5.0.0",
     "postcss": "^8.1.7",
     "prop-types": "^15.7.2",

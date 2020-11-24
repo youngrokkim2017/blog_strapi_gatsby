@@ -33,16 +33,12 @@
       "required": false
     },
     "category": {
-      "collection": "category",
-      "via": "article"
+      "model": "category",
+      "via": "articles"
     },
     "author": {
       "type": "string",
       "required": true
-    },
-    "comments": {
-      "via": "article",
-      "collection": "comment"
     },
     "imageURL": {
       "type": "string"

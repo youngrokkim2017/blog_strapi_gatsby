@@ -12,10 +12,9 @@
     "title": {
       "type": "string"
     },
-    "issue": {
+    "issues": {
       "via": "tag",
-      "collection": "issue",
-      "dominant": true
+      "collection": "issue"
     }
   }
 }
