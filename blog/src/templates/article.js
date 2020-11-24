@@ -6,6 +6,7 @@ import { Link, graphql } from "gatsby"
 import Img from "gatsby-image"
 import Layout from "../components/layout"
 import Reactmarkdown from "react-markdown"
+import RelatedArticles from '../components/relatedArticles';
 
 const ArticleTemplate = ({ data }) => {
   function handleDate(e) {
@@ -13,6 +14,9 @@ const ArticleTemplate = ({ data }) => {
     const options = { year: 'numeric', month: 'long', day: 'numeric' };
     return d.toLocaleDateString(undefined, options)
   }
+  
+  // const { relatedArticles } = this.props.pathContext;
+  const { relatedArticles } = this.props.pageContext;
 
   return (
     <Layout>
@@ -67,7 +71,15 @@ const ArticleTemplate = ({ data }) => {
       </article>
 
       {/* SIDEBAR */}
-      <div></div>
+      {/* <div>
+        {
+          relatedArticles.length 
+          ? 
+          <RelatedArticles articles={relatedArticles} />
+          :
+          ""
+        }
+      </div> */}
     </Layout>
   )
 }
