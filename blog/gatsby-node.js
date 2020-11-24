@@ -64,31 +64,31 @@ const makeRequest = (graphql, request) =>
 exports.createPages = ({ actions, graphql }) => {
   const { createPage } = actions
 
-  // const getAuthors = makeRequest(
-  //   graphql,
-  //   `
-  //   {
-  //     allStrapiUser {
-  //       edges {
-  //         node {
-  //           id
-  //         }
-  //       }
-  //     }
-  //   }
-  //   `
-  // ).then(result => {
-  //   // Create pages for each user.
-  //   result.data.allStrapiUser.edges.forEach(({ node }) => {
-  //     createPage({
-  //       path: `/authors/${node.id}`,
-  //       component: path.resolve(`src/templates/author.js`),
-  //       context: {
-  //         id: node.id,
-  //       },
-  //     })
-  //   })
-  // })
+  const getAuthors = makeRequest(
+    graphql,
+    `
+    {
+      allStrapiUser {
+        edges {
+          node {
+            id
+          }
+        }
+      }
+    }
+    `
+  ).then(result => {
+    // Create pages for each user.
+    result.data.allStrapiUser.edges.forEach(({ node }) => {
+      createPage({
+        path: `/authors/${node.id}`,
+        component: path.resolve(`src/templates/author.js`),
+        context: {
+          id: node.id,
+        },
+      })
+    })
+  })
 
   // BLOG CONTENT TYPES
   const getArticles = makeRequest(
@@ -260,7 +260,7 @@ exports.createPages = ({ actions, graphql }) => {
 
   // Queries for articles and authors nodes to use in creating pages.
   return Promise.all([
-    // getAuthors,
+    getAuthors,
     getArticles, 
     getCategories,
     getIssues,

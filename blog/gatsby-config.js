@@ -21,6 +21,7 @@ module.exports = {
         apiURL: `http://localhost:1337`,
         contentTypes: [
           `user`,
+          `authors`,
           `article`,
           `category`,
           `issue`,
