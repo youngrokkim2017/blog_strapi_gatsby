@@ -5,8 +5,8 @@ import { Link, graphql } from "gatsby"
 // import { graphql } from "gatsby"
 import Img from "gatsby-image"
 import Layout from "../components/layout"
-import Reactmarkdown from "react-markdown"
-import RelatedArticles from '../components/relatedArticles';
+import ReactMarkdown from "react-markdown"
+// import RelatedArticles from '../components/relatedArticles';
 
 const ArticleTemplate = ({ data }) => {
   function handleDate(e) {
@@ -16,7 +16,7 @@ const ArticleTemplate = ({ data }) => {
   }
   
   // const { relatedArticles } = this.props.pathContext;
-  const { relatedArticles } = this.props.pageContext;
+  // const { relatedArticles } = this.props.pageContext;
 
   return (
     <Layout>
@@ -58,7 +58,7 @@ const ArticleTemplate = ({ data }) => {
             :
             ""
         }
-        <Reactmarkdown
+        <ReactMarkdown
           source={data.strapiArticle.content}
           transformImageUri={uri => uri.startsWith('http') ? uri : `${process.env.IMAGE_BASE_URL}${uri}`}
         />
