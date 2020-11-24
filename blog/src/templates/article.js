@@ -7,6 +7,7 @@ import Img from "gatsby-image"
 import Layout from "../components/layout"
 import ReactMarkdown from "react-markdown"
 // import RelatedArticles from '../components/relatedArticles';
+import Fuse from "fuse.js"  // fuzzy search
 
 const ArticleTemplate = ({ data }) => {
   function handleDate(e) {
@@ -17,6 +18,26 @@ const ArticleTemplate = ({ data }) => {
   
   // const { relatedArticles } = this.props.pathContext;
   // const { relatedArticles } = this.props.pageContext;
+
+  const unsortedData = data.allStrapiArticle.edges;
+  // const sortedData = unsortedData.sort((a, b) => b.node.id.split('_')[1] - a.node.id.split('_')[1]);
+  // const query = data.strapiArticle.category.title;
+
+  const options = {
+      keys: [
+          // 'node.title',
+          // 'node.author',
+          // 'node.content',
+          'node.category.title',
+      ],
+      includeScore: true,
+  };
+  const fuse = new Fuse(unsortedData, options);
+  // const results = fuse.search(query);
+  const results = fuse.search(data.strapiArticle.category.title);
+  const searchResults = results.map(result => result.item);
+
+
 
   return (
     <Layout>
@@ -42,12 +63,12 @@ const ArticleTemplate = ({ data }) => {
           </p>
           <p className='my-0'>
             {/* Tags: */}
-          {
+            {
               data.strapiArticle.category
-                ?
-                data.strapiArticle.category.map((c, idx) => <Link to={`/categories/Category_${c.id}`} key={idx}>{c.title}</Link>)
-                :
-                'N/A'
+              ?
+              data.strapiArticle.category.map((c, idx) => <Link to={`/categories/Category_${c.id}`} key={idx}>{c.title}</Link>)
+              :
+              'N/A'
             }
           </p>
         </div>
@@ -80,6 +101,27 @@ const ArticleTemplate = ({ data }) => {
           ""
         }
       </div> */}
+      <div>
+        <ul>
+            {searchResults.map(document => (
+                <li key={document.node.id}>
+                    <h2>
+                        <Link to={`/blog/${document.node.id}`} style={{ textDecoration: `none` }}>
+                            {document.node.title}
+                        </Link>
+                    </h2>
+                    <h4>By{" "}{document.node.author}</h4>
+                {
+                    document.node.image
+                    ?
+                    <Img fixed={document.node.image.childImageSharp.fixed} />
+                    :
+                    ""
+                }
+                </li>
+            ))}
+        </ul>
+      </div>
     </Layout>
   )
 }
@@ -105,6 +147,27 @@ export const query = graphql`
       category {
         id
         title
+      }
+    }
+    allStrapiArticle {
+      edges {
+        node {
+          id
+          image {
+            childImageSharp {
+              fixed(width: 200, height: 125) {
+                ...GatsbyImageSharpFixed
+              }
+            }
+          }
+          title
+          author
+          content
+          category {
+            id
+            title
+          }
+        }
       }
     }
   }

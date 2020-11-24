@@ -35,7 +35,7 @@ export const query = graphql`
   query CategoryTemplate($id: String!) {
     strapiCategory(id: { eq: $id }) {
       title
-      article {
+      articles {
           id
           title
           author

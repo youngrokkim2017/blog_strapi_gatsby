@@ -31,7 +31,7 @@ export const query = graphql`
   query TagTemplate($id: String!) {
     strapiTag(id: { eq: $id }) {
       title
-      issue {
+      issues {
           id
           title
           author
