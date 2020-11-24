@@ -34,15 +34,9 @@ const ArticleTemplate = ({ data }) => {
   // const searchResults = results.map(result => result.item);
 
   // const relatedArticles = data.allStrapiArticle.edges.filter((document) => document.node.category.title === data.strapiArticle.category.title).slice(0,3);
-  // const relatedArticles = data.allStrapiArticle.edges.filter((document) => {
-  //   if (!document.node.category.title) {
-  //     return;
-  //   } else if (document.node.category.title === data.strapiArticle.category.title) {
-  //     return 
-  //   }
-  // }).slice(0, 3);
-
-  // console.log(data.strapiArticle.category.title)
+  // const relatedArticles = data.allStrapiArticle.edges
+  //   .filter((article) => article.node.category.title === data.strapiArticle.category.title)
+  //   .slice(0, 3)
 
   return (
     <Layout>
