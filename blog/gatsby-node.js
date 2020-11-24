@@ -6,7 +6,8 @@
 
 // You can delete this file if you're not using it
 
-const path = require(`path`)
+const path = require(`path`);
+const _ = require("lodash"); 
 
 const makeRequest = (graphql, request) =>
   new Promise((resolve, reject) => {
@@ -22,11 +23,74 @@ const makeRequest = (graphql, request) =>
     )
   })
 
+// // RELATED ARTICLES SIDEBAR
+// const sortByDateDescending = (a, b) => {
+//   const aPubDateInMS = (new Date(a.published_at)).getTime();
+//   const bPubDateInMS = (new Date(b.published_at)).getTime();
+
+//   if (aPubDateInMS > bPubDateInMS) {
+//     return 1;
+//   } else if (aPubDateInMS < bPubDateInMS) {
+//     return -1;
+//   } else {
+//     return 0;
+//   }
+// }
+
+// const getRelatedArticles = (currentArticle, articles) => {
+//   const MINIMUM_CATEGORIES_IN_COMMON = 1;
+  
+//   const hasAtLeastOneCategoryInCommon = ({ node }) => {
+//     if (currentArticle.id === node.id) return false;
+
+//     // const commonCategories = _.intersectionBy(currentArticle.category, node.category, (category) => category.permalink);
+//     const commonCategories = _.intersectionBy(currentArticle.category, node.category, (category) => category.id);
+
+//     return commonCategories.length >= MINIMUM_CATEGORIES_IN_COMMON;
+//   }
+
+//   const filteredResults = articles.filter(hasAtLeastOneCategoryInCommon)
+
+//   if (filteredResults.length > 5) {
+//     return filteredResults.sort(sortByDateDescending).slice(0, 3);
+//   }
+
+//   return filteredResults;
+// }
+// //
+
 // Implement the Gatsby API “createPages”. This is called once the
 // data layer is bootstrapped to let plugins create pages from data.
 exports.createPages = ({ actions, graphql }) => {
   const { createPage } = actions
 
+  // const getAuthors = makeRequest(
+  //   graphql,
+  //   `
+  //   {
+  //     allStrapiUser {
+  //       edges {
+  //         node {
+  //           id
+  //         }
+  //       }
+  //     }
+  //   }
+  //   `
+  // ).then(result => {
+  //   // Create pages for each user.
+  //   result.data.allStrapiUser.edges.forEach(({ node }) => {
+  //     createPage({
+  //       path: `/authors/${node.id}`,
+  //       component: path.resolve(`src/templates/author.js`),
+  //       context: {
+  //         id: node.id,
+  //       },
+  //     })
+  //   })
+  // })
+
+  // BLOG CONTENT TYPES
   const getArticles = makeRequest(
     graphql,
     `
@@ -42,22 +106,25 @@ exports.createPages = ({ actions, graphql }) => {
     `
   ).then(result => {
     // Create pages for each article.
+    // result.data.allStrapiArticle.edges.forEach((edge) => {
     result.data.allStrapiArticle.edges.forEach(({ node }) => {
       createPage({
-        path: `/${node.id}`,
+        path: `/blog/${node.id}`,
+        // path: `/blog/${edge.node.id}`,
         component: path.resolve(`src/templates/article.js`),
         context: {
           id: node.id,
+          // relatedArticles: getRelatedArticles(node, result.data.allStrapiArticle.edges)
         },
       })
     })
   })
 
-  const getAuthors = makeRequest(
+  const getCategories = makeRequest(
     graphql,
     `
     {
-      allStrapiUser {
+      allStrapiCategory {
         edges {
           node {
             id
@@ -67,11 +134,123 @@ exports.createPages = ({ actions, graphql }) => {
     }
     `
   ).then(result => {
-    // Create pages for each user.
-    result.data.allStrapiUser.edges.forEach(({ node }) => {
+    // Create pages for each Category.
+    result.data.allStrapiCategory.edges.forEach(({ node }) => {
       createPage({
-        path: `/authors/${node.id}`,
-        component: path.resolve(`src/templates/author.js`),
+        path: `/categories/${node.id}`,
+        // path: `/${node.id}`,
+        component: path.resolve(`src/templates/category.js`),
+        context: {
+          id: node.id,
+        },
+      })
+    })
+  })
+
+  // MAGAZINE CONTENT TYPES
+  const getIssues = makeRequest(
+    graphql,
+    `
+    {
+      allStrapiIssue {
+        edges {
+          node {
+            id
+          }
+        }
+      }
+    }
+    `
+  ).then(result => {
+    // Create pages for each Issue.
+    result.data.allStrapiIssue.edges.forEach(({ node }) => {
+      createPage({
+        // path: `/${node.id}`,
+        // path: `/page-2/${node.id}`,
+        path: `/magazine/${node.id}`,
+        component: path.resolve(`src/templates/issue.js`),
+        context: {
+          id: node.id,
+        },
+      })
+    })
+  })
+
+  const getTags = makeRequest(
+    graphql,
+    `
+    {
+      allStrapiTag {
+        edges {
+          node {
+            id
+          }
+        }
+      }
+    }
+    `
+  ).then(result => {
+    // Create pages for each Tag.
+    result.data.allStrapiTag.edges.forEach(({ node }) => {
+      createPage({
+        // path: `/${node.id}`,
+        path: `/tags/${node.id}`,
+        component: path.resolve(`src/templates/tag.js`),
+        context: {
+          id: node.id,
+        },
+      })
+    })
+  })
+
+  // SINGLE TYPES
+  const getAbout = makeRequest(
+    graphql,
+    `
+    {
+      allStrapiAbout {
+        edges {
+          node {
+            id
+          }
+        }
+      }
+    }
+    `
+  ).then(result => {
+    // Create pages for each About.
+    result.data.allStrapiAbout.edges.forEach(({ node }) => {
+      createPage({
+        path: `/about/`,
+        // path: `/${node.id}`,
+        component: path.resolve(`src/templates/about.js`),
+        context: {
+          id: node.id,
+        },
+      })
+    })
+  })
+
+  const getSubscribe = makeRequest(
+    graphql,
+    `
+    {
+      allStrapiSubscribe {
+        edges {
+          node {
+            id
+          }
+        }
+      }
+    }
+    `
+  ).then(result => {
+    // Create pages for each Subscribe.
+    result.data.allStrapiSubscribe.edges.forEach(({ node }) => {
+      createPage({
+        path: `/subscribe/`,
+        // path: `/${node.id}`,
+        component: path.resolve(`src/templates/subscribe.js`),
         context: {
           id: node.id,
         },
@@ -81,40 +260,12 @@ exports.createPages = ({ actions, graphql }) => {
 
   // Queries for articles and authors nodes to use in creating pages.
   return Promise.all([
+    // getAuthors,
     getArticles, 
-    getAuthors
+    getCategories,
+    getIssues,
+    getTags,
+    getAbout,
+    getSubscribe,
   ])
-
-  // const getWriters = makeRequest(
-  //   graphql,
-  //   `
-  //   {
-  //     allStrapiAuthor {
-  //       edges {
-  //         node {
-  //           id
-  //         }
-  //       }
-  //     }
-  //   }
-  //   `
-  // ).then(result => {
-  //   // Create pages for each user.
-  //   result.data.allStrapiAuthor.edges.forEach(({ node }) => {
-  //     createPage({
-  //       path: `/writers/${node.id}`,
-  //       component: path.resolve(`src/templates/writer.js`),
-  //       context: {
-  //         id: node.id,
-  //       },
-  //     })
-  //   })
-  // })
-
-  // // Queries for articles and authors nodes to use in creating pages.
-  // return Promise.all([
-  //   getArticles, 
-  //   getAuthors, 
-  //   getWriters
-  // ])
 }

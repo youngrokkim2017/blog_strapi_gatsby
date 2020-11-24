@@ -1,0 +1,7 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+img + em {
+    @apply block text-gray-700 text-sm not-italic leading-5;
+}

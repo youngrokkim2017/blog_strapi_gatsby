@@ -1,56 +1,11 @@
 import React from "react"
-import { Link, graphql } from "gatsby"
-import Img from 'gatsby-image';
-
 import Layout from "../components/layout"
 
 const IndexPage = ({ data }) => (
+  
   <Layout>
-    {/* <h1>Hi people</h1>
-    <p>Welcome to your new Gatsby site.</p>
-    <p>Now go build something great.</p> */}
-
-    <ul>
-      {data.allStrapiArticle.edges.map(document => (
-        <li key={document.node.id}>
-          <h2>
-            <Link to={`/${document.node.id}`}>
-              {document.node.title}
-            </Link>
-          </h2>
-          <h4>By{" "}{document.node.author}</h4>
-          <Img fixed={document.node.image.childImageSharp.fixed} />
-          <p>{document.node.content}</p>
-        </li>
-      ))}
-    </ul>
-
-    <Link to="/page-2/">Go to page 2</Link> <br />
-    {/* <Link to="/using-typescript/">Go to "Using TypeScript"</Link> */}
+    <div className="bg-red-300">HOME PAGE</div>
   </Layout>
 )
 
 export default IndexPage;
-
-// gql query
-export const pageQuery = graphql`
-  query IndexQuery {
-    allStrapiArticle {
-      edges {
-        node {
-          id
-          image {
-            childImageSharp {
-              fixed(width: 200, height: 125) {
-                ...GatsbyImageSharpFixed
-              }
-            }
-          }
-          title
-          author
-          content
-        }
-      }
-    }
-  }
-`

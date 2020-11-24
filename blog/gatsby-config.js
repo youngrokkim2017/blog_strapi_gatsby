@@ -2,6 +2,8 @@ module.exports = {
   siteMetadata: {
     title: `Berkeley Science Review`,
     description: `Gatsby blog with Strapi as headless CMS`,
+    // url: ,
+    // image: ,
     author: `@gatsbyjs and @strapi`,
   },
   plugins: [
@@ -18,10 +20,21 @@ module.exports = {
       options: {
         apiURL: `http://localhost:1337`,
         contentTypes: [
-          `article`,
           `user`,
+          `article`,
+          `category`,
+          `issue`,
+          `tag`,
+          `blog-article`,
+          `blog-tag`,
+          `magazine-issue`,
+          `magazine-tag`,
         ],
-        queryLimit: 1000,
+        singleTypes: [
+          `about`,
+          `subscribe`,
+        ],
+        queryLimit: 1000000,
       },
     },
     `gatsby-transformer-sharp`,
@@ -41,5 +54,6 @@ module.exports = {
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     `gatsby-plugin-offline`,
+    `gatsby-plugin-postcss`
   ],
 }
