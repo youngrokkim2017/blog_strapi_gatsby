@@ -31,10 +31,9 @@
       "plugin": "upload",
       "required": false
     },
-    "blog_tags": {
-      "collection": "blog-tags",
-      "via": "blog_articles",
-      "dominant": true
+    "blog_tag": {
+      "model": "blog-tags",
+      "via": "blog_articles"
     },
     "imageURL": {
       "type": "string"

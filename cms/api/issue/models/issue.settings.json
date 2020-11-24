@@ -32,8 +32,8 @@
       "required": false
     },
     "tag": {
-      "collection": "tag",
-      "via": "issue"
+      "model": "tag",
+      "via": "issues"
     },
     "imageURL": {
       "type": "string"
