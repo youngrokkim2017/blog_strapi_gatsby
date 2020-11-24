@@ -86,41 +86,6 @@ const ArticleTemplate = ({ data }) => {
           source={data.strapiArticle.content}
           transformImageUri={uri => uri.startsWith('http') ? uri : `${process.env.IMAGE_BASE_URL}${uri}`}
         />
-
-
-        {/* <CreateForm /> */}
-
-
-        <h4>Comments</h4>
-        <form onSubmit={handleSubmit} className="mt-6 bg-gray-100 border border-gray-300 text-gray-600 flex items-center rounded-lg py-2 px-4 pr-2 focus-within:border-blue-600">
-          <input
-            type="text"
-            name="content"
-            value={content}
-            onChange={(e) => setContent(e.target.value)}
-            className='appearance-none bg-transparent border-none w-full placeholder-gray-600 leading-tight focus:outline-none mr-4'
-          />
-          <button type="submit" className="inline-block text-lg px-4 py-2 leading-none rounded text-white bg-blue-600 shadow-lg flex-shrink-0">Submit</button>
-        </form>
-
-
-        {
-          data.strapiArticle.comments
-            ?
-            <ul className='list-none'>
-              {data.strapiArticle.comments.map((comment, idx) => {
-                return (
-                  <li key={idx}>
-                    <div>
-                      {comment.content}
-                    </div>
-                  </li>
-                )
-              })}
-            </ul>
-            :
-            ""
-        }
       </article>
 
     </Layout>
@@ -148,11 +113,6 @@ export const query = graphql`
       category {
         id
         title
-      }
-      comments {
-        id
-        title
-        content
       }
     }
   }
