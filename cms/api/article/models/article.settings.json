@@ -40,10 +40,6 @@
       "type": "string",
       "required": true
     },
-    "comments": {
-      "via": "article",
-      "collection": "comment"
-    },
     "imageURL": {
       "type": "string"
     }
