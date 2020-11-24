@@ -15,7 +15,7 @@ const CategoryTemplate = ({ data }) => (
         {/* {data.strapiCategory.article.map(a => <div>{a.title}</div>)} */}
         {/* {data.strapiCategory.article.map(a => <p><Link to={`/Article_${a.id}`}><div>{a.title}</div></Link><div>{a.content}</div></p>)} */}
         {/* {data.strapiCategory.article.map(a => <ul><li><Link to={`/Article_${a.id}`}><div>{a.title}</div></Link><div>{a.content}</div></li></ul>)} */}
-        {data.strapiCategory.article.map((a, idx) => {
+        {data.strapiCategory.articles.map((a, idx) => {
             return (
                 <ul key={idx}>
                     <li>

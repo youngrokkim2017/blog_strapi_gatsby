@@ -7,7 +7,7 @@ import Img from "gatsby-image"
 import Layout from "../components/layout"
 import ReactMarkdown from "react-markdown"
 // import RelatedArticles from '../components/relatedArticles';
-import Fuse from "fuse.js"  // fuzzy search
+// import Fuse from "fuse.js"  // fuzzy search
 
 const ArticleTemplate = ({ data }) => {
   function handleDate(e) {
@@ -19,25 +19,30 @@ const ArticleTemplate = ({ data }) => {
   // const { relatedArticles } = this.props.pathContext;
   // const { relatedArticles } = this.props.pageContext;
 
-  const unsortedData = data.allStrapiArticle.edges;
-  // const sortedData = unsortedData.sort((a, b) => b.node.id.split('_')[1] - a.node.id.split('_')[1]);
-  // const query = data.strapiArticle.category.title;
+  // const unsortedData = data.allStrapiArticle.edges;
+  // // const query = data.strapiArticle.category.title;
 
-  const options = {
-      keys: [
-          // 'node.title',
-          // 'node.author',
-          // 'node.content',
-          'node.category.title',
-      ],
-      includeScore: true,
-  };
-  const fuse = new Fuse(unsortedData, options);
-  // const results = fuse.search(query);
-  const results = fuse.search(data.strapiArticle.category.title);
-  const searchResults = results.map(result => result.item);
+  // const options = {
+  //     keys: [
+  //         'node.category.title',
+  //     ],
+  //     includeScore: true,
+  // };
+  // const fuse = new Fuse(unsortedData, options);
+  // // const results = fuse.search(query);
+  // const results = fuse.search(data.strapiArticle.category.title);
+  // const searchResults = results.map(result => result.item);
 
+  // const relatedArticles = data.allStrapiArticle.edges.filter((document) => document.node.category.title === data.strapiArticle.category.title).slice(0,3);
+  // const relatedArticles = data.allStrapiArticle.edges.filter((document) => {
+  //   if (!document.node.category.title) {
+  //     return;
+  //   } else if (document.node.category.title === data.strapiArticle.category.title) {
+  //     return 
+  //   }
+  // }).slice(0, 3);
 
+  // console.log(data.strapiArticle.category.title)
 
   return (
     <Layout>
@@ -63,13 +68,14 @@ const ArticleTemplate = ({ data }) => {
           </p>
           <p className='my-0'>
             {/* Tags: */}
-            {
+            {/* {
               data.strapiArticle.category
               ?
               data.strapiArticle.category.map((c, idx) => <Link to={`/categories/Category_${c.id}`} key={idx}>{c.title}</Link>)
               :
               'N/A'
-            }
+            } */}
+            <Link to={`/categories/Category_${data.strapiArticle.category.id}`} key={data.strapiArticle.category.id}>{data.strapiArticle.category.title}</Link>
           </p>
         </div>
         {
@@ -89,7 +95,6 @@ const ArticleTemplate = ({ data }) => {
             
           </div>
         </div>
-      </article>
 
       {/* SIDEBAR */}
       {/* <div>
@@ -101,9 +106,17 @@ const ArticleTemplate = ({ data }) => {
           ""
         }
       </div> */}
+
+      {/* RELATED ARTICLES */}
       <div>
+        <h2>RECOMMENDED READING</h2>
         <ul>
-            {searchResults.map(document => (
+            {/* {relatedArticles.map(document => ( */}
+            {/* {data.allStrapiArticle.edges */}
+            {data.allStrapiArticle.edges.reverse().slice(0, 3).map(document => (
+              // .filter((article) => article.node.category.title === data.strapiArticle.category.title)
+              // .slice(0, 3)
+              // .map(document => (
                 <li key={document.node.id}>
                     <h2>
                         <Link to={`/blog/${document.node.id}`} style={{ textDecoration: `none` }}>
@@ -122,6 +135,8 @@ const ArticleTemplate = ({ data }) => {
             ))}
         </ul>
       </div>
+      </article>
+
     </Layout>
   )
 }
