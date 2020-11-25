@@ -1,40 +1,43 @@
 module.exports = {
-  future: {
-    // removeDeprecatedGapUtilities: true,
-    // purgeLayersByDefault: true,
-  },
-  purge: [],
   theme: {
+    fontFamily: {
+      // display: ['adobe-garamond-pro', 'system-ui', 'sans-serif'],
+      // body: ['adobe-garamond-pro', 'system-ui', 'sans-serif'],
+    },
+    // colors: {
+    //   primary: {
+    //     50: '#f7fee7',
+    //     100: '#ecfccb',
+    //     200: '#d9f99d',
+    //     300: '#bef264',
+    //     400: '#a3e635',
+    //     500: '#84cc16',
+    //     600: '#65a30d',
+    //     700: '#4d7c0f',
+    //     800: '#3f6212',
+    //     900: '#365314',
+    //   },
+    //   gray: {
+    //     50: '#fafafa',
+    //     100: '#f4f4f5',
+    //     200: '#e4e4e7',
+    //     300: '#d4d4d8',
+    //     400: '#a1a1aa',
+    //     500: '#71717a',
+    //     600: '#52525b',
+    //     700: '#3f3f46',
+    //     800: '#27272a',
+    //     900: '#18181b',
+    //   },
+    // },
     typography: {
       default: {
         css: {
           color: 'rgb(51,51,51)',
-          // blockquote: {
-          //   fontWeight: '500',
-          //   fontSize: 'rem(10)',
-          //   fontStyle: null,
-          //   borderLeftWidth: null,
-          //   borderLeftColor: null,
-          //   quotes: null,
-          // },
-          // 'blockquote p:first-of-type::before': {
-          //   content: null,
-          // },
-          // 'blockquote p:last-of-type::after': {
-          //   content: null,
-          // },
         },
       },
-      // 'lg': {
-      //   css: {
-      //     blockquote: {
-      //       padding: '0',
-      //     },
-      //   },
-      // },
     },
   },
-  variants: {},
   important: true,
   plugins: [
     require('@tailwindcss/typography'),
