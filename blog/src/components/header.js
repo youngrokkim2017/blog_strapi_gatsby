@@ -4,7 +4,7 @@ import React from "react"
 
 const Header = ({ siteTitle }) => (
   <nav className="p-6 text-black">
-    <div className="flex container mx-auto items-center justify-between flex-wrap  pb-4 border-b-2 border-red-500">
+    <div className="flex container mx-auto items-center justify-between flex-wrap  pb-4 border-b-2" style={{borderColor: '#ee1f60'}}>
       <div className="flex items-center flex-shrink-0 mr-6">
         <Link to="/" className="font-semibold text-2xl tracking-tight">
           {siteTitle}
