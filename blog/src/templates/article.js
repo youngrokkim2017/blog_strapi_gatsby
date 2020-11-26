@@ -6,7 +6,6 @@ import { Link, graphql } from "gatsby"
 import Img from "gatsby-image"
 import Layout from "../components/layout"
 import ReactMarkdown from "react-markdown"
-// import RelatedArticles from '../components/relatedArticles';
 // import Fuse from "fuse.js"  // fuzzy search
 
 const ArticleTemplate = ({ data }) => {
@@ -15,9 +14,6 @@ const ArticleTemplate = ({ data }) => {
     const options = { year: 'numeric', month: 'long', day: 'numeric' };
     return d.toLocaleDateString(undefined, options)
   }
-
-  // const { relatedArticles } = this.props.pathContext;
-  // const { relatedArticles } = this.props.pageContext;
 
   // const unsortedData = data.allStrapiArticle.edges;
   // // const query = data.strapiArticle.category.title;
