@@ -23,42 +23,6 @@ const makeRequest = (graphql, request) =>
     )
   })
 
-// // RELATED ARTICLES SIDEBAR
-// const sortByDateDescending = (a, b) => {
-//   const aPubDateInMS = (new Date(a.published_at)).getTime();
-//   const bPubDateInMS = (new Date(b.published_at)).getTime();
-
-//   if (aPubDateInMS > bPubDateInMS) {
-//     return 1;
-//   } else if (aPubDateInMS < bPubDateInMS) {
-//     return -1;
-//   } else {
-//     return 0;
-//   }
-// }
-
-// const getRelatedArticles = (currentArticle, articles) => {
-//   const MINIMUM_CATEGORIES_IN_COMMON = 1;
-  
-//   const hasAtLeastOneCategoryInCommon = ({ node }) => {
-//     if (currentArticle.id === node.id) return false;
-
-//     // const commonCategories = _.intersectionBy(currentArticle.category, node.category, (category) => category.permalink);
-//     const commonCategories = _.intersectionBy(currentArticle.category, node.category, (category) => category.id);
-
-//     return commonCategories.length >= MINIMUM_CATEGORIES_IN_COMMON;
-//   }
-
-//   const filteredResults = articles.filter(hasAtLeastOneCategoryInCommon)
-
-//   if (filteredResults.length > 5) {
-//     return filteredResults.sort(sortByDateDescending).slice(0, 3);
-//   }
-
-//   return filteredResults;
-// }
-// //
-
 // Implement the Gatsby API “createPages”. This is called once the
 // data layer is bootstrapped to let plugins create pages from data.
 exports.createPages = ({ actions, graphql }) => {

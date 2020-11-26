@@ -15,9 +15,6 @@ const ArticleTemplate = ({ data }) => {
     return d.toLocaleDateString(undefined, options)
   }
 
-  // const { relatedArticles } = this.props.pathContext;
-  // const { relatedArticles } = this.props.pageContext;
-
   // const unsortedData = data.allStrapiArticle.edges;
   // // const query = data.strapiArticle.category.title;
 
