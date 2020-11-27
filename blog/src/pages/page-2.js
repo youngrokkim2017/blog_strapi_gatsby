@@ -36,7 +36,10 @@ export default IndexTwoPage;
 // gql query
 export const pageTwoQuery = graphql`
   query IndexTwoQuery {
-    allStrapiIssue {
+    allStrapiIssue(
+      limit: 5
+      sort: { order: DESC, fields: updated_at }
+    ) {
       edges {
         node {
           id
@@ -47,6 +50,7 @@ export const pageTwoQuery = graphql`
             id
             title
           }
+          updated_at
         }
       }
     }
