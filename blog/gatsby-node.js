@@ -7,7 +7,6 @@
 // You can delete this file if you're not using it
 
 const path = require(`path`);
-const _ = require("lodash"); 
 
 const makeRequest = (graphql, request) =>
   new Promise((resolve, reject) => {
@@ -70,7 +69,6 @@ exports.createPages = ({ actions, graphql }) => {
     `
   ).then(result => {
     // Create pages for each article.
-    // result.data.allStrapiArticle.edges.forEach((edge) => {
     result.data.allStrapiArticle.edges.forEach(({ node }) => {
       createPage({
         path: `/blog/${node.id}`,
@@ -78,7 +76,6 @@ exports.createPages = ({ actions, graphql }) => {
         component: path.resolve(`src/templates/article.js`),
         context: {
           id: node.id,
-          // relatedArticles: getRelatedArticles(node, result.data.allStrapiArticle.edges)
         },
       })
     })
