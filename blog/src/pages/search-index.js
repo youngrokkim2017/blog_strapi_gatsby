@@ -157,7 +157,10 @@ export default SearchPage;
 // gql query
 export const searchQuery = graphql`
   query SearchQuery {
-    allStrapiArticle {
+    allStrapiArticle(
+      limit: 5
+      sort: { order: DESC, fields: published_at }
+    ) {
       edges {
         node {
           id
@@ -175,6 +178,8 @@ export const searchQuery = graphql`
             id
             title
           }
+          published_at
+          updated_at
         }
       }
     }

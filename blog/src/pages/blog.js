@@ -7,8 +7,8 @@ import Reactmarkdown from "react-markdown"
 import SEO from "../components/seo"
 
 const BlogPage = ({ data }) => {
-  const unsortedData = data.allStrapiArticle.edges;
-  const sortedData = unsortedData.sort((a, b) => b.node.id.split('_')[1] - a.node.id.split('_')[1]).slice(0, 5);
+  // const unsortedData = data.allStrapiArticle.edges;
+  // const sortedData = unsortedData.sort((a, b) => b.node.id.split('_')[1] - a.node.id.split('_')[1]).slice(0, 5);
   // console.log(unsortedData, sortedData)
   // console.log(data.allStrapiArticle.edges)
   return (
@@ -23,7 +23,8 @@ const BlogPage = ({ data }) => {
       {/* {data.allStrapiArticle.edges.reverse().slice(0, 5).map(document => ( */}
       {/* {data.allStrapiArticle.edges.sort((a, b) => b.id - a.id).slice(0, 5).map(document => ( */}
       {/* {data.allStrapiArticle.edges.slice(0, 5).map(document => ( */}
-      {sortedData.map(document => (
+      {/* {sortedData.map(document => ( */}
+      {data.allStrapiArticle.edges.map(document => (
         <li key={document.node.id}>
           <h2>
             <Link to={`/blog/${document.node.id}`} style={{ textDecoration: `none` }}>
@@ -33,13 +34,13 @@ const BlogPage = ({ data }) => {
           <h4>By{" "}{document.node.author}</h4>
           {
             document.node.image
-              ?
-              <Img fixed={document.node.image.childImageSharp.fixed} />
-              :
-              ""
+            ?
+            <Img fixed={document.node.image.childImageSharp.fixed} />
+            :
+            ""
           }
           <Reactmarkdown
-            source={document.node.content}
+            source={`${document.node.content.slice(0,500)}...`}
             transformImageUri={uri => uri.startsWith('http') ? uri : `${process.env.IMAGE_BASE_URL}${uri}`}
           />
         </li>
@@ -58,7 +59,10 @@ export default BlogPage;
 // gql query
 export const blogQuery = graphql`
   query BlogQuery {
-    allStrapiArticle {
+    allStrapiArticle(
+      limit: 5
+      sort: { order: DESC, fields: published_at }
+    ) {
       edges {
         node {
           id
@@ -76,8 +80,39 @@ export const blogQuery = graphql`
             id
             title
           }
+          published_at
+          updated_at
         }
       }
     }
   }
 `
+
+// export const blogQuery = graphql`
+//   query BlogQuery {
+//     allStrapiArticle(
+//       limit: 5
+//       sort: { order: DESC, fields: id }
+//     ) {
+//       edges {
+//         node {
+//           id
+//           image {
+//             childImageSharp {
+//               fixed(width: 200, height: 125) {
+//                 ...GatsbyImageSharpFixed
+//               }
+//             }
+//           }
+//           title
+//           author
+//           content
+//           category {
+//             id
+//             title
+//           }
+//         }
+//       }
+//     }
+//   }
+// `
