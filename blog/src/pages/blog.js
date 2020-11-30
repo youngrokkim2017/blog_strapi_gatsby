@@ -20,15 +20,9 @@ const BlogPage = ({ data, location }) => {
   return (
   <Layout>
     <SEO title="Blog index page" />
-    {/* <Link to="/blog/" style={{ textDecoration: `none` }}>Blog</Link> */}
-    {/* <Link to="/magazine/" style={{ textDecoration: `none` }}>Magazine</Link> */}
 
     <ul>
-      {/* {data.allStrapiArticle.edges.map(document => ( */}
-      {/* {data.allStrapiArticle.edges.reverse().map(document => ( */}
-      {/* {data.allStrapiArticle.edges.reverse().slice(0, 5).map(document => ( */}
       {/* {data.allStrapiArticle.edges.sort((a, b) => b.id - a.id).slice(0, 5).map(document => ( */}
-      {/* {data.allStrapiArticle.edges.slice(0, 5).map(document => ( */}
       {/* {sortedData.map(document => ( */}
       {data.allStrapiArticle.edges.map(document => (
         <li key={document.node.id}>
@@ -52,9 +46,6 @@ const BlogPage = ({ data, location }) => {
         </li>
       ))}
     </ul>
-
-    {/* <Link to="/page-2/">Go to page 2</Link> <br /> */}
-    {/* <Link to="/using-typescript/">Go to "Using TypeScript"</Link> */}
   </Layout>
   )
 }

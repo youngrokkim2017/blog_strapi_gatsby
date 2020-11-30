@@ -33,13 +33,6 @@ const AboutPage = () => (
       and expertise to produce this once-a-semester snapshot of some of the 
       exciting work happening in the labs here at UC Berkeley.
     </p>
-    {/* <br/>
-    <Link to='/contact-us'>Contact Us</Link>
-    <br/>
-    <Link to='/magazine-staff'>Magazine Staff</Link>
-    <br/>
-    <Link to='/blog-authors'>Blog Authors</Link>
-    <br/> */}
   </Layout>
 )
 
