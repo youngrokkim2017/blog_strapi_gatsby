@@ -52,6 +52,46 @@ module.exports = {
         icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
       },
     },
+    // FLEXSEARCH
+    {
+      resolve: 'gatsby-plugin-flexsearch',
+      options: {
+        languages: ['en'],
+        type: 'MarkdownRemark',
+        fields: [
+          {
+            name: 'title',
+            indexed: true,
+            resolver: 'frontmatter.title',
+            attributes: {
+              encode: 'balance',
+              tokenize: 'strict',
+              threshold: 6,
+              depth: 3,
+            },
+            store: true,
+          },
+          {
+            name: 'description',
+            indexed: true,
+            resolver: 'frontmatter.description',
+            attributes: {
+              encode: 'balance',
+              tokenize: 'strict',
+              threshold: 6,
+              depth: 3,
+            },
+            store: false,
+          },
+          {
+            name: 'url',
+            indexed: false,
+            resolver: 'fields.slug',
+            store: true,
+          },
+        ],
+      },
+    },
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     `gatsby-plugin-offline`,
