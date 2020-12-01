@@ -57,12 +57,12 @@ module.exports = {
       resolve: 'gatsby-plugin-flexsearch',
       options: {
         languages: ['en'],
-        type: 'MarkdownRemark',
+        type: 'allStrapiArticle',
         fields: [
           {
             name: 'title',
             indexed: true,
-            resolver: 'frontmatter.title',
+            resolver: 'allStrapiArticle.edges.node.title',
             attributes: {
               encode: 'balance',
               tokenize: 'strict',
@@ -72,23 +72,35 @@ module.exports = {
             store: true,
           },
           {
-            name: 'description',
+            name: 'content',
             indexed: true,
-            resolver: 'frontmatter.description',
+            resolver: 'allStrapiArticle.edges.node.content',
             attributes: {
               encode: 'balance',
               tokenize: 'strict',
               threshold: 6,
               depth: 3,
             },
-            store: false,
-          },
-          {
-            name: 'url',
-            indexed: false,
-            resolver: 'fields.slug',
             store: true,
           },
+          {
+            name: 'author',
+            indexed: true,
+            resolver: 'allStrapiArticle.edges.node.author',
+            attributes: {
+              encode: 'balance',
+              tokenize: 'strict',
+              threshold: 6,
+              depth: 3,
+            },
+            store: true,
+          },
+          // {
+          //   name: 'url',
+          //   indexed: false,
+          //   resolver: 'fields.slug',
+          //   store: true,
+          // },
         ],
       },
     },

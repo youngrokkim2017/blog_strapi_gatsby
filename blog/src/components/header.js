@@ -1,5 +1,5 @@
-// import { Link } from "gatsby"
-import { Link, navigate } from "gatsby"
+import { Link } from "gatsby"
+// import { Link, navigate } from "gatsby"
 import PropTypes from "prop-types"
 // import React from "react"
 import React, { useState } from "react"
