@@ -53,55 +53,90 @@ module.exports = {
       },
     },
     // FLEXSEARCH
+    // {
+    //   resolve: 'gatsby-plugin-flexsearch',
+    //   options: {
+    //     languages: ['en'],
+    //     type: 'allStrapiArticle',
+    //     fields: [
+    //       {
+    //         name: 'title',
+    //         indexed: true,
+    //         resolver: 'allStrapiArticle.edges.node.title',
+    //         attributes: {
+    //           encode: 'balance',
+    //           tokenize: 'strict',
+    //           threshold: 6,
+    //           depth: 3,
+    //         },
+    //         store: true,
+    //       },
+    //       {
+    //         name: 'content',
+    //         indexed: true,
+    //         resolver: 'allStrapiArticle.edges.node.content',
+    //         attributes: {
+    //           encode: 'balance',
+    //           tokenize: 'strict',
+    //           threshold: 6,
+    //           depth: 3,
+    //         },
+    //         store: true,
+    //       },
+    //       {
+    //         name: 'author',
+    //         indexed: true,
+    //         resolver: 'allStrapiArticle.edges.node.author',
+    //         attributes: {
+    //           encode: 'balance',
+    //           tokenize: 'strict',
+    //           threshold: 6,
+    //           depth: 3,
+    //         },
+    //         store: true,
+    //       },
+    //       // {
+    //       //   name: 'url',
+    //       //   indexed: false,
+    //       //   resolver: 'fields.slug',
+    //       //   store: true,
+    //       // },
+    //     ],
+    //   },
+    // },
+    // GATSBY-LOCAL-SEARCH
     {
-      resolve: 'gatsby-plugin-flexsearch',
+      resolve: "gatsby-plugin-local-search",
       options: {
-        languages: ['en'],
-        type: 'allStrapiArticle',
-        fields: [
+        name: "blog",
+        engine: "flexsearch",
+        engineOptions: {
+          encode: "icase",
+          tokenize: "forward",
+          async: false,
+        },
+        query: `
           {
-            name: 'title',
-            indexed: true,
-            resolver: 'allStrapiArticle.edges.node.title',
-            attributes: {
-              encode: 'balance',
-              tokenize: 'strict',
-              threshold: 6,
-              depth: 3,
-            },
-            store: true,
-          },
-          {
-            name: 'content',
-            indexed: true,
-            resolver: 'allStrapiArticle.edges.node.content',
-            attributes: {
-              encode: 'balance',
-              tokenize: 'strict',
-              threshold: 6,
-              depth: 3,
-            },
-            store: true,
-          },
-          {
-            name: 'author',
-            indexed: true,
-            resolver: 'allStrapiArticle.edges.node.author',
-            attributes: {
-              encode: 'balance',
-              tokenize: 'strict',
-              threshold: 6,
-              depth: 3,
-            },
-            store: true,
-          },
-          // {
-          //   name: 'url',
-          //   indexed: false,
-          //   resolver: 'fields.slug',
-          //   store: true,
-          // },
-        ],
+            allStrapiArticle {
+              nodes {
+                id
+                title
+                author
+                content
+              }
+            }
+          }
+        `,
+        ref: "id",
+        index: ["title", "content"],
+        store: ["id", "title", "author", "content",],
+        normalizer: ({ data }) =>
+          data.allStrapiArticle.nodes.map(node => ({
+            id: node.id,
+            title: node.title,
+            author: node.author,
+            content: node.content,
+          })),
       },
     },
     // this (optional) plugin enables Progressive Web App + Offline functionality

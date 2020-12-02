@@ -6,7 +6,10 @@ import Layout from "../components/layout"
 import Reactmarkdown from "react-markdown"
 import SEO from "../components/seo"
 
+// const FlexSearch = require("flexsearch");
+
 const BlogPage = ({ data, location }) => {
+// const BlogPage = ({ data, navigate, location }) => {
   // const unsortedData = data.allStrapiArticle.edges;
   // const sortedData = unsortedData.sort((a, b) => b.node.id.split('_')[1] - a.node.id.split('_')[1]).slice(0, 5);
   // console.log(unsortedData, sortedData)
@@ -15,10 +18,19 @@ const BlogPage = ({ data, location }) => {
   // const { query } = props;
   // console.log(props);
 
+  // let searchQuery = location.state.searchQuery;
+
+  // let index = new FlexSearch();
+
+  // index.search(searchQuery, function(result){
+  //   // array of results
+
+  // });
+
   console.log(location.state.searchQuery);
 
   return (
-  <Layout>
+  <Layout location={location}>
     <SEO title="Blog index page" />
 
     <ul>
