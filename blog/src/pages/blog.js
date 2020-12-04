@@ -34,7 +34,7 @@ const BlogPage = ({ data, location }) => {
 
   const unsortedData = data.allStrapiArticle.edges;
     // const sortedData = unsortedData.sort((a, b) => b.node.id.split('_')[1] - a.node.id.split('_')[1]);
-  let index = location.state.searchQuery ? location.state.searchQuery : "";
+  let index = location.state.searchQuery === null || !location.state.searchQuery ? "" : location.state.searchQuery;
 
     const options = {
         keys: [
@@ -47,6 +47,9 @@ const BlogPage = ({ data, location }) => {
 
     const fuse = new Fuse(unsortedData, options);
     const results = fuse.search(index);
+    // const searchResults = results.length > 0 ? results.map(result => result.item) : sortedData.slice(0, 5);
+    const searchResults = results.length > 0 ? results.map(result => result.item) : unsortedData;
+
 
     console.log(results);
 
@@ -57,7 +60,8 @@ const BlogPage = ({ data, location }) => {
     <ul>
       {/* {data.allStrapiArticle.edges.sort((a, b) => b.id - a.id).slice(0, 5).map(document => ( */}
       {/* {sortedData.map(document => ( */}
-      {data.allStrapiArticle.edges.map(document => (
+      {/* {data.allStrapiArticle.edges.map(document => ( */}
+      {searchResults.map(document => (
         <li key={document.node.id}>
           <h2>
             <Link to={`/blog/${document.node.id}`} style={{ textDecoration: `none` }}>
