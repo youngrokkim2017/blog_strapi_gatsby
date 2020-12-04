@@ -6,7 +6,11 @@ import Layout from "../components/layout"
 import Reactmarkdown from "react-markdown"
 import SEO from "../components/seo"
 
+import Fuse from "fuse.js"  // fuzzy search
+// const FlexSearch = require("flexsearch");
+
 const BlogPage = ({ data, location }) => {
+// const BlogPage = ({ data, navigate, location }) => {
   // const unsortedData = data.allStrapiArticle.edges;
   // const sortedData = unsortedData.sort((a, b) => b.node.id.split('_')[1] - a.node.id.split('_')[1]).slice(0, 5);
   // console.log(unsortedData, sortedData)
@@ -15,22 +19,49 @@ const BlogPage = ({ data, location }) => {
   // const { query } = props;
   // console.log(props);
 
-  console.log(location.state.searchQuery);
+  // let searchQuery = location.state.searchQuery;
+
+  // let index = new FlexSearch();
+
+  // index.search(searchQuery, function(result){
+  //   // array of results
+
+  // });
+
+  // console.log(location.state.searchQuery);
+  // console.log(window.__FLEXSEARCH__.en.store);
+  // console.log(window.__FLEXSEARCH__.en.index);
+
+  const unsortedData = data.allStrapiArticle.edges;
+    // const sortedData = unsortedData.sort((a, b) => b.node.id.split('_')[1] - a.node.id.split('_')[1]);
+  let index = location.state.searchQuery === null || !location.state.searchQuery ? "" : location.state.searchQuery;
+
+    const options = {
+        keys: [
+            'node.title',
+            'node.author',
+            'node.content',
+        ],
+        includeScore: true,
+    };
+
+    const fuse = new Fuse(unsortedData, options);
+    const results = fuse.search(index);
+    // const searchResults = results.length > 0 ? results.map(result => result.item) : sortedData.slice(0, 5);
+    const searchResults = results.length > 0 ? results.map(result => result.item) : unsortedData;
+
+    console.log(results);
+    console.log(location);
 
   return (
-  <Layout>
+  <Layout location={location}>
     <SEO title="Blog index page" />
-    {/* <Link to="/blog/" style={{ textDecoration: `none` }}>Blog</Link> */}
-    {/* <Link to="/magazine/" style={{ textDecoration: `none` }}>Magazine</Link> */}
 
     <ul>
-      {/* {data.allStrapiArticle.edges.map(document => ( */}
-      {/* {data.allStrapiArticle.edges.reverse().map(document => ( */}
-      {/* {data.allStrapiArticle.edges.reverse().slice(0, 5).map(document => ( */}
       {/* {data.allStrapiArticle.edges.sort((a, b) => b.id - a.id).slice(0, 5).map(document => ( */}
-      {/* {data.allStrapiArticle.edges.slice(0, 5).map(document => ( */}
       {/* {sortedData.map(document => ( */}
-      {data.allStrapiArticle.edges.map(document => (
+      {/* {data.allStrapiArticle.edges.map(document => ( */}
+      {searchResults.map(document => (
         <li key={document.node.id}>
           <h2>
             <Link to={`/blog/${document.node.id}`} style={{ textDecoration: `none` }}>
@@ -52,9 +83,6 @@ const BlogPage = ({ data, location }) => {
         </li>
       ))}
     </ul>
-
-    {/* <Link to="/page-2/">Go to page 2</Link> <br /> */}
-    {/* <Link to="/using-typescript/">Go to "Using TypeScript"</Link> */}
   </Layout>
   )
 }

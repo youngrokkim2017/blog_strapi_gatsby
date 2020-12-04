@@ -41,14 +41,27 @@ const Header = ({ siteTitle }) => {
 
     {/* SEARCH BAR COMPONENT */}
     <div>
-      <form>
+      <form
+        onSubmit={event => {
+          event.preventDefault()
+          // Implementation of this function is an exercise for the reader.
+          navigate(
+            "/blog",
+            // { replace: true },
+            {
+              state: { searchQuery: query },
+            }
+          )
+        }}
+      >
         <input 
           type="text"
           placeholder="Search"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
         />
-        <Link to={'/blog'} state={{ searchQuery: query }}>SEARCH</Link>
+        {/* <Link to={'/blog'} state={{ searchQuery: query }}>SEARCH</Link> */}
+        <button type="submit">SEARCH</button>
       </form>
     </div>
   </nav>

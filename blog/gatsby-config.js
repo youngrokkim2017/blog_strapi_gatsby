@@ -52,46 +52,93 @@ module.exports = {
         icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
       },
     },
-    // FLEXSEARCH
-    {
-      resolve: 'gatsby-plugin-flexsearch',
-      options: {
-        languages: ['en'],
-        type: 'MarkdownRemark',
-        fields: [
-          {
-            name: 'title',
-            indexed: true,
-            resolver: 'frontmatter.title',
-            attributes: {
-              encode: 'balance',
-              tokenize: 'strict',
-              threshold: 6,
-              depth: 3,
-            },
-            store: true,
-          },
-          {
-            name: 'description',
-            indexed: true,
-            resolver: 'frontmatter.description',
-            attributes: {
-              encode: 'balance',
-              tokenize: 'strict',
-              threshold: 6,
-              depth: 3,
-            },
-            store: false,
-          },
-          {
-            name: 'url',
-            indexed: false,
-            resolver: 'fields.slug',
-            store: true,
-          },
-        ],
-      },
-    },
+    // // FLEXSEARCH
+    // {
+    //   resolve: 'gatsby-plugin-flexsearch',
+    //   options: {
+    //     languages: ['en'],
+    //     type: 'allStrapiArticle',
+    //     fields: [
+    //       {
+    //         name: 'title',
+    //         indexed: true,
+    //         resolver: 'allStrapiArticle.edges.node.title',
+    //         attributes: {
+    //           encode: 'balance',
+    //           tokenize: 'strict',
+    //           threshold: 6,
+    //           depth: 3,
+    //         },
+    //         store: true,
+    //       },
+    //       {
+    //         name: 'content',
+    //         indexed: true,
+    //         resolver: 'allStrapiArticle.edges.node.content',
+    //         attributes: {
+    //           encode: 'balance',
+    //           tokenize: 'strict',
+    //           threshold: 6,
+    //           depth: 3,
+    //         },
+    //         store: true,
+    //       },
+    //       {
+    //         name: 'author',
+    //         indexed: true,
+    //         resolver: 'allStrapiArticle.edges.node.author',
+    //         attributes: {
+    //           encode: 'balance',
+    //           tokenize: 'strict',
+    //           threshold: 6,
+    //           depth: 3,
+    //         },
+    //         store: true,
+    //       },
+    //       // {
+    //       //   name: 'url',
+    //       //   indexed: false,
+    //       //   resolver: 'fields.slug',
+    //       //   store: true,
+    //       // },
+    //     ],
+    //   },
+    // },
+    // // GATSBY-LOCAL-SEARCH
+    // {
+    //   resolve: "gatsby-plugin-local-search",
+    //   options: {
+    //     name: "blog",
+    //     engine: "flexsearch",
+    //     engineOptions: {
+    //       encode: "icase",
+    //       tokenize: "forward",
+    //       async: false,
+    //     },
+    //     query: `
+    //       {
+    //         allStrapiArticle {
+    //           nodes {
+    //             id
+    //             title
+    //             author
+    //             content
+    //           }
+    //         }
+    //       }
+    //     `,
+    //     ref: "id",
+    //     index: ["title", "content"],
+    //     store: ["id", "title", "author", "content",],
+    //     normalizer: ({ data }) =>
+    //       data.allStrapiArticle.nodes.map(node => ({
+    //         id: node.id,
+    //         title: node.title,
+    //         author: node.author,
+    //         content: node.content,
+    //       })),
+    //   },
+    // },
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     `gatsby-plugin-offline`,
