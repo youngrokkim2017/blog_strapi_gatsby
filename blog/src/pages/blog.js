@@ -6,6 +6,7 @@ import Layout from "../components/layout"
 import Reactmarkdown from "react-markdown"
 import SEO from "../components/seo"
 
+import Fuse from "fuse.js"  // fuzzy search
 // const FlexSearch = require("flexsearch");
 
 const BlogPage = ({ data, location }) => {
@@ -27,7 +28,27 @@ const BlogPage = ({ data, location }) => {
 
   // });
 
-  console.log(location.state.searchQuery);
+  // console.log(location.state.searchQuery);
+  // console.log(window.__FLEXSEARCH__.en.store);
+  // console.log(window.__FLEXSEARCH__.en.index);
+
+  const unsortedData = data.allStrapiArticle.edges;
+    // const sortedData = unsortedData.sort((a, b) => b.node.id.split('_')[1] - a.node.id.split('_')[1]);
+  let index = location.state.searchQuery ? location.state.searchQuery : "";
+
+    const options = {
+        keys: [
+            'node.title',
+            'node.author',
+            'node.content',
+        ],
+        includeScore: true,
+    };
+
+    const fuse = new Fuse(unsortedData, options);
+    const results = fuse.search(index);
+
+    console.log(results);
 
   return (
   <Layout location={location}>
