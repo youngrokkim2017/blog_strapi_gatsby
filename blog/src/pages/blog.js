@@ -50,8 +50,8 @@ const BlogPage = ({ data, location }) => {
     // const searchResults = results.length > 0 ? results.map(result => result.item) : sortedData.slice(0, 5);
     const searchResults = results.length > 0 ? results.map(result => result.item) : unsortedData;
 
-
     console.log(results);
+    console.log(location);
 
   return (
   <Layout location={location}>
