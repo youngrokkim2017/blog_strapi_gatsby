@@ -52,58 +52,58 @@ module.exports = {
         icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
       },
     },
-    // FLEXSEARCH
-    {
-      resolve: 'gatsby-plugin-flexsearch',
-      options: {
-        languages: ['en'],
-        type: 'allStrapiArticle',
-        fields: [
-          {
-            name: 'title',
-            indexed: true,
-            resolver: 'allStrapiArticle.edges.node.title',
-            attributes: {
-              encode: 'balance',
-              tokenize: 'strict',
-              threshold: 6,
-              depth: 3,
-            },
-            store: true,
-          },
-          {
-            name: 'content',
-            indexed: true,
-            resolver: 'allStrapiArticle.edges.node.content',
-            attributes: {
-              encode: 'balance',
-              tokenize: 'strict',
-              threshold: 6,
-              depth: 3,
-            },
-            store: true,
-          },
-          {
-            name: 'author',
-            indexed: true,
-            resolver: 'allStrapiArticle.edges.node.author',
-            attributes: {
-              encode: 'balance',
-              tokenize: 'strict',
-              threshold: 6,
-              depth: 3,
-            },
-            store: true,
-          },
-          // {
-          //   name: 'url',
-          //   indexed: false,
-          //   resolver: 'fields.slug',
-          //   store: true,
-          // },
-        ],
-      },
-    },
+    // // FLEXSEARCH
+    // {
+    //   resolve: 'gatsby-plugin-flexsearch',
+    //   options: {
+    //     languages: ['en'],
+    //     type: 'allStrapiArticle',
+    //     fields: [
+    //       {
+    //         name: 'title',
+    //         indexed: true,
+    //         resolver: 'allStrapiArticle.edges.node.title',
+    //         attributes: {
+    //           encode: 'balance',
+    //           tokenize: 'strict',
+    //           threshold: 6,
+    //           depth: 3,
+    //         },
+    //         store: true,
+    //       },
+    //       {
+    //         name: 'content',
+    //         indexed: true,
+    //         resolver: 'allStrapiArticle.edges.node.content',
+    //         attributes: {
+    //           encode: 'balance',
+    //           tokenize: 'strict',
+    //           threshold: 6,
+    //           depth: 3,
+    //         },
+    //         store: true,
+    //       },
+    //       {
+    //         name: 'author',
+    //         indexed: true,
+    //         resolver: 'allStrapiArticle.edges.node.author',
+    //         attributes: {
+    //           encode: 'balance',
+    //           tokenize: 'strict',
+    //           threshold: 6,
+    //           depth: 3,
+    //         },
+    //         store: true,
+    //       },
+    //       // {
+    //       //   name: 'url',
+    //       //   indexed: false,
+    //       //   resolver: 'fields.slug',
+    //       //   store: true,
+    //       // },
+    //     ],
+    //   },
+    // },
     // // GATSBY-LOCAL-SEARCH
     // {
     //   resolve: "gatsby-plugin-local-search",
