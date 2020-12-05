@@ -44,10 +44,9 @@ const Header = ({ siteTitle }) => {
       <form
         onSubmit={event => {
           event.preventDefault()
-          // Implementation of this function is an exercise for the reader.
           navigate(
-            "/blog",
-            // { replace: true },
+            "/blog/",
+            { replace: true },
             {
               state: { searchQuery: query },
             }
@@ -56,7 +55,7 @@ const Header = ({ siteTitle }) => {
       >
         <input 
           type="text"
-          placeholder="Search"
+          placeholder="Tech, life science, people, ..."
           value={query}
           onChange={(e) => setQuery(e.target.value)}
         />

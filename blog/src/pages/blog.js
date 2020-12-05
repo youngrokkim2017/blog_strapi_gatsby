@@ -32,24 +32,22 @@ const BlogPage = ({ data, location }) => {
     // const sortedData = unsortedData.sort((a, b) => b.node.id.split('_')[1] - a.node.id.split('_')[1]);
   let index = location.state.searchQuery === null || !location.state.searchQuery ? "" : location.state.searchQuery;
 
-    const options = {
-        keys: [
-            'node.title',
-            'node.author',
-            'node.content',
-        ],
-        includeScore: true,
-    };
-
-    const fuse = new Fuse(unsortedData, options);
-    const results = fuse.search(index);
-    // const searchResults = results.length > 0 ? results.map(result => result.item) : sortedData.slice(0, 5);
-    const searchResults = results.length > 0 ? results.map(result => result.item) : unsortedData;
-
-    // console.log(results);
-    // console.log(location);
-
-    // console.log(globalHistory)
+  const options = {
+      keys: [
+          'node.title',
+          'node.author',
+          'node.content',
+      ],
+      includeScore: true,
+  };
+  const fuse = new Fuse(unsortedData, options);
+  const results = fuse.search(index);
+  // const searchResults = results.length > 0 ? results.map(result => result.item) : sortedData.slice(0, 5);
+  const searchResults = results.length > 0 ? results.map(result => result.item) : unsortedData;
+  location.state.searchQuery = "";
+  // console.log(results);
+  // console.log(location);
+  // console.log(globalHistory)
 
   return (
   <Layout location={location}>
