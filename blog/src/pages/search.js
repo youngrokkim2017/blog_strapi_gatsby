@@ -1,5 +1,5 @@
-// import React from "react"
-import React, { useEffect, useRef } from "react"
+import React from "react"
+// import React, { useEffect, useRef } from "react"
 import { Link, graphql } from "gatsby"
 import Img from 'gatsby-image';
 import Layout from "../components/layout"
@@ -11,11 +11,8 @@ import Fuse from "fuse.js"  // fuzzy search
 const FlexSearch = require("flexsearch");
 
 const SearchPage = ({ data, location }) => {
-// const BlogPage = ({ data, navigate, location }) => {
-  // const unsortedData = data.allStrapiArticle.edges;
+  const unsortedData = data.allStrapiArticle.edges;
   // const sortedData = unsortedData.sort((a, b) => b.node.id.split('_')[1] - a.node.id.split('_')[1]).slice(0, 5);
-  // console.log(unsortedData, sortedData)
-  // console.log(data.allStrapiArticle.edges)
 
   ///////////////////////////// FLEXSEARCH ///////////////////////////////////
   let flexIndex = new FlexSearch({
@@ -51,35 +48,18 @@ const SearchPage = ({ data, location }) => {
   });
 
   flexIndex.add(data.allStrapiArticle.edges.map(e => e.node));
-
-  // searchResults() {
-  //   if (this.index === null || this.searchTerm.length < 3) return [];
-  //   return this.index.search({
-  //     query: this.searchTerm,
-  //     limit: 10
-  //   });
-  // }
-
   const flexQuery = (location.state === null || !location.state) ? "" : location.state.searchQuery;
-
-  // const flexResults = (flexIndex === null || location.state === null || !location.state || location.state.searchQuery < 3) ? data.allStrapiArticle.edges : flexIndex.search({
-  // const flexResults = flexIndex.search({
-  //     // query: flexQuery,
-  //     query: location.state.searchQuery,
-  //     limit: 5,
-  //   });
-  const flexResults = flexIndex.search(flexQuery)
-  
+  const flexResults = flexQuery === "" ? data.allStrapiArticle.edges : flexIndex.search(flexQuery);
   const flexData = !flexResults ? data.allStrapiArticle.edges : flexResults;
 
-    console.log(flexIndex);
-    console.log(flexResults);
-    console.log(data.allStrapiArticle.edges)
+  console.log(flexIndex);
+  console.log(flexResults);
+  console.log(data.allStrapiArticle.edges)
 
   ///////////////////////////// FLEXSEARCH ///////////////////////////////////
 
   ///////////////////////////// FUSE SEARCH ///////////////////////////////////
-  const unsortedData = data.allStrapiArticle.edges;
+  // const unsortedData = data.allStrapiArticle.edges;
   let index = (location.state === null || !location.state) ? "" : location.state.searchQuery;
 
   const options = {
@@ -92,54 +72,10 @@ const SearchPage = ({ data, location }) => {
   };
   const fuse = new Fuse(unsortedData, options);
   const results = fuse.search(index);
-  // let results;
   const searchResults = results.length > 0 ? results.map(result => result.item) : unsortedData;
-  // let searchResults;
-
-  // const searchQueryRef = useRef(null);
-  // const resultsRef = useRef(null);
-  // const fuseRef = useRef(null);
-  // // const locationStateRef = useRef(null);
-
-  // const fuseSearchResults = useEffect(() => {
-  //   const getSearchIndex = () => {
-  //     fuseRef.current = fuse.search(location.state.searchQuery);
-  //     // locationStateRef = location.state;
-
-  //     if (location.state === null || !location.state) {
-  //       // searchResults = unsortedData;
-  //       searchQueryRef.current = unsortedData;
-  //     } else {
-  //       // results = fuse.search(location.state.searchQuery);
-  //       // resultsRef.current = fuse.search(location.state.searchQuery);
-  //       resultsRef.current = fuseRef;
-  //       // if (!results.length) {
-  //       if (!resultsRef.length) {
-  //         // searchResults = unsortedData;
-  //         return searchQueryRef.current = unsortedData;
-  //       } else {
-  //         // searchResults = results.map(result => result.item)
-  //         return searchQueryRef.current = resultsRef.map(result => result.item)
-  //       }
-  //     }
-  //   }
-
-  //   getSearchIndex();
-  // }, [fuse, location.state, unsortedData]);
-
-  // function getSearchIndex() {
-  //   if (location.state === null || !location.state) {
-  //     searchResults = unsortedData;
-  //   } else {
-  //     results = fuse.search(location.state.searchQuery);
-  //     if (!results.length) {
-  //       searchResults = unsortedData;
-  //     } else {
-  //       searchResults = results.map(result => result.item)
-  //     }
-  //   }
-  // }
   ///////////////////////////// FUSE SEARCH ///////////////////////////////////
+
+  // !flexResults ? data.allStrapiArticle.edges : flexResults;
 
   return (
   <Layout location={location}>
