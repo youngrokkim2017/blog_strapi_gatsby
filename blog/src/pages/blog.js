@@ -1,10 +1,10 @@
 import React from "react"
 import { Link, graphql } from "gatsby"
 import Img from 'gatsby-image';
-
 import Layout from "../components/layout"
-import Reactmarkdown from "react-markdown"
 import SEO from "../components/seo"
+import Reactmarkdown from "react-markdown"
+// import { globalHistory } from "@reach/router"
 
 import Fuse from "fuse.js"  // fuzzy search
 // const FlexSearch = require("flexsearch");
@@ -16,18 +16,14 @@ const BlogPage = ({ data, location }) => {
   // console.log(unsortedData, sortedData)
   // console.log(data.allStrapiArticle.edges)
 
-  // const { query } = props;
-  // console.log(props);
-
-  // let searchQuery = location.state.searchQuery;
-
   // let index = new FlexSearch();
-
+  
   // index.search(searchQuery, function(result){
-  //   // array of results
-
-  // });
-
+    //   // array of results
+    
+    // });
+    
+  // let searchQuery = location.state.searchQuery;
   // console.log(location.state.searchQuery);
   // console.log(window.__FLEXSEARCH__.en.store);
   // console.log(window.__FLEXSEARCH__.en.index);
@@ -50,8 +46,10 @@ const BlogPage = ({ data, location }) => {
     // const searchResults = results.length > 0 ? results.map(result => result.item) : sortedData.slice(0, 5);
     const searchResults = results.length > 0 ? results.map(result => result.item) : unsortedData;
 
-    console.log(results);
-    console.log(location);
+    // console.log(results);
+    // console.log(location);
+
+    // console.log(globalHistory)
 
   return (
   <Layout location={location}>
