@@ -1,67 +1,17 @@
 import React from "react"
 import { Link, graphql } from "gatsby"
 import Img from 'gatsby-image';
-
 import Layout from "../components/layout"
-import Reactmarkdown from "react-markdown"
 import SEO from "../components/seo"
-
-import Fuse from "fuse.js"  // fuzzy search
-// const FlexSearch = require("flexsearch");
+import Reactmarkdown from "react-markdown"
 
 const BlogPage = ({ data, location }) => {
-// const BlogPage = ({ data, navigate, location }) => {
-  // const unsortedData = data.allStrapiArticle.edges;
-  // const sortedData = unsortedData.sort((a, b) => b.node.id.split('_')[1] - a.node.id.split('_')[1]).slice(0, 5);
-  // console.log(unsortedData, sortedData)
-  // console.log(data.allStrapiArticle.edges)
-
-  // const { query } = props;
-  // console.log(props);
-
-  // let searchQuery = location.state.searchQuery;
-
-  // let index = new FlexSearch();
-
-  // index.search(searchQuery, function(result){
-  //   // array of results
-
-  // });
-
-  // console.log(location.state.searchQuery);
-  // console.log(window.__FLEXSEARCH__.en.store);
-  // console.log(window.__FLEXSEARCH__.en.index);
-
-  const unsortedData = data.allStrapiArticle.edges;
-    // const sortedData = unsortedData.sort((a, b) => b.node.id.split('_')[1] - a.node.id.split('_')[1]);
-  let index = location.state.searchQuery === null || !location.state.searchQuery ? "" : location.state.searchQuery;
-
-    const options = {
-        keys: [
-            'node.title',
-            'node.author',
-            'node.content',
-        ],
-        includeScore: true,
-    };
-
-    const fuse = new Fuse(unsortedData, options);
-    const results = fuse.search(index);
-    // const searchResults = results.length > 0 ? results.map(result => result.item) : sortedData.slice(0, 5);
-    const searchResults = results.length > 0 ? results.map(result => result.item) : unsortedData;
-
-    console.log(results);
-    console.log(location);
-
   return (
   <Layout location={location}>
     <SEO title="Blog index page" />
 
     <ul>
-      {/* {data.allStrapiArticle.edges.sort((a, b) => b.id - a.id).slice(0, 5).map(document => ( */}
-      {/* {sortedData.map(document => ( */}
-      {/* {data.allStrapiArticle.edges.map(document => ( */}
-      {searchResults.map(document => (
+      {data.allStrapiArticle.edges.map(document => (
         <li key={document.node.id}>
           <h2>
             <Link to={`/blog/${document.node.id}`} style={{ textDecoration: `none` }}>
