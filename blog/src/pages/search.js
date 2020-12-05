@@ -1,5 +1,5 @@
-import React from "react"
-// import React, { useEffect, useRef } from "react"
+// import React from "react"
+import React, { useEffect, useRef } from "react"
 import { Link, graphql } from "gatsby"
 import Img from 'gatsby-image';
 import Layout from "../components/layout"
@@ -8,7 +8,7 @@ import Reactmarkdown from "react-markdown"
 // import { globalHistory } from "@reach/router"
 
 import Fuse from "fuse.js"  // fuzzy search
-// const FlexSearch = require("flexsearch");
+const FlexSearch = require("flexsearch");
 
 const SearchPage = ({ data, location }) => {
 // const BlogPage = ({ data, navigate, location }) => {
@@ -17,20 +17,69 @@ const SearchPage = ({ data, location }) => {
   // console.log(unsortedData, sortedData)
   // console.log(data.allStrapiArticle.edges)
 
-  // let index = new FlexSearch();
-  
-  // index.search(searchQuery, function(result){
-    //   // array of results
-    
-    // });
-    
-  // let searchQuery = location.state.searchQuery;
-  // console.log(location.state.searchQuery);
-  // console.log(window.__FLEXSEARCH__.en.store);
-  // console.log(window.__FLEXSEARCH__.en.index);
+  ///////////////////////////// FLEXSEARCH ///////////////////////////////////
+  let flexIndex = new FlexSearch({
+    // // SPEED-OPTIMIZED PROFILE
+    // encode: "icase",
+    // tokenize: "strict",
+    // threshold: 1,
+    // resolution: 3,
+    // depth: 2,
+    //
+    // // MEMORY-OPTIMIZED PROFILE
+    // encode: "extra",
+    // // tokenize: "forward",
+    // tokenize: "strict",
+    // threshold: 0,
+    // resolution: 1,
+    //
+    // ABSOLUTE FASTEST PROFILE
+    // tokenize: "forward",
+    tokenize: "strict",
+    encode: "icase",
+    threshold: 8,
+    resolution: 9,
+    depth: 1,
+    doc: {
+      id: "id",
+      field: [
+        "title",
+        "content",
+        "author",
+      ]
+    }
+  });
 
+  flexIndex.add(data.allStrapiArticle.edges.map(e => e.node));
+
+  // searchResults() {
+  //   if (this.index === null || this.searchTerm.length < 3) return [];
+  //   return this.index.search({
+  //     query: this.searchTerm,
+  //     limit: 10
+  //   });
+  // }
+
+  const flexQuery = (location.state === null || !location.state) ? "" : location.state.searchQuery;
+
+  // const flexResults = (flexIndex === null || location.state === null || !location.state || location.state.searchQuery < 3) ? data.allStrapiArticle.edges : flexIndex.search({
+  // const flexResults = flexIndex.search({
+  //     // query: flexQuery,
+  //     query: location.state.searchQuery,
+  //     limit: 5,
+  //   });
+  const flexResults = flexIndex.search(flexQuery)
+  
+  const flexData = !flexResults ? data.allStrapiArticle.edges : flexResults;
+
+    console.log(flexIndex);
+    console.log(flexResults);
+    console.log(data.allStrapiArticle.edges)
+
+  ///////////////////////////// FLEXSEARCH ///////////////////////////////////
+
+  ///////////////////////////// FUSE SEARCH ///////////////////////////////////
   const unsortedData = data.allStrapiArticle.edges;
-  // const sortedData = unsortedData.sort((a, b) => b.node.id.split('_')[1] - a.node.id.split('_')[1]);
   let index = (location.state === null || !location.state) ? "" : location.state.searchQuery;
 
   const options = {
@@ -47,18 +96,12 @@ const SearchPage = ({ data, location }) => {
   const searchResults = results.length > 0 ? results.map(result => result.item) : unsortedData;
   // let searchResults;
 
-  // location.state.searchQuery = "";
-
-  // console.log(results);
-  console.log(location);
-  // console.log(globalHistory)
-
   // const searchQueryRef = useRef(null);
   // const resultsRef = useRef(null);
   // const fuseRef = useRef(null);
   // // const locationStateRef = useRef(null);
 
-  // const searchResults = useEffect(() => {
+  // const fuseSearchResults = useEffect(() => {
   //   const getSearchIndex = () => {
   //     fuseRef.current = fuse.search(location.state.searchQuery);
   //     // locationStateRef = location.state;
@@ -96,6 +139,7 @@ const SearchPage = ({ data, location }) => {
   //     }
   //   }
   // }
+  ///////////////////////////// FUSE SEARCH ///////////////////////////////////
 
   return (
   <Layout location={location}>
@@ -104,25 +148,33 @@ const SearchPage = ({ data, location }) => {
     <ul>
       {/* {data.allStrapiArticle.edges.sort((a, b) => b.id - a.id).slice(0, 5).map(document => ( */}
       {/* {sortedData.map(document => ( */}
-      {/* {searchQueryRef.current.map(document => ( */}
       {/* {data.allStrapiArticle.edges.map(document => ( */}
-      {searchResults.map(document => (
-        <li key={document.node.id}>
+      {/* {searchResults.map(document => ( */}
+      {/* {searchQueryRef.current.map(document => ( */}
+      {flexData.map(document => (
+        // <li key={document.node.id}>
+        <li key={document.id}>
           <h2>
-            <Link to={`/blog/${document.node.id}`} style={{ textDecoration: `none` }}>
-              {document.node.title}
+            {/* <Link to={`/blog/${document.node.id}`} style={{ textDecoration: `none` }}> */}
+            <Link to={`/blog/${document.id}`} style={{ textDecoration: `none` }}>
+              {/* {document.node.title} */}
+              {document.title}
             </Link>
           </h2>
-          <h4>By{" "}{document.node.author}</h4>
+          {/* <h4>By{" "}{document.node.author}</h4> */}
+          <h4>By{" "}{document.author}</h4>
           {
-            document.node.image
+            // document.node.image
+            document.image
             ?
-            <Img fixed={document.node.image.childImageSharp.fixed} />
+            // <Img fixed={document.node.image.childImageSharp.fixed} />
+            <Img fixed={document.image.childImageSharp.fixed} />
             :
             ""
           }
           <Reactmarkdown
-            source={`${document.node.content.slice(0,500)}...`}
+            // source={`${document.node.content.slice(0,500)}...`}
+            source={`${document.content.slice(0,500)}...`}
             transformImageUri={uri => uri.startsWith('http') ? uri : `${process.env.IMAGE_BASE_URL}${uri}`}
           />
         </li>
@@ -139,7 +191,6 @@ export default SearchPage;
 export const fuseQuery = graphql`
   query FuseQuery {
     allStrapiArticle(
-      limit: 5
       sort: { order: DESC, fields: published_at }
     ) {
       edges {
@@ -166,3 +217,34 @@ export const fuseQuery = graphql`
     }
   }
 `
+
+// export const fuseQuery = graphql`
+//   query FuseQuery {
+//     allStrapiArticle(
+//       limit: 5
+//       sort: { order: DESC, fields: published_at }
+//     ) {
+//       edges {
+//         node {
+//           id
+//           image {
+//             childImageSharp {
+//               fixed(width: 200, height: 125) {
+//                 ...GatsbyImageSharpFixed
+//               }
+//             }
+//           }
+//           title
+//           author
+//           content
+//           category {
+//             id
+//             title
+//           }
+//           published_at
+//           updated_at
+//         }
+//       }
+//     }
+//   }
+// `
