@@ -14,6 +14,18 @@ const Header = ({ siteTitle }) => {
   //   setQuery(value);
   // }
 
+  function handleNavigate(e) {
+    e.preventDefault()
+
+    navigate(
+      "/search/",
+      {
+        state: { searchQuery: query },
+      }
+    )
+  }
+
+
   return (
     <nav className="p-4 text-black mb-12 border-b" style={{ borderColor: '#c8c8c8' }}>
       <div className="flex container mx-auto items-center justify-between flex-wrap">
