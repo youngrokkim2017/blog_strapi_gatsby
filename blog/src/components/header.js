@@ -43,19 +43,7 @@ const Header = () => {
           </Link>
           </div>
           <div>
-            <form
-              onSubmit={event => {
-                event.preventDefault()
-                navigate(
-                  // "/blog/",
-                  "/search/",
-                  // { replace: true },
-                  {
-                    state: { searchQuery: query },
-                  }
-                )
-              }}
-            >
+            <form onSubmit={handleNavigate}>
               {/* <input
                 type="text"
                 placeholder="Search"

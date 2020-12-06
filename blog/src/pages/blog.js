@@ -3,7 +3,7 @@ import { Link, graphql } from "gatsby"
 import Img from 'gatsby-image';
 import Layout from "../components/layout"
 import SEO from "../components/seo"
-import Reactmarkdown from "react-markdown"
+// import ReactMarkdown from "react-markdown"
 
 const BlogPage = ({ data, location }) => {
   return (
@@ -30,7 +30,7 @@ const BlogPage = ({ data, location }) => {
                   </Link>
                 </h2>
                 <h4>By{" "}{document.node.author}</h4>
-                {/* <Reactmarkdown
+                {/* <ReactMarkdown
                   source={`${document.node.content.slice(0, 500)}...`}
                   transformImageUri={uri => uri.startsWith('http') ? uri : `${process.env.IMAGE_BASE_URL}${uri}`}
                 /> */}

@@ -2,9 +2,10 @@ import React from "react"
 // import React, { useEffect, useRef } from "react"
 import { Link, graphql } from "gatsby"
 import Img from 'gatsby-image';
-import Layout from "../components/layout"
-import SEO from "../components/seo"
-import Reactmarkdown from "react-markdown"
+// import Layout from "../components/layout"
+// import SEO from "../components/seo"
+import ReactMarkdown from "react-markdown"
+import logo from "../images/logo.png"
 // import { globalHistory } from "@reach/router"
 
 import Fuse from "fuse.js"  // fuzzy search
@@ -113,7 +114,7 @@ const SearchPage = ({ data, location }) => {
   //                 :
   //                 ""
   //               }
-  //               <Reactmarkdown
+  //               <ReactMarkdown
   //                 source={`${document.node.content.slice(0,500)}...`}
   //                 transformImageUri={uri => uri.startsWith('http') ? uri : `${process.env.IMAGE_BASE_URL}${uri}`}
   //               />
@@ -139,7 +140,7 @@ const SearchPage = ({ data, location }) => {
   //                 :
   //                 ""
   //               }
-  //               <Reactmarkdown
+  //               <ReactMarkdown
   //                 source={`${document.content.slice(0,500)}...`}
   //                 transformImageUri={uri => uri.startsWith('http') ? uri : `${process.env.IMAGE_BASE_URL}${uri}`}
   //               />
@@ -151,9 +152,34 @@ const SearchPage = ({ data, location }) => {
   // )
 
   return (
-  <Layout location={location}>
-    <SEO title="Blog index page" />
-
+  // <Layout location={location}>
+  // <SEO title="Blog index page" />
+  <div>
+    <nav className="p-4 text-black mb-12 border-b" style={{ borderBottomColor: '#888888' }}>
+      <div className="flex container mx-auto items-center justify-between flex-wrap">
+        <div className="flex items-center flex-shrink-0 mr-6">
+          <Link to="/" className="font-semibold text-2xl tracking-tight">
+            <img src={logo} alt="Logo" className="h-10 sm:h-8" />
+          </Link>
+        </div>
+        <div className="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
+          <div className="text-md lg:flex-grow">
+            <Link to="/blog/" className="block mt-4 lg:inline-block lg:mt-0 mr-4">
+              Blog
+          </Link>
+            <Link to="/magazine/" className="block mt-4 lg:inline-block lg:mt-0 mr-4">
+              Magazine
+          </Link>
+            <Link to="/about/" className="block mt-4 lg:inline-block lg:mt-0 mr-4">
+              About Us
+          </Link>
+            <Link to="/subscribe/" className="block mt-4 lg:inline-block lg:mt-0 mr-4">
+              Subscribe
+          </Link>
+          </div>
+        </div>
+      </div>
+    </nav>
     <ul>
       {/* {data.allStrapiArticle.edges.map(document => ( */}
       {/* {flexData.map(document => ( */}
@@ -178,7 +204,7 @@ const SearchPage = ({ data, location }) => {
             :
             ""
           }
-          <Reactmarkdown
+          <ReactMarkdown
             source={`${document.node.content.slice(0,500)}...`}
             // source={`${document.content.slice(0,500)}...`}
             transformImageUri={uri => uri.startsWith('http') ? uri : `${process.env.IMAGE_BASE_URL}${uri}`}
@@ -186,7 +212,8 @@ const SearchPage = ({ data, location }) => {
         </li>
       ))}
     </ul>
-  </Layout>
+  </div>
+  // </Layout>
   )
 }
 
