@@ -25,7 +25,13 @@ const makeRequest = (graphql, request) =>
 // Implement the Gatsby API “createPages”. This is called once the
 // data layer is bootstrapped to let plugins create pages from data.
 exports.createPages = ({ actions, graphql }) => {
-  const { createPage } = actions
+// exports.createPages = ({ actions, graphql, page }) => {
+  const { createPage } = actions;
+
+  // if (page.path === `/`) {
+  //   page.matchPath = `/*`;
+  //   createPage(page);
+  // }
 
   const getAuthors = makeRequest(
     graphql,
