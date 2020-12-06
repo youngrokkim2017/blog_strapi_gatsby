@@ -49,20 +49,9 @@ const Header = ({ siteTitle }) => {
               Subscribe
           </Link>
           </div>
-          {/* SEARCH BAR COMPONENT */}
           <div>
             <form
-              onSubmit={event => {
-                event.preventDefault()
-                navigate(
-                  // "/blog/",
-                  "/search/",
-                  // { replace: true },
-                  {
-                    state: { searchQuery: query },
-                  }
-                )
-              }}
+              onSubmit={handleNavigate}
             >
               <input
                 type="text"
@@ -70,7 +59,6 @@ const Header = ({ siteTitle }) => {
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
               />
-              {/* <Link to={'/blog'} state={{ searchQuery: query }}>SEARCH</Link> */}
               <button type="submit">SEARCH</button>
             </form>
           </div>
