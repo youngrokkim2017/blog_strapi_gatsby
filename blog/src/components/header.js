@@ -1,18 +1,11 @@
-// import { Link } from "gatsby"
-import { Link, navigate } from "gatsby"
-import PropTypes from "prop-types"
-// import React from "react"
 import React, { useState } from "react"
+import { Link, navigate } from "gatsby"
+// import PropTypes from "prop-types"
 import logo from "../images/logo.png"
 
-const Header = ({ siteTitle }) => {
+const Header = () => {
+// const Header = ({ siteTitle }) => {
   const [query, setQuery] = useState('');
-
-  // function handleOnSearch({ currentTarget = {} }) {
-  //   const { value } = currentTarget;
-
-  //   setQuery(value);
-  // }
 
   function handleNavigate(e) {
     e.preventDefault()
@@ -49,7 +42,6 @@ const Header = ({ siteTitle }) => {
               Subscribe
           </Link>
           </div>
-          {/* SEARCH BAR COMPONENT */}
           <div>
             <form
               onSubmit={event => {
@@ -88,12 +80,12 @@ const Header = ({ siteTitle }) => {
   )
 }
 
-Header.propTypes = {
-  siteTitle: PropTypes.string,
-}
+// Header.propTypes = {
+//   siteTitle: PropTypes.string,
+// }
 
-Header.defaultProps = {
-  siteTitle: ``,
-}
+// Header.defaultProps = {
+//   siteTitle: ``,
+// }
 
 export default Header

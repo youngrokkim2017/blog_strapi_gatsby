@@ -88,7 +88,7 @@ const SearchPage = ({ data, location }) => {
       // shouldSort: true,
   };
   const fuse = new Fuse(unsortedData, options);
-  const results = fuse.search(index, { limit: 5 });
+  const results = fuse.search(index, { limit: 10 });
   const searchResults = results.length > 0 ? results.map(result => result.item) : unsortedData.slice(0, 5);
   ///////////////////////////// FUSE SEARCH ///////////////////////////////////
 
