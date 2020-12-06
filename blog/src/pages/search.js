@@ -1,4 +1,5 @@
-import React from "react"
+// import React from "react"
+import React, { useState } from "react"
 // import React, { useEffect, useRef } from "react"
 import { Link, graphql } from "gatsby"
 import Img from 'gatsby-image';
@@ -12,6 +13,8 @@ import Fuse from "fuse.js"  // fuzzy search
 // const FlexSearch = require("flexsearch");
 
 const SearchPage = ({ data, location }) => {
+  const [query, setQuery] = useState('');
+
   const unsortedData = data.allStrapiArticle.edges;
   // const sortedData = unsortedData.sort((a, b) => b.node.id.split('_')[1] - a.node.id.split('_')[1]).slice(0, 5);
   // const sortedData = data.allStrapiArticle.edges.sort((a, b) => b.id - a.id).slice(0, 5);
@@ -50,8 +53,14 @@ const SearchPage = ({ data, location }) => {
   // });
 
   // flexIndex.add(data.allStrapiArticle.edges.map(e => e.node));
-  // const flexQuery = (location.state === null || !location.state) ? "" : location.state.searchQuery;
-  // const flexResults = flexQuery === "" ? data.allStrapiArticle.edges : flexIndex.search(flexQuery);
+  // // flexIndex.add(data.allStrapiArticle.edges);
+  // // const flexQuery = (location.state === null || !location.state) ? "" : location.state.searchQuery;
+  // // const flexResults = flexQuery === "" ? data.allStrapiArticle.edges : flexIndex.search(flexQuery);
+  // // const flexResults = flexIndex.search(query);
+  // const flexResults = flexIndex.search({
+  //   query: query,
+  //   limit: 10
+  // });
   // const flexData = !flexResults ? data.allStrapiArticle.edges : flexResults;
 
   // console.log(flexIndex);
@@ -91,65 +100,25 @@ const SearchPage = ({ data, location }) => {
   const fuse = new Fuse(unsortedData, options);
   const results = fuse.search(index, { limit: 10 });
   const searchResults = results.length > 0 ? results.map(result => result.item) : unsortedData.slice(0, 5);
-  ///////////////////////////// FUSE SEARCH ///////////////////////////////////
 
-  // return (
-  //   <Layout location={location}>
-  //     <SEO title="Blog index page" />
-  //       {
-  //         flexQuery === "" ?
-  //         <ul>
-  //           {data.allStrapiArticle.edges.slice(0, 5).map(document => (
-  //             <li key={document.node.id}>
-  //               <h2>
-  //                 <Link to={`/blog/${document.node.id}`} style={{ textDecoration: `none` }}>
-  //                   {document.node.title}
-  //                 </Link>
-  //               </h2>
-  //               <h4>By{" "}{document.node.author}</h4>
-  //               {
-  //                 document.node.image
-  //                 ?
-  //                 <Img fixed={document.node.image.childImageSharp.fixed} />
-  //                 :
-  //                 ""
-  //               }
-  //               <ReactMarkdown
-  //                 source={`${document.node.content.slice(0,500)}...`}
-  //                 transformImageUri={uri => uri.startsWith('http') ? uri : `${process.env.IMAGE_BASE_URL}${uri}`}
-  //               />
-  //             </li>
-  //           ))}
-  //         </ul>
-  //         // : flexIndex.l.length === 0 ?
-  //         // <div>The article you have searched for does not exist</div>
-  //         :
-  //         <ul>
-  //           {data.allStrapiArticle.edges.slice(0, 5).map(document => (
-  //             <li key={document.id}>
-  //               <h2>
-  //                 <Link to={`/blog/${document.id}`} style={{ textDecoration: `none` }}>
-  //                   {document.title}
-  //                 </Link>
-  //               </h2>
-  //               <h4>By{" "}{document.author}</h4>
-  //               {
-  //                 document.image
-  //                 ?
-  //                 <Img fixed={document.image.childImageSharp.fixed} />
-  //                 :
-  //                 ""
-  //               }
-  //               <ReactMarkdown
-  //                 source={`${document.content.slice(0,500)}...`}
-  //                 transformImageUri={uri => uri.startsWith('http') ? uri : `${process.env.IMAGE_BASE_URL}${uri}`}
-  //               />
-  //             </li>
-  //           ))}
-  //         </ul>
-  //       }
-  //   </Layout>
-  // )
+  // search query results while on route '/search'
+  const currentResults = fuse.search(query, { limit: 10 });
+  const currentSearchResults = query.length > 3 ? currentResults.map(result => result.item) : unsortedData.slice(0, 5);
+
+  function handleOnSearch({ currentTarget = {} }) {
+    const { value } = currentTarget;
+    setQuery(value);
+  }
+
+  // let fuseResults;
+  // if (results.length > 0) {
+  //   fuseResults = results.map(result => result.item);
+  // } else if (results.length === 0) {
+  //   fuseResults = unsortedData.slice(0, 5);
+  // } else if (query.length > 3) {
+  //   fuseResults = currentResults.map(result => result.item);
+  // }
+  ///////////////////////////// FUSE SEARCH ///////////////////////////////////
 
   return (
   // <Layout location={location}>
@@ -180,38 +149,91 @@ const SearchPage = ({ data, location }) => {
         </div>
       </div>
     </nav>
-    <ul>
-      {/* {data.allStrapiArticle.edges.map(document => ( */}
-      {/* {flexData.map(document => ( */}
-      {searchResults.map(document => (
-        <li key={document.node.id}>
-        {/* <li key={document.id}> */}
-          <h2>
-            <Link to={`/blog/${document.node.id}`} style={{ textDecoration: `none` }}>
-            {/* <Link to={`/blog/${document.id}`} style={{ textDecoration: `none` }}> */}
-              {document.node.title}
-              {/* {document.title} */}
-            </Link>
-          </h2>
-          <h4>By{" "}{document.node.author}</h4>
-          {/* <h4>By{" "}{document.author}</h4> */}
-          {
-            document.node.image
-            // document.image
-            ?
-            <Img fixed={document.node.image.childImageSharp.fixed} />
-            // <Img fixed={document.image.childImageSharp.fixed} />
-            :
-            ""
-          }
-          <ReactMarkdown
-            source={`${document.node.content.slice(0,500)}...`}
-            // source={`${document.content.slice(0,500)}...`}
-            transformImageUri={uri => uri.startsWith('http') ? uri : `${process.env.IMAGE_BASE_URL}${uri}`}
-          />
-        </li>
-      ))}
-    </ul>
+{/* SEARCH COMPONENT */}
+    <div>
+      <form>
+        <input 
+          type="text" 
+          placeholder="Search" 
+          value={query} 
+          onChange={handleOnSearch} 
+        />
+      </form>
+    </div>
+    { query.length > 3 ?
+    <div>
+      <ul>
+        {/* {data.allStrapiArticle.edges.map(document => ( */}
+        {/* {flexData.map(document => ( */}
+        {/* {fuseResults.map(document => ( */}
+        {/* {flexResults.map(document => ( */}
+        {currentSearchResults.map(document => (
+          <li key={document.node.id}>
+          {/* <li key={document.id}> */}
+            <h2>
+              <Link to={`/blog/${document.node.id}`} style={{ textDecoration: `none` }}>
+              {/* <Link to={`/blog/${document.id}`} style={{ textDecoration: `none` }}> */}
+                {document.node.title}
+                {/* {document.title} */}
+              </Link>
+            </h2>
+            <h4>By{" "}{document.node.author}</h4>
+            {/* <h4>By{" "}{document.author}</h4> */}
+            {
+              document.node.image
+              // document.image
+              ?
+              <Img fixed={document.node.image.childImageSharp.fixed} />
+              // <Img fixed={document.image.childImageSharp.fixed} />
+              :
+              ""
+            }
+            <ReactMarkdown
+              source={`${document.node.content.slice(0,500)}...`}
+              // source={`${document.content.slice(0,500)}...`}
+              transformImageUri={uri => uri.startsWith('http') ? uri : `${process.env.IMAGE_BASE_URL}${uri}`}
+            />
+          </li>
+        ))}
+      </ul>
+    </div>
+    :
+    <div>
+      <ul>
+        {/* {data.allStrapiArticle.edges.map(document => ( */}
+        {/* {flexData.map(document => ( */}
+        {/* {fuseResults.map(document => ( */}
+        {searchResults.map(document => (
+          <li key={document.node.id}>
+          {/* <li key={document.id}> */}
+            <h2>
+              <Link to={`/blog/${document.node.id}`} style={{ textDecoration: `none` }}>
+              {/* <Link to={`/blog/${document.id}`} style={{ textDecoration: `none` }}> */}
+                {document.node.title}
+                {/* {document.title} */}
+              </Link>
+            </h2>
+            <h4>By{" "}{document.node.author}</h4>
+            {/* <h4>By{" "}{document.author}</h4> */}
+            {
+              document.node.image
+              // document.image
+              ?
+              <Img fixed={document.node.image.childImageSharp.fixed} />
+              // <Img fixed={document.image.childImageSharp.fixed} />
+              :
+              ""
+            }
+            <ReactMarkdown
+              source={`${document.node.content.slice(0,500)}...`}
+              // source={`${document.content.slice(0,500)}...`}
+              transformImageUri={uri => uri.startsWith('http') ? uri : `${process.env.IMAGE_BASE_URL}${uri}`}
+            />
+          </li>
+        ))}
+      </ul>
+    </div>
+    }
   </div>
   // </Layout>
   )
