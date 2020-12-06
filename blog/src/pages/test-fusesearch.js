@@ -1,12 +1,17 @@
+// import React from "react"
 import React, { useState } from "react"
+// import React, { useEffect, useRef } from "react"
 import { Link, graphql } from "gatsby"
 import Img from 'gatsby-image';
 // import Layout from "../components/layout"
 // import SEO from "../components/seo"
 import ReactMarkdown from "react-markdown"
 import logo from "../images/logo.png"
+// import { globalHistory } from "@reach/router"
+
 import Fuse from "fuse.js"  // fuzzy search
 import Highlight from 'react-highlighter';
+// const FlexSearch = require("flexsearch");
 
 const SearchPage = ({ data, location }) => {
   const [query, setQuery] = useState('');
@@ -14,6 +19,57 @@ const SearchPage = ({ data, location }) => {
   const unsortedData = data.allStrapiArticle.edges;
   // const sortedData = unsortedData.sort((a, b) => b.node.id.split('_')[1] - a.node.id.split('_')[1]).slice(0, 5);
   // const sortedData = data.allStrapiArticle.edges.sort((a, b) => b.id - a.id).slice(0, 5);
+
+  ///////////////////////////// FLEXSEARCH ///////////////////////////////////
+  // let flexIndex = new FlexSearch({
+  //   // // SPEED-OPTIMIZED PROFILE
+  //   // encode: "icase",
+  //   // tokenize: "strict",
+  //   // threshold: 1,
+  //   // resolution: 3,
+  //   // depth: 2,
+  //   //
+  //   // // MEMORY-OPTIMIZED PROFILE
+  //   // tokenize: "forward",
+  //   tokenize: "strict",
+  //   encode: "extra",
+  //   threshold: 0,
+  //   resolution: 1,
+  //   //
+  //   // // ABSOLUTE FASTEST PROFILE
+  //   // // tokenize: "forward",
+  //   // tokenize: "strict",
+  //   // encode: "icase",
+  //   // threshold: 8,
+  //   // resolution: 9,
+  //   // depth: 1,
+  //   doc: {
+  //     id: "id",
+  //     field: [
+  //       "title",
+  //       "content",
+  //       "author",
+  //     ]
+  //   }
+  // });
+
+  // flexIndex.add(data.allStrapiArticle.edges.map(e => e.node));
+  // // flexIndex.add(data.allStrapiArticle.edges);
+  // // const flexQuery = (location.state === null || !location.state) ? "" : location.state.searchQuery;
+  // // const flexResults = flexQuery === "" ? data.allStrapiArticle.edges : flexIndex.search(flexQuery);
+  // // const flexResults = flexIndex.search(query);
+  // const flexResults = flexIndex.search({
+  //   query: query,
+  //   limit: 10
+  // });
+  // const flexData = !flexResults ? data.allStrapiArticle.edges : flexResults;
+
+  // console.log(flexIndex);
+  // console.log(flexIndex.l);
+  // console.log(flexResults);
+  // console.log(data.allStrapiArticle.edges)
+
+  ///////////////////////////// FLEXSEARCH ///////////////////////////////////
 
   ///////////////////////////// FUSE SEARCH ///////////////////////////////////
   // const unsortedData = data.allStrapiArticle.edges;
@@ -87,6 +143,7 @@ const SearchPage = ({ data, location }) => {
         </div>
       </div>
     </nav>
+{/* SEARCH COMPONENT */}
     <div>
       <form>
         <input 
@@ -100,23 +157,34 @@ const SearchPage = ({ data, location }) => {
     { query.length > 3 ?
     <div>
       <ul>
+        {/* {flexData.map(document => ( */}
         {currentSearchResults.map(document => (
           <li key={document.node.id}>
+          {/* <li key={document.id}> */}
             <h2>
               <Link to={`/blog/${document.node.id}`} style={{ textDecoration: `none` }}>
+              {/* <Link to={`/blog/${document.id}`} style={{ textDecoration: `none` }}> */}
+                {/* {document.node.title} */}
                 <Highlight search={query}>{document.node.title}</Highlight>
+                {/* {document.title} */}
               </Link>
             </h2>
+            {/* <h4>By{" "}{document.node.author}</h4> */}
             <h4><Highlight search={query}>By{" "}{document.node.author}</Highlight></h4>
+            {/* <h4>By{" "}{document.author}</h4> */}
             {
               document.node.image
+              // document.image
               ?
               <Img fixed={document.node.image.childImageSharp.fixed} />
+              // <Img fixed={document.image.childImageSharp.fixed} />
               :
               ""
             }
             <ReactMarkdown
+              // source={`${document.node.content.slice(0,500)}...`}
               source={<Highlight search={query}>{`${document.node.content.slice(0,500)}...`}</Highlight>}
+              // source={`${document.content.slice(0,500)}...`}
               transformImageUri={uri => uri.startsWith('http') ? uri : `${process.env.IMAGE_BASE_URL}${uri}`}
             />
           </li>
@@ -126,23 +194,34 @@ const SearchPage = ({ data, location }) => {
     :
     <div>
       <ul>
+        {/* {flexData.map(document => ( */}
         {searchResults.map(document => (
           <li key={document.node.id}>
+          {/* <li key={document.id}> */}
             <h2>
               <Link to={`/blog/${document.node.id}`} style={{ textDecoration: `none` }}>
+              {/* <Link to={`/blog/${document.id}`} style={{ textDecoration: `none` }}> */}
+                {/* {document.node.title} */}
                 <Highlight search={query}>{document.node.title}</Highlight>
+                {/* {document.title} */}
               </Link>
             </h2>
+            {/* <h4>By{" "}{document.node.author}</h4> */}
             <h4><Highlight search={query}>By{" "}{document.node.author}</Highlight></h4>
+            {/* <h4>By{" "}{document.author}</h4> */}
             {
               document.node.image
+              // document.image
               ?
               <Img fixed={document.node.image.childImageSharp.fixed} />
+              // <Img fixed={document.image.childImageSharp.fixed} />
               :
               ""
             }
             <ReactMarkdown
+              // source={`${document.node.content.slice(0,500)}...`}
               source={<Highlight search={query}>{`${document.node.content.slice(0,500)}...`}</Highlight>}
+              // source={`${document.content.slice(0,500)}...`}
               transformImageUri={uri => uri.startsWith('http') ? uri : `${process.env.IMAGE_BASE_URL}${uri}`}
             />
           </li>
@@ -219,3 +298,33 @@ export const fuseQuery = graphql`
 //     }
 //   }
 // `
+
+///////////////////////////// FLEXSEARCH RENDER ///////////////////////////////
+    // <div>
+    //   <ul>
+    //     {flexData.map(document => (
+    //       <li key={document.id}>
+    //         <h2>
+    //           <Link to={`/blog/${document.id}`} style={{ textDecoration: `none` }}>
+    //             {/* <Highlight search={query}>{document.title}</Highlight> */}
+    //             {document.title}
+    //           </Link>
+    //         </h2>
+    //         {/* <h4><Highlight search={query}>By{" "}{document.author}</Highlight></h4> */}
+    //         <h4>By{" "}{document.author}</h4>
+    //         {
+    //           document.image
+    //           ?
+    //           <Img fixed={document.image.childImageSharp.fixed} />
+    //           :
+    //           ""
+    //         }
+    //         <ReactMarkdown
+    //           // source={<Highlight search={query}>{`${document.content.slice(0,500)}...`}</Highlight>}
+    //           source={`${document.content.slice(0,500)}...`}
+    //           transformImageUri={uri => uri.startsWith('http') ? uri : `${process.env.IMAGE_BASE_URL}${uri}`}
+    //         />
+    //       </li>
+    //     ))}
+    //   </ul>
+    // </div>
