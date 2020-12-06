@@ -6,7 +6,6 @@ import Layout from "../components/layout"
 
 const AboutTemplate = ({ data }) => (
   <Layout>
-    <Link to="/" style={{textDecoration: `none`}}>Go back to the homepage</Link>
     <h1>{data.strapiAbout.title}</h1>
     <p>{data.strapiAbout.content}</p>
   </Layout>
