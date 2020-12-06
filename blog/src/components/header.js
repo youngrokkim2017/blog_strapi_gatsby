@@ -13,6 +13,18 @@ const Header = ({ siteTitle }) => {
   //   setQuery(value);
   // }
 
+  function handleNavigate(e) {
+    e.preventDefault()
+
+    navigate(
+      "/search/",
+      {
+        state: { searchQuery: query },
+      }
+    )
+  }
+
+
   return (
   <nav className="p-6 text-black">
     <div className="flex container mx-auto items-center justify-between flex-wrap  pb-4 border-b-2" style={{borderColor: '#ee1f60'}}>
@@ -41,26 +53,13 @@ const Header = ({ siteTitle }) => {
 
     {/* SEARCH BAR COMPONENT */}
     <div>
-      <form
-        onSubmit={event => {
-          event.preventDefault()
-          navigate(
-            // "/blog/",
-            "/search/",
-            // { replace: true },
-            {
-              state: { searchQuery: query },
-            }
-          )
-        }}
-      >
+      <form onSubmit={handleNavigate}>
         <input 
           type="text"
           placeholder="Tech, life science, people, ..."
           value={query}
           onChange={(e) => setQuery(e.target.value)}
         />
-        {/* <Link to={'/blog'} state={{ searchQuery: query }}>SEARCH</Link> */}
         <button type="submit">SEARCH</button>
       </form>
     </div>
