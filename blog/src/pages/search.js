@@ -10,6 +10,7 @@ import logo from "../images/logo.png"
 // import { globalHistory } from "@reach/router"
 
 import Fuse from "fuse.js"  // fuzzy search
+import Highlight from 'react-highlighter';
 // const FlexSearch = require("flexsearch");
 
 const SearchPage = ({ data, location }) => {
@@ -95,7 +96,8 @@ const SearchPage = ({ data, location }) => {
         },
       ],
       includeScore: true,
-      // shouldSort: true,
+      shouldSort: true,
+      threshold: 0.3,  // default 0.6
   };
   const fuse = new Fuse(unsortedData, options);
   const results = fuse.search(index, { limit: 10 });
@@ -110,14 +112,6 @@ const SearchPage = ({ data, location }) => {
     setQuery(value);
   }
 
-  // let fuseResults;
-  // if (results.length > 0) {
-  //   fuseResults = results.map(result => result.item);
-  // } else if (results.length === 0) {
-  //   fuseResults = unsortedData.slice(0, 5);
-  // } else if (query.length > 3) {
-  //   fuseResults = currentResults.map(result => result.item);
-  // }
   ///////////////////////////// FUSE SEARCH ///////////////////////////////////
 
   return (
@@ -163,21 +157,20 @@ const SearchPage = ({ data, location }) => {
     { query.length > 3 ?
     <div>
       <ul>
-        {/* {data.allStrapiArticle.edges.map(document => ( */}
         {/* {flexData.map(document => ( */}
-        {/* {fuseResults.map(document => ( */}
-        {/* {flexResults.map(document => ( */}
         {currentSearchResults.map(document => (
           <li key={document.node.id}>
           {/* <li key={document.id}> */}
             <h2>
               <Link to={`/blog/${document.node.id}`} style={{ textDecoration: `none` }}>
               {/* <Link to={`/blog/${document.id}`} style={{ textDecoration: `none` }}> */}
-                {document.node.title}
+                {/* {document.node.title} */}
+                <Highlight search={query}>{document.node.title}</Highlight>
                 {/* {document.title} */}
               </Link>
             </h2>
-            <h4>By{" "}{document.node.author}</h4>
+            {/* <h4>By{" "}{document.node.author}</h4> */}
+            <h4><Highlight search={query}>By{" "}{document.node.author}</Highlight></h4>
             {/* <h4>By{" "}{document.author}</h4> */}
             {
               document.node.image
@@ -189,7 +182,8 @@ const SearchPage = ({ data, location }) => {
               ""
             }
             <ReactMarkdown
-              source={`${document.node.content.slice(0,500)}...`}
+              // source={`${document.node.content.slice(0,500)}...`}
+              source={<Highlight search={query}>{`${document.node.content.slice(0,500)}...`}</Highlight>}
               // source={`${document.content.slice(0,500)}...`}
               transformImageUri={uri => uri.startsWith('http') ? uri : `${process.env.IMAGE_BASE_URL}${uri}`}
             />
@@ -200,20 +194,20 @@ const SearchPage = ({ data, location }) => {
     :
     <div>
       <ul>
-        {/* {data.allStrapiArticle.edges.map(document => ( */}
         {/* {flexData.map(document => ( */}
-        {/* {fuseResults.map(document => ( */}
         {searchResults.map(document => (
           <li key={document.node.id}>
           {/* <li key={document.id}> */}
             <h2>
               <Link to={`/blog/${document.node.id}`} style={{ textDecoration: `none` }}>
               {/* <Link to={`/blog/${document.id}`} style={{ textDecoration: `none` }}> */}
-                {document.node.title}
+                {/* {document.node.title} */}
+                <Highlight search={query}>{document.node.title}</Highlight>
                 {/* {document.title} */}
               </Link>
             </h2>
-            <h4>By{" "}{document.node.author}</h4>
+            {/* <h4>By{" "}{document.node.author}</h4> */}
+            <h4><Highlight search={query}>By{" "}{document.node.author}</Highlight></h4>
             {/* <h4>By{" "}{document.author}</h4> */}
             {
               document.node.image
@@ -225,7 +219,8 @@ const SearchPage = ({ data, location }) => {
               ""
             }
             <ReactMarkdown
-              source={`${document.node.content.slice(0,500)}...`}
+              // source={`${document.node.content.slice(0,500)}...`}
+              source={<Highlight search={query}>{`${document.node.content.slice(0,500)}...`}</Highlight>}
               // source={`${document.content.slice(0,500)}...`}
               transformImageUri={uri => uri.startsWith('http') ? uri : `${process.env.IMAGE_BASE_URL}${uri}`}
             />
