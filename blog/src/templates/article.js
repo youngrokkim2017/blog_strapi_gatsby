@@ -36,47 +36,41 @@ const ArticleTemplate = ({ data }) => {
 
   return (
     <Layout>
-      <div className="max-w-4xl mx-auto">
-        <div className="prose md:prose-xl antialiased leading-relaxed max-w-full mb-6">
-          <h2 className="font-medium">{data.strapiArticle.title}</h2>
-        </div>
-
-        <article className="prose prose-sm sm:prose lg:prose-lg antialiased leading-relaxed pb-20">
-
-          <div className="meta text-black text-sm not-italic leading-5">
-            <p className='my-0'>
-              By <Link to={"#"}> {" "}
-                {/* <Link to={`/authors/User_${data.strapiArticle.user.id}`}>
-          {data.strapiArticle.user.username}
-        </Link> */}
+      <div className="max-w-5xl mx-auto">
+        <div className="prose md:prose-xl antialiased leading-relaxed max-w-full text-black ">
+        <p className='my-0 font-bold text-2xl tracking-tight sans-serif'>
+              {/* Tags: */}
+              {
+              // data.strapiArticle.category
+              // ?
+              // data.strapiArticle.category.map((c, idx) => <Link to={`/categories/Category_${c.id}`} key={idx}>{c.title}</Link>)
+              // :
+              // ''
+            }
+              {/* <Link to={`/categories/Category_${data.strapiArticle.category.id}`} key={data.strapiArticle.category.id}>{data.strapiArticle.category.title}</Link> */}
+              <span>Life Sciences</span> & <span>Technology</span>
+            </p>
+          <h2 className="font-normal my-2">{data.strapiArticle.title}</h2>
+          <p className="text-lg">
+            As biologists, most of our days are spent toiling in a tucked-away lab prying at core questions important to biology.
+          </p>
+          <div className="text-base not-italic leading-5">
+            <p className='mb-2 text-base'>
+              By <Link to={"#"} className="font-medium underline"> {" "}
                 {data.strapiArticle.author}
               </Link>
             </p>
             <p className='my-0'>
-              {
-                handleDate(data.strapiArticle.published_at) === handleDate(data.strapiArticle.updated_at)
-                  ?
-                  handleDate(data.strapiArticle.published_at)
-                  :
-                  (<><span className='mr-2'>{`Published ${handleDate(data.strapiArticle.published_at)}`}</span><span>{`Updated ${handleDate(data.strapiArticle.updated_at)}`}</span></>)
-              }
-            </p>
-            <p className='my-0'>
-              {/* Tags: */}
-              {/* {
-              data.strapiArticle.category
-              ?
-              data.strapiArticle.category.map((c, idx) => <Link to={`/categories/Category_${c.id}`} key={idx}>{c.title}</Link>)
-              :
-              'N/A'
-            } */}
-              {/* <Link to={`/categories/Category_${data.strapiArticle.category.id}`} key={data.strapiArticle.category.id}>{data.strapiArticle.category.title}</Link> */}
+                {`Published ${handleDate(data.strapiArticle.published_at)}`}
             </p>
           </div>
+        </div>
+
+        <article className="prose prose-sm sm:prose lg:prose-lg antialiased leading-relaxed pb-20">
           {
             data.strapiArticle.image
               ?
-              <Img fluid={data.strapiArticle.image.childImageSharp.fluid} />
+              <Img fluid={data.strapiArticle.image.childImageSharp.fluid} className="m-0" />
               :
               ""
           }
@@ -86,19 +80,19 @@ const ArticleTemplate = ({ data }) => {
           />
           <div className='pt-6'>
             {/* <hr /> */}
-            <div class="flex items-center space-x-8 mx-auto">
-              <Link to={`https://www.facebook.com/sharer/sharer.php?u=${window.location.href}&t=${data.strapiArticle.title}`} className="flex items-center space-x-2 no-underline">
+            <div className="flex items-center space-x-8 mx-auto">
+              <a href={`https://www.facebook.com/sharer/sharer.php?u=${window.location.href}&t=${data.strapiArticle.title}`} className="flex items-center space-x-2 no-underline">
                 <svg width="20" height="20" viewBox="0 0 16 16">
-                  <path d="M15.117 0H.883A.883.883 0 0 0 0 .883v14.234c0 .488.395.883.883.883h7.663V9.804H6.461V7.389h2.085V5.61c0-2.067 1.262-3.192 3.106-3.192.883 0 1.642.065 1.863.095v2.16h-1.279c-1.002 0-1.196.476-1.196 1.176v1.541h2.39l-.31 2.415h-2.08V16h4.077a.883.883 0 0 0 .883-.883V.883A.883.883 0 0 0 15.117 0" fill-rule="evenodd"></path>
+                  <path d="M15.117 0H.883A.883.883 0 0 0 0 .883v14.234c0 .488.395.883.883.883h7.663V9.804H6.461V7.389h2.085V5.61c0-2.067 1.262-3.192 3.106-3.192.883 0 1.642.065 1.863.095v2.16h-1.279c-1.002 0-1.196.476-1.196 1.176v1.541h2.39l-.31 2.415h-2.08V16h4.077a.883.883 0 0 0 .883-.883V.883A.883.883 0 0 0 15.117 0"></path>
                 </svg>
                 {/* <span>Facebook</span> */}
-              </Link>
-              <Link to={`https://twitter.com/intent/tweet?url=${window.location.href}&text=${data.strapiArticle.title}`} className="flex items-center space-x-2 no-underline">
+              </a>
+              <a href={`https://twitter.com/intent/tweet?url=${window.location.href}&text=${data.strapiArticle.title}`} className="flex items-center space-x-2 no-underline">
                 <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6.29 18.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0020 3.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.073 4.073 0 01.8 7.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 010 16.407a11.616 11.616 0 006.29 1.84"></path>
                 </svg>
                 {/* <span>Twitter</span> */}
-              </Link>
+              </a>
               <a href={`mailto:?subject=${data.strapiArticle.title}&body=${window.location.href}`} className="flex items-center space-x-2 no-underline">
                 <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                   <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />

@@ -6,7 +6,6 @@ import Layout from "../components/layout"
 
 const SubscribeTemplate = ({ data }) => (
   <Layout>
-    <Link to="/" style={{textDecoration: `none`}}>Go back to the homepage</Link>
     <h1>{data.strapiSubscribe.title}</h1>
     <p>{data.strapiSubscribe.content}</p>
   </Layout>
