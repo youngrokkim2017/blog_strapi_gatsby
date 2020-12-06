@@ -7,33 +7,38 @@ import Reactmarkdown from "react-markdown"
 
 const BlogPage = ({ data, location }) => {
   return (
-  <Layout location={location}>
-    <SEO title="Blog index page" />
+    <Layout location={location}>
+      <SEO title="Blog" />
+      <h2>Blog</h2>
 
-    <ul>
-      {data.allStrapiArticle.edges.map(document => (
-        <li key={document.node.id}>
-          <h2>
-            <Link to={`/blog/${document.node.id}`} style={{ textDecoration: `none` }}>
-              {document.node.title}
-            </Link>
-          </h2>
-          <h4>By{" "}{document.node.author}</h4>
-          {
-            document.node.image
-            ?
-            <Img fixed={document.node.image.childImageSharp.fixed} />
-            :
-            ""
-          }
-          <Reactmarkdown
-            source={`${document.node.content.slice(0,500)}...`}
-            transformImageUri={uri => uri.startsWith('http') ? uri : `${process.env.IMAGE_BASE_URL}${uri}`}
-          />
-        </li>
-      ))}
-    </ul>
-  </Layout>
+      <ul>
+        {data.allStrapiArticle.edges.map(document => (
+          <li key={document.node.id}  className="flex mb-12 max-w-full border-t pt-8">
+              <div className="mr-4">
+                {
+                  document.node.image
+                    ?
+                    <Img fixed={document.node.image.childImageSharp.fixed} />
+                    :
+                    ""
+                }
+              </div>
+              <div className="antialiased leading-relaxed sans-serif">
+                <h2>
+                  <Link to={`/blog/${document.node.id}`} style={{ textDecoration: `none` }}>
+                    {document.node.title}
+                  </Link>
+                </h2>
+                <h4>By{" "}{document.node.author}</h4>
+                {/* <Reactmarkdown
+                  source={`${document.node.content.slice(0, 500)}...`}
+                  transformImageUri={uri => uri.startsWith('http') ? uri : `${process.env.IMAGE_BASE_URL}${uri}`}
+                /> */}
+            </div>
+          </li>
+        ))}
+      </ul>
+    </Layout>
   )
 }
 

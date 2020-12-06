@@ -20,15 +20,15 @@ const Header = () => {
 
 
   return (
-    <nav className="p-4 text-black mb-12 border-b" style={{ borderColor: '#c8c8c8' }}>
+    <nav className="p-4 text-black mb-12 border-b" style={{ borderBottomColor: '#888888' }}>
       <div className="flex container mx-auto items-center justify-between flex-wrap">
         <div className="flex items-center flex-shrink-0 mr-6">
           <Link to="/" className="font-semibold text-2xl tracking-tight">
-            <img src={logo} alt="Logo" className="h-10 sm:h-8"/>
+            <img src={logo} alt="Logo" className="h-10 sm:h-8" />
           </Link>
         </div>
         <div className="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
-          <div className="text-sm lg:flex-grow">
+          <div className="text-md lg:flex-grow">
             <Link to="/blog/" className="block mt-4 lg:inline-block lg:mt-0 mr-4">
               Blog
           </Link>
@@ -43,14 +43,35 @@ const Header = () => {
           </Link>
           </div>
           <div>
-            <form onSubmit={handleNavigate}>
-              <input
+            <form
+              onSubmit={event => {
+                event.preventDefault()
+                navigate(
+                  // "/blog/",
+                  "/search/",
+                  // { replace: true },
+                  {
+                    state: { searchQuery: query },
+                  }
+                )
+              }}
+            >
+              {/* <input
                 type="text"
                 placeholder="Search"
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
-              />
-              <button type="submit">SEARCH</button>
+              /> */}
+              {/* <Link to={'/blog'} state={{ searchQuery: query }}>SEARCH</Link> */}
+              <button type="submit">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="text-black">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                </svg>
+                {/* <span>Quick search
+                      <span class="hidden sm:inline"> for anything
+                      </span>
+                </span> */}
+              </button>
             </form>
           </div>
         </div>
