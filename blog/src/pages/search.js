@@ -65,15 +65,30 @@ const SearchPage = ({ data, location }) => {
   let index = (location.state === null || !location.state) ? "" : location.state.searchQuery;
 
   const options = {
+      // keys: [
+      //     'node.title',
+      //     'node.author',
+      //     'node.content',
+      // ],
       keys: [
-          'node.title',
-          'node.author',
-          'node.content',
+        {
+            name: 'node.title',
+            weight: 0.6,
+        },
+        {
+            name: 'node.author',
+            weight: 0.1,
+        },
+        {
+            name: 'node.content',
+            weight: 0.3,
+        },
       ],
       includeScore: true,
+      // shouldSort: true,
   };
   const fuse = new Fuse(unsortedData, options);
-  const results = fuse.search(index);
+  const results = fuse.search(index, { limit: 5 });
   const searchResults = results.length > 0 ? results.map(result => result.item) : unsortedData.slice(0, 5);
   ///////////////////////////// FUSE SEARCH ///////////////////////////////////
 
