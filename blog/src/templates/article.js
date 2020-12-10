@@ -1,8 +1,6 @@
 import React from "react"
 // import React, { useState } from "react"
-// import React, { useEffect, useState } from "react"
 import { Link, graphql } from "gatsby"
-// import { graphql } from "gatsby"
 import Img from "gatsby-image"
 import Layout from "../components/layout"
 import ReactMarkdown from "react-markdown"
