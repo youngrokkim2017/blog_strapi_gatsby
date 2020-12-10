@@ -110,21 +110,21 @@ const SearchPage = ({ location }) => {
         </div>
         <div className="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
           <div className="text-md lg:flex-grow">
-            {/* <Link to="/blog/" className="block mt-4 lg:inline-block lg:mt-0 mr-4">
-              Blog
-          </Link>
-            <Link to="/magazine/" className="block mt-4 lg:inline-block lg:mt-0 mr-4">
-              Magazine
-          </Link>
-            <Link to="/about/" className="block mt-4 lg:inline-block lg:mt-0 mr-4">
-              About Us
-          </Link>
-            <Link to="/subscribe/" className="block mt-4 lg:inline-block lg:mt-0 mr-4">
-              Subscribe
-          </Link> */}
-          {data.allStrapiCategory.edges.map((document, idx) => (
-            <Link to={`/categories/${document.node.id}`} key={idx}>{document.node.title}</Link>
-          ))}
+            {data.allStrapiCategory.edges.map((document, idx) => (
+              <Link 
+                to={`/categories/${document.node.id}`} 
+                key={idx} 
+                className="block mt-4 lg:inline-block lg:mt-0 mr-4"
+              >
+                {document.node.title}
+              </Link>
+            ))}
+            <Link 
+              to="/archive/" 
+              className="block mt-4 lg:inline-block lg:mt-0 mr-4"
+            >
+              Archive
+            </Link>
           </div>
         </div>
       </div>
