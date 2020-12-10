@@ -5,7 +5,6 @@ import { Link, navigate, StaticQuery, graphql } from "gatsby"
 import logo from "../images/logo.png"
 
 const Header = () => {
-// const Header = ({ data }) => {
 // const Header = ({ siteTitle }) => {
   const [query, setQuery] = useState('');
 
@@ -97,16 +96,3 @@ const Header = () => {
 // }
 
 export default Header
-
-// export const headerCategoryQuery = graphql`
-//   query HeaderCategoryQuery {
-//     allStrapiCategory {
-//       edges {
-//         node {
-//           id
-//           title
-//         }
-//       }
-//     }
-//   }
-// `
