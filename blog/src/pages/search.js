@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { Link, graphql } from "gatsby"
+import { Link, graphql, useStaticQuery } from "gatsby"
 import Img from 'gatsby-image';
 // import Layout from "../components/layout"
 // import SEO from "../components/seo"
@@ -8,7 +8,46 @@ import logo from "../images/logo.png"
 import Fuse from "fuse.js"  // fuzzy search
 import Highlight from 'react-highlighter';
 
-const SearchPage = ({ data, location }) => {
+// const SearchPage = ({ data, location }) => {
+const SearchPage = ({ location }) => {
+  const data = useStaticQuery(graphql`
+    query SearchResultsQuery {
+      allStrapiArticle(
+        sort: { order: DESC, fields: published_at }
+      ) {
+        edges {
+          node {
+            id
+            image {
+              childImageSharp {
+                fixed(width: 200, height: 125) {
+                  ...GatsbyImageSharpFixed
+                }
+              }
+            }
+            title
+            author
+            content
+            category {
+              id
+              title
+            }
+            published_at
+            updated_at
+          }
+        }
+      }
+      allStrapiCategory {
+        edges {
+          node {
+            id
+            title
+          }
+        }
+      }
+    }
+  `)
+
   const [query, setQuery] = useState('');
 
   const unsortedData = data.allStrapiArticle.edges;
@@ -71,7 +110,7 @@ const SearchPage = ({ data, location }) => {
         </div>
         <div className="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
           <div className="text-md lg:flex-grow">
-            <Link to="/blog/" className="block mt-4 lg:inline-block lg:mt-0 mr-4">
+            {/* <Link to="/blog/" className="block mt-4 lg:inline-block lg:mt-0 mr-4">
               Blog
           </Link>
             <Link to="/magazine/" className="block mt-4 lg:inline-block lg:mt-0 mr-4">
@@ -82,13 +121,11 @@ const SearchPage = ({ data, location }) => {
           </Link>
             <Link to="/subscribe/" className="block mt-4 lg:inline-block lg:mt-0 mr-4">
               Subscribe
-          </Link>
+          </Link> */}
+          {data.allStrapiCategory.edges.map((document, idx) => (
+            <Link to={`/categories/${document.node.id}`} key={idx}>{document.node.title}</Link>
+          ))}
           </div>
-          {/* <div className="text-md lg:flex-grow">
-            {data.allStrapiCategory.edges.map((document, idx) => (
-              <Link to={`/categories/Category_${document.node.id}` key={idx}}>{document.node.title}</Link>
-            ))}
-          </div> */}
         </div>
       </div>
     </nav>
@@ -163,44 +200,36 @@ const SearchPage = ({ data, location }) => {
 
 export default SearchPage;
 
-// gql query
-export const fuseQuery = graphql`
-  query FuseQuery {
-    allStrapiArticle(
-      sort: { order: DESC, fields: published_at }
-    ) {
-      edges {
-        node {
-          id
-          image {
-            childImageSharp {
-              fixed(width: 200, height: 125) {
-                ...GatsbyImageSharpFixed
-              }
-            }
-          }
-          title
-          author
-          content
-          category {
-            id
-            title
-          }
-          published_at
-          updated_at
-        }
-      }
-    }
-    allStrapiCategory {
-      edges {
-        node {
-          id
-          title
-        }
-      }
-    }
-  }
-`
+// // gql query
+// export const fuseQuery = graphql`
+//   query FuseQuery {
+//     allStrapiArticle(
+//       sort: { order: DESC, fields: published_at }
+//     ) {
+//       edges {
+//         node {
+//           id
+//           image {
+//             childImageSharp {
+//               fixed(width: 200, height: 125) {
+//                 ...GatsbyImageSharpFixed
+//               }
+//             }
+//           }
+//           title
+//           author
+//           content
+//           category {
+//             id
+//             title
+//           }
+//           published_at
+//           updated_at
+//         }
+//       }
+//     }
+//   }
+// `
 
 // export const fuseQuery = graphql`
 //   query FuseQuery {
