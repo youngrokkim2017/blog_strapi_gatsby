@@ -65,6 +65,9 @@ const Header = () => {
                 </div>
               )}
             />
+            <Link to="/archive/" className="block mt-4 lg:inline-block lg:mt-0 mr-4">
+              Archive
+            </Link>
           {/* </div> */}
           <div>
             <form onSubmit={handleNavigate}>
