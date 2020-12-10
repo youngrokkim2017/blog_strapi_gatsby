@@ -1,9 +1,11 @@
 import React, { useState } from "react"
-import { Link, navigate } from "gatsby"
+// import { Link, navigate } from "gatsby"
+import { Link, navigate, StaticQuery, graphql } from "gatsby"
 // import PropTypes from "prop-types"
 import logo from "../images/logo.png"
 
 const Header = () => {
+// const Header = ({ data }) => {
 // const Header = ({ siteTitle }) => {
   const [query, setQuery] = useState('');
 
@@ -18,7 +20,6 @@ const Header = () => {
     )
   }
 
-
   return (
     <nav className="p-4 text-black mb-12 border-b" style={{ borderBottomColor: '#888888' }}>
       <div className="flex container mx-auto items-center justify-between flex-wrap">
@@ -28,7 +29,7 @@ const Header = () => {
           </Link>
         </div>
         <div className="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
-          <div className="text-md lg:flex-grow">
+          {/* <div className="text-md lg:flex-grow">
             <Link to="/blog/" className="block mt-4 lg:inline-block lg:mt-0 mr-4">
               Blog
           </Link>
@@ -41,6 +42,29 @@ const Header = () => {
             <Link to="/subscribe/" className="block mt-4 lg:inline-block lg:mt-0 mr-4">
               Subscribe
           </Link>
+          </div> */}
+          <div>
+            <StaticQuery
+              query={graphql`
+                query HeadingQuery {
+                  allStrapiCategory {
+                    edges {
+                      node {
+                        id
+                        title
+                      }
+                    }
+                  }
+                }
+              `}
+              render={data => (
+                <div>
+                  {data.allStrapiCategory.edges.map(document => (
+                    <Link to={`/blog/${document.node.id}`}>{document.node.title}</Link>
+                  ))}
+                </div>
+              )}
+            />
           </div>
           <div>
             <form onSubmit={handleNavigate}>
@@ -77,3 +101,16 @@ const Header = () => {
 // }
 
 export default Header
+
+// export const headerCategoryQuery = graphql`
+//   query HeaderCategoryQuery {
+//     allStrapiCategory {
+//       edges {
+//         node {
+//           id
+//           title
+//         }
+//       }
+//     }
+//   }
+// `

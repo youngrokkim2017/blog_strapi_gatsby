@@ -52,13 +52,13 @@ module.exports = {
         icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
       },
     },
-    {
-      resolve: 'gatsby-plugin-mailchimp',
-      options: {
-          endpoint: '', // string; add your MC list endpoint here; see instructions below
-          timeout: 3500, // number; the amount of time, in milliseconds, that you want to allow mailchimp to respond to your request before timing out. defaults to 3500
-      },
-    },
+    // {
+    //   resolve: 'gatsby-plugin-mailchimp',
+    //   options: {
+    //       endpoint: '', // string; add your MC list endpoint here; see instructions below
+    //       timeout: 3500, // number; the amount of time, in milliseconds, that you want to allow mailchimp to respond to your request before timing out. defaults to 3500
+    //   },
+    // },
     // // FLEXSEARCH
     // {
     //   resolve: 'gatsby-plugin-flexsearch',
