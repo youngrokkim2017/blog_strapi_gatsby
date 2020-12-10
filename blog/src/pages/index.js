@@ -1,13 +1,72 @@
 import React from "react";
 import Layout from "../components/layout"
 
-const IndexPage = ({ data }) => (
-  <Layout>
-    <div className="bg-red-300">HOME PAGE</div>
-  </Layout>
-)
+const IndexPage = ({ data }) => {
+  return (
+    <Layout>
+      <div className="bg-red-300">HOME PAGE</div>
+    </Layout>
+  )
+}
   
 export default IndexPage;
+
+// gql query
+export const splashQuery = graphql`
+  query SplashQuery {
+    allStrapiArticle(
+      limit: 5
+      sort: { order: DESC, fields: published_at }
+    ) {
+      edges {
+        node {
+          id
+          image {
+            childImageSharp {
+              fixed(width: 200, height: 125) {
+                ...GatsbyImageSharpFixed
+              }
+            }
+          }
+          title
+          author
+          content
+          category {
+            id
+            title
+          }
+          published_at
+          updated_at
+        }
+      }
+    }
+    allStrapiIssue(
+      limit: 5
+      sort: { order: DESC, fields: updated_at }
+    ) {
+      edges {
+        node {
+          id
+          title
+          author
+          content
+          image {
+            childImageSharp {
+              fixed(width: 200, height: 125) {
+                ...GatsbyImageSharpFixed
+              }
+            }
+          }
+          tag {
+            id
+            title
+          }
+          updated_at
+        }
+      }
+    }
+  }
+`
 
 // import React, { useState } from "react";
 // import { Router } from '@reach/router';
