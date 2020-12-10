@@ -192,6 +192,22 @@ const SearchPage = ({ location }) => {
       </ul>
     </div>
     }
+    <nav>
+      <div>
+        {/* links to about, subscribe, etc */}
+        <div>
+          <h2>ABOUT US</h2>
+          <Link to="/">Staff</Link>
+          <Link to="/">Write for us</Link>
+          <Link to="/">Join our team</Link>
+        </div>
+        <div>
+          <h2>CONTACT US</h2>
+        </div><div>
+          <h2>WRITING RESOURCES</h2>
+        </div>
+      </div>
+    </nav>
   </div>
   // </Layout>
   )
