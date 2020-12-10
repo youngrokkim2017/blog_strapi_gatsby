@@ -43,7 +43,7 @@ const Header = () => {
               Subscribe
           </Link>
           </div> */}
-          <div>
+          {/* <div> */}
             <StaticQuery
               query={graphql`
                 query HeadingQuery {
@@ -58,14 +58,14 @@ const Header = () => {
                 }
               `}
               render={data => (
-                <div>
-                  {data.allStrapiCategory.edges.map(document => (
-                    <Link to={`/blog/${document.node.id}`}>{document.node.title}</Link>
+                <div className="text-md lg:flex-grow">
+                  {data.allStrapiCategory.edges.map((document, idx) => (
+                    <Link to={`/categories/${document.node.id}`} key={idx}>{document.node.title}</Link>
                   ))}
                 </div>
               )}
             />
-          </div>
+          {/* </div> */}
           <div>
             <form onSubmit={handleNavigate}>
               {/* <input

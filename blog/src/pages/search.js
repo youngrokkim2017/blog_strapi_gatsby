@@ -84,6 +84,11 @@ const SearchPage = ({ data, location }) => {
               Subscribe
           </Link>
           </div>
+          {/* <div className="text-md lg:flex-grow">
+            {data.allStrapiCategory.edges.map((document, idx) => (
+              <Link to={`/categories/Category_${document.node.id}` key={idx}}>{document.node.title}</Link>
+            ))}
+          </div> */}
         </div>
       </div>
     </nav>
@@ -183,6 +188,14 @@ export const fuseQuery = graphql`
           }
           published_at
           updated_at
+        }
+      }
+    }
+    allStrapiCategory {
+      edges {
+        node {
+          id
+          title
         }
       }
     }
