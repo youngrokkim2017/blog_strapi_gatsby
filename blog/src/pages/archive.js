@@ -13,7 +13,7 @@ const ArchivePage = ({ data }) => {
       <div>
         <ul>
           {data.allStrapiArticle.edges.map(document => (
-            <li key={document.node.id}  className="flex mb-12 max-w-full border-t pt-8">
+            <li key={document.node.id} className="flex mb-12 max-w-full border-t pt-8">
                 <div className="mr-4">
                   {
                     document.node.image
@@ -42,21 +42,28 @@ const ArchivePage = ({ data }) => {
       <div>
         <ul>
           {data.allStrapiIssue.edges.map(document => (
-            <li key={document.node.id}>
-              <h2>
-                <Link to={`/magazine/${document.node.id}`} style={{textDecoration: `none`}}>
-                  {document.node.title}
-                </Link>
-              </h2>
-              <h4>By{" "}{document.node.author}</h4>
-              {
-                document.node.image
-                ? 
-                <Img fixed={document.node.image.childImageSharp.fixed} />
-                :
-                ""
-              }
-              {/* <p>{`${document.node.content.slice(0,500)}...`}</p> */}
+            <li key={document.node.id} className="flex mb-12 max-w-full border-t pt-8">
+              <div className="mr-4">
+                  {
+                    document.node.image
+                      ?
+                      <Img fixed={document.node.image.childImageSharp.fixed} />
+                      :
+                      ""
+                  }
+                </div>
+                <div className="antialiased leading-relaxed sans-serif">
+                  <h2>
+                    <Link to={`/blog/${document.node.id}`} style={{ textDecoration: `none` }}>
+                      {document.node.title}
+                    </Link>
+                  </h2>
+                  <h4>By{" "}{document.node.author}</h4>
+                  {/* <ReactMarkdown
+                    source={`${document.node.content.slice(0, 500)}...`}
+                    transformImageUri={uri => uri.startsWith('http') ? uri : `${process.env.IMAGE_BASE_URL}${uri}`}
+                  /> */}
+              </div>
             </li>
           ))}
         </ul>
