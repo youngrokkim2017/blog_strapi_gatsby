@@ -1,5 +1,6 @@
 import React from "react"
 import { Link } from "gatsby"
+import MailchimpComponent from './mailchimp'
 
 const Footer = () => {
     return (
@@ -19,6 +20,7 @@ const Footer = () => {
                     <h2>WRITING RESOURCES</h2>
                 </div>
             </div>
+            <MailchimpComponent />
         </nav>
     )
 }
