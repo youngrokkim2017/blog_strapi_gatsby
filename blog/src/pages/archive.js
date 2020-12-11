@@ -1,15 +1,57 @@
-import React from "react"
+import React, { useState } from "react"
 import { Link, graphql } from "gatsby"
 import Img from 'gatsby-image';
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 // import ReactMarkdown from "react-markdown"
+import Fuse from "fuse.js"
 
 const ArchivePage = ({ data }) => {
+  const [query, setQuery] = useState('');
+  const options = {
+    keys: [
+      {
+        name: 'node.title',
+        weight: 0.6,
+      },
+      {
+        name: 'node.author',
+        weight: 0.1,
+      },
+      {
+        name: 'node.content',
+        weight: 0.3,
+      },
+    ],
+    includeScore: true,
+    shouldSort: true,
+    threshold: 0.3,  // default 0.6
+  };
+  const unsortedData = data.allStrapiArticle.edges; // or magazine issues
+  const fuse = new Fuse(unsortedData, options);
+  const results = fuse.search(query);
+  const searchResults = query.length > 3 ? results.map(result => result.item) : unsortedData.slice(0, 5);
+  console.log(results);
+
+  function handleOnSearch({ currentTarget = {} }) {
+    const { value } = currentTarget;
+    setQuery(value);
+  }
+
   return (
     <Layout>
       <SEO title="Archive" />
       <h2>Archive</h2>
+      <div>
+        <form>
+          <input 
+            type="text" 
+            placeholder="Search" 
+            value={query} 
+            onChange={handleOnSearch} 
+          />
+        </form>
+      </div>
       <div>
         <ul>
           {data.allStrapiArticle.edges.map(document => (
