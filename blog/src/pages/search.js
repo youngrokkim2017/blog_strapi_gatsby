@@ -183,10 +183,12 @@ const SearchPage = ({ location }) => {
               :
               ""
             }
-            <ReactMarkdown
-              source={<Highlight search={query}>{`${document.node.content.slice(0,500)}...`}</Highlight>}
-              transformImageUri={uri => uri.startsWith('http') ? uri : `${process.env.IMAGE_BASE_URL}${uri}`}
-            />
+            <Highlight search={query}>
+              <ReactMarkdown
+                source={`${document.node.content.slice(0,500)}...`}
+                transformImageUri={uri => uri.startsWith('http') ? uri : `${process.env.IMAGE_BASE_URL}${uri}`}
+              />
+            </Highlight>
           </li>
         ))}
       </ul>

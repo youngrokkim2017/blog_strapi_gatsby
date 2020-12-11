@@ -28,10 +28,16 @@ const ArchivePage = ({ data }) => {
     threshold: 0.3,  // default 0.6
   };
   const unsortedData = data.allStrapiArticle.edges; // or magazine issues
-  const fuse = new Fuse(unsortedData, options);
+  const collection = [...data.allStrapiArticle.edges, ...data.allStrapiIssue.edges]
+  // const fuse = new Fuse(unsortedData, options);
+  const fuse = new Fuse(collection, options);
   const results = fuse.search(query);
-  const searchResults = query.length > 3 ? results.map(result => result.item) : unsortedData.slice(0, 5);
-  console.log(results);
+  // const searchResults = query.length > 3 ? results.map(result => result.item) : unsortedData.slice(0, 5);
+  const searchResults = query.length >= 3 ? results.map(result => result.item) : collection.slice(0, 5);
+  // console.log(results);
+  // console.log(data.allStrapiArticle.edges);
+  // console.log(data.allStrapiIssue.edges);
+  // console.log(collection);
 
   function handleOnSearch({ currentTarget = {} }) {
     const { value } = currentTarget;
@@ -41,7 +47,7 @@ const ArchivePage = ({ data }) => {
   return (
     <Layout>
       <SEO title="Archive" />
-      <h2>Archive</h2>
+      
       <div>
         <form>
           <input 
@@ -52,9 +58,10 @@ const ArchivePage = ({ data }) => {
           />
         </form>
       </div>
+      <h2>Archive</h2>
       <div>
         <ul>
-          {data.allStrapiArticle.edges.map(document => (
+          {searchResults.map(document => (
             <li key={document.node.id} className="flex mb-12 max-w-full border-t pt-8">
                 <div className="mr-4">
                   {
@@ -81,6 +88,31 @@ const ArchivePage = ({ data }) => {
           ))}
         </ul>
       </div>
+      {/* <div>
+        <ul>
+          {data.allStrapiArticle.edges.map(document => (
+            <li key={document.node.id} className="flex mb-12 max-w-full border-t pt-8">
+                <div className="mr-4">
+                  {
+                    document.node.image
+                      ?
+                      <Img fixed={document.node.image.childImageSharp.fixed} />
+                      :
+                      ""
+                  }
+                </div>
+                <div className="antialiased leading-relaxed sans-serif">
+                  <h2>
+                    <Link to={`/blog/${document.node.id}`} style={{ textDecoration: `none` }}>
+                      {document.node.title}
+                    </Link>
+                  </h2>
+                  <h4>By{" "}{document.node.author}</h4>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </div>
       <div>
         <ul>
           {data.allStrapiIssue.edges.map(document => (
@@ -101,15 +133,11 @@ const ArchivePage = ({ data }) => {
                     </Link>
                   </h2>
                   <h4>By{" "}{document.node.author}</h4>
-                  {/* <ReactMarkdown
-                    source={`${document.node.content.slice(0, 500)}...`}
-                    transformImageUri={uri => uri.startsWith('http') ? uri : `${process.env.IMAGE_BASE_URL}${uri}`}
-                  /> */}
               </div>
             </li>
           ))}
         </ul>
-      </div>
+      </div> */}
     </Layout>
   )
 }
