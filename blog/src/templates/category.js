@@ -1,28 +1,36 @@
 import React from "react"
 import { Link, graphql } from "gatsby"
-// import { graphql } from "gatsby"
-// import Img from "gatsby-image"
+import Img from "gatsby-image"
 import Layout from "../components/layout"
 
 const CategoryTemplate = ({ data }) => (
   <Layout>
-    <div>
-      {/* <Link to={`/Category_${data.strapiCategory.title}`}> */}
-        <h3>{data.strapiCategory.title}</h3>
-      {/* </Link> */}
-    </div>
-    <div>
-        {data.strapiCategory.articles.map((a, idx) => {
-            return (
-                <ul key={idx}>
-                    <li>
-                        <Link to={`/Article_${a.id}`}>{a.title}</Link>
-                        <div>{a.content}</div>
-                    </li>
-                </ul>
-            )
-        })}
-    </div>
+    <h2>{data.strapiCategory.title}</h2>
+    <ul>
+      {data.strapiCategory.articles.map(document => (
+        <li key={document.id}  className="flex mb-12 max-w-full border-t pt-8">
+            <div className="mr-4">
+              {document.image ?
+                  <Img fixed={document.image.childImageSharp.fixed} />
+                :
+                  ""
+              }
+            </div>
+            <div className="antialiased leading-relaxed sans-serif">
+              <h2>
+                <Link to={`/blog/Article_${document.id}`} style={{ textDecoration: `none` }}>
+                  {document.title}
+                </Link>
+              </h2>
+              <h4>By{" "}{document.author}</h4>
+              {/* <ReactMarkdown
+                source={`${document.content.slice(0, 500)}...`}
+                transformImageUri={uri => uri.startsWith('http') ? uri : `${process.env.IMAGE_BASE_URL}${uri}`}
+              /> */}
+          </div>
+        </li>
+      ))}
+    </ul>
   </Layout>
 )
 
@@ -33,10 +41,17 @@ export const query = graphql`
     strapiCategory(id: { eq: $id }) {
       title
       articles {
-          id
-          title
-          author
-          content
+        id
+        title
+        author
+        content
+        image {
+          childImageSharp {
+            fluid(maxWidth: 500) {
+              ...GatsbyImageSharpFluid
+            }
+          }
+        }
       }
     }
   }

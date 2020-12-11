@@ -2,7 +2,7 @@ import React from "react"
 import { Link, graphql } from "gatsby"
 // import Img from "gatsby-image"
 import Layout from "../components/layout"
-import Reactmarkdown from "react-markdown"
+import ReactMarkdown from "react-markdown"
 
 const IssueTemplate = ({ data }) => (
   <Layout>
@@ -28,7 +28,7 @@ const IssueTemplate = ({ data }) => (
         :
         ""
     } */}
-    <Reactmarkdown
+    <ReactMarkdown
       source={data.strapiIssue.content}
     //   transformImageUri={uri => uri.startsWith('http') ? uri : `${process.env.IMAGE_BASE_URL}${uri}`}
     />

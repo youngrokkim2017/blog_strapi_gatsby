@@ -64,7 +64,7 @@ exports.createPages = ({ actions, graphql }) => {
     graphql,
     `
     {
-      allStrapiArticle {
+      allStrapiArticle (sort: { fields: [created_at], order: DESC }) {
         edges {
           node {
             id

@@ -13,7 +13,7 @@ const SearchPage = ({ location }) => {
   const data = useStaticQuery(graphql`
     query SearchResultsQuery {
       allStrapiArticle(
-        sort: { order: DESC, fields: published_at }
+        sort: { fields: [created_at], order: DESC }
       ) {
         edges {
           node {
@@ -110,21 +110,21 @@ const SearchPage = ({ location }) => {
         </div>
         <div className="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
           <div className="text-md lg:flex-grow">
-            {/* <Link to="/blog/" className="block mt-4 lg:inline-block lg:mt-0 mr-4">
-              Blog
-          </Link>
-            <Link to="/magazine/" className="block mt-4 lg:inline-block lg:mt-0 mr-4">
-              Magazine
-          </Link>
-            <Link to="/about/" className="block mt-4 lg:inline-block lg:mt-0 mr-4">
-              About Us
-          </Link>
-            <Link to="/subscribe/" className="block mt-4 lg:inline-block lg:mt-0 mr-4">
-              Subscribe
-          </Link> */}
-          {data.allStrapiCategory.edges.map((document, idx) => (
-            <Link to={`/categories/${document.node.id}`} key={idx}>{document.node.title}</Link>
-          ))}
+            {data.allStrapiCategory.edges.map((document, idx) => (
+              <Link 
+                to={`/categories/${document.node.id}`} 
+                key={idx} 
+                className="block mt-4 lg:inline-block lg:mt-0 mr-4"
+              >
+                {document.node.title}
+              </Link>
+            ))}
+            <Link 
+              to="/archive/" 
+              className="block mt-4 lg:inline-block lg:mt-0 mr-4"
+            >
+              Archive
+            </Link>
           </div>
         </div>
       </div>
@@ -183,15 +183,33 @@ const SearchPage = ({ location }) => {
               :
               ""
             }
-            <ReactMarkdown
-              source={<Highlight search={query}>{`${document.node.content.slice(0,500)}...`}</Highlight>}
-              transformImageUri={uri => uri.startsWith('http') ? uri : `${process.env.IMAGE_BASE_URL}${uri}`}
-            />
+            <Highlight search={query}>
+              <ReactMarkdown
+                source={`${document.node.content.slice(0,500)}...`}
+                transformImageUri={uri => uri.startsWith('http') ? uri : `${process.env.IMAGE_BASE_URL}${uri}`}
+              />
+            </Highlight>
           </li>
         ))}
       </ul>
     </div>
     }
+    <nav>
+      <div>
+        {/* links to about, subscribe, etc */}
+        <div>
+          <h2>ABOUT US</h2>
+          <Link to="/">Staff</Link>
+          <Link to="/">Write for us</Link>
+          <Link to="/">Join our team</Link>
+        </div>
+        <div>
+          <h2>CONTACT US</h2>
+        </div><div>
+          <h2>WRITING RESOURCES</h2>
+        </div>
+      </div>
+    </nav>
   </div>
   // </Layout>
   )
