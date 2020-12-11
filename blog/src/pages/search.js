@@ -13,7 +13,7 @@ const SearchPage = ({ location }) => {
   const data = useStaticQuery(graphql`
     query SearchResultsQuery {
       allStrapiArticle(
-        sort: { order: DESC, fields: published_at }
+        sort: { fields: [created_at], order: DESC }
       ) {
         edges {
           node {

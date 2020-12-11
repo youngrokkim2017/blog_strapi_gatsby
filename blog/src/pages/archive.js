@@ -76,10 +76,11 @@ export default ArchivePage;
 
 // gql query
 export const archiveQuery = graphql`
-  query ArchiveQuery {
+  query ArchiveQuery($skip: Int! = 0) {
     allStrapiArticle(
-      limit: 5
-      sort: { order: DESC, fields: published_at }
+      sort: { fields: [created_at], order: DESC }
+      limit: 10
+      skip: $skip
     ) {
       edges {
         node {
@@ -98,14 +99,16 @@ export const archiveQuery = graphql`
             id
             title
           }
+          created_at
           published_at
           updated_at
         }
       }
     }
     allStrapiIssue(
-      limit: 5
-      sort: { order: DESC, fields: updated_at }
+      sort: { fields: [created_at], order: DESC }
+      limit: 10
+      skip: $skip
     ) {
       edges {
         node {
@@ -124,6 +127,8 @@ export const archiveQuery = graphql`
             id
             title
           }
+          created_at
+          published_at
           updated_at
         }
       }
