@@ -49,8 +49,9 @@ const SearchPage = ({ location }) => {
   `)
 
   const [query, setQuery] = useState('');
+  // const [input, setInput] = useState('');
 
-  const unsortedData = data.allStrapiArticle.edges;
+  // const unsortedData = data.allStrapiArticle.edges;
   // const sortedData = unsortedData.sort((a, b) => b.node.id.split('_')[1] - a.node.id.split('_')[1]).slice(0, 5);
   // const sortedData = data.allStrapiArticle.edges.sort((a, b) => b.id - a.id).slice(0, 5);
 
@@ -82,18 +83,31 @@ const SearchPage = ({ location }) => {
       shouldSort: true,
       threshold: 0.3,  // default 0.6
   };
-  const fuse = new Fuse(unsortedData, options);
+  // const fuse = new Fuse(unsortedData, options);
+  const fuse = new Fuse(data.allStrapiArticle.edges, options);
   const results = fuse.search(index, { limit: 10 });
-  const searchResults = results.length > 0 ? results.map(result => result.item) : unsortedData.slice(0, 5);
+  // const searchResults = results.length > 0 ? results.map(result => result.item) : unsortedData.slice(0, 5);
+  const searchResults = results.length > 0 ? results.map(result => result.item) : data.allStrapiArticle.edges.slice(0, 5);
 
   // search query results while on route '/search'
   const currentResults = fuse.search(query, { limit: 10 });
-  const currentSearchResults = query.length > 3 ? currentResults.map(result => result.item) : unsortedData.slice(0, 5);
+  // const currentSearchResults = query.length > 3 ? currentResults.map(result => result.item) : unsortedData.slice(0, 5);
+  const currentSearchResults = query.length > 3 ? currentResults.map(result => result.item) : data.allStrapiArticle.edges.slice(0, 5);
 
   function handleOnSearch({ currentTarget = {} }) {
     const { value } = currentTarget;
     setQuery(value);
+
+    // const { value } = currentTarget;
+    // setInput(value);
   }
+
+  // function handleSubmit(e, { currentTarget = {} }) {
+  //   e.preventDefault();
+
+  //   const { value } = currentTarget;
+  //   setQuery(value);
+  // }
 
   ///////////////////////////// FUSE SEARCH ///////////////////////////////////
 
@@ -130,13 +144,16 @@ const SearchPage = ({ location }) => {
       </div>
     </nav>
     <div>
+      {/* <form onSubmit={handleSubmit}> */}
       <form>
         <input 
           type="text" 
           placeholder="Search" 
           value={query} 
+          // value={input} 
           onChange={handleOnSearch} 
         />
+        {/* <button tpe="submit">SEARCH</button> */}
       </form>
     </div>
     { query.length > 3 ?
