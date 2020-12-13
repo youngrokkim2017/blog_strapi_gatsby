@@ -1,54 +1,50 @@
-import React, { useState } from "react"
+// import React, { useState } from "react"
+import React from "react"
 import { Link, graphql } from "gatsby"
 import Img from 'gatsby-image';
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 // import ReactMarkdown from "react-markdown"
-import Fuse from "fuse.js"
+// import Fuse from "fuse.js"
 
 const ArchivePage = ({ data }) => {
-  const [query, setQuery] = useState('');
-  const options = {
-    keys: [
-      {
-        name: 'node.title',
-        weight: 0.6,
-      },
-      {
-        name: 'node.author',
-        weight: 0.1,
-      },
-      {
-        name: 'node.content',
-        weight: 0.3,
-      },
-    ],
-    includeScore: true,
-    shouldSort: true,
-    threshold: 0.3,  // default 0.6
-  };
-  const unsortedData = data.allStrapiArticle.edges; // or magazine issues
+  // const [query, setQuery] = useState('');
+  // const options = {
+  //   keys: [
+  //     {
+  //       name: 'node.title',
+  //       weight: 0.6,
+  //     },
+  //     {
+  //       name: 'node.author',
+  //       weight: 0.1,
+  //     },
+  //     {
+  //       name: 'node.content',
+  //       weight: 0.3,
+  //     },
+  //   ],
+  //   includeScore: true,
+  //   shouldSort: true,
+  //   threshold: 0.3,  // default 0.6
+  // };
+  // const unsortedData = data.allStrapiArticle.edges; // or magazine issues
   const collection = [...data.allStrapiArticle.edges, ...data.allStrapiIssue.edges]
-  // const fuse = new Fuse(unsortedData, options);
-  const fuse = new Fuse(collection, options);
-  const results = fuse.search(query);
-  // const searchResults = query.length > 3 ? results.map(result => result.item) : unsortedData.slice(0, 5);
-  const searchResults = query.length >= 3 ? results.map(result => result.item) : collection.slice(0, 5);
-  // console.log(results);
-  // console.log(data.allStrapiArticle.edges);
-  // console.log(data.allStrapiIssue.edges);
-  // console.log(collection);
+  // // const fuse = new Fuse(unsortedData, options);
+  // const fuse = new Fuse(collection, options);
+  // const results = fuse.search(query);
+  // // const searchResults = query.length > 3 ? results.map(result => result.item) : unsortedData.slice(0, 5);
+  // const searchResults = query.length >= 3 ? results.map(result => result.item) : collection.slice(0, 5);
 
-  function handleOnSearch({ currentTarget = {} }) {
-    const { value } = currentTarget;
-    setQuery(value);
-  }
+  // function handleOnSearch({ currentTarget = {} }) {
+  //   const { value } = currentTarget;
+  //   setQuery(value);
+  // }
 
   return (
     <Layout>
       <SEO title="Archive" />
-      
-      <div>
+      {/* <div>
         <form>
           <input 
             type="text" 
@@ -57,11 +53,12 @@ const ArchivePage = ({ data }) => {
             onChange={handleOnSearch} 
           />
         </form>
-      </div>
+      </div> */}
       <h2>Archive</h2>
       <div>
         <ul>
-          {searchResults.map(document => (
+          {/* {searchResults.map(document => ( */}
+          {collection.map(document => (
             <li key={document.node.id} className="flex mb-12 max-w-full border-t pt-8">
                 <div className="mr-4">
                   {
