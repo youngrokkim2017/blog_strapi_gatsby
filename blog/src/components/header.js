@@ -12,6 +12,7 @@ const Header = () => {
 
     navigate(
       "/search/",
+      // `/search/${query}`,
       {
         state: { searchQuery: query },
       }
@@ -62,12 +63,12 @@ const Header = () => {
           />
           <div>
             <form onSubmit={handleNavigate}>
-              {/* <input
+              <input
                 type="text"
                 placeholder="Search"
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
-              /> */}
+              />
               {/* <Link to={'/blog'} state={{ searchQuery: query }}>SEARCH</Link> */}
               <button type="submit">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="text-black">

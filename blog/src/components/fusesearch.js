@@ -9,9 +9,9 @@ import Fuse from "fuse.js"  // fuzzy search
 import Highlight from 'react-highlighter';
 
 // const SearchPage = ({ data, location }) => {
-const SearchPage = ({ location }) => {
+const FuseSearch = ({ location }) => {
   const data = useStaticQuery(graphql`
-    query SearchResultsQuery {
+    query FuseSearchQuery {
       allStrapiArticle(
         sort: { fields: [created_at], order: DESC }
       ) {
@@ -233,7 +233,7 @@ const SearchPage = ({ location }) => {
 }
 
 
-export default SearchPage;
+export default FuseSearch;
 
 // // gql query
 // export const fuseQuery = graphql`
@@ -296,21 +296,3 @@ export default SearchPage;
 //     }
 //   }
 // `
-
-
-// // DYNAMIC SEARCH PAGE
-// import React from 'react'
-// import { Router } from '@reach/router';
-// import FuseSearch from '../components/fusesearch';
-
-// const SearchPage = ({ location }) => {
-//   return (
-//     <div>
-//       <Router>
-//         <FuseSearch path="/search/:query" />
-//       </Router>
-//     </div>
-//   )
-// }
-
-// export default SearchPage;

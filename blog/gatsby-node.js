@@ -33,6 +33,22 @@ exports.createPages = ({ actions, graphql }) => {
   //   createPage(page);
   // }
 
+  // console.log("page - ", page);
+  // console.log("page - ", page.path);
+  // // if (page.path.match(/^\/app/)) {
+  // if (page.matchPath || page.path.match(/^\/search/)) {
+  //   // page.matchPath = "/app/*"
+  //   page.matchPath = "/search/*"
+
+  //   // // Update the page.
+  //   // createPage(page)
+  //   createPage({
+  //     path: "/search",
+  //     matchPath: "/search/*",
+  //     component: path.resolve(`src/pages/search.js`)
+  //   })
+  // }
+
   const getAuthors = makeRequest(
     graphql,
     `
