@@ -20,6 +20,7 @@ body {
     font-weight: 400!important;
     font-family: 'Lora';
     @apply tracking-wide;
+    @apply antialiased;
 }
 /* 
 .prose img, .prose-lg img{
@@ -41,3 +42,9 @@ body {
 .prose hr {
     border-color:#000!important;
 }
+
+/* .hr-overflow{
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+    width: 100vw;
+} */
