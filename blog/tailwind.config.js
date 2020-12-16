@@ -42,4 +42,8 @@ module.exports = {
   plugins: [
     require('@tailwindcss/typography'),
   ],
+  variants: {
+    textColor: ['active'],
+    borderColor: ['focus-within']
+  },
 }
