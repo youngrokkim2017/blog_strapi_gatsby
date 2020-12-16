@@ -111,6 +111,7 @@ exports.createPages = ({ actions, graphql }) => {
         edges {
           node {
             id
+            title
           }
         }
       }
@@ -121,6 +122,7 @@ exports.createPages = ({ actions, graphql }) => {
     result.data.allStrapiCategory.edges.forEach(({ node }) => {
       createPage({
         path: `/categories/${node.id}`,
+        // path: `/categories/${node.title.split(" ").join("_")}`,
         // path: `/${node.id}`,
         component: path.resolve(`src/templates/category.js`),
         context: {

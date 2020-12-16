@@ -46,6 +46,7 @@ const Header = () => {
                 {data.allStrapiCategory.edges.map((document, idx) => (
                   <Link 
                     to={`/categories/${document.node.id}`} 
+                    // to={`/categories/${document.node.title.split(" ").join("_")}`} 
                     key={idx} 
                     className="block mt-4 lg:inline-block lg:mt-0 mr-4"
                   >
