@@ -45,8 +45,8 @@ const Header = () => {
               <div className="text-md lg:flex-grow">
                 {data.allStrapiCategory.edges.map((document, idx) => (
                   <Link 
-                    to={`/categories/${document.node.id}`} 
-                    // to={`/categories/${document.node.title.split(" ").join("_")}`} 
+                    // to={`/categories/${document.node.id}`} 
+                    to={`/categories/${document.node.title.split(" ").join("-")}`} 
                     key={idx} 
                     className="block mt-4 lg:inline-block lg:mt-0 mr-4"
                   >

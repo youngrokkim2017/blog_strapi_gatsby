@@ -57,6 +57,7 @@ exports.createPages = ({ actions, graphql }) => {
         edges {
           node {
             id
+            name
           }
         }
       }
@@ -94,7 +95,6 @@ exports.createPages = ({ actions, graphql }) => {
     result.data.allStrapiArticle.edges.forEach(({ node }) => {
       createPage({
         path: `/blog/${node.id}`,
-        // path: `/blog/${edge.node.id}`,
         component: path.resolve(`src/templates/article.js`),
         context: {
           id: node.id,
@@ -121,9 +121,8 @@ exports.createPages = ({ actions, graphql }) => {
     // Create pages for each Category.
     result.data.allStrapiCategory.edges.forEach(({ node }) => {
       createPage({
-        path: `/categories/${node.id}`,
-        // path: `/categories/${node.title.split(" ").join("_")}`,
-        // path: `/${node.id}`,
+        // path: `/categories/${node.id}`,
+        path: `/categories/${node.title.split(" ").join("-")}`,
         component: path.resolve(`src/templates/category.js`),
         context: {
           id: node.id,
@@ -150,8 +149,6 @@ exports.createPages = ({ actions, graphql }) => {
     // Create pages for each Issue.
     result.data.allStrapiIssue.edges.forEach(({ node }) => {
       createPage({
-        // path: `/${node.id}`,
-        // path: `/page-2/${node.id}`,
         path: `/magazine/${node.id}`,
         component: path.resolve(`src/templates/issue.js`),
         context: {
@@ -178,7 +175,6 @@ exports.createPages = ({ actions, graphql }) => {
     // Create pages for each Tag.
     result.data.allStrapiTag.edges.forEach(({ node }) => {
       createPage({
-        // path: `/${node.id}`,
         path: `/tags/${node.id}`,
         component: path.resolve(`src/templates/tag.js`),
         context: {
@@ -207,7 +203,6 @@ exports.createPages = ({ actions, graphql }) => {
     result.data.allStrapiAbout.edges.forEach(({ node }) => {
       createPage({
         path: `/about/`,
-        // path: `/${node.id}`,
         component: path.resolve(`src/templates/about.js`),
         context: {
           id: node.id,
@@ -234,7 +229,6 @@ exports.createPages = ({ actions, graphql }) => {
     result.data.allStrapiSubscribe.edges.forEach(({ node }) => {
       createPage({
         path: `/subscribe/`,
-        // path: `/${node.id}`,
         component: path.resolve(`src/templates/subscribe.js`),
         context: {
           id: node.id,
