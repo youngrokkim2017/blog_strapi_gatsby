@@ -4,10 +4,12 @@ import { Link, graphql } from "gatsby"
 import Img from 'gatsby-image';
 import Layout from "../components/layout"
 import SEO from "../components/seo"
+import Pagination from "../components/pagination";
 // import ReactMarkdown from "react-markdown"
 // import Fuse from "fuse.js"
 
-const ArchivePage = ({ data }) => {
+// const ArchivePage = ({ data }) => {
+const ArchivePage = ({ data, pageContext }) => {
   // const [query, setQuery] = useState('');
   // const options = {
   //   keys: [
@@ -85,6 +87,7 @@ const ArchivePage = ({ data }) => {
           ))}
         </ul>
       </div>
+      <Pagination currentPage={pageContext.currentPage} totalCount={data.allStrapiArticle.totalCount} />
       {/* <div>
         <ul>
           {data.allStrapiArticle.edges.map(document => (
@@ -149,6 +152,7 @@ export const archiveQuery = graphql`
       limit: 10
       skip: $skip
     ) {
+      totalCount
       edges {
         node {
           id

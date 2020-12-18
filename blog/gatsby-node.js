@@ -9,6 +9,8 @@
 // const path = require(`path`);
 
 // async function makeArticlesFromMdx({ graphql, actions }) {
+//   // const { createPage } = actions;
+
 //   // const articleTemplate = path.resolve('./src/templates/article.js');
 //   const { errors, data } = await graphql(
 //     `
@@ -40,7 +42,8 @@
 //   })
 // }
 
-// async function pageinate({ graphql, actions, collection }) {
+// async function paginate({ graphql, actions, collection }) {
+//   // const { createPage } = actions;
 //   // const paginateTemplate = path.resolve('./src/pages/archive.js');
 //   const { errors, data } = await graphql(
 //     `
@@ -49,37 +52,40 @@
 //         sort: { fields: [created_at], order: DESC }
 //         filter: { fields: { collection: { eq: "${collection}" } } }
 //         ) {
-//         edges {
-//           node {
-//             id
-//           }
-//         }
+//         totalCount
 //       }
 //     }
 //     `
 //   );
 
+//   console.log(data);
 //   if (errors) {
 //     throw new Error('There was an error');
 //   }
 
-//   const articles = data.allStrapiArticle.edges;
-//   articles.forEach((article) => {
+//   const { totalCount } = data.allStrapiArticle;
+//   const pages = Math.ceil(totalCount / 10);
+
+//   Array.from({ length: pages }).forEach((_, i) => {
+//     // for each page, use createPages api to dynamically create that page
+
 //     actions.createPage({
-//       path: `/blog/${article.node.id}`,
+//       path: `/archive/${i + 1}`,
 //       component: path.resolve('./src/pages/archive.js'),
 //       context: {
-//         id: article.node.id,
+//         skip: i * 10,
+//         currentPage: i + 1,
 //       },
-//     })
-//   })
+//     });
+//   });
 // }
 
 // exports.createPages = async ({ graphql, actions }) => {
-//   const { createPage } = actions;
+//   // const { createPage } = actions;
 
 //   await Promise.all([
 //     makeArticlesFromMdx({ graphql, actions }),
+//     paginate({ graphql, actions, collection: 'article' }),
 //   ])
 // }
 
