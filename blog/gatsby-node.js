@@ -89,6 +89,21 @@
 //   ])
 // }
 
+// exports.onCreateNode = ({ node, actions, getNode }) => {
+//   const { createNodeField } = actions
+
+//   // if (node.internal.type === `MarkdownRemark`) {
+//   if (node.internal.type === `Strapi`) {
+//     const value = createFilePath({ node, getNode })
+//     createNodeField({
+//       // name: `slug`,
+//       id: node.id,
+//       node,
+//       value,
+//     })
+//   }
+// }
+
 const path = require(`path`);
 
 const makeRequest = (graphql, request) =>
