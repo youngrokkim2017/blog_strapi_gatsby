@@ -190,14 +190,50 @@ exports.createPages = ({ actions, graphql }) => {
     }
     `
   ).then(result => {
-    // Create pages for each article.
-    result.data.allStrapiArticle.edges.forEach(({ node }) => {
+    // // Create pages for each article.
+    // result.data.allStrapiArticle.edges.forEach(({ node }) => {
+    //   createPage({
+    //     path: `/blog/${node.id}`,
+    //     component: path.resolve(`src/templates/article.js`),
+    //     context: {
+    //       id: node.id,
+    //     },
+    //   })
+    // })
+
+    if (result.errors) throw result.errors;
+
+    const articles = result.data.allStrapiArticle.edges;
+    articles.forEach((article, index) => {
+      const previous = index === articles.length - 1 ? null : articles[index + 1].node;
+      const next = index === 0 ? null : articles[index - 1].node;
+
       createPage({
-        path: `/blog/${node.id}`,
-        component: path.resolve(`src/templates/article.js`),
+        // path: article.node.id,
+        path: `/blog/${article.node.id}`,
+        // component: path.resolve(`src/templates/article.js`),
+        component: path.resolve(`./src/templates/blog-post.js`),
         context: {
-          id: node.id,
-        },
+          id: article.node.id,
+          previous,
+          next,
+        }
+      })
+    })
+
+    const postsPerPage = 5;
+    const numPages = Math.ceil(articles.length / postsPerPage);
+
+    Array.from({ length: numPages }).forEach((_, i) => {
+      createPage({
+        path: i === 0 ? `/archive/` : `/archive/${i + 1}`,
+        component: path.resolve('./src/templates/blog-list.js'),
+        context: {
+          limit: postsPerPage,
+          skip: i * postsPerPage,
+          numPages,
+          currentPage: i + 1,
+        }
       })
     })
   })

@@ -4,7 +4,7 @@ import { Link, graphql } from "gatsby"
 import Img from 'gatsby-image';
 import Layout from "../components/layout"
 import SEO from "../components/seo"
-import Pagination from "../components/pagination";
+// import Pagination from "../components/pagination";
 // import ReactMarkdown from "react-markdown"
 // import Fuse from "fuse.js"
 
@@ -87,7 +87,9 @@ const ArchivePage = ({ data, pageContext }) => {
           ))}
         </ul>
       </div>
-      <Pagination currentPage={pageContext.currentPage} totalCount={data.allStrapiArticle.totalCount} />
+
+      {/* <Pagination currentPage={pageContext.currentPage} totalCount={data.allStrapiArticle.totalCount} /> */}
+      
       {/* <div>
         <ul>
           {data.allStrapiArticle.edges.map(document => (
