@@ -19,7 +19,7 @@ class BlogIndex extends React.Component {
           return (
             <div key={node.id}>
               {/* <Link to={`/blog/${document.node.id}`}> */}
-              <Link to={`/blog/${node.id}`}>
+              <Link to={`/blog/${node.title.split(" ").join("-")}`}>
                 {title}
               </Link>
             </div>
