@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState } from "react"
 import { Link, graphql } from "gatsby"
 import Img from 'gatsby-image';
 import Layout from "../components/layout"
@@ -6,15 +6,56 @@ import SEO from "../components/seo"
 // import ReactMarkdown from "react-markdown"
 
 const ArchivePage = ({ data, pageContext }) => {
-  const collection = [...data.allStrapiArticle.edges, ...data.allStrapiIssue.edges]
+  const [articles, setArticles] = useState(data.allStrapiArticle.edges);
+
+  function handleFilter({ currentTarget = {} }) {
+    const { value } = currentTarget;
+
+    if (value === "magazine") {
+      setArticles(data.allStrapiArticle.edges.filter((document) => document.magazine !== null));
+    }
+
+    if (value === "blog") {
+      setArticles(data.allStrapiArticle.edges.filter((document) => document.magazine === null));
+    }
+    
+    if (value === "none") {
+      setArticles(data.allStrapiArticle.edges);
+    }
+  }
 
   return (
     <Layout>
       <SEO title="Archive" />
       <h2>Archive</h2>
       <div>
+        <form>
+          <input 
+            type="button"
+            value="blog"
+            onClick={handleFilter}
+          >
+            Blog
+          </input>
+          <input 
+            type="button"
+            value="magazine"
+            onClick={handleFilter}
+          >
+            Magazine
+          </input>
+          <input 
+            type="button"
+            value="none"
+            onClick={handleFilter}
+          >
+            None
+          </input>
+        </form>
+      </div>
+      <div>
         <ul>
-          {collection.map(document => (
+          {articles.map(document => (
             <li key={document.node.id} className="flex mb-12 max-w-full border-t pt-8">
                 <div className="mr-4">
                   {
@@ -70,34 +111,6 @@ export const archiveQuery = graphql`
           author
           content
           category {
-            id
-            title
-          }
-          created_at
-          published_at
-          updated_at
-        }
-      }
-    }
-    allStrapiIssue(
-      sort: { fields: [created_at], order: DESC }
-      limit: 10
-      skip: $skip
-    ) {
-      edges {
-        node {
-          id
-          title
-          author
-          content
-          image {
-            childImageSharp {
-              fixed(width: 200, height: 125) {
-                ...GatsbyImageSharpFixed
-              }
-            }
-          }
-          tag {
             id
             title
           }
