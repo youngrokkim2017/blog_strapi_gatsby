@@ -73,7 +73,8 @@ const ArchivePage = ({ data, pageContext }) => {
                 </div>
                 <div className="antialiased leading-relaxed sans-serif">
                   <h2>
-                    <Link to={`/blog/${document.node.id}`} style={{ textDecoration: `none` }}>
+                    {/* <Link to={`/blog/${document.node.id}`} style={{ textDecoration: `none` }}> */}
+                    <Link to={`/blog/${document.node.title.split(" ").join("-")}`} style={{ textDecoration: `none` }}>
                       {document.node.title}
                     </Link>
                   </h2>
@@ -89,7 +90,7 @@ const ArchivePage = ({ data, pageContext }) => {
       </div>
 
       {/* <Pagination currentPage={pageContext.currentPage} totalCount={data.allStrapiArticle.totalCount} /> */}
-      
+
       {/* <div>
         <ul>
           {data.allStrapiArticle.edges.map(document => (

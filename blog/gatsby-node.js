@@ -184,6 +184,7 @@ exports.createPages = ({ actions, graphql }) => {
         edges {
           node {
             id
+            title
           }
         }
       }
@@ -210,9 +211,10 @@ exports.createPages = ({ actions, graphql }) => {
 
       createPage({
         // path: article.node.id,
-        path: `/blog/${article.node.id}`,
-        // component: path.resolve(`src/templates/article.js`),
-        component: path.resolve(`./src/templates/blog-post.js`),
+        // path: `/blog/${article.node.id}`,
+        path: `/blog/${article.node.title.split(" ").join("-")}`,
+        component: path.resolve(`src/templates/article.js`),
+        // component: path.resolve(`./src/templates/blog-post.js`),
         context: {
           id: article.node.id,
           previous,
@@ -226,8 +228,10 @@ exports.createPages = ({ actions, graphql }) => {
 
     Array.from({ length: numPages }).forEach((_, i) => {
       createPage({
-        path: i === 0 ? `/archive/` : `/archive/${i + 1}`,
-        component: path.resolve('./src/templates/blog-list.js'),
+        // path: i === 0 ? `/archive/` : `/archive/${i + 1}`,
+        path: `/archive/${i + 1}`,
+        // component: path.resolve('./src/templates/blog-list.js'),
+        component: path.resolve('./src/pages/archive.js'),
         context: {
           limit: postsPerPage,
           skip: i * postsPerPage,
