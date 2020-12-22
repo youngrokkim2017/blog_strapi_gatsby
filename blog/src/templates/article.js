@@ -6,7 +6,8 @@ import Layout from "../components/layout"
 import ReactMarkdown from "react-markdown"
 // import Fuse from "fuse.js"  // fuzzy search
 
-const ArticleTemplate = ({ data }) => {
+// const ArticleTemplate = ({ data }) => {
+const ArticleTemplate = ({ data, pageContext }) => {
   function handleDate(e) {
     var d = new Date(e);
     const options = { year: 'numeric', month: 'long', day: 'numeric' };
@@ -37,6 +38,8 @@ const ArticleTemplate = ({ data }) => {
   // const relatedArticles = data.allStrapiArticle.edges
   //   .filter((article) => article.node.category.title === data.strapiArticle.category.title)
   //   .slice(0, 3)
+
+  console.log(pageContext);
 
   return (
     <Layout>
