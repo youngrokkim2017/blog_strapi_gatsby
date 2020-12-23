@@ -4,6 +4,7 @@ import Img from 'gatsby-image';
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 // import ReactMarkdown from "react-markdown"
+import Pagination from '../components/pagination'
 
 const ArchivePage = ({ data, pageContext }) => {
   const [articles, setArticles] = useState(data.allStrapiArticle.edges);
@@ -78,6 +79,9 @@ const ArchivePage = ({ data, pageContext }) => {
             </li>
           ))}
         </ul>
+      </div>
+      <div>
+        <Pagination currentPage={1} totalCount={data.allStrapiArticle.totalCount} />
       </div>
     </Layout>
   )
