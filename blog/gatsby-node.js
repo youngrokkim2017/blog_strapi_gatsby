@@ -259,10 +259,22 @@ exports.createPages = ({ actions, graphql }) => {
           }
         }
       }
+      allStrapiArticle (sort: { fields: [created_at], order: DESC }) {
+        edges {
+          node {
+            id
+            title
+            category {
+              id
+              title
+            }
+          }
+        }
+      }
     }
     `
   ).then(result => {
-    // Create pages for each Category.
+    // // Create pages for each Category.
     result.data.allStrapiCategory.edges.forEach(({ node }) => {
       createPage({
         // path: `/categories/${node.id}`,
@@ -279,9 +291,11 @@ exports.createPages = ({ actions, graphql }) => {
     // const numPages = Math.ceil(result.allStrapiCategory.edges.node.articles.length / postsPerPage);
 
     // result.data.allStrapiCategory.edges.forEach(({ node }) => {
+    //   const categoryArticles = result.data.allStrapiArticle.edges.filter(article => article.node.catetory.title.split(" ").join("-") == node.title.split(" ").join("-"))
     //   const postsPerPage = 10;
-    //   const numPages = Math.ceil(node.articles.length / postsPerPage);
+    //   const numPages = Math.ceil(categoryArticles.length / postsPerPage);
 
+    //   // Array.from({ length: numPages }).map((_, i) => {
     //   Array.from({ length: numPages }).forEach((_, i) => {
     //     createPage({
     //       path: i === 0 ? `/categories/${node.title.split(" ").join("-")}/1` : `/categories/${node.title.split(" ").join("-")}/${i + 1}`,
