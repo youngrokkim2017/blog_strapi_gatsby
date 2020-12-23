@@ -4,6 +4,7 @@ import Img from 'gatsby-image';
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 // import ReactMarkdown from "react-markdown"
+import Pagination from '../components/pagination'
 
 const ArchivePage = ({ data, pageContext }) => {
   const [articles, setArticles] = useState(data.allStrapiArticle.edges);
@@ -24,34 +25,31 @@ const ArchivePage = ({ data, pageContext }) => {
     }
   }
 
+  console.log(pageContext);
+
   return (
     <Layout>
       <SEO title="Archive" />
       <h2>Archive</h2>
       <div>
-        <form>
-          <input 
-            type="button"
-            value="blog"
-            onClick={handleFilter}
-          >
-            Blog
-          </input>
-          <input 
-            type="button"
-            value="magazine"
-            onClick={handleFilter}
-          >
-            Magazine
-          </input>
-          <input 
-            type="button"
-            value="none"
-            onClick={handleFilter}
-          >
-            None
-          </input>
-        </form>
+        <button 
+          value="blog"
+          onClick={handleFilter}
+        >
+          Blog
+        </button>
+        <button 
+          value="magazine"
+          onClick={handleFilter}
+        >
+          Magazine
+        </button>
+        <button 
+          value="none"
+          onClick={handleFilter}
+        >
+          None
+        </button>
       </div>
       <div>
         <ul>
@@ -82,6 +80,10 @@ const ArchivePage = ({ data, pageContext }) => {
           ))}
         </ul>
       </div>
+      <div>
+        {/* <Pagination currentPage={pageContext.currentPage} totalCount={data.allStrapiArticle.totalCount} /> */}
+        <Pagination currentPage={1} totalCount={data.allStrapiArticle.totalCount} />
+      </div>
     </Layout>
   )
 }
@@ -90,10 +92,10 @@ export default ArchivePage;
 
 // gql query
 export const archiveQuery = graphql`
-  query ArchiveQuery($skip: Int! = 0) {
+  query ArchiveQuery($skip: Int! = 0, $limit: Int! = 10) {
     allStrapiArticle(
       sort: { fields: [created_at], order: DESC }
-      limit: 10
+      limit: $limit
       skip: $skip
     ) {
       totalCount

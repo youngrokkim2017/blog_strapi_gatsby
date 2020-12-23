@@ -48,8 +48,8 @@ export const query = graphql`
         content
         image {
           childImageSharp {
-            fluid(maxWidth: 500) {
-              ...GatsbyImageSharpFluid
+            fixed(width: 200, height: 125) {
+              ...GatsbyImageSharpFixed
             }
           }
         }
@@ -57,3 +57,23 @@ export const query = graphql`
     }
   }
 `
+// export const query = graphql`
+//   query CategoryTemplate($id: String!) {
+//     strapiCategory(id: { eq: $id }) {
+//       title
+//       articles {
+//         id
+//         title
+//         author
+//         content
+//         image {
+//           childImageSharp {
+//             fluid(maxWidth: 500) {
+//               ...GatsbyImageSharpFluid
+//             }
+//           }
+//         }
+//       }
+//     }
+//   }
+// `
