@@ -40,6 +40,7 @@ export default CategoryTemplate;
 export const query = graphql`
   query CategoryTemplate($id: String!) {
     strapiCategory(id: { eq: $id }) {
+      id
       title
       articles {
         id

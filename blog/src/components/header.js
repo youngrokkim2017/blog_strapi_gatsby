@@ -47,6 +47,7 @@ const Header = () => {
                   <Link 
                     // to={`/categories/${document.node.id}`} 
                     to={`/categories/${document.node.title.split(" ").join("-")}`} 
+                    // to={`/categories/${document.node.title.split(" ").join("-")}/1`} 
                     key={idx} 
                     className="block mt-4 lg:inline-block lg:mt-0 mr-4"
                   >
@@ -54,7 +55,7 @@ const Header = () => {
                   </Link>
                 ))}
                 <Link 
-                  to="/archive/" 
+                  to="/archive/1" 
                   className="block mt-4 lg:inline-block lg:mt-0 mr-4"
                 >
                   ARCHIVE
