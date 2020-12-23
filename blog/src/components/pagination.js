@@ -30,7 +30,7 @@ function Pagination({ totalCount, currentPage }) {
             <div>
                 <div>
                     <Link to={`/archive/${nextPage}`} >
-                        Next
+                        Next →
                     </Link>
                 </div>
             </div>
@@ -40,7 +40,7 @@ function Pagination({ totalCount, currentPage }) {
             <div>
                 <div>
                     <Link to={`/archive/${prevPage}`} >
-                        Prev
+                        ← Prev
                     </Link>
                 </div>
             </div>
@@ -50,10 +50,10 @@ function Pagination({ totalCount, currentPage }) {
             <div>
                 <div>
                     <Link to={`/archive/${prevPage}`} >
-                        Prev
+                        ← Prev
                     </Link>
                     <Link to={`/archive/${nextPage}`} >
-                        Next
+                        Next →
                     </Link>
                 </div>
             </div>

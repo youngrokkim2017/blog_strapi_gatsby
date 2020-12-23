@@ -167,6 +167,7 @@ exports.createPages = ({ actions, graphql }) => {
   //   result.data.allStrapiUser.edges.forEach(({ node }) => {
   //     createPage({
   //       path: `/authors/${node.id}`,
+  //       path: `/authors/${node.name.split(" ").join("-")}`,
   //       component: path.resolve(`src/templates/author.js`),
   //       context: {
   //         id: node.id,
@@ -210,11 +211,10 @@ exports.createPages = ({ actions, graphql }) => {
       const next = index === 0 ? null : articles[index - 1].node;
 
       createPage({
-        // path: article.node.id,
         // path: `/blog/${article.node.id}`,
+        // component: path.resolve(`./src/templates/blog-post.js`),
         path: `/blog/${article.node.title.split(" ").join("-")}`,
         component: path.resolve(`src/templates/article.js`),
-        // component: path.resolve(`./src/templates/blog-post.js`),
         context: {
           id: article.node.id,
           previous,
@@ -223,17 +223,16 @@ exports.createPages = ({ actions, graphql }) => {
       })
     })
 
+    // PAGINATION
     const postsPerPage = 10;
     const numPages = Math.ceil(articles.length / postsPerPage);
 
     Array.from({ length: numPages }).forEach((_, i) => {
       createPage({
-        // path: i === 0 ? `/archive/` : `/archive/${i + 1}`,
-        path: i === 0 ? `/archive/1` : `/archive/${i + 1}`,
         // path: i === 0 ? `/` : `/${i + 1}`,
         // component: path.resolve('src/templates/blog-list.js'),
+        path: i === 0 ? `/archive/1` : `/archive/${i + 1}`,
         component: path.resolve('src/pages/archive.js'),
-        // component: path.resolve('src/templates/archive.js'),
         context: {
           limit: postsPerPage,
           skip: i * postsPerPage,
@@ -253,6 +252,10 @@ exports.createPages = ({ actions, graphql }) => {
           node {
             id
             title
+            articles {
+              id
+              title
+            }
           }
         }
       }
@@ -270,6 +273,28 @@ exports.createPages = ({ actions, graphql }) => {
         },
       })
     })
+
+    // PAGINATION
+    // const postsPerPage = 10;
+    // const numPages = Math.ceil(result.allStrapiCategory.edges.node.articles.length / postsPerPage);
+
+    // result.data.allStrapiCategory.edges.forEach(({ node }) => {
+    //   const postsPerPage = 10;
+    //   const numPages = Math.ceil(node.articles.length / postsPerPage);
+
+    //   Array.from({ length: numPages }).forEach((_, i) => {
+    //     createPage({
+    //       path: i === 0 ? `/categories/${node.title.split(" ").join("-")}/1` : `/categories/${node.title.split(" ").join("-")}/${i + 1}`,
+    //       component: path.resolve(`src/templates/category.js`),
+    //       context: {
+    //         limit: postsPerPage,
+    //         skip: i * postsPerPage,
+    //         numPages,
+    //         currentPage: i + 1,
+    //       }
+    //     })
+    //   })
+    // })
   })
 
   // MAGAZINE CONTENT TYPES
@@ -292,32 +317,6 @@ exports.createPages = ({ actions, graphql }) => {
       createPage({
         path: `/magazine/${node.id}`,
         component: path.resolve(`src/templates/issue.js`),
-        context: {
-          id: node.id,
-        },
-      })
-    })
-  })
-
-  const getTags = makeRequest(
-    graphql,
-    `
-    {
-      allStrapiTag {
-        edges {
-          node {
-            id
-          }
-        }
-      }
-    }
-    `
-  ).then(result => {
-    // Create pages for each Tag.
-    result.data.allStrapiTag.edges.forEach(({ node }) => {
-      createPage({
-        path: `/tags/${node.id}`,
-        component: path.resolve(`src/templates/tag.js`),
         context: {
           id: node.id,
         },
@@ -384,7 +383,6 @@ exports.createPages = ({ actions, graphql }) => {
     getArticles, 
     getCategories,
     getIssues,
-    getTags,
     getAbout,
     getSubscribe,
   ])
