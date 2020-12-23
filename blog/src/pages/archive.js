@@ -90,10 +90,10 @@ export default ArchivePage;
 
 // gql query
 export const archiveQuery = graphql`
-  query ArchiveQuery($skip: Int! = 0) {
+  query ArchiveQuery($skip: Int! = 0, $limit: Int!) {
     allStrapiArticle(
       sort: { fields: [created_at], order: DESC }
-      limit: 10
+      limit: $limit
       skip: $skip
     ) {
       totalCount
