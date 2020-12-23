@@ -230,8 +230,8 @@ exports.createPages = ({ actions, graphql }) => {
       createPage({
         path: i === 0 ? `/archive/` : `/archive/${i + 1}`,
         // path: i === 0 ? `/` : `/${i + 1}`,
-        component: path.resolve('src/templates/blog-list.js'),
-        // component: path.resolve('src/pages/archive.js'),
+        // component: path.resolve('src/templates/blog-list.js'),
+        component: path.resolve('src/pages/archive.js'),
         context: {
           limit: postsPerPage,
           skip: i * postsPerPage,

@@ -24,34 +24,31 @@ const ArchivePage = ({ data, pageContext }) => {
     }
   }
 
+  console.log(pageContext);
+
   return (
     <Layout>
       <SEO title="Archive" />
       <h2>Archive</h2>
       <div>
-        <form>
-          <input 
-            type="button"
-            value="blog"
-            onClick={handleFilter}
-          >
-            Blog
-          </input>
-          <input 
-            type="button"
-            value="magazine"
-            onClick={handleFilter}
-          >
-            Magazine
-          </input>
-          <input 
-            type="button"
-            value="none"
-            onClick={handleFilter}
-          >
-            None
-          </input>
-        </form>
+        <button 
+          value="blog"
+          onClick={handleFilter}
+        >
+          Blog
+        </button>
+        <button 
+          value="magazine"
+          onClick={handleFilter}
+        >
+          Magazine
+        </button>
+        <button 
+          value="none"
+          onClick={handleFilter}
+        >
+          None
+        </button>
       </div>
       <div>
         <ul>
@@ -90,7 +87,7 @@ export default ArchivePage;
 
 // gql query
 export const archiveQuery = graphql`
-  query ArchiveQuery($skip: Int! = 0, $limit: Int!) {
+  query ArchiveQuery($skip: Int! = 0, $limit: Int! = 10) {
     allStrapiArticle(
       sort: { fields: [created_at], order: DESC }
       limit: $limit
