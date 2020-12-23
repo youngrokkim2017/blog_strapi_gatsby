@@ -81,6 +81,7 @@ const ArchivePage = ({ data, pageContext }) => {
         </ul>
       </div>
       <div>
+        {/* <Pagination currentPage={pageContext.currentPage} totalCount={data.allStrapiArticle.totalCount} /> */}
         <Pagination currentPage={1} totalCount={data.allStrapiArticle.totalCount} />
       </div>
     </Layout>
