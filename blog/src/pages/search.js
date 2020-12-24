@@ -1,12 +1,16 @@
 import React, { useState } from "react"
+// import React, { useState, lazy, Suspense } from "react"
+// import React, { useState, useRef } from "react"
 import { Link, graphql, useStaticQuery } from "gatsby"
-import Img from 'gatsby-image';
+// import Img from 'gatsby-image';
 // import Layout from "../components/layout"
 // import SEO from "../components/seo"
-import ReactMarkdown from "react-markdown"
+// import ReactMarkdown from "react-markdown"
 import logo from "../images/logo.png"
-import Fuse from "fuse.js"  // fuzzy search
-import Highlight from 'react-highlighter';
+// import Fuse from "fuse.js"  // fuzzy search
+// import Highlight from 'react-highlighter'
+import SearchContainer from '../components/searchContainer'
+// const SearchComponent = lazy(() => import('../components/searchContainer'));
 
 // const SearchPage = ({ data, location }) => {
 const SearchPage = ({ location }) => {
@@ -56,43 +60,43 @@ const SearchPage = ({ location }) => {
   // const sortedData = data.allStrapiArticle.edges.sort((a, b) => b.id - a.id).slice(0, 5);
 
   ///////////////////////////// FUSE SEARCH ///////////////////////////////////
-  // const unsortedData = data.allStrapiArticle.edges;
-  let index = (location.state === null || !location.state) ? "" : location.state.searchQuery;
+  // // const unsortedData = data.allStrapiArticle.edges;
+  // let index = (location.state === null || !location.state) ? "" : location.state.searchQuery;
 
-  const options = {
-      // keys: [
-      //     'node.title',
-      //     'node.author',
-      //     'node.content',
-      // ],
-      keys: [
-        {
-            name: 'node.title',
-            weight: 0.6,
-        },
-        {
-            name: 'node.author',
-            weight: 0.1,
-        },
-        {
-            name: 'node.content',
-            weight: 0.3,
-        },
-      ],
-      includeScore: true,
-      shouldSort: true,
-      threshold: 0.3,  // default 0.6
-  };
-  // const fuse = new Fuse(unsortedData, options);
-  const fuse = new Fuse(data.allStrapiArticle.edges, options);
-  const results = fuse.search(index, { limit: 10 });
-  // const searchResults = results.length > 0 ? results.map(result => result.item) : unsortedData.slice(0, 5);
-  const searchResults = results.length > 0 ? results.map(result => result.item) : data.allStrapiArticle.edges.slice(0, 5);
+  // const options = {
+  //     // keys: [
+  //     //     'node.title',
+  //     //     'node.author',
+  //     //     'node.content',
+  //     // ],
+  //     keys: [
+  //       {
+  //           name: 'node.title',
+  //           weight: 0.6,
+  //       },
+  //       {
+  //           name: 'node.author',
+  //           weight: 0.1,
+  //       },
+  //       {
+  //           name: 'node.content',
+  //           weight: 0.3,
+  //       },
+  //     ],
+  //     includeScore: true,
+  //     shouldSort: true,
+  //     threshold: 0.3,  // default 0.6
+  // };
+  // // const fuse = new Fuse(unsortedData, options);
+  // const fuse = new Fuse(data.allStrapiArticle.edges, options);
+  // const results = fuse.search(index, { limit: 10 });
+  // // const searchResults = results.length > 0 ? results.map(result => result.item) : unsortedData.slice(0, 5);
+  // const searchResults = results.length > 0 ? results.map(result => result.item) : data.allStrapiArticle.edges.slice(0, 5);
 
-  // search query results while on route '/search'
-  const currentResults = fuse.search(query, { limit: 10 });
-  // const currentSearchResults = query.length > 3 ? currentResults.map(result => result.item) : unsortedData.slice(0, 5);
-  const currentSearchResults = query.length > 3 ? currentResults.map(result => result.item) : data.allStrapiArticle.edges.slice(0, 5);
+  // // search query results while on route '/search'
+  // const currentResults = fuse.search(query, { limit: 10 });
+  // // const currentSearchResults = query.length > 3 ? currentResults.map(result => result.item) : unsortedData.slice(0, 5);
+  // const currentSearchResults = query.length > 3 ? currentResults.map(result => result.item) : data.allStrapiArticle.edges.slice(0, 5);
 
   function handleOnSearch({ currentTarget = {} }) {
     const { value } = currentTarget;
@@ -156,13 +160,19 @@ const SearchPage = ({ location }) => {
         {/* <button tpe="submit">SEARCH</button> */}
       </form>
     </div>
-    { query.length > 3 ?
+    <SearchContainer query={query} articles={data.allStrapiArticle.edges} location={location} />
+    {/* <div>
+      <Suspense fallback={<div>Loading...</div>}>
+        <SearchComponent query={query} articles={data.allStrapiArticle.edges} location={location} />
+      </Suspense>
+    </div> */}
+    {/* { query.length > 3 ?
     <div>
       <ul>
         {currentSearchResults.map(document => (
           <li key={document.node.id}>
             <h2>
-              <Link to={`/blog/${document.node.id}`} style={{ textDecoration: `none` }}>
+              <Link to={`/blog/${document.node.title.split(" ").join("-")}`} style={{ textDecoration: `none` }} style={{ textDecoration: `none` }}>
                 <Highlight search={query}>{document.node.title}</Highlight>
               </Link>
             </h2>
@@ -188,7 +198,7 @@ const SearchPage = ({ location }) => {
         {searchResults.map(document => (
           <li key={document.node.id}>
             <h2>
-              <Link to={`/blog/${document.node.id}`} style={{ textDecoration: `none` }}>
+              <Link to={`/blog/${document.node.title.split(" ").join("-")}`} style={{ textDecoration: `none` }} style={{ textDecoration: `none` }}>
                 <Highlight search={query}>{document.node.title}</Highlight>
               </Link>
             </h2>
@@ -210,7 +220,7 @@ const SearchPage = ({ location }) => {
         ))}
       </ul>
     </div>
-    }
+    } */}
     <nav>
       <div>
         {/* links to about, subscribe, etc */}
