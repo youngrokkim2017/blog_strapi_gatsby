@@ -124,7 +124,7 @@ const ArticleTemplate = ({ data, pageContext }) => {
       </div>
 
       <hr className="border-black mt-16" />
-      <div class="flex">
+      <div className="flex">
         <div className='flex-grow mt-4'>
           <h2 className='text-3xl font-semibold m-0'>
             Related Articles
