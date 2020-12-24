@@ -6,7 +6,6 @@ import ReactMarkdown from "react-markdown"
 import Fuse from "fuse.js"  // fuzzy search
 import Highlight from 'react-highlighter';
 
-
 const SearchContainer = ({query, articles, location}) => {
   ///////////////////////////// FUSE SEARCH ///////////////////////////////////
   // const unsortedData = data.allStrapiArticle.edges;
@@ -28,7 +27,7 @@ const SearchContainer = ({query, articles, location}) => {
         },
       ],
       includeScore: true,
-      shouldSort: true,
+      // shouldSort: true,
       threshold: 0.3,  // default 0.6
   };
   const fuse = new Fuse(articles, options);
@@ -36,12 +35,13 @@ const SearchContainer = ({query, articles, location}) => {
   const searchResults = results.length > 0 ? results.map(result => result.item) : articles;
 
   const currentResults = fuse.search(query, { limit: 10 });
-  const currentSearchResults = query.length > 3 ? currentResults.map(result => result.item) : articles;
+  const currentSearchResults = query.length > 2 ? currentResults.map(result => result.item) : articles;
   ///////////////////////////// FUSE SEARCH ///////////////////////////////////
+  // console.log(results)
 
   return (
   <div>
-    { query.length > 3 ?
+    { query.length > 2 ?
     <div>
       <ul>
         {currentSearchResults.map(document => (
