@@ -1,4 +1,5 @@
-import React, { useState } from "react"
+// import React, { useState } from "react"
+import React, { useState, useRef } from "react"
 import { Link, graphql, useStaticQuery } from "gatsby"
 import Img from 'gatsby-image';
 // import Layout from "../components/layout"
@@ -7,6 +8,8 @@ import ReactMarkdown from "react-markdown"
 import logo from "../images/logo.png"
 import Fuse from "fuse.js"  // fuzzy search
 import Highlight from 'react-highlighter';
+
+// import { useHasBeenVisible } from '../hooks/useVisibility';
 
 // const SearchPage = ({ data, location }) => {
 const SearchPage = ({ location }) => {
@@ -47,6 +50,12 @@ const SearchPage = ({ location }) => {
       }
     }
   `)
+
+  // // LAZY LOADING
+  // const halfPage = useRef();
+  // const preload = useRef();
+  // const hasScrolled = useHasBeenVisible(halfPage);
+  // const isScrolling = useHasBeenVisible(preload);
 
   const [query, setQuery] = useState('');
   // const [input, setInput] = useState('');
