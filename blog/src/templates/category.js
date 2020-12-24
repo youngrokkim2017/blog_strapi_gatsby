@@ -7,7 +7,7 @@ const CategoryTemplate = ({ data }) => (
   <Layout>
     <h2>{data.strapiCategory.title}</h2>
     <ul>
-      {data.strapiCategory.articles.map(document => (
+      {data.strapiCategory.articles.reverse().slice(0, 10).map(document => (
         <li key={document.id}  className="flex mb-12 max-w-full border-t pt-8">
             <div className="mr-4">
               {document.image ?
