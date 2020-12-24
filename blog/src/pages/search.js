@@ -97,9 +97,9 @@ const SearchPage = ({ location }) => {
   // search query results while on route '/search'
   const currentResults = fuse.search(query, { limit: 10 });
   // const currentSearchResults = query.length > 3 ? currentResults.map(result => result.item) : unsortedData.slice(0, 5);
-  const currentSearchResults = query.length > 2 ? currentResults.map(result => result.item) : data.allStrapiArticle.edges.slice(0, 5);
+  const currentSearchResults = query.length > 2 ? currentResults.reverse().map(result => result.item) : data.allStrapiArticle.edges.slice(0, 5);
 
-  console.log(results, location.state.searchQuery, query)
+  console.log(currentResults, location.state.searchQuery, query)
 
   function handleOnSearch({ currentTarget = {} }) {
     const { value } = currentTarget;
@@ -152,7 +152,7 @@ const SearchPage = ({ location }) => {
     </nav>
     <div>
       {/* <form onSubmit={handleSubmit}> */}
-      <form>
+      {/* <form> */}
         <input 
           type="text" 
           placeholder="Search" 
@@ -161,7 +161,7 @@ const SearchPage = ({ location }) => {
           onChange={handleOnSearch} 
         />
         {/* <button tpe="submit">SEARCH</button> */}
-      </form>
+      {/* </form> */}
     </div>
     {/* <SearchContainer query={query} articles={data.allStrapiArticle.edges} location={location} dangerouslySetInnerHTML={createMarkup()}/> */}
     {/* <div>
