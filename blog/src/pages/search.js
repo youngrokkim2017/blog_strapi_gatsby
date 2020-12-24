@@ -2,14 +2,14 @@ import React, { useState } from "react"
 // import React, { useState, lazy, Suspense } from "react"
 // import React, { useState, useRef } from "react"
 import { Link, graphql, useStaticQuery } from "gatsby"
-// import Img from 'gatsby-image';
+import Img from 'gatsby-image';
 // import Layout from "../components/layout"
 // import SEO from "../components/seo"
-// import ReactMarkdown from "react-markdown"
+import ReactMarkdown from "react-markdown"
 import logo from "../images/logo.png"
-// import Fuse from "fuse.js"  // fuzzy search
-// import Highlight from 'react-highlighter'
-import SearchContainer from '../components/searchContainer'
+import Fuse from "fuse.js"  // fuzzy search
+import Highlight from 'react-highlighter'
+// import SearchContainer from '../components/searchContainer'
 // const SearchComponent = lazy(() => import('../components/searchContainer'));
 
 // const SearchPage = ({ data, location }) => {
@@ -53,6 +53,7 @@ const SearchPage = ({ location }) => {
   `)
 
   const [query, setQuery] = useState('');
+  // const [query, setQuery] = useState(location.state.searchQuery);
   // const [input, setInput] = useState('');
 
   // const unsortedData = data.allStrapiArticle.edges;
@@ -60,43 +61,45 @@ const SearchPage = ({ location }) => {
   // const sortedData = data.allStrapiArticle.edges.sort((a, b) => b.id - a.id).slice(0, 5);
 
   ///////////////////////////// FUSE SEARCH ///////////////////////////////////
-  // // const unsortedData = data.allStrapiArticle.edges;
-  // let index = (location.state === null || !location.state) ? "" : location.state.searchQuery;
+  // const unsortedData = data.allStrapiArticle.edges;
+  let index = (location.state === null || !location.state) ? "" : location.state.searchQuery;
 
-  // const options = {
-  //     // keys: [
-  //     //     'node.title',
-  //     //     'node.author',
-  //     //     'node.content',
-  //     // ],
-  //     keys: [
-  //       {
-  //           name: 'node.title',
-  //           weight: 0.6,
-  //       },
-  //       {
-  //           name: 'node.author',
-  //           weight: 0.1,
-  //       },
-  //       {
-  //           name: 'node.content',
-  //           weight: 0.3,
-  //       },
-  //     ],
-  //     includeScore: true,
-  //     shouldSort: true,
-  //     threshold: 0.3,  // default 0.6
-  // };
-  // // const fuse = new Fuse(unsortedData, options);
-  // const fuse = new Fuse(data.allStrapiArticle.edges, options);
-  // const results = fuse.search(index, { limit: 10 });
-  // // const searchResults = results.length > 0 ? results.map(result => result.item) : unsortedData.slice(0, 5);
-  // const searchResults = results.length > 0 ? results.map(result => result.item) : data.allStrapiArticle.edges.slice(0, 5);
+  const options = {
+      // keys: [
+      //     'node.title',
+      //     'node.author',
+      //     'node.content',
+      // ],
+      keys: [
+        {
+            name: 'node.title',
+            weight: 0.6,
+        },
+        {
+            name: 'node.author',
+            weight: 0.1,
+        },
+        {
+            name: 'node.content',
+            weight: 0.3,
+        },
+      ],
+      includeScore: true,
+      shouldSort: true,
+      threshold: 0.3,  // default 0.6
+  };
+  // const fuse = new Fuse(unsortedData, options);
+  const fuse = new Fuse(data.allStrapiArticle.edges, options);
+  const results = fuse.search(index, { limit: 10 });
+  // const searchResults = results.length > 0 ? results.map(result => result.item) : unsortedData.slice(0, 5);
+  const searchResults = results.length > 0 ? results.map(result => result.item) : data.allStrapiArticle.edges.slice(0, 5);
 
-  // // search query results while on route '/search'
-  // const currentResults = fuse.search(query, { limit: 10 });
-  // // const currentSearchResults = query.length > 3 ? currentResults.map(result => result.item) : unsortedData.slice(0, 5);
-  // const currentSearchResults = query.length > 3 ? currentResults.map(result => result.item) : data.allStrapiArticle.edges.slice(0, 5);
+  // search query results while on route '/search'
+  const currentResults = fuse.search(query, { limit: 10 });
+  // const currentSearchResults = query.length > 3 ? currentResults.map(result => result.item) : unsortedData.slice(0, 5);
+  const currentSearchResults = query.length > 2 ? currentResults.reverse().map(result => result.item) : data.allStrapiArticle.edges.slice(0, 5);
+
+  console.log(currentResults, location.state.searchQuery, query)
 
   function handleOnSearch({ currentTarget = {} }) {
     const { value } = currentTarget;
@@ -149,7 +152,7 @@ const SearchPage = ({ location }) => {
     </nav>
     <div>
       {/* <form onSubmit={handleSubmit}> */}
-      <form>
+      {/* <form> */}
         <input 
           type="text" 
           placeholder="Search" 
@@ -158,47 +161,21 @@ const SearchPage = ({ location }) => {
           onChange={handleOnSearch} 
         />
         {/* <button tpe="submit">SEARCH</button> */}
-      </form>
+      {/* </form> */}
     </div>
-    <SearchContainer query={query} articles={data.allStrapiArticle.edges} location={location} />
+    {/* <SearchContainer query={query} articles={data.allStrapiArticle.edges} location={location} dangerouslySetInnerHTML={createMarkup()}/> */}
     {/* <div>
       <Suspense fallback={<div>Loading...</div>}>
         <SearchComponent query={query} articles={data.allStrapiArticle.edges} location={location} />
       </Suspense>
     </div> */}
-    {/* { query.length > 3 ?
+    { query.length > 2 ?
     <div>
       <ul>
         {currentSearchResults.map(document => (
           <li key={document.node.id}>
             <h2>
-              <Link to={`/blog/${document.node.title.split(" ").join("-")}`} style={{ textDecoration: `none` }} style={{ textDecoration: `none` }}>
-                <Highlight search={query}>{document.node.title}</Highlight>
-              </Link>
-            </h2>
-            <h4><Highlight search={query}>By{" "}{document.node.author}</Highlight></h4>
-            {
-              document.node.image
-              ?
-              <Img fixed={document.node.image.childImageSharp.fixed} />
-              :
-              ""
-            }
-            <ReactMarkdown
-              source={<Highlight search={query}>{`${document.node.content.slice(0,500)}...`}</Highlight>}
-              transformImageUri={uri => uri.startsWith('http') ? uri : `${process.env.IMAGE_BASE_URL}${uri}`}
-            />
-          </li>
-        ))}
-      </ul>
-    </div>
-    :
-    <div>
-      <ul>
-        {searchResults.map(document => (
-          <li key={document.node.id}>
-            <h2>
-              <Link to={`/blog/${document.node.title.split(" ").join("-")}`} style={{ textDecoration: `none` }} style={{ textDecoration: `none` }}>
+              <Link to={`/blog/${document.node.title.split(" ").join("-")}`} style={{ textDecoration: `none` }}>
                 <Highlight search={query}>{document.node.title}</Highlight>
               </Link>
             </h2>
@@ -220,7 +197,35 @@ const SearchPage = ({ location }) => {
         ))}
       </ul>
     </div>
-    } */}
+    :
+    <div>
+      <ul>
+        {searchResults.map(document => (
+          <li key={document.node.id}>
+            <h2>
+              <Link to={`/blog/${document.node.title.split(" ").join("-")}`} style={{ textDecoration: `none` }}>
+                <Highlight search={query}>{document.node.title}</Highlight>
+              </Link>
+            </h2>
+            <h4><Highlight search={query}>By{" "}{document.node.author}</Highlight></h4>
+            {
+              document.node.image
+              ?
+              <Img fixed={document.node.image.childImageSharp.fixed} />
+              :
+              ""
+            }
+            <Highlight search={query}>
+              <ReactMarkdown
+                source={`${document.node.content.slice(0,500)}...`}
+                transformImageUri={uri => uri.startsWith('http') ? uri : `${process.env.IMAGE_BASE_URL}${uri}`}
+              />
+            </Highlight>
+          </li>
+        ))}
+      </ul>
+    </div>
+    }
     <nav>
       <div>
         {/* links to about, subscribe, etc */}
