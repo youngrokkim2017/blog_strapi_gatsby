@@ -43,8 +43,8 @@ body {
     border-color:#000!important;
 }
 
-/* .hr-overflow{
+.hr-overflow{
     margin-left: calc(50% - 50vw);
     margin-right: calc(50% - 50vw);
     width: 100vw;
-} */
+}

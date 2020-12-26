@@ -44,6 +44,8 @@ module.exports = {
   ],
   variants: {
     textColor: ['active'],
-    borderColor: ['focus-within']
+    borderColor: ['focus-within'],
+    backgroundColor: ['focus-within'],
+    backgroundOpacity: ['focus-within']
   },
 }
