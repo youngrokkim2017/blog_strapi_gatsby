@@ -125,7 +125,7 @@ const SearchPage = ({ location }) => {
   <div>
     <nav className="text-black mb-12 container mx-auto sans-serif">
       <div className="border-b py-4" style={{ borderBottomColor: '#ECECF3' }}>
-        <div className="flex mx-auto items-center justify-between flex-wrap">
+        {/* <div className="flex mx-auto items-center justify-between flex-wrap">
           <div className="w-1/4">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="text-black">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
@@ -135,6 +135,21 @@ const SearchPage = ({ location }) => {
             <Link to="/" className="font-semibold text-2xl tracking-tight">
               <img src={logo} alt="Logo" className="sm:h-12 mx-auto" />
             </Link>
+          </div>
+        </div> */}
+        <div className="flex mx-auto items-center justify-between flex-wrap">
+          <div className="w-1/4">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="text-black">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          </div>
+          <div className="flex items-center text-center">
+            <Link to="/" className="font-semibold text-2xl tracking-tight">
+              <img src={logo} alt="Logo" className="sm:h-10 mx-auto" />
+            </Link>
+          </div>
+          <div className="relative w-1/4 flex justify-end items-center">
+            
           </div>
         </div>
       </div>
@@ -236,9 +251,9 @@ const SearchPage = ({ location }) => {
       </ul>
     </div>
     }
-    <nav className="border-t border-black mt-16 sans-serif bg-white text-black pb-8">
+    <nav className="border-t border-black mt-16 sans-serif bg-black text-white px-4 sm:px-0 pb-12">
       <div className="container mx-auto mt-8">
-        <div className="block flex-grow lg:flex lg:w-auto">
+        <div className="block flex-grow lg:flex lg:w-auto space-y-8 lg:space-y-0">
           {/* links to about, subscribe, etc */}
           <div className="text-md lg:flex-grow">
             <h2 className="font-bold mb-2">About Us</h2>
@@ -287,7 +302,11 @@ const SearchPage = ({ location }) => {
                 <span>Email</span>
               </a> */}
             </div>
-            <MailchimpComponent />
+            {/* <MailchimpComponent /> */}
+            <div className="text-md lg:flex-shrink max-w-sm">
+              <h2 className="font-bold mb-8 lg:mb-12">Contact Us</h2>
+              <MailchimpComponent />
+            </div>
           </div>
         </div>
       </div>
