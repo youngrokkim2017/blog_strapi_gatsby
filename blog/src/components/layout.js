@@ -8,25 +8,14 @@ import Footer from './footer'
 import "./css/styles.css"
 
 const Layout = ({ children }) => {
-  // const data = useStaticQuery(graphql`
-  //   query SiteTitleQuery {
-  //     site {
-  //       siteMetadata {
-  //         title
-  //       }
-  //     }
-  //   }
-  // `)
-
   return (
-    <>
-      {/* <Header siteTitle={data.site.siteMetadata?.title || `Title`} /> */}
+    <div className="flex flex-col min-h-screen justify-between">
       <Header />
       <div>
         <main className='container mx-auto'>{children}</main>
       </div>
       <Footer />
-    </>
+    </div>
   )
 }
 
