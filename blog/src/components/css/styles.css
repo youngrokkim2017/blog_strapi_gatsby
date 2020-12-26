@@ -48,3 +48,9 @@ body {
     margin-right: calc(50% - 50vw);
     width: 100vw;
 }
+
+.required > label::after {
+    content: "*";
+    color: #f00;
+    margin-left: 1px;
+}

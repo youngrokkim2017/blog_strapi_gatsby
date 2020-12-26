@@ -5,7 +5,8 @@ import Layout from "../components/layout"
 
 const CategoryTemplate = ({ data }) => (
   <Layout>
-    <h2>{data.strapiCategory.title}</h2>
+    {/* <h2>{data.strapiCategory.title}</h2> */}
+    <h2 className="font-normal mt-2 text-4xl leading-tight">{data.strapiCategory.title}</h2>
     <ul>
       {data.strapiCategory.articles.reverse().slice(0, 10).map(document => (
         <li key={document.id}  className="flex mb-12 max-w-full border-t pt-8">
@@ -16,7 +17,7 @@ const CategoryTemplate = ({ data }) => (
                   ""
               }
             </div>
-            <div className="antialiased leading-relaxed sans-serif">
+            <div className="antialiased leading-relaxed">
               <h2>
                 {/* <Link to={`/blog/Article_${document.id}`} style={{ textDecoration: `none` }}> */}
                 <Link to={`/blog/${document.title.split(" ").map((category) => category.toLowerCase()).join("-")}`} style={{ textDecoration: `none` }}>
