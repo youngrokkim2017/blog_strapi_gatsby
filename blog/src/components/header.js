@@ -30,7 +30,7 @@ const Header = () => {
           </div>
           <div className="flex items-center text-center">
             <Link to="/" className="font-semibold text-2xl tracking-tight">
-              <img src={logo} alt="Logo" className="sm:h-12 mx-auto" />
+              <img src={logo} alt="Logo" className="sm:h-10 mx-auto" />
             </Link>
           </div>
           <div className="relative w-1/4 flex justify-end">
@@ -79,14 +79,14 @@ const Header = () => {
                     to={`/categories/${document.node.title.split(" ").map((category) => category.toLowerCase()).join("-")}`} 
                     // to={`/categories/${document.node.title.split(" ").join("-")}/1`} 
                     key={idx} 
-                    className="block mt-4 lg:inline-block lg:mt-0 mr-4">
+                    className="block mt-4 lg:inline-block lg:mt-0">
                     {document.node.title}
                   </Link>
                 ))}
 
                 <Link 
                   to="/archive/1" 
-                  className="block mt-4 lg:inline-block lg:mt-0 mr-4">
+                  className="block mt-4 lg:inline-block lg:mt-0">
                   Archive
                 </Link>
               </div>
