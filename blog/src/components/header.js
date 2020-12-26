@@ -12,6 +12,7 @@ const Header = () => {
 
     navigate(
       "/search/",
+      // `/search/${query}`,
       {
         state: { searchQuery: query },
       }
@@ -72,23 +73,45 @@ const Header = () => {
             render={data => (
               <div className="text-sm space-x-4 mx-auto">
                 {data.allStrapiCategory.edges.map((document, idx) => (
-                  <Link
-                    to={`/categories/${document.node.id}`}
-                    key={idx}
-                    className=""
-                  >
+
+                  <Link 
+                    // to={`/categories/${document.node.id}`} 
+                    to={`/categories/${document.node.title.split(" ").join("-")}`} 
+                    // to={`/categories/${document.node.title.split(" ").join("-")}/1`} 
+                    key={idx} 
+                    className="block mt-4 lg:inline-block lg:mt-0 mr-4">
                     {document.node.title}
                   </Link>
                 ))}
-                <Link
-                  to="/archive/"
-                  className=""
-                >
+
+                <Link 
+                  to="/archive/1" 
+                  className="block mt-4 lg:inline-block lg:mt-0 mr-4">
                   Archive
                 </Link>
               </div>
             )}
           />
+          <div>
+            <form onSubmit={handleNavigate}>
+              <input
+                type="text"
+                placeholder="Search"
+                value={query}
+                onChange={(e) => setQuery(e.target.value)}
+              />
+              {/* <Link to={'/blog'} state={{ searchQuery: query }}>SEARCH</Link> */}
+              <button type="submit">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="text-black">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                </svg>
+                {/* <span>Quick search
+                      <span class="hidden sm:inline"> for anything
+                      </span>
+                </span> */}
+              </button>
+            </form>
+          </div>
         </div>
       </div>
 

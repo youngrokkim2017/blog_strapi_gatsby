@@ -1,4 +1,6 @@
 import React, { useState } from "react"
+// import React, { useState, lazy, Suspense } from "react"
+// import React, { useState, useRef } from "react"
 import { Link, graphql, useStaticQuery } from "gatsby"
 import Img from 'gatsby-image';
 // import Layout from "../components/layout"
@@ -6,7 +8,9 @@ import Img from 'gatsby-image';
 import ReactMarkdown from "react-markdown"
 import logo from "../images/logo.png"
 import Fuse from "fuse.js"  // fuzzy search
-import Highlight from 'react-highlighter';
+import Highlight from 'react-highlighter'
+// import SearchContainer from '../components/searchContainer'
+// const SearchComponent = lazy(() => import('../components/searchContainer'));
 
 // const SearchPage = ({ data, location }) => {
 const SearchPage = ({ location }) => {
@@ -49,6 +53,7 @@ const SearchPage = ({ location }) => {
   `)
 
   const [query, setQuery] = useState('');
+  // const [query, setQuery] = useState(location.state.searchQuery);
   // const [input, setInput] = useState('');
 
   // const unsortedData = data.allStrapiArticle.edges;
@@ -92,7 +97,9 @@ const SearchPage = ({ location }) => {
   // search query results while on route '/search'
   const currentResults = fuse.search(query, { limit: 10 });
   // const currentSearchResults = query.length > 3 ? currentResults.map(result => result.item) : unsortedData.slice(0, 5);
-  const currentSearchResults = query.length > 3 ? currentResults.map(result => result.item) : data.allStrapiArticle.edges.slice(0, 5);
+  const currentSearchResults = query.length > 2 ? currentResults.reverse().map(result => result.item) : data.allStrapiArticle.edges.slice(0, 5);
+
+  console.log(currentResults, location.state.searchQuery, query)
 
   function handleOnSearch({ currentTarget = {} }) {
     const { value } = currentTarget;
@@ -145,7 +152,7 @@ const SearchPage = ({ location }) => {
     </nav>
     <div>
       {/* <form onSubmit={handleSubmit}> */}
-      <form>
+      {/* <form> */}
         <input 
           type="text" 
           placeholder="Search" 
@@ -154,15 +161,21 @@ const SearchPage = ({ location }) => {
           onChange={handleOnSearch} 
         />
         {/* <button tpe="submit">SEARCH</button> */}
-      </form>
+      {/* </form> */}
     </div>
-    { query.length > 3 ?
+    {/* <SearchContainer query={query} articles={data.allStrapiArticle.edges} location={location} dangerouslySetInnerHTML={createMarkup()}/> */}
+    {/* <div>
+      <Suspense fallback={<div>Loading...</div>}>
+        <SearchComponent query={query} articles={data.allStrapiArticle.edges} location={location} />
+      </Suspense>
+    </div> */}
+    { query.length > 2 ?
     <div>
       <ul>
         {currentSearchResults.map(document => (
           <li key={document.node.id}>
             <h2>
-              <Link to={`/blog/${document.node.id}`} style={{ textDecoration: `none` }}>
+              <Link to={`/blog/${document.node.title.split(" ").join("-")}`} style={{ textDecoration: `none` }}>
                 <Highlight search={query}>{document.node.title}</Highlight>
               </Link>
             </h2>
@@ -174,10 +187,12 @@ const SearchPage = ({ location }) => {
               :
               ""
             }
-            <ReactMarkdown
-              source={<Highlight search={query}>{`${document.node.content.slice(0,500)}...`}</Highlight>}
-              transformImageUri={uri => uri.startsWith('http') ? uri : `${process.env.IMAGE_BASE_URL}${uri}`}
-            />
+            <Highlight search={query}>
+              <ReactMarkdown
+                source={`${document.node.content.slice(0,500)}...`}
+                transformImageUri={uri => uri.startsWith('http') ? uri : `${process.env.IMAGE_BASE_URL}${uri}`}
+              />
+            </Highlight>
           </li>
         ))}
       </ul>
@@ -188,7 +203,7 @@ const SearchPage = ({ location }) => {
         {searchResults.map(document => (
           <li key={document.node.id}>
             <h2>
-              <Link to={`/blog/${document.node.id}`} style={{ textDecoration: `none` }}>
+              <Link to={`/blog/${document.node.title.split(" ").join("-")}`} style={{ textDecoration: `none` }}>
                 <Highlight search={query}>{document.node.title}</Highlight>
               </Link>
             </h2>
@@ -296,3 +311,21 @@ export default SearchPage;
 //     }
 //   }
 // `
+
+
+// // DYNAMIC SEARCH PAGE
+// import React from 'react'
+// import { Router } from '@reach/router';
+// import FuseSearch from '../components/fusesearch';
+
+// const SearchPage = ({ location }) => {
+//   return (
+//     <div>
+//       <Router>
+//         <FuseSearch path="/search/:query" />
+//       </Router>
+//     </div>
+//   )
+// }
+
+// export default SearchPage;
