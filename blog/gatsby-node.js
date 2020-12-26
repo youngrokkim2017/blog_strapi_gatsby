@@ -213,7 +213,7 @@ exports.createPages = ({ actions, graphql }) => {
       createPage({
         // path: `/blog/${article.node.id}`,
         // component: path.resolve(`./src/templates/blog-post.js`),
-        path: `/blog/${article.node.title.split(" ").join("-")}`,
+        path: `/blog/${article.node.title.split(" ").map((category) => category.toLowerCase()).join("-")}`,
         component: path.resolve(`src/templates/article.js`),
         context: {
           id: article.node.id,
@@ -278,7 +278,7 @@ exports.createPages = ({ actions, graphql }) => {
     result.data.allStrapiCategory.edges.forEach(({ node }) => {
       createPage({
         // path: `/categories/${node.id}`,
-        path: `/categories/${node.title.split(" ").join("-")}`,
+        path: `/categories/${node.title.split(" ").map((category) => category.toLowerCase()).join("-")}`,
         component: path.resolve(`src/templates/category.js`),
         context: {
           id: node.id,

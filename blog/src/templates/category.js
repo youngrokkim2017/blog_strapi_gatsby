@@ -19,7 +19,7 @@ const CategoryTemplate = ({ data }) => (
             <div className="antialiased leading-relaxed sans-serif">
               <h2>
                 {/* <Link to={`/blog/Article_${document.id}`} style={{ textDecoration: `none` }}> */}
-                <Link to={`/blog/${document.title.split(" ").join("-")}`} style={{ textDecoration: `none` }}>
+                <Link to={`/blog/${document.title.split(" ").map((category) => category.toLowerCase()).join("-")}`} style={{ textDecoration: `none` }}>
                   {document.title}
                 </Link>
               </h2>
