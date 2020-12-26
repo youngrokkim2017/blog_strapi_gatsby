@@ -66,7 +66,7 @@ const ArchivePage = ({ data, pageContext }) => {
                 </div>
                 <div className="antialiased leading-relaxed sans-serif">
                   <h2>
-                    <Link to={`/blog/${document.node.title.split(" ").join("-")}`} style={{ textDecoration: `none` }}>
+                    <Link to={`/blog/${document.node.title.split(" ").map((category) => category.toLowerCase()).join("-")}`} style={{ textDecoration: `none` }}>
                       {document.node.title}
                     </Link>
                   </h2>

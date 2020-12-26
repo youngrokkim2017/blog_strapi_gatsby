@@ -143,7 +143,7 @@ const SearchPage = ({ location }) => {
             <div className="text-sm space-x-4 mx-auto">
               {data.allStrapiCategory.edges.map((document, idx) => (
                 <Link 
-                  to={`/categories/${document.node.title.split(" ").join("-")}`} 
+                  to={`/categories/${document.node.title.split(" ").map((category) => category.toLowerCase()).join("-")}`} 
                   key={idx} 
                   className="block mt-4 lg:inline-block lg:mt-0 mr-4"
                 >
@@ -185,7 +185,7 @@ const SearchPage = ({ location }) => {
         {currentSearchResults.map(document => (
           <li key={document.node.id}>
             <h2>
-              <Link to={`/blog/${document.node.title.split(" ").join("-")}`} style={{ textDecoration: `none` }}>
+              <Link to={`/blog/${document.node.title.split(" ").map((category) => category.toLowerCase()).join("-")}`} style={{ textDecoration: `none` }}>
                 <Highlight search={query}>{document.node.title}</Highlight>
               </Link>
             </h2>
