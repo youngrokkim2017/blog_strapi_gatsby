@@ -43,7 +43,7 @@ class MailchimpComponent extends React.Component {
                 <h2 className="font-bold mb-1">Sign up for the BSR Newsletter</h2>
                 <div>
                 <p className="mb-4">Get an overview of our latest news, along with fascinating images and people. Sent about once a month.</p>
-                    <form onSubmit={this._handleSubmit} className="bg-gray-100 text-gray-600 flex items-center py-2 px-4 pr-2 border focus-within:border-blue-600">
+                    <form onSubmit={this._handleSubmit} className="border-black bg-gray-100 text-gray-600 flex items-center py-2 px-4 pr-2 border focus-within:border-blue-600 focus-within:bg-blue-100 focus-within:bg-opacity-50">
                         {/* <input
                             type="text"
                             onChange={this._handleChange}
@@ -55,9 +55,9 @@ class MailchimpComponent extends React.Component {
                             onChange={this._handleChange}
                             placeholder="Enter your email"
                             name="email"
-                            className="bg-transparent border-none w-full placeholder-gray-600 leading-tight focus:outline-none" 
+                            className="bg-transparent border-none w-full text-black placeholder-gray-600 leading-tight focus:outline-none mr-2" 
                         />
-                        <input type="submit" className="inline-block text-lg px-4 py-2 leading-none text-white bg-black flex-shrink-0 cursor-pointer"/>
+                        <input type="submit" className="inline-block px-4 py-2 leading-none text-white bg-black flex-shrink-0 cursor-pointer" value="Subscribe" />
                     </form>
                 </div>
             </>
