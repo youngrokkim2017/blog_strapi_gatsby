@@ -40,8 +40,12 @@
       "type": "string",
       "required": true
     },
+    "magazine": {
+      "model": "magazine-issues",
+      "via": "articles"
+    },
     "imageURL": {
-      "type": "string"
+      "type": "richtext"
     }
   }
 }
