@@ -4,6 +4,7 @@ import Img from "gatsby-image"
 import Layout from "../components/layout"
 import ReactMarkdown from "react-markdown"
 // import Fuse from "fuse.js"  // fuzzy search
+import Preview from "../components/preview"
 
 class ArticleTemplate extends React.Component {
   componentDidMount() {
@@ -25,10 +26,10 @@ class ArticleTemplate extends React.Component {
     }
     window.addEventListener("scroll", myScrollFunc);
   }
-  
+
   render() {
     const { data } = this.props;
-    
+
     function handleDate(e) {
       var d = new Date(e);
       const options = { year: 'numeric', month: 'long', day: 'numeric' };
@@ -59,16 +60,16 @@ class ArticleTemplate extends React.Component {
           <div className="flex-none">
             <div className="prose md:prose-lg antialiased leading-relaxed mx-auto text-black mb-12">
               <p className='my-0 tracking-tight text-lg sans-serif flex items-center'>
-      {/* Tags: */}
-          {
-            // data.strapiArticle.category
-            // ?
-            // data.strapiArticle.category.map((c, idx) => <Link to={`/categories/Category_${c.id}`} key={idx}>{c.title}</Link>)
-            // :
-            // ''
-          }
-          {/* <Link to={`/categories/Category_${data.strapiArticle.category.id}`} key={data.strapiArticle.category.id}>{data.strapiArticle.category.title}</Link> */}
-          
+                {/* Tags: */}
+                {
+                  // data.strapiArticle.category
+                  // ?
+                  // data.strapiArticle.category.map((c, idx) => <Link to={`/categories/Category_${c.id}`} key={idx}>{c.title}</Link>)
+                  // :
+                  // ''
+                }
+                {/* <Link to={`/categories/Category_${data.strapiArticle.category.id}`} key={data.strapiArticle.category.id}>{data.strapiArticle.category.title}</Link> */}
+
                 <span>Blog</span>
                 <svg xmlns="http://www.w3.org/2000/svg" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
@@ -76,9 +77,6 @@ class ArticleTemplate extends React.Component {
                 <span>Life Sciences & Technology</span>
               </p>
               <h2 className="font-normal mt-2 mb-4 text-4xl leading-tight">{data.strapiArticle.title}</h2>
-              <p className="text-lg mb-8">
-                As biologists, most of our days are spent toiling in a tucked-away lab prying at core questions important to biology.
-            </p>
               <div className="text-base not-italic leading-5 pb-12" id="metadata">
                 <p className='mb-2 text-base'>
                   By <Link to={"#"} className="font-medium underline">
@@ -132,11 +130,19 @@ class ArticleTemplate extends React.Component {
               </div>
             </div>
           </div>
-          <div className='w-1/5'>
+          <div className='w-1/5 ml-8'>
             <div className="sticky">
-            <h2 className='text-2xl font-semibold m-0 border-b border-black'>
-              Related Articles
+              <h2 className='text-2xl font-semibold m-0 mb-4 border-b border-black'>
+                Related Articles
             </h2>
+              <ul>
+                {data.allStrapiArticle.edges.reverse().slice(0, 3).map(document => (
+                  <li key={document.node.id} className="mt-4 pb-4 border-b" style={{ borderBottomColor: '#ECECF3' }}>
+                    <Preview article={document.node} format="small" />
+                  </li>
+                ))}
+              </ul>
+
             </div>
           </div>
         </div>
