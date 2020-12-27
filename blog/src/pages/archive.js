@@ -5,6 +5,7 @@ import Layout from "../components/layout"
 import SEO from "../components/seo"
 // import ReactMarkdown from "react-markdown"
 import Pagination from '../components/pagination'
+import Preview from "../components/preview"
 
 const ArchivePage = ({ data, pageContext }) => {
   const [articles, setArticles] = useState(data.allStrapiArticle.edges);
@@ -19,7 +20,7 @@ const ArchivePage = ({ data, pageContext }) => {
     if (value === "blog") {
       setArticles(data.allStrapiArticle.edges.filter((document) => document.magazine === null));
     }
-    
+
     if (value === "none") {
       setArticles(data.allStrapiArticle.edges);
     }
@@ -30,65 +31,72 @@ const ArchivePage = ({ data, pageContext }) => {
   return (
     <Layout>
       <SEO title="Archive" />
-      <h2>Archive</h2>
-      <div>
-        <button 
-          value="blog"
-          onClick={handleFilter}
-        >
-          Blog
+      <div className="">
+        <div className="border-b border-black mb-12">
+          <h2 className="font-normal text-4xl leading-tight">Archive</h2>
+        </div>
+        <div>
+          <button
+            value="blog"
+            onClick={handleFilter}
+          >
+            Blog
         </button>
-        <button 
-          value="magazine"
-          onClick={handleFilter}
-        >
-          Magazine
+          <button
+            value="magazine"
+            onClick={handleFilter}
+          >
+            Magazine
         </button>
-        <button 
-          value="none"
-          onClick={handleFilter}
-        >
-          None
+          <button
+            value="none"
+            onClick={handleFilter}
+          >
+            None
         </button>
-      </div>
-      <div>
-        <ul>
-          {articles.map(document => (
-            <li key={document.node.id} className="flex mb-12 max-w-full border-t pt-8">
-                <div className="mr-4">
-                  {
-                    document.node.image
-                      ?
-                      <Img fixed={document.node.image.childImageSharp.fixed} />
-                      :
-                      ""
-                  }
-                </div>
-                <div className="antialiased leading-relaxed sans-serif">
-                  <h2>
-                    <Link to={`/blog/${document.node.title.split(" ").map((category) => category.toLowerCase()).join("-")}`} style={{ textDecoration: `none` }}>
-                      {document.node.title}
-                    </Link>
-                  </h2>
-                  <h4>By{" "}{document.node.author}</h4>
-                  {/* <ReactMarkdown
-                    source={`${document.node.content.slice(0, 500)}...`}
-                    transformImageUri={uri => uri.startsWith('http') ? uri : `${process.env.IMAGE_BASE_URL}${uri}`}
-                  /> */}
-              </div>
-            </li>
+        </div>
+        <div>
+          <ul>
+            {articles.map(document => (
+              <li key={document.node.id} className="mb-6 pb-6 border-b" style={{ borderBottomColor: '#ECECF3' }}>
+                <Preview article={document.node} format="medium" />
+              </li>
+              // <li key={document.node.id} className="flex mb-12 max-w-full border-t pt-8">
+              //     <div className="mr-4">
+              //       {
+              //         document.node.image
+              //           ?
+              //           <Img fixed={document.node.image.childImageSharp.fixed} />
+              //           :
+              //           ""
+              //       }
+              //     </div>
+              //     <div className="antialiased leading-relaxed sans-serif">
+              //       <h2>
+              //         <Link to={`/blog/${document.node.title.split(" ").map((category) => category.toLowerCase()).join("-")}`} style={{ textDecoration: `none` }}>
+              //           {document.node.title}
+              //         </Link>
+              //       </h2>
+              //       <h4>By{" "}{document.node.author}</h4>
+              //       {/* <ReactMarkdown
+              //         source={`${document.node.content.slice(0, 500)}...`}
+              //         transformImageUri={uri => uri.startsWith('http') ? uri : `${process.env.IMAGE_BASE_URL}${uri}`}
+              //       /> */}
+              //   </div>
+              // </li>
+            ))}
+          </ul>
+        </div>
+        <div>
+          {/* <Pagination currentPage={1} totalCount={data.allStrapiArticle.totalCount} /> */}
+          <Pagination currentPage={pageContext.currentPage} totalCount={data.allStrapiArticle.totalCount} />
+          {Array.from({ length: pageContext.numPages }, (_, i) => (
+            // <Link key={`pagination-number${i + 1}`} to={`/${i === 0 ? "" : i + 1}`}>
+            <Link key={`pagination-number${i + 1}`} to={`/archive/${i + 1}`}>
+              {i + 1}
+            </Link>
           ))}
-        </ul>
-      </div>
-      <div>
-        {/* <Pagination currentPage={1} totalCount={data.allStrapiArticle.totalCount} /> */}
-        <Pagination currentPage={pageContext.currentPage} totalCount={data.allStrapiArticle.totalCount} />
-        {Array.from({ length: pageContext.numPages }, (_, i) => (
-          // <Link key={`pagination-number${i + 1}`} to={`/${i === 0 ? "" : i + 1}`}>
-          <Link key={`pagination-number${i + 1}`} to={`/archive/${i + 1}`}>
-            {i + 1}
-          </Link>
-        ))}
+        </div>
       </div>
     </Layout>
   )

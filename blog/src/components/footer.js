@@ -45,7 +45,6 @@ const Footer = () => {
                         <MailchimpComponent />
                     </div>
                 </div>
-
             </div>
         </nav>
     )
