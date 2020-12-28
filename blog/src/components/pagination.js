@@ -10,15 +10,30 @@ function Pagination({ totalCount, currentPage }) {
     // const pageNumbers = [(totalPages - (totalPages - currentPage + 2)), (totalPages - (totalPages - currentPage + 1)), (totalPages - (totalPages - currentPage)), (totalPages - (totalPages - currentPage - 1)), (totalPages - (totalPages - currentPage - 2))];
     // const filteredNumbers = pageNumbers.filter((num) => (num > firstpage && num < lastPage))
 
+    function getPagingRange(current, {min, total, length} = {}) {
+      if (length > total) length = total;
+
+      let start = current - Math.floor(length / 2);
+      start = Math.max(start, min);
+      start = Math.min(start, min + total - length);
+        
+      return Array.from({length: length}, (el, i) => start + i);
+    }
+    // // Examples:
+    // // console.log(getPagingRange(20)); // [16, 17, 18, 19, 20]
+    // // console.log(getPagingRange(3, {total: 4, length: 3})); // [2, 3, 4]
+    // console.log(getPagingRange(currentPage, {min: 1, total: totalPages, length: 5})); // [1, 2, 3]
+
     if (prevPage <= 0) {
         return (
             <div>
                 <div>
-                    {/* {Array.from([(totalPages - (totalPages - currentPage)), (totalPages - (totalPages - currentPage - 1)), (totalPages - (totalPages - currentPage - 2)), (totalPages - (totalPages - currentPage - 3)), (totalPages - (totalPages - currentPage - 4))], (page, i) => (
-                      <Link to={`/archive/${page}`}>
+                    {/* {Array.from([(totalPages - (totalPages - currentPage)), (totalPages - (totalPages - currentPage - 1)), (totalPages - (totalPages - currentPage - 2)), (totalPages - (totalPages - currentPage - 3)), (totalPages - (totalPages - currentPage - 4))], (page, i) => ( */}
+                    {Array.from(getPagingRange(currentPage, {min: 1, total: totalPages, length: 5}), (page, i) => (
+                      <Link to={`/archive/${page}`} key={i}>
                         {page}
                       </Link>
-                    ))} */}
+                    ))}
                     <Link to={`/archive/${nextPage}`}>
                         Next →
                     </Link>
@@ -38,11 +53,12 @@ function Pagination({ totalCount, currentPage }) {
                     <Link to={`/archive/${prevPage}`}>
                         ← Prev
                     </Link>
-                    {/* {Array.from([(totalPages - (totalPages - currentPage + 4)), (totalPages - (totalPages - currentPage + 3)), (totalPages - (totalPages - currentPage + 2)), (totalPages - (totalPages - currentPage + 1)), (totalPages - (totalPages - currentPage))], (page, i) => (
-                      <Link to={`/archive/${page}`}>
+                    {/* {Array.from([(totalPages - (totalPages - currentPage + 4)), (totalPages - (totalPages - currentPage + 3)), (totalPages - (totalPages - currentPage + 2)), (totalPages - (totalPages - currentPage + 1)), (totalPages - (totalPages - currentPage))], (page, i) => ( */}
+                    {Array.from(getPagingRange(currentPage, {min: 1, total: totalPages, length: 5}), (page, i) => (
+                      <Link to={`/archive/${page}`} key={i}>
                         {page}
                       </Link>
-                    ))} */}
+                    ))}
                 </div>
             </div>
         )
@@ -57,11 +73,11 @@ function Pagination({ totalCount, currentPage }) {
                         ← Prev
                     </Link>
                     {/* {Array.from([(totalPages - (totalPages - currentPage + 2)), (totalPages - (totalPages - currentPage + 1)), (totalPages - (totalPages - currentPage)), (totalPages - (totalPages - currentPage - 1)), (totalPages - (totalPages - currentPage - 2))], (page, i) => ( */}
-                    {/* {Array.from(filteredNumbers, (page, i) => (
-                      <Link to={`/archive/${page}`}>
+                    {Array.from(getPagingRange(currentPage, {min: 1, total: totalPages, length: 5}), (page, i) => (
+                      <Link to={`/archive/${page}`} key={i}>
                         {page}
                       </Link>
-                    ))} */}
+                    ))}
                     <Link to={`/archive/${nextPage}`} >
                         Next →
                     </Link>
