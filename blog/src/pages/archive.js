@@ -81,7 +81,6 @@ const ArchivePage = ({ data, pageContext }) => {
         </ul>
       </div>
       <div>
-        {/* <Pagination currentPage={1} totalCount={data.allStrapiArticle.totalCount} /> */}
         <Pagination currentPage={pageContext.currentPage} totalCount={data.allStrapiArticle.totalCount} />
         {Array.from({ length: pageContext.numPages }, (_, i) => (
           // <Link key={`pagination-number${i + 1}`} to={`/${i === 0 ? "" : i + 1}`}>
