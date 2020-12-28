@@ -33,36 +33,11 @@ export const splashQuery = graphql`
           title
           author
           content
-          category {
+          categories {
             id
             title
           }
           published_at
-          updated_at
-        }
-      }
-    }
-    allStrapiIssue(
-      limit: 5
-      sort: { order: DESC, fields: updated_at }
-    ) {
-      edges {
-        node {
-          id
-          title
-          author
-          content
-          image {
-            childImageSharp {
-              fixed(width: 200, height: 125) {
-                ...GatsbyImageSharpFixed
-              }
-            }
-          }
-          tag {
-            id
-            title
-          }
           updated_at
         }
       }

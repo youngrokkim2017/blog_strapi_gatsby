@@ -118,7 +118,7 @@ export const archiveQuery = graphql`
           title
           author
           content
-          category {
+          categories {
             id
             title
           }

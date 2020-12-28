@@ -61,13 +61,13 @@ class ArticleTemplate extends React.Component {
               <p className='my-0 tracking-tight text-lg sans-serif flex items-center'>
       {/* Tags: */}
           {
-            // data.strapiArticle.category
+            // data.strapiArticle.categories
             // ?
-            // data.strapiArticle.category.map((c, idx) => <Link to={`/categories/Category_${c.id}`} key={idx}>{c.title}</Link>)
+            // data.strapiArticle.categories.map((c, idx) => <Link to={`/categories/Category_${c.id}`} key={idx}>{c.title}</Link>)
             // :
             // ''
           }
-          {/* <Link to={`/categories/Category_${data.strapiArticle.category.id}`} key={data.strapiArticle.category.id}>{data.strapiArticle.category.title}</Link> */}
+          {/* <Link to={`/categories/Category_${data.strapiArticle.categories.id}`} key={data.strapiArticle.categories.id}>{data.strapiArticle.category.title}</Link> */}
           
                 <span>Blog</span>
                 <svg xmlns="http://www.w3.org/2000/svg" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -171,7 +171,7 @@ export const query = graphql`
           }
         }
       }
-      category {
+      categories {
         id
         title
       }
@@ -190,7 +190,7 @@ export const query = graphql`
           title
           author
           content
-          category {
+          categories {
             id
             title
           }

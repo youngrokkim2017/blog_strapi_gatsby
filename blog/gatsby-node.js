@@ -264,7 +264,7 @@ exports.createPages = ({ actions, graphql }) => {
           node {
             id
             title
-            category {
+            categories {
               id
               title
             }
