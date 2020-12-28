@@ -31,12 +31,15 @@
       "plugin": "upload",
       "required": false
     },
-    "magazine_tag": {
-      "model": "magazine-tags",
-      "via": "magazine_issues"
+    "articles": {
+      "via": "magazine",
+      "collection": "article"
+    },
+    "issue": {
+      "type": "biginteger"
     },
     "imageURL": {
-      "type": "string"
+      "type": "richtext"
     }
   }
 }

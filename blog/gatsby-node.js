@@ -264,7 +264,7 @@ exports.createPages = ({ actions, graphql }) => {
           node {
             id
             title
-            category {
+            categories {
               id
               title
             }
@@ -311,32 +311,32 @@ exports.createPages = ({ actions, graphql }) => {
     // })
   })
 
-  // MAGAZINE CONTENT TYPES
-  const getIssues = makeRequest(
-    graphql,
-    `
-    {
-      allStrapiIssue {
-        edges {
-          node {
-            id
-          }
-        }
-      }
-    }
-    `
-  ).then(result => {
-    // Create pages for each Issue.
-    result.data.allStrapiIssue.edges.forEach(({ node }) => {
-      createPage({
-        path: `/magazine/${node.id}`,
-        component: path.resolve(`src/templates/issue.js`),
-        context: {
-          id: node.id,
-        },
-      })
-    })
-  })
+  // // MAGAZINE CONTENT TYPES
+  // const getIssues = makeRequest(
+  //   graphql,
+  //   `
+  //   {
+  //     allStrapiIssue {
+  //       edges {
+  //         node {
+  //           id
+  //         }
+  //       }
+  //     }
+  //   }
+  //   `
+  // ).then(result => {
+  //   // Create pages for each Issue.
+  //   result.data.allStrapiIssue.edges.forEach(({ node }) => {
+  //     createPage({
+  //       path: `/magazine/${node.id}`,
+  //       component: path.resolve(`src/templates/issue.js`),
+  //       context: {
+  //         id: node.id,
+  //       },
+  //     })
+  //   })
+  // })
 
   // SINGLE TYPES
   const getAbout = makeRequest(
@@ -396,7 +396,7 @@ exports.createPages = ({ actions, graphql }) => {
     // getAuthors,
     getArticles, 
     getCategories,
-    getIssues,
+    // getIssues,
     getAbout,
     getSubscribe,
   ])

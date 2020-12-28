@@ -32,16 +32,21 @@
       "plugin": "upload",
       "required": false
     },
-    "category": {
-      "model": "category",
-      "via": "articles"
+    "categories": {
+      "collection": "category",
+      "via": "articles",
+      "dominant": true
     },
     "author": {
       "type": "string",
       "required": true
     },
+    "magazine": {
+      "model": "magazine-issues",
+      "via": "articles"
+    },
     "imageURL": {
-      "type": "string"
+      "type": "richtext"
     }
   }
 }

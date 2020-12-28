@@ -60,16 +60,15 @@ class ArticleTemplate extends React.Component {
           <div className="flex-none">
             <div className="prose md:prose-lg antialiased leading-relaxed mx-auto text-black mb-12">
               <p className='my-0 tracking-tight text-lg sans-serif flex items-center'>
-                {/* Tags: */}
-                {
-                  // data.strapiArticle.category
-                  // ?
-                  // data.strapiArticle.category.map((c, idx) => <Link to={`/categories/Category_${c.id}`} key={idx}>{c.title}</Link>)
-                  // :
-                  // ''
-                }
-                {/* <Link to={`/categories/Category_${data.strapiArticle.category.id}`} key={data.strapiArticle.category.id}>{data.strapiArticle.category.title}</Link> */}
-
+      {/* Tags: */}
+          {
+            // data.strapiArticle.categories
+            // ?
+            // data.strapiArticle.categories.map((c, idx) => <Link to={`/categories/Category_${c.id}`} key={idx}>{c.title}</Link>)
+            // :
+            // ''
+          }
+          {/* <Link to={`/categories/Category_${data.strapiArticle.categories.id}`} key={data.strapiArticle.categories.id}>{data.strapiArticle.category.title}</Link> */}
                 <span>Blog</span>
                 <svg xmlns="http://www.w3.org/2000/svg" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
@@ -89,12 +88,11 @@ class ArticleTemplate extends React.Component {
               </div>
 
               <div className="">
-                {
-                  data.strapiArticle.image
-                    ?
-                    <Img fluid={data.strapiArticle.image.childImageSharp.fluid} className="featured-img-container mb-8" />
-                    :
-                    ""
+                {data.strapiArticle.image ?
+                  // <Img fixed={data.strapiArticle.image.childImageSharp.fixed} className="featured-img-container mb-8" />
+                  <Img fluid={data.strapiArticle.image.childImageSharp.fluid} className="featured-img-container mb-8" />
+                :
+                  ""
                 }
               </div>
 
@@ -172,12 +170,12 @@ export const query = graphql`
       content
       image {
         childImageSharp {
-          fluid(maxWidth: 500) {
+          fluid {
             ...GatsbyImageSharpFluid
           }
         }
       }
-      category {
+      categories {
         id
         title
       }
@@ -188,15 +186,15 @@ export const query = graphql`
           id
           image {
             childImageSharp {
-              fixed(width: 200, height: 125) {
-                ...GatsbyImageSharpFixed
+              fluid(maxWidth: 1000) {
+                ...GatsbyImageSharpFluid
               }
             }
           }
           title
           author
           content
-          category {
+          categories {
             id
             title
           }
@@ -205,3 +203,51 @@ export const query = graphql`
     }
   }
 `
+
+// export const query = graphql`
+//   query ArticleTemplate($id: String!) {
+//     strapiArticle(id: { eq: $id }) {
+//       id
+//       title
+//       author
+//       published_at
+//       updated_at
+//       content
+//       image {
+//         childImageSharp {
+//           fluid(maxWidth: 500) {
+//             ...GatsbyImageSharpFluid
+//           }
+//         }
+//       }
+//       categories {
+//         id
+//         title
+//       }
+//     }
+//     allStrapiArticle {
+//       edges {
+//         node {
+//           id
+//           image {
+//             childImageSharp {
+//               fixed(width: 200, height: 125) {
+//                 ...GatsbyImageSharpFixed
+//               }
+//               fluid(maxWidth: 1000) {
+//                 ...GatsbyImageSharpFluid
+//               }
+//             }
+//           }
+//           title
+//           author
+//           content
+//           categories {
+//             id
+//             title
+//           }
+//         }
+//       }
+//     }
+//   }
+// `
