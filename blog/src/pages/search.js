@@ -140,7 +140,7 @@ const SearchPage = ({ location }) => {
   // const currentSearchResults = query.length > 3 ? currentResults.map(result => result.item) : unsortedData.slice(0, 5);
   const currentSearchResults = query.length > 2 ? currentResults.reverse().map(result => result.item) : data.allStrapiArticle.edges.slice(0, 5);
 
-  console.log(currentResults, location.state.searchQuery, query)
+  // console.log(currentResults, location.state.searchQuery, query)
 
   function handleOnSearch({ currentTarget = {} }) {
     const { value } = currentTarget;

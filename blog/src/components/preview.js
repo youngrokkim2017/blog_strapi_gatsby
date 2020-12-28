@@ -11,7 +11,8 @@ const Preview = ({ article, format }) => {
                     article.image
                         ?
                         <div className="mr-6 hidden">
-                            <Img fixed={article.image.childImageSharp.fixed} />
+                            {/* <Img fixed={article.image.childImageSharp.fixed} /> */}
+                            <Img fluid={article.image.childImageSharp.fluid} />
                         </div>
                         :
                         ""
@@ -38,7 +39,8 @@ const Preview = ({ article, format }) => {
                     article.image
                         ?
                         <div className="mr-6">
-                            <Img fixed={article.image.childImageSharp.fixed} />
+                            {/* <Img fixed={article.image.childImageSharp.fixed} /> */}
+                            <Img fluid={article.image.childImageSharp.fluid} />
                         </div>
                         :
                         ""
