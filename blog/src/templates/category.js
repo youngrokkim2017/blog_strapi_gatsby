@@ -11,7 +11,8 @@ const CategoryTemplate = ({ data }) => (
         <li key={document.id}  className="flex mb-12 max-w-full border-t pt-8">
             <div className="mr-4">
               {document.image ?
-                  <Img fixed={document.image.childImageSharp.fixed} />
+                  // <Img fixed={document.image.childImageSharp.fixed} />
+                  <Img fluid={document.image.childImageSharp.fluid} />
                 :
                   ""
               }
@@ -49,8 +50,8 @@ export const query = graphql`
         content
         image {
           childImageSharp {
-            fixed(width: 200, height: 125) {
-              ...GatsbyImageSharpFixed
+            fluid {
+              ...GatsbyImageSharpFluid
             }
           }
         }
@@ -58,6 +59,32 @@ export const query = graphql`
     }
   }
 `
+
+// export const query = graphql`
+//   query CategoryTemplate($id: String!) {
+//     strapiCategory(id: { eq: $id }) {
+//       id
+//       title
+//       articles {
+//         id
+//         title
+//         author
+//         content
+//         image {
+//           childImageSharp {
+//             fixed(width: 200, height: 125) {
+//               ...GatsbyImageSharpFixed
+//             }
+//             fluid(maxWidth: 1000) {
+//               ...GatsbyImageSharpFluid
+//             }
+//           }
+//         }
+//       }
+//     }
+//   }
+// `
+
 // export const query = graphql`
 //   query CategoryTemplate($id: String!) {
 //     strapiCategory(id: { eq: $id }) {

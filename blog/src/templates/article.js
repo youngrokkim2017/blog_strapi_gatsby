@@ -91,12 +91,11 @@ class ArticleTemplate extends React.Component {
               </div>
 
               <div className="">
-                {
-                  data.strapiArticle.image
-                    ?
-                    <Img fluid={data.strapiArticle.image.childImageSharp.fluid} className="featured-img-container mb-8" />
-                    :
-                    ""
+                {data.strapiArticle.image ?
+                  // <Img fixed={data.strapiArticle.image.childImageSharp.fixed} className="featured-img-container mb-8" />
+                  <Img fluid={data.strapiArticle.image.childImageSharp.fluid} className="featured-img-container mb-8" />
+                :
+                  ""
                 }
               </div>
 
@@ -166,7 +165,7 @@ export const query = graphql`
       content
       image {
         childImageSharp {
-          fluid(maxWidth: 500) {
+          fluid {
             ...GatsbyImageSharpFluid
           }
         }
@@ -182,8 +181,8 @@ export const query = graphql`
           id
           image {
             childImageSharp {
-              fixed(width: 200, height: 125) {
-                ...GatsbyImageSharpFixed
+              fluid(maxWidth: 1000) {
+                ...GatsbyImageSharpFluid
               }
             }
           }
@@ -199,3 +198,51 @@ export const query = graphql`
     }
   }
 `
+
+// export const query = graphql`
+//   query ArticleTemplate($id: String!) {
+//     strapiArticle(id: { eq: $id }) {
+//       id
+//       title
+//       author
+//       published_at
+//       updated_at
+//       content
+//       image {
+//         childImageSharp {
+//           fluid(maxWidth: 500) {
+//             ...GatsbyImageSharpFluid
+//           }
+//         }
+//       }
+//       categories {
+//         id
+//         title
+//       }
+//     }
+//     allStrapiArticle {
+//       edges {
+//         node {
+//           id
+//           image {
+//             childImageSharp {
+//               fixed(width: 200, height: 125) {
+//                 ...GatsbyImageSharpFixed
+//               }
+//               fluid(maxWidth: 1000) {
+//                 ...GatsbyImageSharpFluid
+//               }
+//             }
+//           }
+//           title
+//           author
+//           content
+//           categories {
+//             id
+//             title
+//           }
+//         }
+//       }
+//     }
+//   }
+// `

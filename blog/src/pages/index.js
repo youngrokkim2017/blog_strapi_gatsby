@@ -25,8 +25,8 @@ export const splashQuery = graphql`
           id
           image {
             childImageSharp {
-              fixed(width: 200, height: 125) {
-                ...GatsbyImageSharpFixed
+              fluid {
+                ...GatsbyImageSharpFluid
               }
             }
           }
@@ -44,6 +44,40 @@ export const splashQuery = graphql`
     }
   }
 `
+
+// export const splashQuery = graphql`
+//   query SplashQuery {
+//     allStrapiArticle(
+//       limit: 5
+//       sort: { order: DESC, fields: published_at }
+//     ) {
+//       edges {
+//         node {
+//           id
+//           image {
+//             childImageSharp {
+//               fixed(width: 200, height: 125) {
+//                 ...GatsbyImageSharpFixed
+//               }
+//               fluid(maxWidth: 1000) {
+//                 ...GatsbyImageSharpFluid
+//               }
+//             }
+//           }
+//           title
+//           author
+//           content
+//           categories {
+//             id
+//             title
+//           }
+//           published_at
+//           updated_at
+//         }
+//       }
+//     }
+//   }
+// `
 
 // import React, { useState } from "react";
 // import { Router } from '@reach/router';

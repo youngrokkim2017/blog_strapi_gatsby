@@ -55,7 +55,8 @@ const SearchContainer = ({query, articles, location}) => {
             {
               document.node.image
               ?
-              <Img fixed={document.node.image.childImageSharp.fixed} />
+              // <Img fixed={document.node.image.childImageSharp.fixed} />
+              <Img fluid={document.node.image.childImageSharp.fluid} />
               :
               ""
             }
@@ -81,7 +82,8 @@ const SearchContainer = ({query, articles, location}) => {
             {
               document.node.image
               ?
-              <Img fixed={document.node.image.childImageSharp.fixed} />
+              // <Img fixed={document.node.image.childImageSharp.fixed} />
+              <Img fluid={document.node.image.childImageSharp.fluid} />
               :
               ""
             }

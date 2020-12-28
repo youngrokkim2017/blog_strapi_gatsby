@@ -24,8 +24,8 @@ const SearchPage = ({ location }) => {
             id
             image {
               childImageSharp {
-                fixed(width: 200, height: 125) {
-                  ...GatsbyImageSharpFixed
+                fluid {
+                  ...GatsbyImageSharpFluid
                 }
               }
             }
@@ -51,6 +51,47 @@ const SearchPage = ({ location }) => {
       }
     }
   `)
+
+  // const data = useStaticQuery(graphql`
+  //   query SearchResultsQuery {
+  //     allStrapiArticle(
+  //       sort: { fields: [created_at], order: DESC }
+  //     ) {
+  //       edges {
+  //         node {
+  //           id
+  //           image {
+  //             childImageSharp {
+  //               fixed(width: 200, height: 125) {
+  //                 ...GatsbyImageSharpFixed
+  //               }
+  //               fluid(maxWidth: 1000) {
+  //                 ...GatsbyImageSharpFluid
+  //               }
+  //             }
+  //           }
+  //           title
+  //           author
+  //           content
+  //           categories {
+  //             id
+  //             title
+  //           }
+  //           published_at
+  //           updated_at
+  //         }
+  //       }
+  //     }
+  //     allStrapiCategory {
+  //       edges {
+  //         node {
+  //           id
+  //           title
+  //         }
+  //       }
+  //     }
+  //   }
+  // `)
 
   const [query, setQuery] = useState('');
   // const [query, setQuery] = useState(location.state.searchQuery);
@@ -151,11 +192,10 @@ const SearchPage = ({ location }) => {
               </Link>
             </h2>
             <h4><Highlight search={query}>By{" "}{document.node.author}</Highlight></h4>
-            {
-              document.node.image
-              ?
-              <Img fixed={document.node.image.childImageSharp.fixed} />
-              :
+            {document.node.image ?
+              // <Img fixed={document.node.image.childImageSharp.fixed} />
+              <Img fluid={document.node.image.childImageSharp.fluid} />
+            :
               ""
             }
             <Highlight search={query}>
@@ -179,11 +219,10 @@ const SearchPage = ({ location }) => {
               </Link>
             </h2>
             <h4><Highlight search={query}>By{" "}{document.node.author}</Highlight></h4>
-            {
-              document.node.image
-              ?
-              <Img fixed={document.node.image.childImageSharp.fixed} />
-              :
+            {document.node.image ?
+              // <Img fixed={document.node.image.childImageSharp.fixed} />
+              <Img fluid={document.node.image.childImageSharp.fluid} />
+            :
               ""
             }
             <Highlight search={query}>

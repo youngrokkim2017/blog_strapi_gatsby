@@ -7,6 +7,7 @@ import SEO from "../components/seo"
 import Pagination from '../components/pagination'
 
 const ArchivePage = ({ data, pageContext }) => {
+  
   const [articles, setArticles] = useState(data.allStrapiArticle.edges);
 
   function handleFilter({ currentTarget = {} }) {
@@ -56,12 +57,11 @@ const ArchivePage = ({ data, pageContext }) => {
           {articles.map(document => (
             <li key={document.node.id} className="flex mb-12 max-w-full border-t pt-8">
                 <div className="mr-4">
-                  {
-                    document.node.image
-                      ?
-                      <Img fixed={document.node.image.childImageSharp.fixed} />
-                      :
-                      ""
+                  {document.node.image ?
+                    // <Img fixed={document.node.image.childImageSharp.fixed} />
+                    <Img fluid={document.node.image.childImageSharp.fluid} />
+                  :
+                    ""
                   }
                 </div>
                 <div className="antialiased leading-relaxed sans-serif">
@@ -109,8 +109,8 @@ export const archiveQuery = graphql`
           id
           image {
             childImageSharp {
-              fixed(width: 200, height: 125) {
-                ...GatsbyImageSharpFixed
+              fluid {
+                ...GatsbyImageSharpFluid
               }
             }
           }
@@ -129,3 +129,40 @@ export const archiveQuery = graphql`
     }
   }
 `
+
+// export const archiveQuery = graphql`
+//   query ArchiveQuery($skip: Int! = 0, $limit: Int! = 10) {
+//     allStrapiArticle(
+//       sort: { fields: [created_at], order: DESC }
+//       limit: $limit
+//       skip: $skip
+//     ) {
+//       totalCount
+//       edges {
+//         node {
+//           id
+//           image {
+//             childImageSharp {
+//               fixed(width: 200, height: 125) {
+//                 ...GatsbyImageSharpFixed
+//               }
+//               fluid(maxWidth: 1000) {
+//                 ...GatsbyImageSharpFluid
+//               }
+//             }
+//           }
+//           title
+//           author
+//           content
+//           categories {
+//             id
+//             title
+//           }
+//           created_at
+//           published_at
+//           updated_at
+//         }
+//       }
+//     }
+//   }
+// `
