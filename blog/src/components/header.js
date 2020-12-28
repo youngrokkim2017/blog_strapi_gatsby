@@ -41,7 +41,7 @@ const Header = () => {
             </Link>
           </div>
           <div className="relative w-1/4 flex justify-end items-center">
-            <div className="block" id="search-input">
+            <div className="" id="search-input">
               <form onSubmit={handleNavigate} className="border-black text-gray-600 flex items-center py-1 px-2 pr-1 pl-0 border-b focus-within:border-blue-600">
                 <input
                   type="text"
@@ -57,7 +57,7 @@ const Header = () => {
                 </button>
               </form>
             </div>
-            <button type="submit" className="inline-block pl-2 py-1 leading-none text-black flex-shrink-0 cursor-pointer">
+            <button type="submit" className="inline-block pl-2 py-1 leading-none text-black flex-shrink-0 cursor-pointer hidden">
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
               </svg>

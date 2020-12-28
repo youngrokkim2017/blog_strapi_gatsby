@@ -4,8 +4,8 @@ import MailchimpComponent from './mailchimp'
 
 const Footer = () => {
     return (
-        <nav className="border-t border-black mt-16 sans-serif bg-black text-white px-4 sm:px-0 pb-12">
-            <div className="container mx-auto mt-8">
+        <nav className="border-t border-black mt-16 sans-serif bg-black text-white px-4 sm:px-0 pb-24">
+            <div className="container mx-auto mt-12">
                 <div className="block flex-grow lg:flex lg:w-auto space-y-8 lg:space-y-0">
                     <div className="text-md lg:flex-grow">
                         <h2 className="font-bold mb-2">About Us</h2>
@@ -41,11 +41,10 @@ const Footer = () => {
                         </div>
                     </div>
                     <div className="text-md lg:flex-shrink max-w-sm">
-                        <h2 className="font-bold mb-8 lg:mb-12">Contact Us</h2>
+                        <Link to="/contact"><h2 className="font-bold mb-8 lg:mb-12">Contact Us</h2></Link>
                         <MailchimpComponent />
                     </div>
                 </div>
-
             </div>
         </nav>
     )
