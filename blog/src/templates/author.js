@@ -1,3 +1,41 @@
+import React from 'react'
+import { Link, graphql } from 'gatsby'
+import Layout from '../components/layout'
+
+const AuthorTemplate = ({ data }) => (
+    <Layout>
+      <h1>{data.strapiAuthors.name}</h1>
+      <ul>
+        {data.strapiAuthors.articles.map(article => (
+          <li key={article.id}>
+            <h2>
+              <Link to={`/blog/${article.node.title.split(" ").map((category) => category.toLowerCase()).join("-")}`}>{article.title}</Link>
+            </h2>
+            {/* <p>{article.content}</p> */}
+          </li>
+        ))}
+      </ul>
+    </Layout>
+  )
+  
+export default AuthorTemplate;
+
+export const query = graphql`
+  query AuthorTemplate($id: String!) {
+    strapiAuthors(id: { eq: $id }) {
+      id
+      name
+      articles {
+        id
+        title
+        author
+        content
+      }
+    }
+  }
+`
+
+
 // import React from 'react'
 // import { Link, graphql } from 'gatsby'
 // import Layout from '../components/layout'

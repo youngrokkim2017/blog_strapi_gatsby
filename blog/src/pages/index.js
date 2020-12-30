@@ -31,7 +31,6 @@ export const splashQuery = graphql`
             }
           }
           title
-          author
           content
           categories {
             id

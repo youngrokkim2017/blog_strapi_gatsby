@@ -37,16 +37,16 @@
       "via": "articles",
       "dominant": true
     },
-    "author": {
-      "type": "string",
-      "required": true
-    },
     "magazine": {
-      "model": "magazine-issues",
-      "via": "articles"
+      "via": "articles",
+      "model": "magazine-issues"
     },
     "imageURL": {
       "type": "richtext"
+    },
+    "author": {
+      "via": "articles",
+      "model": "authors"
     }
   }
 }

@@ -30,7 +30,6 @@ const SearchPage = ({ location }) => {
               }
             }
             title
-            author
             content
             categories {
               id
@@ -108,7 +107,7 @@ const SearchPage = ({ location }) => {
   const options = {
       // keys: [
       //     'node.title',
-      //     'node.author',
+      //     'node.author.name',
       //     'node.content',
       // ],
       keys: [
@@ -117,7 +116,8 @@ const SearchPage = ({ location }) => {
             weight: 0.6,
         },
         {
-            name: 'node.author',
+            // name: 'node.author',
+            name: 'node.author.name',
             weight: 0.1,
         },
         {
@@ -191,7 +191,8 @@ const SearchPage = ({ location }) => {
                 <Highlight search={query}>{document.node.title}</Highlight>
               </Link>
             </h2>
-            <h4><Highlight search={query}>By{" "}{document.node.author}</Highlight></h4>
+            {/* <h4><Highlight search={query}>By{" "}{document.node.author}</Highlight></h4> */}
+            {/* <h4><Highlight search={query}>By{" "}{document.node.author.name}</Highlight></h4> */}
             {document.node.image ?
               // <Img fixed={document.node.image.childImageSharp.fixed} />
               <Img fluid={document.node.image.childImageSharp.fluid} />
@@ -218,7 +219,8 @@ const SearchPage = ({ location }) => {
                 <Highlight search={query}>{document.node.title}</Highlight>
               </Link>
             </h2>
-            <h4><Highlight search={query}>By{" "}{document.node.author}</Highlight></h4>
+            {/* <h4><Highlight search={query}>By{" "}{document.node.author}</Highlight></h4> */}
+            {/* <h4><Highlight search={query}>By{" "}{document.node.author.name}</Highlight></h4> */}
             {document.node.image ?
               // <Img fixed={document.node.image.childImageSharp.fixed} />
               <Img fluid={document.node.image.childImageSharp.fluid} />
