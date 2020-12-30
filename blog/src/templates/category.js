@@ -1,6 +1,7 @@
 import React from "react"
-import { Link, graphql } from "gatsby"
-import Img from "gatsby-image"
+import { graphql } from "gatsby"
+// import { Link, graphql } from "gatsby"
+// import Img from "gatsby-image"
 import Layout from "../components/layout"
 import Preview from "../components/preview"
 
@@ -30,6 +31,7 @@ const CategoryTemplate = ({ data }) => (
         //         </Link>
         //       </h2>
         //       <h4>By{" "}{document.author}</h4>
+        //       <h4>By{" "}{document.author.name}</h4>
         //       {/* <ReactMarkdown
         //         source={`${document.content.slice(0, 500)}...`}
         //         transformImageUri={uri => uri.startsWith('http') ? uri : `${process.env.IMAGE_BASE_URL}${uri}`}
@@ -52,7 +54,6 @@ export const query = graphql`
       articles {
         id
         title
-        author
         content
         image {
           childImageSharp {

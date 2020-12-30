@@ -11,7 +11,8 @@ const Preview = ({ article, format }) => {
                     article.image
                         ?
                         <div className="mr-6 hidden">
-                            <Img fixed={article.image.childImageSharp.fixed} />
+                            {/* <Img fixed={article.image.childImageSharp.fixed} /> */}
+                            <Img fluid={article.image.childImageSharp.fluid} />
                         </div>
                         :
                         ""
@@ -21,11 +22,11 @@ const Preview = ({ article, format }) => {
                         <h2 className="font-normal mb-2 text-base leading-tight">{article.title}</h2>
                     </Link>
 
-                    <p className='text-base'>
+                    {/* <p className='text-base'>
                         <Link to={"#"} className="font-medium underline">
-                            {article.author}
+                            {article.author.name}
                         </Link>
-                    </p>
+                    </p> */}
                 </div>
 
             </div>
@@ -38,7 +39,8 @@ const Preview = ({ article, format }) => {
                     article.image
                         ?
                         <div className="mr-6">
-                            <Img fixed={article.image.childImageSharp.fixed} />
+                            {/* <Img fixed={article.image.childImageSharp.fixed} /> */}
+                            <Img fluid={article.image.childImageSharp.fluid} />
                         </div>
                         :
                         ""
@@ -52,11 +54,11 @@ const Preview = ({ article, format }) => {
                         transformImageUri={uri => uri.startsWith('http') ? uri : `${process.env.IMAGE_BASE_URL}${uri}`}
                         className="mb-4"
                     />
-                    <p className='mb-2 text-base'>
+                    {/* <p className='mb-2 text-base'>
                         By <Link to={"#"} className="font-medium underline">
-                            {article.author}
+                            {article.author.name}
                         </Link>
-                    </p>
+                    </p> */}
                 </div>
 
             </div>
@@ -75,7 +77,7 @@ const Preview = ({ article, format }) => {
 }
 
 // this.props.article.title
-// this.props.article.author
+// this.props.article.author.name
 // this.props.article.image
 
 export default Preview

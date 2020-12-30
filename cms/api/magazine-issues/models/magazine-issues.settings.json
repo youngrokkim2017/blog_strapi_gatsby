@@ -32,14 +32,14 @@
       "required": false
     },
     "articles": {
-      "via": "magazine",
-      "collection": "article"
-    },
-    "issue": {
-      "type": "biginteger"
+      "collection": "article",
+      "via": "magazine"
     },
     "imageURL": {
       "type": "richtext"
+    },
+    "issue": {
+      "type": "string"
     }
   }
 }

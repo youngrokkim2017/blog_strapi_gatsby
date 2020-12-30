@@ -49,7 +49,8 @@ class ArticleTemplate extends React.Component {
             <div className="text-base not-italic leading-5">
               <p className='mb-2 text-base'>
                 By <Link to={"#"} className="font-medium underline">
-                  {data.strapiArticle.author}
+                  {/* {data.strapiArticle.author} */}
+                  {/* {data.strapiArticle.author.name} */}
                 </Link>
               </p>
               <p className='my-0'>
@@ -79,7 +80,8 @@ class ArticleTemplate extends React.Component {
               <div className="text-base not-italic leading-5 pb-12" id="metadata">
                 <p className='mb-2 text-base'>
                   By <Link to={"#"} className="font-medium underline">
-                    {data.strapiArticle.author}
+                    {/* {data.strapiArticle.author} */}
+                    {/* {data.strapiArticle.author.name} */}
                   </Link>
                 </p>
                 <p className='my-0'>
@@ -164,7 +166,6 @@ export const query = graphql`
     strapiArticle(id: { eq: $id }) {
       id
       title
-      author
       published_at
       updated_at
       content
@@ -192,7 +193,6 @@ export const query = graphql`
             }
           }
           title
-          author
           content
           categories {
             id
