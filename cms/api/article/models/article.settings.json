@@ -12,37 +12,32 @@
   },
   "attributes": {
     "title": {
-      "type": "string",
-      "required": true,
-      "unique": true,
-      "minLength": 10
+      "type": "string"
     },
     "content": {
-      "type": "richtext",
-      "required": true
+      "type": "richtext"
     },
     "image": {
       "model": "file",
       "via": "related",
       "allowedTypes": [
-        "files",
         "images",
+        "files",
         "videos"
       ],
       "plugin": "upload",
       "required": false
     },
-    "categories": {
-      "collection": "category",
-      "via": "articles",
-      "dominant": true
-    },
-    "magazine": {
-      "via": "articles",
-      "model": "magazine-issues"
-    },
     "imageURL": {
       "type": "richtext"
+    },
+    "magazine": {
+      "model": "magazine-issues",
+      "via": "articles"
+    },
+    "categories": {
+      "via": "articles",
+      "collection": "category"
     },
     "author": {
       "via": "articles",

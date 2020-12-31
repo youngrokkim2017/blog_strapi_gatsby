@@ -23,7 +23,7 @@ const Preview = ({ article, format }) => {
                     </Link>
 
                     {/* <p className='text-base'>
-                        <Link to={"#"} className="font-medium underline">
+                        <Link to={`/authors/${article.author.name.split(" ").map((a) => a.toLowerCase()).join("-")}`} className="font-medium underline">
                             {article.author.name}
                         </Link>
                     </p> */}
@@ -55,7 +55,7 @@ const Preview = ({ article, format }) => {
                         className="mb-4"
                     />
                     {/* <p className='mb-2 text-base'>
-                        By <Link to={"#"} className="font-medium underline">
+                        By <Link to={`/authors/${article.author.name.split(" ").map((a) => a.toLowerCase()).join("-")}`} className="font-medium underline">
                             {article.author.name}
                         </Link>
                     </p> */}

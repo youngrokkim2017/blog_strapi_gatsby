@@ -2,20 +2,22 @@
   "kind": "collectionType",
   "collectionName": "categories",
   "info": {
-    "name": "category"
+    "name": "category",
+    "description": ""
   },
   "options": {
     "increments": true,
-    "timestamps": true
+    "timestamps": true,
+    "draftAndPublish": false
   },
   "attributes": {
     "title": {
-      "type": "string",
-      "required": true
+      "type": "string"
     },
     "articles": {
+      "collection": "article",
       "via": "categories",
-      "collection": "article"
+      "dominant": true
     }
   }
 }

@@ -5,7 +5,9 @@ import { graphql } from "gatsby"
 import Layout from "../components/layout"
 import Preview from "../components/preview"
 
-const CategoryTemplate = ({ data }) => (
+const CategoryTemplate = ({ data }) => {
+  console.log(data.strapiCategory)
+  return (
   <Layout>
     <div className="">
       <h2 className="font-normal mb-12 text-4xl leading-tight">{data.strapiCategory.title}</h2>
@@ -42,7 +44,8 @@ const CategoryTemplate = ({ data }) => (
     </ul>
     </div>
   </Layout>
-)
+  )
+}
 
 export default CategoryTemplate;
 
@@ -54,7 +57,9 @@ export const query = graphql`
       articles {
         id
         title
+        author
         content
+        magazine
         image {
           childImageSharp {
             fluid {
