@@ -41,7 +41,7 @@ class ArticleTemplate extends React.Component {
       navigator.clipboard.writeText(window.location.href);
       clip.classList.add('text-green-400');
     }
-
+    // console.log(data.strapiArticle.categories.map(a => a.title))
     // console.log(data.strapiArticle)
     return (
       <Layout>
@@ -135,15 +135,23 @@ class ArticleTemplate extends React.Component {
             <div className="sticky">
               <h2 className='text-2xl font-semibold m-0 mb-4 border-b border-black'>
                 Related Articles
-            </h2>
+              </h2>
               <ul>
-                {data.allStrapiArticle.edges.reverse().slice(0, 3).map(document => (
+                {/* {data.allStrapiArticle.edges.reverse().slice(0, 3).map(document => ( */}
+                {data.allStrapiArticle.edges.reverse().map(document => (
                   <li key={document.node.id} className="mt-4 pb-4 border-b" style={{ borderBottomColor: '#ECECF3' }}>
-                    <Preview article={document.node} format="small" />
+                    {/* <Preview article={document.node} format="small" /> */}
+                    {data.strapiArticle.categories.map(a => a.title)
+                      .some(ele => document.node.categories.map(b => b.title).includes(ele)) 
+                      ?
+                      <Preview article={document.node} format="small" />
+                      :
+                      ""
+                    }
                   </li>
-                ))}
+                )).slice(0, 3)}
+                {/* ))} */}
               </ul>
-
             </div>
           </div>
         </div>
