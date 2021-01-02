@@ -196,7 +196,9 @@ const SearchPage = ({ location }) => {
               </Link>
             </h2>
             {/* <h4><Highlight search={query}>By{" "}{document.node.author}</Highlight></h4> */}
-            <h4><Highlight search={query}>By{" "}{document.node.author.name}</Highlight></h4>
+            <Link to={`/authors/${document.node.author.name.split(" ").map((a) => a.toLowerCase()).join("-")}`} className="font-medium underline">
+              <Highlight search={query}>By{" "}{document.node.author.name}</Highlight>
+            </Link>
             {document.node.image ?
               // <Img fixed={document.node.image.childImageSharp.fixed} />
               <Img fluid={document.node.image.childImageSharp.fluid} />
@@ -224,7 +226,9 @@ const SearchPage = ({ location }) => {
               </Link>
             </h2>
             {/* <h4><Highlight search={query}>By{" "}{document.node.author}</Highlight></h4> */}
-            <h4><Highlight search={query}>By{" "}{document.node.author.name}</Highlight></h4>
+            <Link to={`/authors/${document.node.author.name.split(" ").map((a) => a.toLowerCase()).join("-")}`} className="font-medium underline">
+              <Highlight search={query}>By{" "}{document.node.author.name}</Highlight>
+            </Link>
             {document.node.image ?
               // <Img fixed={document.node.image.childImageSharp.fixed} />
               <Img fluid={document.node.image.childImageSharp.fluid} />

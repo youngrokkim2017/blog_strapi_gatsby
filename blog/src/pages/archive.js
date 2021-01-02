@@ -126,6 +126,10 @@ export const archiveQuery = graphql`
             }
           }
           title
+          author {
+            id
+            name
+          }
           content
           categories {
             id
