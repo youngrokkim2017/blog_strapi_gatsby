@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link, graphql } from 'gatsby'
 import Layout from '../components/layout'
+import ReactMarkdown from "react-markdown"
 
 const AuthorTemplate = ({ data }) => (
     <Layout>
@@ -9,9 +10,14 @@ const AuthorTemplate = ({ data }) => (
         {data.strapiAuthors.articles.map(article => (
           <li key={article.id}>
             <h2>
-              <Link to={`/blog/${article.node.title.split(" ").map((category) => category.toLowerCase()).join("-")}`}>{article.title}</Link>
+              <Link to={`/blog/${article.title.split(" ").map((a) => a.toLowerCase()).join("-")}`}>{article.title}</Link>
             </h2>
             {/* <p>{article.content}</p> */}
+            <ReactMarkdown
+              source={`${article.content.slice(0, 300)}...`}
+              transformImageUri={uri => uri.startsWith('http') ? uri : `${process.env.IMAGE_BASE_URL}${uri}`}
+              className="mb-4"
+            />
           </li>
         ))}
       </ul>
@@ -28,7 +34,6 @@ export const query = graphql`
       articles {
         id
         title
-        author
         content
       }
     }

@@ -22,11 +22,11 @@ const Preview = ({ article, format }) => {
                         <h2 className="font-normal mb-2 text-base leading-tight">{article.title}</h2>
                     </Link>
 
-                    {/* <p className='text-base'>
-                        <Link to={"#"} className="font-medium underline">
+                    <p className='text-base'>
+                        <Link to={`/authors/${article.author.name.split(" ").map((a) => a.toLowerCase()).join("-")}`} className="font-medium underline">
                             {article.author.name}
                         </Link>
-                    </p> */}
+                    </p>
                 </div>
 
             </div>
@@ -54,11 +54,11 @@ const Preview = ({ article, format }) => {
                         transformImageUri={uri => uri.startsWith('http') ? uri : `${process.env.IMAGE_BASE_URL}${uri}`}
                         className="mb-4"
                     />
-                    {/* <p className='mb-2 text-base'>
-                        By <Link to={"#"} className="font-medium underline">
+                    <p className='mb-2 text-base'>
+                        By <Link to={`/authors/${article.author.name.split(" ").map((a) => a.toLowerCase()).join("-")}`} className="font-medium underline">
                             {article.author.name}
                         </Link>
-                    </p> */}
+                    </p>
                 </div>
 
             </div>

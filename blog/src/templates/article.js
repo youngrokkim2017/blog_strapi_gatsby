@@ -41,16 +41,17 @@ class ArticleTemplate extends React.Component {
       navigator.clipboard.writeText(window.location.href);
       clip.classList.add('text-green-400');
     }
-
+    // console.log(data.strapiArticle.categories.map(a => a.title))
+    // console.log(data.strapiArticle)
     return (
       <Layout>
         <div className="flex justify-between overflow-visible relative items-start">
           <div className='w-1/5 sticky top-0 pt-40 opacity-0' id="sidebar">
             <div className="text-base not-italic leading-5">
               <p className='mb-2 text-base'>
-                By <Link to={"#"} className="font-medium underline">
+                By <Link to={`/authors/${data.strapiArticle.author.name.split(" ").map((a) => a.toLowerCase()).join("-")}`} className="font-medium underline">
                   {/* {data.strapiArticle.author} */}
-                  {/* {data.strapiArticle.author.name} */}
+                  {data.strapiArticle.author.name}
                 </Link>
               </p>
               <p className='my-0'>
@@ -79,9 +80,9 @@ class ArticleTemplate extends React.Component {
               <h2 className="font-normal mt-2 mb-4 text-4xl leading-tight">{data.strapiArticle.title}</h2>
               <div className="text-base not-italic leading-5 pb-12" id="metadata">
                 <p className='mb-2 text-base'>
-                  By <Link to={"#"} className="font-medium underline">
+                  By <Link to={`/authors/${data.strapiArticle.author.name.split(" ").map((a) => a.toLowerCase()).join("-")}`} className="font-medium underline">
                     {/* {data.strapiArticle.author} */}
-                    {/* {data.strapiArticle.author.name} */}
+                    {data.strapiArticle.author.name}
                   </Link>
                 </p>
                 <p className='my-0'>
@@ -134,15 +135,23 @@ class ArticleTemplate extends React.Component {
             <div className="sticky">
               <h2 className='text-2xl font-semibold m-0 mb-4 border-b border-black'>
                 Related Articles
-            </h2>
+              </h2>
               <ul>
-                {data.allStrapiArticle.edges.reverse().slice(0, 3).map(document => (
+                {/* {data.allStrapiArticle.edges.reverse().slice(0, 3).map(document => ( */}
+                {data.allStrapiArticle.edges.reverse().map(document => (
                   <li key={document.node.id} className="mt-4 pb-4 border-b" style={{ borderBottomColor: '#ECECF3' }}>
-                    <Preview article={document.node} format="small" />
+                    {/* <Preview article={document.node} format="small" /> */}
+                    {data.strapiArticle.categories.map(a => a.title)
+                      .some(ele => document.node.categories.map(b => b.title).includes(ele)) 
+                      ?
+                      <Preview article={document.node} format="small" />
+                      :
+                      ""
+                    }
                   </li>
-                ))}
+                )).slice(0, 3)}
+                {/* ))} */}
               </ul>
-
             </div>
           </div>
         </div>
@@ -169,6 +178,10 @@ export const query = graphql`
       published_at
       updated_at
       content
+      author {
+        id
+        name
+      }
       image {
         childImageSharp {
           fluid {
@@ -193,6 +206,10 @@ export const query = graphql`
             }
           }
           title
+          author {
+            id
+            name
+          }
           content
           categories {
             id

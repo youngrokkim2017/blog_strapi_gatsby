@@ -31,15 +31,15 @@
       "plugin": "upload",
       "required": false
     },
-    "articles": {
-      "collection": "article",
-      "via": "magazine"
-    },
     "imageURL": {
       "type": "richtext"
     },
     "issue": {
       "type": "string"
+    },
+    "articles": {
+      "via": "magazine",
+      "collection": "article"
     }
   }
 }
