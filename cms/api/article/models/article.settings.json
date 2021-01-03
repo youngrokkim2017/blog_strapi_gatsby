@@ -28,20 +28,17 @@
       "plugin": "upload",
       "required": false
     },
-    "imageURL": {
-      "type": "richtext"
-    },
     "magazine": {
-      "model": "magazine-issues",
-      "via": "articles"
+      "via": "articles",
+      "model": "magazine-issues"
     },
     "categories": {
-      "via": "articles",
-      "collection": "category"
+      "collection": "category",
+      "via": "articles"
     },
     "author": {
-      "via": "articles",
-      "model": "authors"
+      "model": "authors",
+      "via": "articles"
     }
   }
 }
