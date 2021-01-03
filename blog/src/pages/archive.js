@@ -1,6 +1,7 @@
 import React, { useState } from "react"
-import { Link, graphql } from "gatsby"
-import Img from 'gatsby-image';
+import { graphql } from "gatsby"
+// import { Link, graphql } from "gatsby"
+// import Img from 'gatsby-image';
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 // import ReactMarkdown from "react-markdown"
@@ -8,6 +9,7 @@ import Pagination from '../components/pagination'
 import Preview from "../components/preview"
 
 const ArchivePage = ({ data, pageContext }) => {
+  
   const [articles, setArticles] = useState(data.allStrapiArticle.edges);
 
   function handleFilter({ currentTarget = {} }) {
@@ -26,7 +28,7 @@ const ArchivePage = ({ data, pageContext }) => {
     }
   }
 
-  console.log(pageContext);
+  // console.log(pageContext);
 
   return (
     <Layout>
@@ -66,7 +68,8 @@ const ArchivePage = ({ data, pageContext }) => {
               //       {
               //         document.node.image
               //           ?
-              //           <Img fixed={document.node.image.childImageSharp.fixed} />
+              //           // <Img fixed={document.node.image.childImageSharp.fixed} />
+              //           <Img fluid={document.node.image.childImageSharp.fluid} />
               //           :
               //           ""
               //       }
@@ -77,7 +80,7 @@ const ArchivePage = ({ data, pageContext }) => {
               //           {document.node.title}
               //         </Link>
               //       </h2>
-              //       <h4>By{" "}{document.node.author}</h4>
+              //       <h4>By{" "}{document.node.author.name}</h4>
               //       {/* <ReactMarkdown
               //         source={`${document.node.content.slice(0, 500)}...`}
               //         transformImageUri={uri => uri.startsWith('http') ? uri : `${process.env.IMAGE_BASE_URL}${uri}`}
@@ -88,14 +91,13 @@ const ArchivePage = ({ data, pageContext }) => {
           </ul>
         </div>
         <div>
-          {/* <Pagination currentPage={1} totalCount={data.allStrapiArticle.totalCount} /> */}
           <Pagination currentPage={pageContext.currentPage} totalCount={data.allStrapiArticle.totalCount} />
-          {Array.from({ length: pageContext.numPages }, (_, i) => (
+          {/* {Array.from({ length: pageContext.numPages }, (_, i) => (
             // <Link key={`pagination-number${i + 1}`} to={`/${i === 0 ? "" : i + 1}`}>
             <Link key={`pagination-number${i + 1}`} to={`/archive/${i + 1}`}>
               {i + 1}
             </Link>
-          ))}
+          ))} */}
         </div>
       </div>
     </Layout>
@@ -118,15 +120,18 @@ export const archiveQuery = graphql`
           id
           image {
             childImageSharp {
-              fixed(width: 200, height: 125) {
-                ...GatsbyImageSharpFixed
+              fluid {
+                ...GatsbyImageSharpFluid
               }
             }
           }
           title
-          author
+          author {
+            id
+            name
+          }
           content
-          category {
+          categories {
             id
             title
           }
@@ -138,3 +143,40 @@ export const archiveQuery = graphql`
     }
   }
 `
+
+// export const archiveQuery = graphql`
+//   query ArchiveQuery($skip: Int! = 0, $limit: Int! = 10) {
+//     allStrapiArticle(
+//       sort: { fields: [created_at], order: DESC }
+//       limit: $limit
+//       skip: $skip
+//     ) {
+//       totalCount
+//       edges {
+//         node {
+//           id
+//           image {
+//             childImageSharp {
+//               fixed(width: 200, height: 125) {
+//                 ...GatsbyImageSharpFixed
+//               }
+//               fluid(maxWidth: 1000) {
+//                 ...GatsbyImageSharpFluid
+//               }
+//             }
+//           }
+//           title
+//           author
+//           content
+//           categories {
+//             id
+//             title
+//           }
+//           created_at
+//           published_at
+//           updated_at
+//         }
+//       }
+//     }
+//   }
+// `

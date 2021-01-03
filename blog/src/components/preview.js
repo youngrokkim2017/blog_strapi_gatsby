@@ -11,7 +11,8 @@ const Preview = ({ article, format }) => {
                     article.image
                         ?
                         <div className="mr-6 hidden">
-                            <Img fixed={article.image.childImageSharp.fixed} />
+                            {/* <Img fixed={article.image.childImageSharp.fixed} /> */}
+                            <Img fluid={article.image.childImageSharp.fluid} />
                         </div>
                         :
                         ""
@@ -22,8 +23,8 @@ const Preview = ({ article, format }) => {
                     </Link>
 
                     <p className='text-base'>
-                        <Link to={"#"} className="font-medium underline">
-                            {article.author}
+                        <Link to={`/authors/${article.author.name.split(" ").map((a) => a.toLowerCase()).join("-")}`} className="font-medium underline">
+                            {article.author.name}
                         </Link>
                     </p>
                 </div>
@@ -38,7 +39,8 @@ const Preview = ({ article, format }) => {
                     article.image
                         ?
                         <div className="mr-6">
-                            <Img fixed={article.image.childImageSharp.fixed} />
+                            {/* <Img fixed={article.image.childImageSharp.fixed} /> */}
+                            <Img fluid={article.image.childImageSharp.fluid} />
                         </div>
                         :
                         ""
@@ -53,8 +55,8 @@ const Preview = ({ article, format }) => {
                         className="mb-4"
                     />
                     <p className='mb-2 text-base'>
-                        By <Link to={"#"} className="font-medium underline">
-                            {article.author}
+                        By <Link to={`/authors/${article.author.name.split(" ").map((a) => a.toLowerCase()).join("-")}`} className="font-medium underline">
+                            {article.author.name}
                         </Link>
                     </p>
                 </div>
@@ -75,7 +77,7 @@ const Preview = ({ article, format }) => {
 }
 
 // this.props.article.title
-// this.props.article.author
+// this.props.article.author.name
 // this.props.article.image
 
 export default Preview

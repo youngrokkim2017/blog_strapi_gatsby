@@ -6,104 +6,6 @@
 
 // // You can delete this file if you're not using it
 
-// const path = require(`path`);
-
-// async function makeArticlesFromMdx({ graphql, actions }) {
-//   // const { createPage } = actions;
-
-//   // const articleTemplate = path.resolve('./src/templates/article.js');
-//   const { errors, data } = await graphql(
-//     `
-//     {
-//       allStrapiArticle (sort: { fields: [created_at], order: DESC }) {
-//         edges {
-//           node {
-//             id
-//           }
-//         }
-//       }
-//     }
-//     `
-//   );
-
-//   if (errors) {
-//     throw new Error('There was an error');
-//   }
-
-//   const articles = data.allStrapiArticle.edges;
-//   articles.forEach((article) => {
-//     actions.createPage({
-//       path: `/blog/${article.node.id}`,
-//       component: path.resolve(`src/templates/article.js`),
-//       context: {
-//         id: article.node.id,
-//       },
-//     })
-//   })
-// }
-
-// async function paginate({ graphql, actions, collection }) {
-//   // const { createPage } = actions;
-//   // const paginateTemplate = path.resolve('./src/pages/archive.js');
-//   const { errors, data } = await graphql(
-//     `
-//     {
-//       allStrapiArticle (
-//         sort: { fields: [created_at], order: DESC }
-//         filter: { fields: { collection: { eq: "${collection}" } } }
-//         ) {
-//         totalCount
-//       }
-//     }
-//     `
-//   );
-
-//   console.log(data);
-//   if (errors) {
-//     throw new Error('There was an error');
-//   }
-
-//   const { totalCount } = data.allStrapiArticle;
-//   const pages = Math.ceil(totalCount / 10);
-
-//   Array.from({ length: pages }).forEach((_, i) => {
-//     // for each page, use createPages api to dynamically create that page
-
-//     actions.createPage({
-//       path: `/archive/${i + 1}`,
-//       component: path.resolve('./src/pages/archive.js'),
-//       context: {
-//         skip: i * 10,
-//         currentPage: i + 1,
-//       },
-//     });
-//   });
-// }
-
-// exports.createPages = async ({ graphql, actions }) => {
-//   // const { createPage } = actions;
-
-//   await Promise.all([
-//     makeArticlesFromMdx({ graphql, actions }),
-//     paginate({ graphql, actions, collection: 'article' }),
-//   ])
-// }
-
-// exports.onCreateNode = ({ node, actions, getNode }) => {
-//   const { createNodeField } = actions
-
-//   // if (node.internal.type === `MarkdownRemark`) {
-//   if (node.internal.type === `Strapi`) {
-//     const value = createFilePath({ node, getNode })
-//     createNodeField({
-//       // name: `slug`,
-//       id: node.id,
-//       node,
-//       value,
-//     })
-//   }
-// }
-
 const path = require(`path`);
 
 const makeRequest = (graphql, request) =>
@@ -147,34 +49,34 @@ exports.createPages = ({ actions, graphql }) => {
   //   })
   // }
 
-  // // AUTHOR CONTENT TYPE
-  // const getAuthors = makeRequest(
-  //   graphql,
-  //   `
-  //   {
-  //     allStrapiUser {
-  //       edges {
-  //         node {
-  //           id
-  //           name
-  //         }
-  //       }
-  //     }
-  //   }
-  //   `
-  // ).then(result => {
-  //   // Create pages for each user.
-  //   result.data.allStrapiUser.edges.forEach(({ node }) => {
-  //     createPage({
-  //       path: `/authors/${node.id}`,
-  //       path: `/authors/${node.name.split(" ").join("-")}`,
-  //       component: path.resolve(`src/templates/author.js`),
-  //       context: {
-  //         id: node.id,
-  //       },
-  //     })
-  //   })
-  // })
+  // AUTHOR CONTENT TYPE
+  const getAuthors = makeRequest(
+    graphql,
+     `
+    {
+      allStrapiAuthors {
+        edges {
+          node {
+            id
+            name
+          }
+        }
+      }
+    }
+    `
+  ).then(result => {
+    // Create pages for each user.
+    result.data.allStrapiAuthors.edges.forEach(({ node }) => {
+      createPage({
+        // path: `/authors/${node.id}`,
+        path: `/authors/${node.name.split(" ").map((category) => category.toLowerCase()).join("-")}`,
+        component: path.resolve(`src/templates/author.js`),
+        context: {
+          id: node.id,
+        },
+      })
+    })
+  })
 
   // BLOG CONTENT TYPES
   const getArticles = makeRequest(
@@ -264,7 +166,7 @@ exports.createPages = ({ actions, graphql }) => {
           node {
             id
             title
-            category {
+            categories {
               id
               title
             }
@@ -316,10 +218,11 @@ exports.createPages = ({ actions, graphql }) => {
     graphql,
     `
     {
-      allStrapiIssue {
+      allStrapiMagazineIssue {
         edges {
           node {
             id
+            issue
           }
         }
       }
@@ -327,9 +230,10 @@ exports.createPages = ({ actions, graphql }) => {
     `
   ).then(result => {
     // Create pages for each Issue.
-    result.data.allStrapiIssue.edges.forEach(({ node }) => {
+    result.data.allStrapiMagazineIssue.edges.forEach(({ node }) => {
       createPage({
-        path: `/magazine/${node.id}`,
+        // path: `/magazine/${node.id}`,
+        path: `/magazine/${node.issue.split(" ").map((category) => category.toLowerCase()).join("-")}}`,
         component: path.resolve(`src/templates/issue.js`),
         context: {
           id: node.id,
@@ -393,7 +297,7 @@ exports.createPages = ({ actions, graphql }) => {
 
   // Queries for articles and authors nodes to use in creating pages.
   return Promise.all([
-    // getAuthors,
+    getAuthors,
     getArticles, 
     getCategories,
     getIssues,
@@ -401,153 +305,3 @@ exports.createPages = ({ actions, graphql }) => {
     getSubscribe,
   ])
 }
-
-
-// // // AWAIT / ASYNC
-
-// // exports.createPages = async ({ graphql, actions }) => {
-// //   const { createPage, createRedirect } = actions
-
-// //   const result = await graphql(`
-// //     query {
-// //       allStrapiUser {
-// //         edges {
-// //           node {
-// //             id
-// //             name
-// //           }
-// //         }
-// //       }
-// //       allStrapiArticle (sort: { fields: [created_at], order: DESC }) {
-// //         edges {
-// //           node {
-// //             id
-// //           }
-// //         }
-// //       }
-// //       allStrapiCategory {
-// //         edges {
-// //           node {
-// //             id
-// //             title
-// //           }
-// //         }
-// //       }
-// //       allStrapiIssue {
-// //         edges {
-// //           node {
-// //             id
-// //           }
-// //         }
-// //       }
-// //       allStrapiTag {
-// //         edges {
-// //           node {
-// //             id
-// //           }
-// //         }
-// //       }
-// //       allStrapiAbout {
-// //         edges {
-// //           node {
-// //             id
-// //           }
-// //         }
-// //       }
-// //       allStrapiSubscribe {
-// //         edges {
-// //           node {
-// //             id
-// //           }
-// //         }
-// //       }
-// //     }
-// //   `)
-
-// //   // const posts = result.data.allStrapiArticle.nodes
-// //   // const postsPerPage = 6
-// //   // const numPages = Math.ceil(posts.length / postsPerPage)
-// //   // Array.from({ length: numPages }).forEach((_, i) => {
-// //   //   createPage({
-// //   //     path: i === 0 ? `/archive` : `/archive/page/${i + 1}`,
-// //   //     component: path.resolve('./src/templates/blog-page.js'),
-// //   //     context: {
-// //   //       limit: postsPerPage,
-// //   //       skip: i * postsPerPage,
-// //   //       numPages,
-// //   //       currentPage: i + 1,
-// //   //     },
-// //   //   })
-// //   // })
-
-// //   // result.data.allStrapiUser.edges.forEach(({ node }) => {
-// //   //   createPage({
-// //   //     path: `/authors/${node.id}`,
-// //   //     component: path.resolve(`src/templates/author.js`),
-// //   //     context: {
-// //   //       id: node.id,
-// //   //     },
-// //   //   })
-// //   // })
-
-// //   result.data.allStrapiArticle.edges.forEach(({ node }) => {
-// //     createPage({
-// //       path: `/blog/${node.id}`,
-// //       component: path.resolve(`src/templates/article.js`),
-// //       context: {
-// //         id: node.id,
-// //       },
-// //     })
-// //   })
-
-// //   result.data.allStrapiCategory.edges.forEach(({ node }) => {
-// //     createPage({
-// //       // path: `/categories/${node.id}`,
-// //       path: `/categories/${node.title.split(" ").join("-")}`,
-// //       component: path.resolve(`src/templates/category.js`),
-// //       context: {
-// //         id: node.id,
-// //       },
-// //     })
-// //   })
-
-// //   result.data.allStrapiIssue.edges.forEach(({ node }) => {
-// //     createPage({
-// //       path: `/magazine/${node.id}`,
-// //       component: path.resolve(`src/templates/issue.js`),
-// //       context: {
-// //         id: node.id,
-// //       },
-// //     })
-// //   })
-
-// //   result.data.allStrapiTag.edges.forEach(({ node }) => {
-// //     createPage({
-// //       path: `/tags/${node.id}`,
-// //       component: path.resolve(`src/templates/tag.js`),
-// //       context: {
-// //         id: node.id,
-// //       },
-// //     })
-// //   })
-
-// //   result.data.allStrapiAbout.edges.forEach(({ node }) => {
-// //     createPage({
-// //       path: `/about/`,
-// //       component: path.resolve(`src/templates/about.js`),
-// //       context: {
-// //         id: node.id,
-// //       },
-// //     })
-// //   })
-
-// //   result.data.allStrapiSubscribe.edges.forEach(({ node }) => {
-// //     createPage({
-// //       path: `/subscribe/`,
-// //       component: path.resolve(`src/templates/subscribe.js`),
-// //       context: {
-// //         id: node.id,
-// //       },
-// //     })
-// //   }) 
-// // }

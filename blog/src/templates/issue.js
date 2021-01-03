@@ -1,52 +1,71 @@
 import React from "react"
-import { Link, graphql } from "gatsby"
+import { graphql } from "gatsby"
+// import { Link, graphql } from "gatsby"
 // import Img from "gatsby-image"
 import Layout from "../components/layout"
-import ReactMarkdown from "react-markdown"
+// import Preview from "../components/preview"
 
-const IssueTemplate = ({ data }) => (
+const MagazineIssueTemplate = ({ data }) => (
   <Layout>
-    <h1>{data.strapiIssue.title}</h1>
-    <p>
-      By{" "}
-      {data.strapiIssue.author}
-    </p>
-    <p>
-      Tags: 
-      {
-        data.strapiIssue.tag
-        ?
-        data.strapiIssue.tag.map((t, idx) => <Link to={`/tags/Tag_${t.id}`} key={idx}>{t.title}</Link>)
-        :
-        'N/A'
-      }
-    </p>
-    {/* {
-      data.strapiIssue.image
-        ?
-        <Img fluid={data.strapiIssue.image.childImageSharp.fluid} />
-        :
-        ""
-    } */}
-    <ReactMarkdown
-      source={data.strapiIssue.content}
-    //   transformImageUri={uri => uri.startsWith('http') ? uri : `${process.env.IMAGE_BASE_URL}${uri}`}
-    />
+    <div className="">
+      <h2 className="font-normal mb-12 text-4xl leading-tight">{data.strapiMagazineIssue.issue}</h2>
+    </div>
   </Layout>
 )
 
-export default IssueTemplate
+export default MagazineIssueTemplate;
 
 export const query = graphql`
-  query IssueTemplate($id: String!) {
-    strapiIssue(id: { eq: $id }) {
-      title
-      author
-      content
-      tag {
-        id
-        title
-      }
+  query MagazineIssueTemplate($id: String!) {
+    strapiMagazineIssue(id: { eq: $id }) {
+      id
+      issue
     }
   }
 `
+
+// export const query = graphql`
+//   query CategoryTemplate($id: String!) {
+//     strapiCategory(id: { eq: $id }) {
+//       id
+//       title
+//       articles {
+//         id
+//         title
+//         author
+//         content
+//         image {
+//           childImageSharp {
+//             fixed(width: 200, height: 125) {
+//               ...GatsbyImageSharpFixed
+//             }
+//             fluid(maxWidth: 1000) {
+//               ...GatsbyImageSharpFluid
+//             }
+//           }
+//         }
+//       }
+//     }
+//   }
+// `
+
+// export const query = graphql`
+//   query CategoryTemplate($id: String!) {
+//     strapiCategory(id: { eq: $id }) {
+//       title
+//       articles {
+//         id
+//         title
+//         author
+//         content
+//         image {
+//           childImageSharp {
+//             fluid(maxWidth: 500) {
+//               ...GatsbyImageSharpFluid
+//             }
+//           }
+//         }
+//       }
+//     }
+//   }
+// `

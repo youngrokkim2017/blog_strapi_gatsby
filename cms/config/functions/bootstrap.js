@@ -13,10 +13,12 @@ const mime = require('mime');
  * See more details here: https://strapi.io/documentation/v3.x/concepts/configurations.html#bootstrap
  */
 
+// module.exports = async () => {
 module.exports = () => {
     var data = require('fs').readFileSync('bsr-json-regex/export-2020-12-26-copy.js', 'utf8');
     var data = JSON.parse(data);
     // var _ = '';
+
 
     // function find_category(name) {
     //     var value = strapi.query('category').findOne({ title: name });
