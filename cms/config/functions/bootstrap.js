@@ -1,5 +1,8 @@
 'use strict';
 
+const path = require('path');
+const mime = require('mime');
+
 /**
  * An asynchronous bootstrap function that runs before
  * your application gets started.
@@ -11,76 +14,55 @@
  */
 
 module.exports = () => {
-    // var test = require('fs').readFileSync('./export.js', 'utf8');
-    // var test = JSON.parse(test);
-    // // console.log(test[test.length-1]);
+    var data = require('fs').readFileSync('bsr-json-regex/export-2020-12-26-copy.js', 'utf8');
+    var data = JSON.parse(data);
+    // var _ = '';
 
-    // test.forEach(post => {
-    //     strapi.services.article.create({
-    //         title: post.title,
-    //         content: post.markdown,
-    //         author: post.author,
-    //         image: post.featured_image
-    //     });
-    // });
+    // function find_category(name) {
+    //     var value = strapi.query('category').findOne({ title: name });
+    //     return value.id
+    // }
 
-    // var test = require('fs').readFileSync('./image-urls.js', 'utf8');
-    // var test = JSON.parse(test);
-    // // console.log(test[test.length-1]);
+    async function create(data, files = {}) {
+        // const primary_category = await strapi.query('category').findOne({ title: data.primary_category });
+        // const secondary_category = await strapi.query('category').findOne({ title: data.secondary_category });
+        // const author = await strapi.query('author').findOne({ name: data.author });
+        // const magazine = await strapi.query('magazine').findOne({ issue: data.issue });
 
-    // test.forEach(post => {
-    //     strapi.services.article.update({
-    //         // title: post.title,
-    //         // content: post.markdown,
-    //         // author: post.author,
-    //         image: post.featured_image
-    //     });
-    // });
+        const entry = await strapi.query('article').create({
+            title: data.title,
+            author: data.author,
+            // categories: [primary_category.id, secondary_category.id],
+            // magazine: magazine.id,
+            content: data.markdown
+        });
 
-    // var test = require('fs').readFileSync('./image-urls.json', 'utf8');
-    // var test = JSON.parse(test);
-    // // console.log(test[test.length-1]);
+        if (files) {
+            await strapi.entityService.uploadFiles(entry, files, {
+                model: strapi.models.article.modelName
+            });
+            return this.findOne({ id: entry.id });
+        }
+        return entry;
+    };
 
-    // test.forEach(post => {
-    //     const downloaded = strapi.config.functions.download(post.featured_image);
-    //     const [{ id: fileId }] = strapi.config.functions.upload(downloaded);
+    data.forEach(post => {
+        // var image_name = path.parse(post.featured_image).base;
+        // console.log(image_name);
 
-    //     strapi.services.testimage.create({
-    //         // title: post.title,
-    //         // content: post.markdown,
-    //         // author: post.author,
-    //         // imageURL: post.featured_image || "",
-    //         image: fileId,
-    //     });
-    // });
+        const path_to_img = 'bsr-json-regex/dog.png';
+        const fileStat = require('fs').statSync(path_to_img);
+
+        const files = {
+            image: {
+                path: path_to_img,
+                name: path.parse(path_to_img).base,
+                type: mime.getType(path_to_img),
+                size: fileStat.size,
+            }
+        };
+        create(post, files);
+
+    });
+
 };
-
-// async create(data, { files } = {}) {
-//     const entry = await strapi.query('restaurant').create(data);
-
-//     if (files) {
-//       // automatically uploads the files based on the entry and the model
-//       await strapi.entityService.uploadFiles(entry, files, {
-//         model: 'restaurant',
-//         // if you are using a plugin's model you will have to add the `plugin` key (plugin: 'users-permissions')
-//       });
-//       return this.findOne({ id: entry.id });
-//     }
-
-//     return entry;
-// }
-
-// async update(params, data, { files } = {}) {
-//     const entry = await strapi.query('restaurant').update(params, data);
-
-//     if (files) {
-//       // automatically uploads the files based on the entry and the model
-//       await strapi.entityService.uploadFiles(entry, files, {
-//         model: 'restaurant',
-//         // if you are using a plugin's model you will have to add the `plugin` key (plugin: 'users-permissions')
-//       });
-//       return this.findOne({ id: entry.id });
-//     }
-
-//     return entry;
-//   }
