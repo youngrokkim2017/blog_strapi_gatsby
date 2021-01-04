@@ -23,11 +23,7 @@ const SearchPage = ({ location }) => {
           node {
             id
             image {
-              childImageSharp {
-                fluid {
-                  ...GatsbyImageSharpFluid
-                }
-              }
+              publicURL
             }
             title
             author {
@@ -191,17 +187,17 @@ const SearchPage = ({ location }) => {
         {currentSearchResults.map(document => (
           <li key={document.node.id}>
             <h2>
-              <Link to={`/blog/${document.node.title.split(" ").map((category) => category.toLowerCase()).join("-")}`} style={{ textDecoration: `none` }}>
+              <Link to={`/article/${document.node.title.split(" ").map((category) => category.toLowerCase()).join("-")}`} style={{ textDecoration: `none` }}>
                 <Highlight search={query}>{document.node.title}</Highlight>
               </Link>
             </h2>
             {/* <h4><Highlight search={query}>By{" "}{document.node.author}</Highlight></h4> */}
-            <Link to={`/authors/${document.node.author.name.split(" ").map((a) => a.toLowerCase()).join("-")}`} className="font-medium underline">
+            <Link to={`/author/${document.node.author.name.split(" ").map((a) => a.toLowerCase()).join("-")}`} className="font-medium underline">
               <Highlight search={query}>By{" "}{document.node.author.name}</Highlight>
             </Link>
             {document.node.image ?
               // <Img fixed={document.node.image.childImageSharp.fixed} />
-              <Img fluid={document.node.image.childImageSharp.fluid} />
+              <img src={document.node.image.publicURL} />
             :
               ""
             }
@@ -221,17 +217,17 @@ const SearchPage = ({ location }) => {
         {searchResults.map(document => (
           <li key={document.node.id}>
             <h2>
-              <Link to={`/blog/${document.node.title.split(" ").join("-")}`} style={{ textDecoration: `none` }}>
+              <Link to={`/article/${document.node.title.split(" ").join("-")}`} style={{ textDecoration: `none` }}>
                 <Highlight search={query}>{document.node.title}</Highlight>
               </Link>
             </h2>
             {/* <h4><Highlight search={query}>By{" "}{document.node.author}</Highlight></h4> */}
-            <Link to={`/authors/${document.node.author.name.split(" ").map((a) => a.toLowerCase()).join("-")}`} className="font-medium underline">
+            <Link to={`/author/${document.node.author.name.split(" ").map((a) => a.toLowerCase()).join("-")}`} className="font-medium underline">
               <Highlight search={query}>By{" "}{document.node.author.name}</Highlight>
             </Link>
             {document.node.image ?
               // <Img fixed={document.node.image.childImageSharp.fixed} />
-              <Img fluid={document.node.image.childImageSharp.fluid} />
+              <img src={document.node.image.publicURL} />
             :
               ""
             }

@@ -23,13 +23,13 @@ const CategoryTemplate = ({ data }) => {
             document.image
               ?
               <div className="mr-6">
-                <Img fluid={document.image.childImageSharp.fluid} />
+                <img src={document.image.publicURL} />
               </div>
               :
               ""
           } */}
           <div>
-            <Link to={`/blog/${document.title.split(" ").map((category) => category.toLowerCase()).join("-")}`}>
+            <Link to={`/article/${document.title.split(" ").map((category) => category.toLowerCase()).join("-")}`}>
               <h2 className="font-normal mb-4 text-2xl leading-tight">{document.title}</h2>
             </Link>
             <ReactMarkdown
@@ -42,7 +42,7 @@ const CategoryTemplate = ({ data }) => {
                 {+author.node.id.split("_")[1] === document.author ?
                   <Link 
                     className="font-medium underline"
-                    to={`/authors/${author.node.name.split(" ").map((a) => a.toLowerCase()).join("-")}`}
+                    to={`/author/${author.node.name.split(" ").map((a) => a.toLowerCase()).join("-")}`}
                   >
                     By {author.node.name}
                   </Link>
@@ -75,11 +75,7 @@ export const query = graphql`
         content
         magazine
         image {
-          childImageSharp {
-            fluid {
-              ...GatsbyImageSharpFluid
-            }
-          }
+          publicURL
         }
       }
     }

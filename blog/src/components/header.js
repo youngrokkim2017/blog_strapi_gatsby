@@ -91,7 +91,7 @@ const Header = () => {
 
                   <Link
                     // to={`/categories/${document.node.id}`} 
-                    to={`/categories/${document.node.title.split(" ").map((category) => category.toLowerCase()).join("-")}`}
+                    to={`/category/${document.node.title.split(" ").map((category) => category.toLowerCase()).join("-")}`}
                     // to={`/categories/${document.node.title.split(" ").join("-")}/1`} 
                     key={idx}
                     className="block mt-4 lg:inline-block lg:mt-0">

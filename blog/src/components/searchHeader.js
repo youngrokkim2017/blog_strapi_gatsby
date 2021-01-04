@@ -24,10 +24,10 @@ const SearchHeader = ({ categories }) => {
         </div>
         <div className="container mx-auto text-center py-2 border-b border-black">
           <div className="">
-            <div className="text-sm space-x-4 mx-auto">
+            <div className="text-base space-x-4 mx-auto">
               {categories.map((document, idx) => (
                 <Link 
-                  to={`/categories/${document.node.title.split(" ").map((category) => category.toLowerCase()).join("-")}`} 
+                  to={`/category/${document.node.title.split(" ").map((category) => category.toLowerCase()).join("-")}`} 
                   key={idx} 
                   className="block mt-4 lg:inline-block lg:mt-0"
                 >

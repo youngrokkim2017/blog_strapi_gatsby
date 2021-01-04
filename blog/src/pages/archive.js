@@ -119,11 +119,7 @@ export const archiveQuery = graphql`
         node {
           id
           image {
-            childImageSharp {
-              fluid {
-                ...GatsbyImageSharpFluid
-              }
-            }
+            publicURL
           }
           title
           author {

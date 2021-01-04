@@ -10,7 +10,7 @@ const AuthorTemplate = ({ data }) => (
         {data.strapiAuthors.articles.map(article => (
           <li key={article.id}>
             <h2>
-              <Link to={`/blog/${article.title.split(" ").map((a) => a.toLowerCase()).join("-")}`}>{article.title}</Link>
+              <Link to={`/article/${article.title.split(" ").map((a) => a.toLowerCase()).join("-")}`}>{article.title}</Link>
             </h2>
             {/* <p>{article.content}</p> */}
             <ReactMarkdown
