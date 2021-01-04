@@ -2,7 +2,7 @@ import React, { useState } from "react"
 // import React, { useState, lazy, Suspense } from "react"
 // import React, { useState, useRef } from "react"
 import { Link, graphql, useStaticQuery } from "gatsby"
-import Img from 'gatsby-image';
+// import Img from 'gatsby-image';
 import ReactMarkdown from "react-markdown"
 // import logo from "../images/logo.png"
 import Fuse from "fuse.js"  // fuzzy search
@@ -197,7 +197,7 @@ const SearchPage = ({ location }) => {
             </Link>
             {document.node.image ?
               // <Img fixed={document.node.image.childImageSharp.fixed} />
-              <img src={document.node.image.publicURL} />
+              <img src={document.node.image.publicURL} alt="" />
             :
               ""
             }
@@ -227,7 +227,7 @@ const SearchPage = ({ location }) => {
             </Link>
             {document.node.image ?
               // <Img fixed={document.node.image.childImageSharp.fixed} />
-              <img src={document.node.image.publicURL} />
+              <img src={document.node.image.publicURL} alt="" />
             :
               ""
             }

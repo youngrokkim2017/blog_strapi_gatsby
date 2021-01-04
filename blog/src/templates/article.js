@@ -1,6 +1,6 @@
 import React from "react"
 import { Link, graphql } from "gatsby"
-import Img from "gatsby-image"
+// import Img from "gatsby-image"
 import Layout from "../components/layout"
 import ReactMarkdown from "react-markdown"
 // import Fuse from "fuse.js"  // fuzzy search
@@ -135,7 +135,7 @@ class ArticleTemplate extends React.Component {
               <div className="">
                 {data.strapiArticle.image ?
                   // <Img fixed={data.strapiArticle.image.childImageSharp.fixed} className="featured-img-container mb-8" />
-                  <img src={data.strapiArticle.image.publicURL} className="featured-img-container mb-8" />
+                  <img src={data.strapiArticle.image.publicURL} className="featured-img-container mb-8" alt="" />
                   :
                   ""
                 }
