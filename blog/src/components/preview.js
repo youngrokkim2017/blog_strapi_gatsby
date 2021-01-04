@@ -12,18 +12,18 @@ const Preview = ({ article, format }) => {
                         ?
                         <div className="mr-6 hidden">
                             {/* <Img fixed={article.image.childImageSharp.fixed} /> */}
-                            <Img fluid={article.image.childImageSharp.fluid} />
+                            <img src={article.image.publicURL} />
                         </div>
                         :
                         ""
                 }
                 <div>
-                    <Link to={`/blog/${article.title.split(" ").map((category) => category.toLowerCase()).join("-")}`}>
+                    <Link to={`/article/${article.title.split(" ").map((category) => category.toLowerCase()).join("-")}`}>
                         <h2 className="font-normal mb-2 text-base leading-tight">{article.title}</h2>
                     </Link>
 
                     <p className='text-base'>
-                        <Link to={`/authors/${article.author.name.split(" ").map((a) => a.toLowerCase()).join("-")}`} className="font-medium underline">
+                        <Link to={`/author/${article.author.name.split(" ").map((a) => a.toLowerCase()).join("-")}`} className="font-medium underline">
                             {article.author.name}
                         </Link>
                     </p>
@@ -40,13 +40,13 @@ const Preview = ({ article, format }) => {
                         ?
                         <div className="mr-6">
                             {/* <Img fixed={article.image.childImageSharp.fixed} /> */}
-                            <Img fluid={article.image.childImageSharp.fluid} />
+                            <img src={article.image.publicURL} />
                         </div>
                         :
                         ""
                 }
                 <div>
-                    <Link to={`/blog/${article.title.split(" ").map((category) => category.toLowerCase()).join("-")}`}>
+                    <Link to={`/article/${article.title.split(" ").map((category) => category.toLowerCase()).join("-")}`}>
                         <h2 className="font-normal mb-4 text-2xl leading-tight">{article.title}</h2>
                     </Link>
                     <ReactMarkdown
@@ -55,7 +55,7 @@ const Preview = ({ article, format }) => {
                         className="mb-4"
                     />
                     <p className='mb-2 text-base'>
-                        By <Link to={`/authors/${article.author.name.split(" ").map((a) => a.toLowerCase()).join("-")}`} className="font-medium underline">
+                        By <Link to={`/author/${article.author.name.split(" ").map((a) => a.toLowerCase()).join("-")}`} className="font-medium underline">
                             {article.author.name}
                         </Link>
                     </p>

@@ -69,7 +69,7 @@ exports.createPages = ({ actions, graphql }) => {
     result.data.allStrapiAuthors.edges.forEach(({ node }) => {
       createPage({
         // path: `/authors/${node.id}`,
-        path: `/authors/${node.name.split(" ").map((category) => category.toLowerCase()).join("-")}`,
+        path: `/author/${node.name.split(" ").map((category) => category.toLowerCase()).join("-")}`,
         component: path.resolve(`src/templates/author.js`),
         context: {
           id: node.id,
@@ -115,7 +115,7 @@ exports.createPages = ({ actions, graphql }) => {
       createPage({
         // path: `/blog/${article.node.id}`,
         // component: path.resolve(`./src/templates/blog-post.js`),
-        path: `/blog/${article.node.title.split(" ").map((category) => category.toLowerCase()).join("-")}`,
+        path: `/article/${article.node.title.split(" ").map((category) => category.toLowerCase()).join("-")}`,
         component: path.resolve(`src/templates/article.js`),
         context: {
           id: article.node.id,
@@ -180,7 +180,7 @@ exports.createPages = ({ actions, graphql }) => {
     result.data.allStrapiCategory.edges.forEach(({ node }) => {
       createPage({
         // path: `/categories/${node.id}`,
-        path: `/categories/${node.title.split(" ").map((category) => category.toLowerCase()).join("-")}`,
+        path: `/category/${node.title.split(" ").map((category) => category.toLowerCase()).join("-")}`,
         component: path.resolve(`src/templates/category.js`),
         context: {
           id: node.id,
@@ -200,7 +200,7 @@ exports.createPages = ({ actions, graphql }) => {
     //   // Array.from({ length: numPages }).map((_, i) => {
     //   Array.from({ length: numPages }).forEach((_, i) => {
     //     createPage({
-    //       path: i === 0 ? `/categories/${node.title.split(" ").join("-")}/1` : `/categories/${node.title.split(" ").join("-")}/${i + 1}`,
+    //       path: i === 0 ? `/category/${node.title.split(" ").join("-")}/1` : `/category/${node.title.split(" ").join("-")}/${i + 1}`,
     //       component: path.resolve(`src/templates/category.js`),
     //       context: {
     //         limit: postsPerPage,
