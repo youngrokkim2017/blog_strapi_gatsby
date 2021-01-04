@@ -4,7 +4,6 @@ import { Link, navigate, StaticQuery, graphql } from "gatsby"
 import logo from "../images/logo.png"
 
 const Header = () => {
-  // const Header = ({ siteTitle }) => {
   const [query, setQuery] = useState('');
 
   function handleNavigate(e) {
@@ -12,7 +11,6 @@ const Header = () => {
 
     navigate(
       "/search/",
-      // `/search/${query}`,
       {
         state: { searchQuery: query },
       }
@@ -87,13 +85,12 @@ const Header = () => {
             `}
             render={data => (
               <div className="text-base space-x-4 mx-auto">
-                {data.allStrapiCategory.edges.map((document, idx) => (
+                {/* {data.allStrapiCategory.edges.map((document, idx) => ( */}
+                {data.allStrapiCategory.edges.sort((a, b) => b.id - a.id).map((document, idx) => (
 
                   <Link
-                    // to={`/categories/${document.node.id}`} 
                     to={`/category/${document.node.title.split(" ").map((category) => category.toLowerCase()).join("-")}`}
-                    // to={`/categories/${document.node.title.split(" ").join("-")}/1`} 
-                    key={idx}
+                    key={document.node.id}
                     className="block mt-4 lg:inline-block lg:mt-0">
                     {document.node.title}
                   </Link>
