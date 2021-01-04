@@ -11,7 +11,6 @@ const Preview = ({ article, format }) => {
                     article.image
                         ?
                         <div className="mr-6 hidden">
-                            {/* <Img fixed={article.image.childImageSharp.fixed} /> */}
                             <img src={article.image.publicURL} alt="" />
                         </div>
                         :
@@ -39,7 +38,6 @@ const Preview = ({ article, format }) => {
                     article.image
                         ?
                         <div className="mr-6">
-                            {/* <Img fixed={article.image.childImageSharp.fixed} /> */}
                             <img src={article.image.publicURL} alt="" />
                         </div>
                         :

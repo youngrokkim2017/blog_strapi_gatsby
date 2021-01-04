@@ -41,8 +41,7 @@ class ArticleTemplate extends React.Component {
       navigator.clipboard.writeText(window.location.href);
       clip.classList.add('text-green-400');
     }
-    // console.log(data.strapiArticle.categories.map(a => a.title))
-    // console.log(data.strapiArticle)
+    
     return (
       <Layout>
         <div className="flex justify-between overflow-visible relative items-start">
@@ -51,7 +50,6 @@ class ArticleTemplate extends React.Component {
               {data.strapiArticle.author ?
                 <p className='mb-2 text-base'>
                   By <Link to={`/author/${data.strapiArticle.author.name.split(" ").map((a) => a.toLowerCase()).join("-")}`} className="font-medium underline">
-                    {/* {data.strapiArticle.author} */}
                     {data.strapiArticle.author.name}
                   </Link>
                 </p>
@@ -70,29 +68,11 @@ class ArticleTemplate extends React.Component {
                 :
                 ''
               } */}
-
-
-
-
             </div>
           </div>
           <div className="flex-grow">
             <div className="prose md:prose-lg antialiased leading-relaxed mx-auto text-black mb-12">
               <p className='my-0 tracking-tight text-lg sans-serif flex items-center'>
-                {/* Tags: */}
-                {
-                  // data.strapiArticle.categories
-                  // ?
-                  // data.strapiArticle.categories.map((c, idx) => <Link to={`/categories/Category_${c.id}`} key={idx}>{c.title}</Link>)
-                  // :
-                  // ''
-                }
-                {/* <Link to={`/categories/Category_${data.strapiArticle.categories.id}`} key={data.strapiArticle.categories.id}>{data.strapiArticle.category.title}</Link> */}
-                {/* <span>Blog</span>
-                <svg xmlns="http://www.w3.org/2000/svg" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                </svg> */}
-
                 <span>
                   {data.strapiArticle.categories[0] ?
                     <Link to={`/category/${data.strapiArticle.categories[0].title.split(" ").map((a) => a.toLowerCase()).join("-")}`} className="text-black no-underline">
@@ -119,7 +99,6 @@ class ArticleTemplate extends React.Component {
                 {data.strapiArticle.author ?
                   <p className='mb-2 text-base'>
                     By <Link to={`/author/${data.strapiArticle.author.name.split(" ").map((a) => a.toLowerCase()).join("-")}`} className="font-medium underline">
-                      {/* {data.strapiArticle.author} */}
                       {data.strapiArticle.author.name}
 
                     </Link>
@@ -134,7 +113,6 @@ class ArticleTemplate extends React.Component {
 
               <div className="">
                 {data.strapiArticle.image ?
-                  // <Img fixed={data.strapiArticle.image.childImageSharp.fixed} className="featured-img-container mb-8" />
                   <img src={data.strapiArticle.image.publicURL} className="featured-img-container mb-8" alt="" />
                   :
                   ""
@@ -221,8 +199,8 @@ export default ArticleTemplate
 
 export const query = graphql`
   query ArticleTemplate($id: String!) {
-            strapiArticle(id: {eq: $id }) {
-            id
+    strapiArticle(id: {eq: $id }) {
+      id
       title
       published_at
       updated_at
@@ -240,9 +218,9 @@ export const query = graphql`
       }
     }
     allStrapiArticle {
-            edges {
-            node {
-            id
+      edges {
+        node {
+          id
           image {
             publicURL
           }
@@ -261,51 +239,3 @@ export const query = graphql`
     }
   }
 `
-
-// export const query = graphql`
-//   query ArticleTemplate($id: String!) {
-//     strapiArticle(id: { eq: $id }) {
-//       id
-//       title
-//       author
-//       published_at
-//       updated_at
-//       content
-//       image {
-//         childImageSharp {
-//           fluid(maxWidth: 500) {
-//             ...GatsbyImageSharpFluid
-//           }
-//         }
-//       }
-//       categories {
-//         id
-//         title
-//       }
-//     }
-//     allStrapiArticle {
-//       edges {
-//         node {
-//           id
-//           image {
-//             childImageSharp {
-//               fixed(width: 200, height: 125) {
-//                 ...GatsbyImageSharpFixed
-//               }
-//               fluid(maxWidth: 1000) {
-//                 ...GatsbyImageSharpFluid
-//               }
-//             }
-//           }
-//           title
-//           author
-//           content
-//           categories {
-//             id
-//             title
-//           }
-//         }
-//       }
-//     }
-//   }
-// `

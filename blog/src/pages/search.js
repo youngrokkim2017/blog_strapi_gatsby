@@ -51,47 +51,6 @@ const SearchPage = ({ location }) => {
     }
   `)
 
-  // const data = useStaticQuery(graphql`
-  //   query SearchResultsQuery {
-  //     allStrapiArticle(
-  //       sort: { fields: [created_at], order: DESC }
-  //     ) {
-  //       edges {
-  //         node {
-  //           id
-  //           image {
-  //             childImageSharp {
-  //               fixed(width: 200, height: 125) {
-  //                 ...GatsbyImageSharpFixed
-  //               }
-  //               fluid(maxWidth: 1000) {
-  //                 ...GatsbyImageSharpFluid
-  //               }
-  //             }
-  //           }
-  //           title
-  //           author
-  //           content
-  //           categories {
-  //             id
-  //             title
-  //           }
-  //           published_at
-  //           updated_at
-  //         }
-  //       }
-  //     }
-  //     allStrapiCategory {
-  //       edges {
-  //         node {
-  //           id
-  //           title
-  //         }
-  //       }
-  //     }
-  //   }
-  // `)
-
   const [query, setQuery] = useState('');
   // const [query, setQuery] = useState(location.state.searchQuery);
   // const [input, setInput] = useState('');
@@ -191,12 +150,10 @@ const SearchPage = ({ location }) => {
                 <Highlight search={query}>{document.node.title}</Highlight>
               </Link>
             </h2>
-            {/* <h4><Highlight search={query}>By{" "}{document.node.author}</Highlight></h4> */}
             <Link to={`/author/${document.node.author.name.split(" ").map((a) => a.toLowerCase()).join("-")}`} className="font-medium underline">
               <Highlight search={query}>By{" "}{document.node.author.name}</Highlight>
             </Link>
             {document.node.image ?
-              // <Img fixed={document.node.image.childImageSharp.fixed} />
               <img src={document.node.image.publicURL} alt="" />
             :
               ""
@@ -221,12 +178,10 @@ const SearchPage = ({ location }) => {
                 <Highlight search={query}>{document.node.title}</Highlight>
               </Link>
             </h2>
-            {/* <h4><Highlight search={query}>By{" "}{document.node.author}</Highlight></h4> */}
             <Link to={`/author/${document.node.author.name.split(" ").map((a) => a.toLowerCase()).join("-")}`} className="font-medium underline">
               <Highlight search={query}>By{" "}{document.node.author.name}</Highlight>
             </Link>
             {document.node.image ?
-              // <Img fixed={document.node.image.childImageSharp.fixed} />
               <img src={document.node.image.publicURL} alt="" />
             :
               ""
@@ -249,83 +204,3 @@ const SearchPage = ({ location }) => {
 
 
 export default SearchPage;
-
-// // gql query
-// export const fuseQuery = graphql`
-//   query FuseQuery {
-//     allStrapiArticle(
-//       sort: { order: DESC, fields: published_at }
-//     ) {
-//       edges {
-//         node {
-//           id
-//           image {
-//             childImageSharp {
-//               fixed(width: 200, height: 125) {
-//                 ...GatsbyImageSharpFixed
-//               }
-//             }
-//           }
-//           title
-//           author
-//           content
-//           category {
-//             id
-//             title
-//           }
-//           published_at
-//           updated_at
-//         }
-//       }
-//     }
-//   }
-// `
-
-// export const fuseQuery = graphql`
-//   query FuseQuery {
-//     allStrapiArticle(
-//       limit: 5
-//       sort: { order: DESC, fields: published_at }
-//     ) {
-//       edges {
-//         node {
-//           id
-//           image {
-//             childImageSharp {
-//               fixed(width: 200, height: 125) {
-//                 ...GatsbyImageSharpFixed
-//               }
-//             }
-//           }
-//           title
-//           author
-//           content
-//           category {
-//             id
-//             title
-//           }
-//           published_at
-//           updated_at
-//         }
-//       }
-//     }
-//   }
-// `
-
-
-// // DYNAMIC SEARCH PAGE
-// import React from 'react'
-// import { Router } from '@reach/router';
-// import FuseSearch from '../components/fusesearch';
-
-// const SearchPage = ({ location }) => {
-//   return (
-//     <div>
-//       <Router>
-//         <FuseSearch path="/search/:query" />
-//       </Router>
-//     </div>
-//   )
-// }
-
-// export default SearchPage;
