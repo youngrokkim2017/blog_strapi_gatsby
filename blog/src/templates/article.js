@@ -156,29 +156,28 @@ class ArticleTemplate extends React.Component {
               <h2 className='text-2xl font-semibold m-0 mb-4 border-b border-black'>
                 Related Articles
               </h2>
-              <ul>
-                {/* {data.allStrapiArticle.edges.reverse().slice(0, 3).map(document => ( */}
-                {data.allStrapiArticle.edges.reverse().map(document => (
-                  <li key={document.node.id} className="mt-4 pb-4 border-b" style={{ borderBottomColor: '#ECECF3' }}>
-                    {/* <Preview article={document.node} format="small" /> */}
-                    {data.strapiArticle.categories.map(a => a.title)
+              <div>
+                {data.allStrapiArticle.edges.sort((a, b) => b.published_at - a.published_at).map(document => (
+                  <ul>
+                  {/* <li key={document.node.id} className="mt-4 pb-4 border-b" style={{ borderBottomColor: '#ECECF3' }}> */}
+                    {!data.strapiArticle.categories.map(a => a.title)
                       .some(ele => document.node.categories.map(b => b.title).includes(ele))
                       ?
-                      <div>
-                        {document.node.id !== data.strapiArticle.id ?
+                      <li key={document.node.id} className="mt-4 pb-4 border-b" style={{ borderBottomColor: '#ECECF3' }}>
+                        {/* {document.node.id == data.strapiArticle.id ?
                           <Preview article={document.node} format="small" />
                           :
                           ""
-                        }
-                      </div>
-                      // <Preview article={document.node} format="small" />
+                        } */}
+                        <Preview article={document.node} format="small" />
+                      </li>
                       :
                       ""
                     }
-                  </li>
+                  {/* </li> */}
+                  </ul>
                 )).slice(0, 3)}
-                {/* ))} */}
-              </ul>
+              </div>
             </div>
           </div>
         </div>
