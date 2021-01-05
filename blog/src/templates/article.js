@@ -12,19 +12,19 @@ class ArticleTemplate extends React.Component {
     var element = document.getElementById('metadata');
     var bottomPos = element.getBoundingClientRect().bottom + window.scrollY;
 
-    function myScrollFunc() {
-      var y = window.scrollY;
-      if (y >= bottomPos) {
-        sidebar.classList.remove("opacity-0");
-        sidebar.classList.add("opacity-1");
-        sidebar.classList.add("transition", "duration-500", "ease-in-out");
-      } else {
-        sidebar.classList.add("opacity-0");
-        sidebar.classList.remove("opacity-1");
-        sidebar.classList.remove("transition", "duration-500", "ease-in-out");
-      }
-    }
-    window.addEventListener("scroll", myScrollFunc);
+    // function myScrollFunc() {
+    //   var y = window.scrollY;
+    //   if (y >= bottomPos) {
+    //     sidebar.classList.remove("opacity-0");
+    //     sidebar.classList.add("opacity-1");
+    //     sidebar.classList.add("transition", "duration-500", "ease-in-out");
+    //   } else {
+    //     sidebar.classList.add("opacity-0");
+    //     sidebar.classList.remove("opacity-1");
+    //     sidebar.classList.remove("transition", "duration-500", "ease-in-out");
+    //   }
+    // }
+    // window.addEventListener("scroll", myScrollFunc);
   }
 
   render() {
@@ -41,111 +41,105 @@ class ArticleTemplate extends React.Component {
       navigator.clipboard.writeText(window.location.href);
       clip.classList.add('text-green-400');
     }
-    // console.log(data.strapiArticle.categories.map(a => a.title))
-    // console.log(data.strapiArticle)
     return (
       <Layout>
-        <div className="flex justify-between overflow-visible relative items-start">
-          <div className='w-1/5 sticky top-0 pt-40 opacity-0' id="sidebar">
-            <div className="text-base not-italic leading-5 mr-12">
+        <div className="justify-between overflow-visible relative items-start">
+          {/* <div className='w-1/5 sticky top-0 pt-40 opacity-0 -ml-48' id="sidebar">
+            <div className="text-base not-italic leading-5">
               {data.strapiArticle.author ?
                 <p className='mb-2 text-base'>
                   By <Link to={`/author/${data.strapiArticle.author.name.split(" ").map((a) => a.toLowerCase()).join("-")}`} className="font-medium underline">
-                    {/* {data.strapiArticle.author} */}
                     {data.strapiArticle.author.name}
                   </Link>
                 </p>
                 :
                 ""
               }
-              {/* {data.strapiArticle.author.about ? <p className='mb-2 text-gray-700 text-sm not-italic leading-5'>{data.strapiArticle.author.about}</p> : ''} */}
-              {/* {data.strapiArticle.author.twitterURL ?
-                <p>
-                  <a href={data.strapiArticle.author.twitterURL} className="flex">
-                  <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6.29 18.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0020 3.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.073 4.073 0 01.8 7.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 010 16.407a11.616 11.616 0 006.29 1.84"></path>
-                    </svg>
-                  </a>
-                </p>
-                :
-                ''
-              } */}
-
-
-
-
             </div>
-          </div>
-          <div className="flex-grow">
-            <div className="prose md:prose-lg antialiased leading-relaxed mx-auto text-black mb-12">
-              <p className='my-0 tracking-tight text-lg sans-serif flex items-center'>
-                {/* Tags: */}
-                {
-                  // data.strapiArticle.categories
-                  // ?
-                  // data.strapiArticle.categories.map((c, idx) => <Link to={`/categories/Category_${c.id}`} key={idx}>{c.title}</Link>)
-                  // :
-                  // ''
-                }
-                {/* <Link to={`/categories/Category_${data.strapiArticle.categories.id}`} key={data.strapiArticle.categories.id}>{data.strapiArticle.category.title}</Link> */}
-                {/* <span>Blog</span>
-                <svg xmlns="http://www.w3.org/2000/svg" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                </svg> */}
-
-                <span>
-                  {data.strapiArticle.categories[0] ?
-                    <Link to={`/category/${data.strapiArticle.categories[0].title.split(" ").map((a) => a.toLowerCase()).join("-")}`} className="text-black no-underline">
-                      {data.strapiArticle.categories[0].title}
-                    </Link>
-                    :
-                    ""
-                  }
-                  {data.strapiArticle.categories[1] ?
-                    <><span className="mx-1">&</span>
-                      <Link to={`/category/${data.strapiArticle.categories[1].title.split(" ").map((a) => a.toLowerCase()).join("-")}`} className="text-black no-underline">
-                        {data.strapiArticle.categories[1].title}
+          </div> */}
+          <div className="">
+            <div className="antialiased leading-relaxed mx-auto text-black mb-12">
+              <div className="border-b border-black pb-8 mb-8">
+                <p className='my-0 tracking-tight text-xl sans-serif items-center'>
+                  <span>
+                    {data.strapiArticle.categories[0] ?
+                      <Link to={`/category/${data.strapiArticle.categories[0].title.split(" ").map((a) => a.toLowerCase()).join("-")}`} className="text-black no-underline">
+                        {data.strapiArticle.categories[0].title}
                       </Link>
-                    </>
+                      :
+                      ""
+                    }
+                    {data.strapiArticle.categories[1] ?
+                      <><span className="mx-1">&</span>
+                        <Link to={`/category/${data.strapiArticle.categories[1].title.split(" ").map((a) => a.toLowerCase()).join("-")}`} className="text-black no-underline">
+                          {data.strapiArticle.categories[1].title}
+                        </Link>
+                      </>
+                      :
+                      ""
+                    }
+                  </span>
+                </p>
+                <h2 className="font-medium mt-2 mb-4 text-4xl leading-tight">{data.strapiArticle.title}</h2>
+                <div className="text-base not-italic leading-5" id="metadata">
+                  {data.strapiArticle.author ?
+                    <p className='mb-2 text-base'>
+                      By <Link to={`/author/${data.strapiArticle.author.name.split(" ").map((a) => a.toLowerCase()).join("-")}`} className="font-medium underline">
+                        {data.strapiArticle.author.name}
+                      </Link>
+                    </p>
                     :
                     ""
                   }
-
-                </span>
-
-              </p>
-              <h2 className="font-normal mt-2 mb-4 text-4xl leading-tight">{data.strapiArticle.title}</h2>
-              <div className="text-base not-italic leading-5 mb-12" id="metadata">
-                {data.strapiArticle.author ?
-                  <p className='mb-2 text-base'>
-                    By <Link to={`/author/${data.strapiArticle.author.name.split(" ").map((a) => a.toLowerCase()).join("-")}`} className="font-medium underline">
-                      {/* {data.strapiArticle.author} */}
-                      {data.strapiArticle.author.name}
-
-                    </Link>
+                  <p className='my-0'>
+                    {handleDate(data.strapiArticle.published_at)}
                   </p>
-                  :
-                  ""
-                }
-                <p className='my-0'>
-                  {handleDate(data.strapiArticle.published_at)}
-                </p>
+                </div>
               </div>
+              <div className="flex">
+                <div className="flex-shrink-0 prose md:prose-lg max-w-2xl mr-8 tracking-normal text-black">
+                  <div>
+                    {data.strapiArticle.image ?
+                      <img src={data.strapiArticle.image.publicURL} className="featured-img-container mb-8 mt-0 w-full" />
+                      :
+                      ""
+                    }
+                  </div>
 
-              <div className="">
-                {data.strapiArticle.image ?
-                  // <Img fixed={data.strapiArticle.image.childImageSharp.fixed} className="featured-img-container mb-8" />
-                  <img src={data.strapiArticle.image.publicURL} className="featured-img-container mb-8" />
-                  :
-                  ""
-                }
+                  <ReactMarkdown
+                    source={data.strapiArticle.content}
+                    transformImageUri={uri => uri.startsWith('http') ? uri : `${process.env.IMAGE_BASE_URL}${uri}`}
+                  />
+                </div>
+                <div className='flex-grow'>
+                  <div>
+                    <h2 className='text-2xl font-medium pb-2 mb-4 border-b border-black leading-none'>
+                      Related Articles
+              </h2>
+                    <ul>
+                      {/* {data.allStrapiArticle.edges.reverse().slice(0, 3).map(document => ( */}
+                      {data.allStrapiArticle.edges.reverse().map(document => (
+                        <li key={document.node.id} className="mt-4 pb-4 border-b" style={{ borderBottomColor: '#e2e2e2' }}>
+                          {/* <Preview article={document.node} format="small" /> */}
+                          {data.strapiArticle.categories.map(a => a.title)
+                            .some(ele => document.node.categories.map(b => b.title).includes(ele))
+                            ?
+                            <div>
+                              {document.node.id !== data.strapiArticle.id ?
+                                <Preview article={document.node} format="small" />
+                                :
+                                ""
+                              }
+                            </div>
+                            :
+                            ""
+                          }
+                        </li>
+                      )).slice(0, 3)}
+                    </ul>
+                  </div>
+                </div>
               </div>
-
-              <ReactMarkdown
-                source={data.strapiArticle.content}
-                transformImageUri={uri => uri.startsWith('http') ? uri : `${process.env.IMAGE_BASE_URL}${uri}`}
-              />
-
               <div className='mt-12'>
                 <div className="inline-flex items-center space-x-8">
                   <a href={`https://www.facebook.com/sharer/sharer.php?u=${window.location.href}&t=${data.strapiArticle.title}`} className="flex items-center space-x-2 no-underline">
@@ -173,36 +167,7 @@ class ArticleTemplate extends React.Component {
               </div>
             </div>
           </div>
-          <div className='w-1/5 ml-8'>
-            <div className="sticky">
-              <h2 className='text-2xl font-semibold m-0 mb-4 border-b border-black'>
-                Related Articles
-              </h2>
-              <ul>
-                {/* {data.allStrapiArticle.edges.reverse().slice(0, 3).map(document => ( */}
-                {data.allStrapiArticle.edges.reverse().map(document => (
-                  <li key={document.node.id} className="mt-4 pb-4 border-b" style={{ borderBottomColor: '#ECECF3' }}>
-                    {/* <Preview article={document.node} format="small" /> */}
-                    {data.strapiArticle.categories.map(a => a.title)
-                      .some(ele => document.node.categories.map(b => b.title).includes(ele))
-                      ?
-                      <div>
-                        {document.node.id !== data.strapiArticle.id ?
-                          <Preview article={document.node} format="small" />
-                          :
-                          ""
-                        }
-                      </div>
-                      // <Preview article={document.node} format="small" />
-                      :
-                      ""
-                    }
-                  </li>
-                )).slice(0, 3)}
-                {/* ))} */}
-              </ul>
-            </div>
-          </div>
+
         </div>
         <hr className="border-black mt-16" />
         <div className='mt-4 border-black'>
@@ -261,51 +226,3 @@ export const query = graphql`
     }
   }
 `
-
-// export const query = graphql`
-//   query ArticleTemplate($id: String!) {
-//     strapiArticle(id: { eq: $id }) {
-//       id
-//       title
-//       author
-//       published_at
-//       updated_at
-//       content
-//       image {
-//         childImageSharp {
-//           fluid(maxWidth: 500) {
-//             ...GatsbyImageSharpFluid
-//           }
-//         }
-//       }
-//       categories {
-//         id
-//         title
-//       }
-//     }
-//     allStrapiArticle {
-//       edges {
-//         node {
-//           id
-//           image {
-//             childImageSharp {
-//               fixed(width: 200, height: 125) {
-//                 ...GatsbyImageSharpFixed
-//               }
-//               fluid(maxWidth: 1000) {
-//                 ...GatsbyImageSharpFluid
-//               }
-//             }
-//           }
-//           title
-//           author
-//           content
-//           categories {
-//             id
-//             title
-//           }
-//         }
-//       }
-//     }
-//   }
-// `

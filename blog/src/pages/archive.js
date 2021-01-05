@@ -9,7 +9,7 @@ import Pagination from '../components/pagination'
 import Preview from "../components/preview"
 
 const ArchivePage = ({ data, pageContext }) => {
-  
+
   const [articles, setArticles] = useState(data.allStrapiArticle.edges);
 
   function handleFilter({ currentTarget = {} }) {
@@ -33,31 +33,22 @@ const ArchivePage = ({ data, pageContext }) => {
   return (
     <Layout>
       <SEO title="Archive" />
-      <div className="">
-        <div className="border-b border-black mb-12">
+      <div>
+        <div className="border-b border-black mb-12 pb-4">
           <h2 className="font-normal text-4xl leading-tight">Archive</h2>
         </div>
         <div>
-          <button
-            value="blog"
-            onClick={handleFilter}
-          >
+          <button value="blog" onClick={handleFilter}>
             Blog
-        </button>
-          <button
-            value="magazine"
-            onClick={handleFilter}
-          >
+          </button>
+          <button value="magazine" onClick={handleFilter}>
             Magazine
-        </button>
-          <button
-            value="none"
-            onClick={handleFilter}
-          >
+          </button>
+          <button value="none" onClick={handleFilter}>
             None
-        </button>
+          </button>
         </div>
-        <div>
+        <div className="container w-2/3">
           <ul>
             {articles.map(document => (
               <li key={document.node.id} className="mb-6 pb-6 border-b" style={{ borderBottomColor: '#ECECF3' }}>

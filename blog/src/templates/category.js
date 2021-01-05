@@ -52,6 +52,9 @@ const CategoryTemplate = ({ data }) => {
               </p>
             ))}
           </div>
+          
+
+          
         </div>
       </li>
       ))}
