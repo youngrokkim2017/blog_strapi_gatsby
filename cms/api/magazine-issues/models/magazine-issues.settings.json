@@ -14,13 +14,10 @@
     "title": {
       "type": "string"
     },
-    "author": {
-      "type": "string"
-    },
     "content": {
       "type": "richtext"
     },
-    "image": {
+    "pdf": {
       "model": "file",
       "via": "related",
       "allowedTypes": [
@@ -31,15 +28,12 @@
       "plugin": "upload",
       "required": false
     },
-    "imageURL": {
-      "type": "richtext"
-    },
     "issue": {
       "type": "string"
     },
     "articles": {
-      "via": "magazine",
-      "collection": "article"
+      "collection": "article",
+      "via": "magazine"
     }
   }
 }
