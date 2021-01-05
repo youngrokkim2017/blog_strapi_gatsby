@@ -1,5 +1,13 @@
 module.exports = {
   theme: {
+    // container: {
+    //   screens: {
+    //      sm: "100%",
+    //      md: "100%",
+    //      lg: "500px",
+    //      xl: "500px"
+    //   }
+    // },
     fontFamily: {
       // display: ['adobe-garamond-pro', 'system-ui', 'sans-serif'],
       // body: ['adobe-garamond-pro', 'system-ui', 'sans-serif'],

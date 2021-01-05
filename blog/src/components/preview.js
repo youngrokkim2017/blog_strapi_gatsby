@@ -4,30 +4,27 @@ import { Link } from "gatsby"
 import ReactMarkdown from "react-markdown"
 
 const Preview = ({ article, format }) => {
+
+    function handleDate(e) {
+        var d = new Date(e);
+        const options = { year: 'numeric', month: 'long', day: 'numeric' };
+        return d.toLocaleDateString(undefined, options)
+    }
+
     if (format === "small") {
         return (
-            <div className="flex items-start">
-                {
-                    article.image
-                        ?
-                        <div className="mr-6 hidden">
-                            <img src={article.image.publicURL} alt="" />
-                        </div>
-                        :
-                        ""
-                }
+            <div className="flex items-start space-x-4">
                 <div>
                     <Link to={`/article/${article.title.split(" ").map((category) => category.toLowerCase()).join("-")}`}>
                         <h2 className="font-normal mb-2 text-base leading-tight">{article.title}</h2>
                     </Link>
-
-                    <p className='text-base'>
+                    <p className='text-sm'>
                         <Link to={`/author/${article.author.name.split(" ").map((a) => a.toLowerCase()).join("-")}`} className="font-medium underline">
                             {article.author.name}
                         </Link>
                     </p>
                 </div>
-
+                {article.image ? <img src={article.image.publicURL} className="object-cover w-16 h-16" /> : ""}
             </div>
 
         )
@@ -38,24 +35,28 @@ const Preview = ({ article, format }) => {
                     article.image
                         ?
                         <div className="mr-6">
-                            <img src={article.image.publicURL} alt="" />
+                            <img src={article.image.publicURL} style={{ maxWidth: '210px' }} />
                         </div>
                         :
                         ""
                 }
                 <div>
                     <Link to={`/article/${article.title.split(" ").map((category) => category.toLowerCase()).join("-")}`}>
-                        <h2 className="font-normal mb-4 text-2xl leading-tight">{article.title}</h2>
+                        <h2 className="font-medium mb-2 text-2xl leading-tight">{article.title}</h2>
                     </Link>
-                    <ReactMarkdown
+                    {/* <ReactMarkdown
                         source={`${article.content.slice(0, 300)}...`}
                         transformImageUri={uri => uri.startsWith('http') ? uri : `${process.env.IMAGE_BASE_URL}${uri}`}
-                        className="mb-4"
-                    />
-                    <p className='mb-2 text-base'>
+                        className="mb-4 break-words"
+                    /> */}
+                    <p className='mb-1 text-base'>
                         By <Link to={`/author/${article.author.name.split(" ").map((a) => a.toLowerCase()).join("-")}`} className="font-medium underline">
                             {article.author.name}
                         </Link>
+
+                    </p>
+                    <p>
+                        {handleDate(article.published_at)}
                     </p>
                 </div>
 
