@@ -8,9 +8,9 @@ import Preview from "../components/preview"
 
 class ArticleTemplate extends React.Component {
   componentDidMount() {
-    var sidebar = document.getElementById("sidebar");
-    var element = document.getElementById('metadata');
-    var bottomPos = element.getBoundingClientRect().bottom + window.scrollY;
+    // var sidebar = document.getElementById("sidebar");
+    // var element = document.getElementById('metadata');
+    // var bottomPos = element.getBoundingClientRect().bottom + window.scrollY;
 
     // function myScrollFunc() {
     //   var y = window.scrollY;
@@ -101,7 +101,7 @@ class ArticleTemplate extends React.Component {
                 <div className="flex-shrink-0 prose md:prose-lg max-w-2xl mr-8 tracking-normal text-black">
                   <div>
                     {data.strapiArticle.image ?
-                      <img src={data.strapiArticle.image.publicURL} className="featured-img-container mb-8 mt-0 w-full" />
+                      <img src={data.strapiArticle.image.publicURL} className="featured-img-container mb-8 mt-0 w-full" alt="" />
                       :
                       ""
                     }
