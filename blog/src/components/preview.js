@@ -1,7 +1,7 @@
 import React from "react"
 import { Link } from "gatsby"
 // import Img from 'gatsby-image';
-import ReactMarkdown from "react-markdown"
+// import ReactMarkdown from "react-markdown"
 
 const Preview = ({ article, format }) => {
 
@@ -24,21 +24,20 @@ const Preview = ({ article, format }) => {
                         </Link>
                     </p>
                 </div>
-                {article.image ? <img src={article.image.publicURL} className="object-cover w-16 h-16" /> : ""}
+                {article.image ? <img src={article.image.publicURL} className="object-cover w-16 h-16" alt="" /> : ""}
             </div>
 
         )
     } else if (format === "medium") {
         return (
             <div className="flex items-start">
-                {
-                    article.image
-                        ?
-                        <div className="mr-6">
-                            <img src={article.image.publicURL} style={{ maxWidth: '210px' }} />
-                        </div>
-                        :
-                        ""
+                {article.image
+                    ?
+                    <div className="mr-6">
+                        <img src={article.image.publicURL} style={{ maxWidth: '210px' }} alt="" />
+                    </div>
+                    :
+                    ""
                 }
                 <div>
                     <Link to={`/article/${article.title.split(" ").map((category) => category.toLowerCase()).join("-")}`}>
