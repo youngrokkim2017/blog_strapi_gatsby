@@ -8,9 +8,9 @@ import Preview from "../components/preview"
 
 class ArticleTemplate extends React.Component {
   componentDidMount() {
-    var sidebar = document.getElementById("sidebar");
-    var element = document.getElementById('metadata');
-    var bottomPos = element.getBoundingClientRect().bottom + window.scrollY;
+    // var sidebar = document.getElementById("sidebar");
+    // var element = document.getElementById('metadata');
+    // var bottomPos = element.getBoundingClientRect().bottom + window.scrollY;
 
     // function myScrollFunc() {
     //   var y = window.scrollY;
@@ -41,6 +41,10 @@ class ArticleTemplate extends React.Component {
       navigator.clipboard.writeText(window.location.href);
       clip.classList.add('text-green-400');
     }
+
+    const allArticles = data.allStrapiArticle.edges.sort((a, b) => b.published_at - a.published_at).filter(document => (
+      document.node.categories.length !== 0 && data.strapiArticle.categories.map(a => a.title).some(ele => document.node.categories.map(b => b.title).includes(ele)) && document.node.id !== data.strapiArticle.id
+    )).slice(0, 3)
 
     return (
       <Layout>
@@ -101,7 +105,7 @@ class ArticleTemplate extends React.Component {
                 <div className="flex-shrink-0 prose md:prose-lg max-w-2xl mr-8 tracking-normal text-black">
                   <div>
                     {data.strapiArticle.image ?
-                      <img src={data.strapiArticle.image.publicURL} className="featured-img-container mb-8 mt-0 w-full" />
+                      <img src={data.strapiArticle.image.publicURL} className="featured-img-container mb-8 mt-0 w-full" alt="" />
                       :
                       ""
                     }
@@ -115,27 +119,13 @@ class ArticleTemplate extends React.Component {
                   <div>
                     <h2 className='text-2xl font-medium pb-2 mb-4 border-b border-black leading-none'>
                       Related Articles
-              </h2>
+                    </h2>
                     <ul>
-                      {/* {data.allStrapiArticle.edges.reverse().slice(0, 3).map(document => ( */}
-                      {data.allStrapiArticle.edges.reverse().map(document => (
+                      {allArticles.map(document => (
                         <li key={document.node.id} className="mt-4 pb-4 border-b" style={{ borderBottomColor: '#e2e2e2' }}>
-                          {/* <Preview article={document.node} format="small" /> */}
-                          {data.strapiArticle.categories.map(a => a.title)
-                            .some(ele => document.node.categories.map(b => b.title).includes(ele))
-                            ?
-                            <div>
-                              {document.node.id !== data.strapiArticle.id ?
-                                <Preview article={document.node} format="small" />
-                                :
-                                ""
-                              }
-                            </div>
-                            :
-                            ""
-                          }
+                          <Preview article={document.node} format="small" />
                         </li>
-                      )).slice(0, 3)}
+                      ))}
                     </ul>
                   </div>
                 </div>

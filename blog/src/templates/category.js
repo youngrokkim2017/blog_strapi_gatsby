@@ -7,7 +7,6 @@ import ReactMarkdown from "react-markdown"
 // import Preview from "../components/preview"
 
 const CategoryTemplate = ({ data }) => {
-  console.log(data.strapiCategory)
   return (
   <Layout>
     <div className="">
@@ -20,14 +19,12 @@ const CategoryTemplate = ({ data }) => {
         // </li>
       <li key={document.id} className="mb-4">
         <div className="flex items-start">
-          {/* {
-            document.image
-              ?
-              <div className="mr-6">
-                <img src={document.image.publicURL} />
-              </div>
-              :
-              ""
+          {/* {document.image ?
+            <div className="mr-6">
+              <img src={document.image.publicURL} />
+            </div>
+            :
+            ""
           } */}
           <div>
             <Link to={`/article/${document.title.split(" ").map((category) => category.toLowerCase()).join("-")}`}>

@@ -1,14 +1,23 @@
 // import React, { useState } from "react"
 import React from "react"
 // import { Link, navigate, StaticQuery, graphql } from "gatsby"
-import { Link, StaticQuery } from "gatsby"
+import { Link, StaticQuery, navigate } from "gatsby"
 // import PropTypes from "prop-types"
 import logo from "../images/logo.png"
 
 
 class Header extends React.Component {
-  state = { menuOpen: false, searchOpen: false };
+  constructor() {
+    super();
 
+    this.state = {
+      query: "",
+      menuOpen: false, 
+      searchOpen: false,
+    }; 
+
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
 
   componentDidUpdate() {
     const hamburger = document.getElementById("hamburger");
@@ -62,6 +71,19 @@ class Header extends React.Component {
     }
   }
 
+  handleChange(type) {
+    return (e) => {
+      this.setState({
+        [type]: e.target.value
+      })
+    }
+  }
+
+  handleSubmit(e) {
+    e.preventDefault();
+
+    navigate("/search/", { state: { searchQuery: this.state.query } })
+  }
 
   render() {
     // const [query, setQuery] = useState('');
@@ -93,13 +115,14 @@ class Header extends React.Component {
                 </div>
                 <div className="w-1/4 flex justify-end items-center">
                   <div className="hidden mr-2" id="search-input">
-                    <form className="border-black text-gray-600 flex items-center py-1 px-2 pr-1 pl-0 border-b focus-within:border-blue-600">
+                    <form className="border-black text-gray-600 flex items-center py-1 px-2 pr-1 pl-0 border-b focus-within:border-blue-600" onSubmit={this.handleSubmit}>
                       {/* <form onSubmit={handleNavigate} className="border-black text-gray-600 flex items-center py-1 px-2 pr-1 pl-0 border-b focus-within:border-blue-600"> */}
                       <input
                         type="text"
                         placeholder="Search"
-                        // value={query}
+                        value={this.state.query}
                         // onChange={(e) => setQuery(e.target.value)}
+                        onChange={this.handleChange('query')}
                         className="bg-transparent border-none w-full text-black placeholder-gray-600 leading-tight focus:outline-none mr-2"
                       />
                       <button type="submit">
@@ -141,8 +164,8 @@ class Header extends React.Component {
                             `}
                         render={data => (
                           <>
-                            {data.allStrapiCategory.edges.map((document, idx) => (
-                              <li key={idx}>
+                            {data.allStrapiCategory.edges.map(document => (
+                              <li key={document.node.id}>
                                 <Link to={`/category/${document.node.title.split(" ").map((category) => category.toLowerCase()).join("-")}`}>
                                   {document.node.title}
                                 </Link>
