@@ -5,7 +5,6 @@ import { Link, StaticQuery, navigate } from "gatsby"
 // import PropTypes from "prop-types"
 import logo from "../images/logo.png"
 
-
 class Header extends React.Component {
   constructor() {
     super();
@@ -22,7 +21,6 @@ class Header extends React.Component {
   componentDidUpdate() {
     const hamburger = document.getElementById("hamburger");
     const search = document.getElementById("search-input");
-
 
     if (this.state.menuOpen) {
       hamburger.classList.add('is-active');
@@ -41,13 +39,11 @@ class Header extends React.Component {
       search.classList.add("remove");
       document.removeEventListener('click', this.clickOutsideSearch);
     }
-    
   }
 
   openMenu = () => {
     this.setState({ menuOpen: true });
   }
-
 
   closeMenu = () => {
     this.setState({ menuOpen: false });
@@ -96,7 +92,7 @@ class Header extends React.Component {
     return (
       <>
         <nav className="text-black mb-12 sans-serif bg-white z-20"> {/*border-t-4" style={{ borderTopColor: '#003262' }}*/}
-          <div className="border-b" style={{ borderBottomColor: '#e2e2e2' }}>
+          <div className={this.state.menuOpen || this.state.searchOpen ? 'border-none': 'border-b'} style={{ borderBottomColor: '#e2e2e2' }}>
             <div className="container mx-auto py-4">
               <div className="flex mx-auto items-center justify-between px-4 sm:px-0">
                 <div className="w-1/4">
@@ -142,13 +138,13 @@ class Header extends React.Component {
             </div>
           </div>
           {this.state.menuOpen ?
-            <div className="py-12 px-4 sm:px-0 text-base absolute w-full focus:outline-none bg-white z-20" id="extended-menubar">
+            <div className="py-8 px-4 sm:px-0 text-sm absolute w-full focus:outline-none bg-white z-20" id="extended-menubar">
               <div className="container mx-auto py-2" style={{ maxWidth: '1036px' }}>
 
                 <div className="flex">
                   <div className="flex-grow max-w-xl">
-                    <h2 className="uppercase font-semibold mb-4">Categories</h2>
-                    <ul className="grid gap-2 grid-cols-3">
+                    <h2 className="uppercase font-semibold mb-6">Categories</h2>
+                    <ul className="grid gap-4 grid-cols-3">
                       <StaticQuery
                         query={graphql`
                               query HeadingQuery {
@@ -180,8 +176,8 @@ class Header extends React.Component {
                     </ul>
                   </div>
                   <div>
-                    <h2 className="uppercase font-semibold mb-4">Magazine</h2>
-                    <ul className="grid gap-2">
+                    <h2 className="uppercase font-semibold mb-6">Magazine</h2>
+                    <ul className="grid gap-4">
                       <li>Latest Issue</li>
                       <li>Past Issues</li>
                     </ul>
