@@ -1,6 +1,6 @@
 import React from "react"
 import { Link, graphql } from "gatsby"
-import Img from "gatsby-image"
+// import Img from "gatsby-image"
 import Layout from "../components/layout"
 import ReactMarkdown from "react-markdown"
 // import Fuse from "fuse.js"  // fuzzy search
@@ -41,6 +41,7 @@ class ArticleTemplate extends React.Component {
       navigator.clipboard.writeText(window.location.href);
       clip.classList.add('text-green-400');
     }
+
     return (
       <Layout>
         <div className="justify-between overflow-visible relative items-start">
@@ -105,7 +106,6 @@ class ArticleTemplate extends React.Component {
                       ""
                     }
                   </div>
-
                   <ReactMarkdown
                     source={data.strapiArticle.content}
                     transformImageUri={uri => uri.startsWith('http') ? uri : `${process.env.IMAGE_BASE_URL}${uri}`}
@@ -167,7 +167,6 @@ class ArticleTemplate extends React.Component {
               </div>
             </div>
           </div>
-
         </div>
         <hr className="border-black mt-16" />
         <div className='mt-4 border-black'>
@@ -186,8 +185,8 @@ export default ArticleTemplate
 
 export const query = graphql`
   query ArticleTemplate($id: String!) {
-            strapiArticle(id: {eq: $id }) {
-            id
+    strapiArticle(id: {eq: $id }) {
+      id
       title
       published_at
       updated_at
@@ -205,9 +204,9 @@ export const query = graphql`
       }
     }
     allStrapiArticle {
-            edges {
-            node {
-            id
+      edges {
+        node {
+          id
           image {
             publicURL
           }

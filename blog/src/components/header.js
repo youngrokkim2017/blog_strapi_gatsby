@@ -5,12 +5,15 @@ import { Link, StaticQuery } from "gatsby"
 // import PropTypes from "prop-types"
 import logo from "../images/logo.png"
 
+
 class Header extends React.Component {
   state = { menuOpen: false, searchOpen: false };
+
 
   componentDidUpdate() {
     const hamburger = document.getElementById("hamburger");
     const search = document.getElementById("search-input");
+
 
     if (this.state.menuOpen) {
       hamburger.classList.add('is-active');
@@ -29,11 +32,13 @@ class Header extends React.Component {
       search.classList.add("remove");
       document.removeEventListener('click', this.clickOutsideSearch);
     }
+    
   }
 
   openMenu = () => {
     this.setState({ menuOpen: true });
   }
+
 
   closeMenu = () => {
     this.setState({ menuOpen: false });

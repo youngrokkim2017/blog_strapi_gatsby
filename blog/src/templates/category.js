@@ -13,7 +13,8 @@ const CategoryTemplate = ({ data }) => {
     <div className="">
       <h2 className="font-normal mb-12 text-4xl leading-tight">{data.strapiCategory.title}</h2>
     <ul>
-      {data.strapiCategory.articles.reverse().slice(0, 10).map(document => (
+      {/* {data.strapiCategory.articles.reverse().slice(0, 10).map(document => ( */}
+      {data.strapiCategory.articles.sort((a, b) => b.published_at - a.published_at).slice(0, 10).map(document => (
         // <li key={document.id} className="mb-4">
         //   <Preview article={document} format="medium" />
         // </li>
@@ -80,6 +81,7 @@ export const query = graphql`
         image {
           publicURL
         }
+        published_at
       }
     }
     allStrapiAuthors {
@@ -92,28 +94,3 @@ export const query = graphql`
     }
   }
 `
-
-// export const query = graphql`
-//   query CategoryTemplate($id: String!) {
-//     strapiCategory(id: { eq: $id }) {
-//       id
-//       title
-//       articles {
-//         id
-//         title
-//         author
-//         content
-//         image {
-//           childImageSharp {
-//             fixed(width: 200, height: 125) {
-//               ...GatsbyImageSharpFixed
-//             }
-//             fluid(maxWidth: 1000) {
-//               ...GatsbyImageSharpFluid
-//             }
-//           }
-//         }
-//       }
-//     }
-//   }
-// `
