@@ -7,6 +7,7 @@
 // // You can delete this file if you're not using it
 
 const path = require(`path`);
+// const kebabCase = require(`lodash.kebabcase`);
 
 const makeRequest = (graphql, request) =>
   new Promise((resolve, reject) => {
@@ -68,7 +69,6 @@ exports.createPages = ({ actions, graphql }) => {
     // Create pages for each user.
     result.data.allStrapiAuthors.edges.forEach(({ node }) => {
       createPage({
-        // path: `/authors/${node.id}`,
         path: `/author/${node.name.split(" ").map((category) => category.toLowerCase()).join("-")}`,
         component: path.resolve(`src/templates/author.js`),
         context: {
@@ -83,7 +83,16 @@ exports.createPages = ({ actions, graphql }) => {
     graphql,
     `
     {
-      allStrapiArticle (sort: { fields: [created_at], order: DESC }) {
+      allStrapiArticle {
+        edges {
+          node {
+            id
+            title
+            published_at
+          }
+        }
+      }
+      allStrapiCategory {
         edges {
           node {
             id
@@ -113,9 +122,7 @@ exports.createPages = ({ actions, graphql }) => {
       const next = index === 0 ? null : articles[index - 1].node;
 
       createPage({
-        // path: `/blog/${article.node.id}`,
-        // component: path.resolve(`./src/templates/blog-post.js`),
-        path: `/article/${article.node.title.split(" ").map((category) => category.toLowerCase()).join("-")}`,
+        path: `/article/${article.node.title.split(" ").map((a) => a.toLowerCase()).join("-")}`,
         component: path.resolve(`src/templates/article.js`),
         context: {
           id: article.node.id,
@@ -125,14 +132,12 @@ exports.createPages = ({ actions, graphql }) => {
       })
     })
 
-    // PAGINATION
+    // ARCHIVE PAGINATION
     const postsPerPage = 10;
     const numPages = Math.ceil(articles.length / postsPerPage);
 
     Array.from({ length: numPages }).forEach((_, i) => {
       createPage({
-        // path: i === 0 ? `/` : `/${i + 1}`,
-        // component: path.resolve('src/templates/blog-list.js'),
         path: i === 0 ? `/archive/1` : `/archive/${i + 1}`,
         component: path.resolve('src/pages/archive.js'),
         context: {
@@ -143,6 +148,34 @@ exports.createPages = ({ actions, graphql }) => {
         }
       })
     })
+
+    // // CATEGORY PAGINATION
+    // const countCategories = result.data.allStrapiCategory.edges.reduce((prev, curr) => {
+    //   prev[curr] = (prev[curr] || 0) + 1
+    //   return prev
+    // }, {})
+    // const allCategories = Object.keys(countCategories)
+
+    // allCategories.forEach((cat, i) => {
+    //   const link = `/category/${kebabCase(cat)}`
+
+    //   Array.from({
+    //     length: Math.ceil(countCategories[cat] / postsPerPage),
+    //   }).forEach((_, i) => {
+    //     createPage({
+    //       path: i === 0 ? link : `${link}/page/${i + 1}`,
+    //       component: path.resolve(`src/templates/category.js`),
+    //       context: {
+    //         allCategories: allCategories,
+    //         category: cat,
+    //         limit: postsPerPage,
+    //         skip: i * postsPerPage,
+    //         currentPage: i + 1,
+    //         numPages: Math.ceil(countCategories[cat] / postsPerPage),
+    //       },
+    //     })
+    //   })
+    // })
   })
 
   const getCategories = makeRequest(
@@ -154,32 +187,15 @@ exports.createPages = ({ actions, graphql }) => {
           node {
             id
             title
-            articles {
-              id
-              title
-            }
-          }
-        }
-      }
-      allStrapiArticle (sort: { fields: [created_at], order: DESC }) {
-        edges {
-          node {
-            id
-            title
-            categories {
-              id
-              title
-            }
           }
         }
       }
     }
     `
   ).then(result => {
-    // // Create pages for each Category.
+    // Create pages for each Category.
     result.data.allStrapiCategory.edges.forEach(({ node }) => {
       createPage({
-        // path: `/categories/${node.id}`,
         path: `/category/${node.title.split(" ").map((category) => category.toLowerCase()).join("-")}`,
         component: path.resolve(`src/templates/category.js`),
         context: {
@@ -193,7 +209,7 @@ exports.createPages = ({ actions, graphql }) => {
     // const numPages = Math.ceil(result.allStrapiCategory.edges.node.articles.length / postsPerPage);
 
     // result.data.allStrapiCategory.edges.forEach(({ node }) => {
-    //   const categoryArticles = result.data.allStrapiArticle.edges.filter(article => article.node.catetory.title.split(" ").join("-") == node.title.split(" ").join("-"))
+    //   const categoryArticles = result.data.allStrapiArticle.edges.filter(article => article.node.category.title.split(" ").join("-") == node.title.split(" ").join("-"))
     //   const postsPerPage = 10;
     //   const numPages = Math.ceil(categoryArticles.length / postsPerPage);
 
@@ -209,6 +225,21 @@ exports.createPages = ({ actions, graphql }) => {
     //         currentPage: i + 1,
     //       }
     //     })
+    //   })
+    // })
+
+    // const postsPerPage = 10;
+    // const numPages = Math.ceil(result.allStrapiCategory.edges.node.articles.length / postsPerPage);
+    // Array.from({ length: numPages }).forEach((_, i) => {
+    //   createPage({
+    //     path: i === 0 ? `/category/${node.title.split(" ").join("-")}/1` : `/category/${node.title.split(" ").join("-")}/${i + 1}`,
+    //     component: path.resolve(`src/templates/category.js`),
+    //     context: {
+    //       limit: postsPerPage,
+    //       skip: i * postsPerPage,
+    //       numPages,
+    //       currentPage: i + 1,
+    //     }
     //   })
     // })
   })
@@ -232,7 +263,6 @@ exports.createPages = ({ actions, graphql }) => {
     // Create pages for each Issue.
     result.data.allStrapiMagazineIssue.edges.forEach(({ node }) => {
       createPage({
-        // path: `/magazine/${node.id}`,
         path: `/magazine/${node.issue.split(" ").map((category) => category.toLowerCase()).join("-")}}`,
         component: path.resolve(`src/templates/issue.js`),
         context: {

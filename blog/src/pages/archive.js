@@ -101,7 +101,7 @@ export default ArchivePage;
 export const archiveQuery = graphql`
   query ArchiveQuery($skip: Int! = 0, $limit: Int! = 10) {
     allStrapiArticle(
-      sort: { fields: [created_at], order: DESC }
+      sort: { fields: [published_at], order: DESC }
       limit: $limit
       skip: $skip
     ) {
