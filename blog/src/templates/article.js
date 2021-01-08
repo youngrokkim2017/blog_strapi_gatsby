@@ -23,10 +23,18 @@ class ArticleTemplate extends React.Component {
     });
 
     // const sortedArticles = this.props.data.allStrapiArticle.edges.sort((a, b) => b.node.published_at - a.node.published_at).filter(document => (
-    const sortedArticles = sortedByDate.filter(document => (
+    let sortedArticles = sortedByDate.filter(document => (
       // document.node.categories.length !== 0 && this.props.data.strapiArticle.categories.map(a => a.title).some(ele => document.node.categories.map(b => b.title).includes(ele)) && document.node.id !== this.props.data.strapiArticle.id
       document.node.categories.length !== 0 && this.props.data.strapiArticle.categories.map(a => a.title)[0] === document.node.categories.map(b => b.title)[0] && document.node.id !== this.props.data.strapiArticle.id
-    )).slice(0, 3);
+    )).slice(0, 10);
+
+    const temp = [];
+    while (sortedArticles.length !== 0) {
+      let randomIndex = Math.floor(Math.random() * sortedArticles.length);
+      temp.push(sortedArticles[randomIndex]);
+      sortedArticles.splice(randomIndex, 1);
+    }
+    sortedArticles = temp.slice(0, 3);
 
     this.setState({ relatedArticles: sortedArticles })
 
