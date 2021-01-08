@@ -16,14 +16,14 @@ class ArticleTemplate extends React.Component {
   }
 
   componentDidMount() {
-    // const sortedByDate = this.props.data.allStrapiArticle.edges.sort((a, b) => {
-    //   let aDate = parseInt(a.node.published_at.split("T")[0].split("-").join(""))
-    //   let bDate = parseInt(b.node.published_at.split("T")[0].split("-").join(""))
-    //   return (bDate - aDate)
-    // });
+    const sortedByDate = this.props.data.allStrapiArticle.edges.sort((a, b) => {
+      let aDate = parseInt(a.node.published_at.split("T")[0].split("-").join(""))
+      let bDate = parseInt(b.node.published_at.split("T")[0].split("-").join(""))
+      return (bDate - aDate)
+    });
 
-    const sortedArticles = this.props.data.allStrapiArticle.edges.sort((a, b) => b.node.published_at - a.node.published_at).filter(document => (
-    // const sortedArticles = sortedByDate.filter(document => (
+    // const sortedArticles = this.props.data.allStrapiArticle.edges.sort((a, b) => b.node.published_at - a.node.published_at).filter(document => (
+    const sortedArticles = sortedByDate.filter(document => (
       // document.node.categories.length !== 0 && this.props.data.strapiArticle.categories.map(a => a.title).some(ele => document.node.categories.map(b => b.title).includes(ele)) && document.node.id !== this.props.data.strapiArticle.id
       document.node.categories.length !== 0 && this.props.data.strapiArticle.categories.map(a => a.title)[0] === document.node.categories.map(b => b.title)[0] && document.node.id !== this.props.data.strapiArticle.id
     )).slice(0, 3);
