@@ -34,7 +34,7 @@ const CategoryTemplate = ({ data }) => {
             ""
           } */}
           <div>
-            <Link to={`/article/${document.title.split(" ").map((category) => category.toLowerCase()).join("-")}`}>
+            <Link to={`/article/${document.title.split(/[\s,%]+/).map((category) => category.toLowerCase()).join("-")}`}>
               <h2 className="font-normal mb-4 text-2xl leading-tight">{document.title}</h2>
             </Link>
             <ReactMarkdown

@@ -146,7 +146,7 @@ const SearchPage = ({ location }) => {
         {currentSearchResults.map(document => (
           <li key={document.node.id}>
             <h2>
-              <Link to={`/article/${document.node.title.split(" ").map((category) => category.toLowerCase()).join("-")}`} style={{ textDecoration: `none` }}>
+              <Link to={`/article/${document.node.title.split(/[\s,%]+/).map((category) => category.toLowerCase()).join("-")}`} style={{ textDecoration: `none` }}>
                 <Highlight search={query}>{document.node.title}</Highlight>
               </Link>
             </h2>
@@ -174,7 +174,7 @@ const SearchPage = ({ location }) => {
         {searchResults.map(document => (
           <li key={document.node.id}>
             <h2>
-              <Link to={`/article/${document.node.title.split(" ").join("-")}`} style={{ textDecoration: `none` }}>
+              <Link to={`/article/${document.node.title.split(/[\s,%]+/).join("-")}`} style={{ textDecoration: `none` }}>
                 <Highlight search={query}>{document.node.title}</Highlight>
               </Link>
             </h2>

@@ -122,7 +122,7 @@ const path = require(`path`);
 //       const next = index === 0 ? null : articles[index - 1].node;
 
 //       createPage({
-//         path: `/article/${article.node.title.split(" ").map((a) => a.toLowerCase()).join("-")}`,
+//         path: `/article/${article.node.title.split(/[\s,%]+/).map((a) => a.toLowerCase()).join("-")}`,
 //         component: path.resolve(`src/templates/article.js`),
 //         context: {
 //           id: article.node.id,
@@ -413,7 +413,7 @@ exports.createPages = async ({ graphql, actions }) => {
     const next = index === 0 ? null : articles[index - 1].node;
 
     createPage({
-      path: `/article/${article.node.title.split(" ").map((a) => a.toLowerCase()).join("-")}`,
+      path: `/article/${article.node.title.split(/[\s,%]+/).map((a) => a.toLowerCase()).join("-")}`,
       component: path.resolve(`src/templates/article.js`),
       context: {
         id: article.node.id,

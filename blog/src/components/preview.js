@@ -15,7 +15,7 @@ const Preview = ({ article, format }) => {
         return (
             <div className="flex items-start space-x-4">
                 <div>
-                    <Link to={`/article/${article.title.split(" ").map((category) => category.toLowerCase()).join("-")}`}>
+                    <Link to={`/article/${article.title.split(/[\s,%]+/).map((category) => category.toLowerCase()).join("-")}`}>
                         <h2 className="font-normal mb-2 text-base leading-tight">{article.title}</h2>
                     </Link>
                     <p className='text-sm'>
@@ -40,7 +40,7 @@ const Preview = ({ article, format }) => {
                     ""
                 }
                 <div>
-                    <Link to={`/article/${article.title.split(" ").map((category) => category.toLowerCase()).join("-")}`}>
+                    <Link to={`/article/${article.title.split(/[\s,%]+/).map((category) => category.toLowerCase()).join("-")}`}>
                         <h2 className="font-medium mb-2 text-2xl leading-tight">{article.title}</h2>
                     </Link>
                     {/* <ReactMarkdown
