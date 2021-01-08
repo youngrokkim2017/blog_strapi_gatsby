@@ -149,7 +149,7 @@ const SearchPage = ({ location }) => {
           <SearchComponent query={query} articles={data.allStrapiArticle.edges} location={location} />
         </Suspense>
       </div> */}
-      { query.length > 2 ?
+      { query.length > 2 && results.length > 0 ?
       <div className="container w-2/3">
         <ul>
           {currentSearchResults.map(document => (
@@ -188,6 +188,10 @@ const SearchPage = ({ location }) => {
             </li>
           ))}
         </ul>
+      </div>
+      : query.length > 0 && results.length === 0 ?
+      <div className="container w-2/3">
+        No results match your search input
       </div>
       :
       <div className="container w-2/3">
