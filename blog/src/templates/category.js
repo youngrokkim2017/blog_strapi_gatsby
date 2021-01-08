@@ -36,11 +36,11 @@ const CategoryTemplate = ({ data }) => {
             <Link to={`/article/${document.title.split(/[\s,%]+/).map((category) => category.toLowerCase()).join("-")}`}>
               <h2 className="font-normal mb-4 text-2xl leading-tight">{document.title}</h2>
             </Link>
-            <ReactMarkdown
+            {/* <ReactMarkdown
               source={`${document.content.slice(0, 300)}...`}
               transformImageUri={uri => uri.startsWith('http') ? uri : `${process.env.IMAGE_BASE_URL}${uri}`}
               className="mb-4"
-            />
+            /> */}
             {data.allStrapiAuthors.edges.map(author => (
               <p className='mb-2 text-base' key={author.node.id}>
                 {+author.node.id.split("_")[1] === document.author ?
