@@ -7,20 +7,19 @@ import ReactMarkdown from "react-markdown"
 // import Preview from "../components/preview"
 
 const CategoryTemplate = ({ data }) => {
-  // const sortedByDate = data.strapiCategory.articles.sort((a, b) => {
-  //   let aDate = parseInt(a.published_at.split("T")[0].split("-").join(""))
-  //   let bDate = parseInt(b.published_at.split("T")[0].split("-").join(""))
-  //   return (bDate - aDate)
-  // }).slice(0, 10)
+  const sortedByDate = data.strapiCategory.articles.sort((a, b) => {
+    let aDate = parseInt(a.published_at.split("T")[0].split("-").join(""))
+    let bDate = parseInt(b.published_at.split("T")[0].split("-").join(""))
+    return (bDate - aDate)
+  }).slice(0, 10)
   
   return (
   <Layout>
     <div className="">
       <h2 className="font-normal mb-12 text-4xl leading-tight">{data.strapiCategory.title}</h2>
     <ul>
-      {/* {data.strapiCategory.articles.reverse().slice(0, 10).map(document => ( */}
-      {/* {sortedByDate.map(document => ( */}
-      {data.strapiCategory.articles.sort((a, b) => b.published_at - a.published_at).slice(0, 10).map(document => (
+      {/* {data.strapiCategory.articles.sort((a, b) => b.published_at - a.published_at).slice(0, 10).map(document => ( */}
+      {sortedByDate.map(document => (
         // <li key={document.id} className="mb-4">
         //   <Preview article={document} format="medium" />
         // </li>
@@ -34,7 +33,7 @@ const CategoryTemplate = ({ data }) => {
             ""
           } */}
           <div>
-            <Link to={`/article/${document.title.split(" ").map((category) => category.toLowerCase()).join("-")}`}>
+            <Link to={`/article/${document.title.split(/[\s,%]+/).map((category) => category.toLowerCase()).join("-")}`}>
               <h2 className="font-normal mb-4 text-2xl leading-tight">{document.title}</h2>
             </Link>
             <ReactMarkdown
