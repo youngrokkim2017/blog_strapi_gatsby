@@ -110,10 +110,11 @@ class ArticleTemplate extends React.Component {
     return (
       <Layout>
         <div className="justify-between overflow-visible relative items-start px-4 lg:px-2 xl:px-0">
-          <div className='w-1/5 fixed top-0 pt-40 opacity-0 -ml-48 hidden xl:block' id="sidebar">
-            <div className="text-base not-italic leading-5">
+
+          <div className='fixed top-0 mt-40 opacity-0 -ml-32 hidden xl:block w-32' id="sidebar">
+            <div className="leading-5">
               {data.strapiArticle.author ?
-                <p className='mb-2 text-base'>
+                <p className='text-sm'>
                   By <Link to={`/author/${data.strapiArticle.author.name.split(" ").map((a) => a.toLowerCase()).join("-")}`} className="font-medium underline">
                     {data.strapiArticle.author.name}
                   </Link>
@@ -123,6 +124,7 @@ class ArticleTemplate extends React.Component {
               }
             </div>
           </div>
+
           <div className="">
             <div className="antialiased leading-relaxed mx-auto text-black mb-12">
               <div className="border-b border-black pb-8 mb-8">

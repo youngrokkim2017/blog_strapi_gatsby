@@ -91,7 +91,7 @@ class Header extends React.Component {
 
     return (
       <>
-        <nav className="text-black mb-12 sans-serif bg-white z-20 sticky top-0 shadow-sm">
+        <nav className="text-black mb-12 sans-serif bg-white z-50 sticky top-0 shadow-sm">
           <div className={this.state.menuOpen ? 'border-none': 'border-b'} style={{ borderBottomColor: '#e2e2e2' }}>
             <div className="container mx-auto py-4">
               <div className="flex mx-auto items-center justify-between px-4 sm:px-0">
@@ -138,7 +138,7 @@ class Header extends React.Component {
             </div>
           </div>
           {this.state.menuOpen ?
-            <div className="py-12 px-4 text-sm absolute w-full focus:outline-none bg-white z-20 border-b" style={{ borderBottomColor: '#e2e2e2' }} id="extended-menubar">
+            <div className="py-12 px-4 text-sm absolute w-full focus:outline-none bg-white z-50 border-b" style={{ borderBottomColor: '#e2e2e2' }} id="extended-menubar">
               <div className="container mx-auto">
                 <div className="md:flex md:justify-center">
                   <div className="flex-grow md:max-w-xl mb-12 md:mb-0">
@@ -195,8 +195,8 @@ class Header extends React.Component {
             ""
           }
         </nav>
-        {/* {this.state.menuOpen || this.state.searchOpen ? <div className="bg-black fixed top-0 left-0 z-10 w-full h-full opacity-25" id="extended-overlay"></div> : ""} */}
-        {this.state.menuOpen ? <div className="bg-black fixed top-0 left-0 z-10 w-full h-full opacity-25" id="extended-overlay"></div> : ""}
+        {/* {this.state.menuOpen || this.state.searchOpen ? <div className="bg-black fixed top-0 left-0 z-40 w-full h-full opacity-25" id="extended-overlay"></div> : ""} */}
+        {this.state.menuOpen ? <div className="bg-black fixed top-0 left-0 z-40 w-full h-full opacity-25" id="extended-overlay"></div> : ""}
       </>
     )
   }
