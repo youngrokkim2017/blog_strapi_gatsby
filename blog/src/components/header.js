@@ -33,11 +33,11 @@ class Header extends React.Component {
     if (this.state.searchOpen) {
       search.classList.remove("hidden");
       search.classList.add("block");
-      document.addEventListener('click', this.clickOutsideSearch);
+      // document.addEventListener('click', this.clickOutsideSearch);
     } else {
       search.classList.add("hidden");
-      search.classList.add("remove");
-      document.removeEventListener('click', this.clickOutsideSearch);
+      search.classList.remove("block");
+      // document.removeEventListener('click', this.clickOutsideSearch);
     }
   }
 
@@ -60,12 +60,12 @@ class Header extends React.Component {
     }
   }
 
-  clickOutsideSearch = (event) => {
-    const target = event.target;
-    if (target.closest("#extended-overlay") && this.state.searchOpen) {
-      this.toggleSearchBar();
-    }
-  }
+  // clickOutsideSearch = (event) => {
+  //   const target = event.target;
+  //   if (target.closest("#extended-overlay") && this.state.searchOpen) {
+  //     this.toggleSearchBar();
+  //   }
+  // }
 
   handleChange(type) {
     return (e) => {
@@ -91,8 +91,8 @@ class Header extends React.Component {
 
     return (
       <>
-        <nav className="text-black mb-12 sans-serif bg-white z-20"> {/*border-t-4" style={{ borderTopColor: '#003262' }}*/}
-          <div className={this.state.menuOpen || this.state.searchOpen ? 'border-none': 'border-b'} style={{ borderBottomColor: '#e2e2e2' }}>
+        <nav className="text-black mb-12 sans-serif bg-white z-20 sticky top-0 shadow-sm">
+          <div className={this.state.menuOpen ? 'border-none': 'border-b'} style={{ borderBottomColor: '#e2e2e2' }}>
             <div className="container mx-auto py-4">
               <div className="flex mx-auto items-center justify-between px-4 sm:px-0">
                 <div className="w-1/4">
@@ -110,7 +110,7 @@ class Header extends React.Component {
                   </Link>
                 </div>
                 <div className="w-1/4 flex justify-end items-center">
-                  <div className="hidden mr-2" id="search-input">
+                  <div className={`mr-2 ${this.state.searchOpen ? 'block' : 'hidden'}`} id="search-input">
                     <form className="border-black text-gray-600 flex items-center py-1 px-2 pr-1 pl-0 border-b focus-within:border-blue-600" onSubmit={this.handleSubmit}>
                       {/* <form onSubmit={handleNavigate} className="border-black text-gray-600 flex items-center py-1 px-2 pr-1 pl-0 border-b focus-within:border-blue-600"> */}
                       <input
@@ -138,11 +138,10 @@ class Header extends React.Component {
             </div>
           </div>
           {this.state.menuOpen ?
-            <div className="py-8 px-4 sm:px-0 text-sm absolute w-full focus:outline-none bg-white z-20" id="extended-menubar">
-              <div className="container mx-auto py-2" style={{ maxWidth: '1036px' }}>
-
-                <div className="flex">
-                  <div className="flex-grow max-w-xl">
+            <div className="py-12 px-4 text-sm absolute w-full focus:outline-none bg-white z-20 border-b" style={{ borderBottomColor: '#e2e2e2' }} id="extended-menubar">
+              <div className="container mx-auto">
+                <div className="md:flex md:justify-center">
+                  <div className="flex-grow md:max-w-xl mb-12 md:mb-0">
                     <h2 className="uppercase font-semibold mb-6">Categories</h2>
                     <ul className="grid gap-4 grid-cols-3">
                       <StaticQuery
@@ -196,7 +195,8 @@ class Header extends React.Component {
             ""
           }
         </nav>
-        {this.state.menuOpen || this.state.searchOpen ? <div className="bg-black fixed top-0 left-0 z-10 w-full h-full opacity-25" id="extended-overlay"></div> : ""}
+        {/* {this.state.menuOpen || this.state.searchOpen ? <div className="bg-black fixed top-0 left-0 z-10 w-full h-full opacity-25" id="extended-overlay"></div> : ""} */}
+        {this.state.menuOpen ? <div className="bg-black fixed top-0 left-0 z-10 w-full h-full opacity-25" id="extended-overlay"></div> : ""}
       </>
     )
   }
