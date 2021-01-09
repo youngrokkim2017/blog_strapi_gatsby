@@ -4,15 +4,11 @@ import React, { useState } from "react"
 import { Link, graphql, useStaticQuery } from "gatsby"
 // import Img from 'gatsby-image';
 import ReactMarkdown from "react-markdown"
-// import logo from "../images/logo.png"
 import Fuse from "fuse.js"  // fuzzy search
 import Highlight from 'react-highlighter'
 // import MailchimpComponent from '../components/mailchimp'
 import SearchHeader from '../components/searchHeader'
-// import SearchFooter from '../components/searchFooter'
 import Footer from '../components/footer';
-// import SearchContainer from '../components/searchContainer'
-// const SearchComponent = lazy(() => import('../components/searchContainer'));
 
 const SearchPage = ({ location }) => {
   const data = useStaticQuery(graphql`
@@ -143,12 +139,6 @@ const SearchPage = ({ location }) => {
           {/* <button tpe="submit">SEARCH</button> */}
         {/* </form> */}
       </div>
-      {/* <SearchContainer query={query} articles={data.allStrapiArticle.edges} location={location} dangerouslySetInnerHTML={createMarkup()}/> */}
-      {/* <div>
-        <Suspense fallback={<div>Loading...</div>}>
-          <SearchComponent query={query} articles={data.allStrapiArticle.edges} location={location} />
-        </Suspense>
-      </div> */}
       { query.length > 2 && results.length > 0 ?
       <div className="container w-2/3">
         <ul>
