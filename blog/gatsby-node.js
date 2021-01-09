@@ -356,6 +356,10 @@ exports.createPages = async ({ graphql, actions }) => {
             node {
               id
               title
+              articles {
+                id
+                title
+              }
             }
           }
         }
@@ -451,6 +455,25 @@ exports.createPages = async ({ graphql, actions }) => {
       },
     });
   });
+
+  // // PAGINATE CATEGORIES
+  // categories.forEach((category, index) => {
+  //   const numPagesCategory = Math.ceil(category.node.articles.length / postsPerPage);
+  //   Array.from({ length: numPagesCategory }).forEach((_, i) => {
+  //     createPage({
+  //       // path: `/category/${category.node.title.split(" ").map((cat) => cat.toLowerCase()).join("-")}`,
+  //       path: i === 0 ? `/category/${category.node.title.split(" ").map((cat) => cat.toLowerCase()).join("-")}/1` : `/category/${category.node.title.split(" ").map((cat) => cat.toLowerCase()).join("-")}/${i + 1}`,
+  //       component: path.resolve(`src/templates/category.js`),
+  //       context: {
+  //         id: category.node.id,
+  //         limit: postsPerPage,
+  //         skip: i * postsPerPage,
+  //         numPagesCategory,
+  //         currentPage: i + 1,
+  //       },
+  //     });
+  //   })
+  // });
 
   // AUTHOR CONTENT TYPE
   authors.forEach(({ node }) => {
