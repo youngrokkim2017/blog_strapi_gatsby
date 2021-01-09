@@ -10,7 +10,7 @@ const AuthorTemplate = ({ data }) => (
         {data.strapiAuthors.articles.map(article => (
           <li key={article.id}>
             <h2>
-              <Link to={`/article/${article.title.split(/[\s,%]+/).map((a) => a.toLowerCase()).join("-")}`}>{article.title}</Link>
+              <Link to={`/article/${article.title.split(/[\s\.\,\\\/\#\!\$\%\^\&\*\;\:\{\}\=\-\_\`\~\(\)]+/).map((a) => a.toLowerCase()).join("-")}`}>{article.title}</Link>
             </h2>
             <ReactMarkdown
               source={`${article.content.slice(0, 300)}...`}
