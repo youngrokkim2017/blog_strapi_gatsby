@@ -1,106 +1,106 @@
-import React from "react"
-// import React, { useState, useRef } from "react"
-import { Link } from "gatsby"
-import Img from 'gatsby-image';
-import ReactMarkdown from "react-markdown"
-import Fuse from "fuse.js"  // fuzzy search
-import Highlight from 'react-highlighter';
+// import React from "react"
+// // import React, { useState, useRef } from "react"
+// import { Link } from "gatsby"
+// import Img from 'gatsby-image';
+// import ReactMarkdown from "react-markdown"
+// import Fuse from "fuse.js"  // fuzzy search
+// import Highlight from 'react-highlighter';
 
-const SearchContainer = ({query, articles, location}) => {
-  ///////////////////////////// FUSE SEARCH ///////////////////////////////////
-  // const unsortedData = data.allStrapiArticle.edges;
-  let index = (location.state === null || !location.state) ? "" : location.state.searchQuery;
+// const SearchContainer = ({query, articles, location}) => {
+//   ///////////////////////////// FUSE SEARCH ///////////////////////////////////
+//   // const unsortedData = data.allStrapiArticle.edges;
+//   let index = (location.state === null || !location.state) ? "" : location.state.searchQuery;
 
-  const options = {
-      keys: [
-        {
-            name: 'node.title',
-            weight: 0.6,
-        },
-        {
-            name: 'node.author',
-            weight: 0.1,
-        },
-        {
-            name: 'node.content',
-            weight: 0.3,
-        },
-      ],
-      includeScore: true,
-      // shouldSort: true,
-      threshold: 0.3,  // default 0.6
-  };
-  const fuse = new Fuse(articles, options);
-  const results = fuse.search(index, { limit: 10 });
-  const searchResults = results.length > 0 ? results.map(result => result.item) : articles;
+//   const options = {
+//       keys: [
+//         {
+//             name: 'node.title',
+//             weight: 0.6,
+//         },
+//         {
+//             name: 'node.author',
+//             weight: 0.1,
+//         },
+//         {
+//             name: 'node.content',
+//             weight: 0.3,
+//         },
+//       ],
+//       includeScore: true,
+//       // shouldSort: true,
+//       threshold: 0.3,  // default 0.6
+//   };
+//   const fuse = new Fuse(articles, options);
+//   const results = fuse.search(index, { limit: 10 });
+//   const searchResults = results.length > 0 ? results.map(result => result.item) : articles;
 
-  const currentResults = fuse.search(query, { limit: 10 });
-  const currentSearchResults = query.length > 2 ? currentResults.map(result => result.item) : articles;
-  ///////////////////////////// FUSE SEARCH ///////////////////////////////////
-  // console.log(results)
+//   const currentResults = fuse.search(query, { limit: 10 });
+//   const currentSearchResults = query.length > 2 ? currentResults.map(result => result.item) : articles;
+//   ///////////////////////////// FUSE SEARCH ///////////////////////////////////
+//   // console.log(results)
 
-  return (
-  <div>
-    { query.length > 2 ?
-    <div>
-      <ul>
-        {currentSearchResults.map(document => (
-          <li key={document.node.id}>
-            <h2>
-              <Link to={`/article/${document.node.title.split(/[\s,%]+/).map((category) => category.toLowerCase()).join("-")}`} style={{ textDecoration: `none` }}>
-                <Highlight search={query}>{document.node.title}</Highlight>
-              </Link>
-            </h2>
-            <h4><Highlight search={query}>By{" "}{document.node.author}</Highlight></h4>
-            {
-              document.node.image
-              ?
-              // <Img fixed={document.node.image.childImageSharp.fixed} />
-              <Img fluid={document.node.image.childImageSharp.fluid} />
-              :
-              ""
-            }
-            <ReactMarkdown
-              source={<Highlight search={query}>{`${document.node.content.slice(0,500)}...`}</Highlight>}
-              transformImageUri={uri => uri.startsWith('http') ? uri : `${process.env.IMAGE_BASE_URL}${uri}`}
-            />
-          </li>
-        ))}
-      </ul>
-    </div>
-    :
-    <div>
-      <ul>
-        {searchResults.map(document => (
-          <li key={document.node.id}>
-            <h2>
-              <Link to={`/article/${document.node.title.split(/[\s,%]+/).map((category) => category.toLowerCase()).join("-")}`} style={{ textDecoration: `none` }}>
-                <Highlight search={query}>{document.node.title}</Highlight>
-              </Link>
-            </h2>
-            <h4><Highlight search={query}>By{" "}{document.node.author}</Highlight></h4>
-            {
-              document.node.image
-              ?
-              // <Img fixed={document.node.image.childImageSharp.fixed} />
-              <Img fluid={document.node.image.childImageSharp.fluid} />
-              :
-              ""
-            }
-            <Highlight search={query}>
-              <ReactMarkdown
-                source={`${document.node.content.slice(0,500)}...`}
-                transformImageUri={uri => uri.startsWith('http') ? uri : `${process.env.IMAGE_BASE_URL}${uri}`}
-              />
-            </Highlight>
-          </li>
-        ))}
-      </ul>
-    </div>
-    }
-  </div>
-  )
-}
+//   return (
+//   <div>
+//     { query.length > 2 ?
+//     <div>
+//       <ul>
+//         {currentSearchResults.map(document => (
+//           <li key={document.node.id}>
+//             <h2>
+//               <Link to={`/article/${document.node.title.split(/[\s,%]+/).map((category) => category.toLowerCase()).join("-")}`} style={{ textDecoration: `none` }}>
+//                 <Highlight search={query}>{document.node.title}</Highlight>
+//               </Link>
+//             </h2>
+//             <h4><Highlight search={query}>By{" "}{document.node.author}</Highlight></h4>
+//             {
+//               document.node.image
+//               ?
+//               // <Img fixed={document.node.image.childImageSharp.fixed} />
+//               <Img fluid={document.node.image.childImageSharp.fluid} />
+//               :
+//               ""
+//             }
+//             <ReactMarkdown
+//               source={<Highlight search={query}>{`${document.node.content.slice(0,500)}...`}</Highlight>}
+//               transformImageUri={uri => uri.startsWith('http') ? uri : `${process.env.IMAGE_BASE_URL}${uri}`}
+//             />
+//           </li>
+//         ))}
+//       </ul>
+//     </div>
+//     :
+//     <div>
+//       <ul>
+//         {searchResults.map(document => (
+//           <li key={document.node.id}>
+//             <h2>
+//               <Link to={`/article/${document.node.title.split(/[\s,%]+/).map((category) => category.toLowerCase()).join("-")}`} style={{ textDecoration: `none` }}>
+//                 <Highlight search={query}>{document.node.title}</Highlight>
+//               </Link>
+//             </h2>
+//             <h4><Highlight search={query}>By{" "}{document.node.author}</Highlight></h4>
+//             {
+//               document.node.image
+//               ?
+//               // <Img fixed={document.node.image.childImageSharp.fixed} />
+//               <Img fluid={document.node.image.childImageSharp.fluid} />
+//               :
+//               ""
+//             }
+//             <Highlight search={query}>
+//               <ReactMarkdown
+//                 source={`${document.node.content.slice(0,500)}...`}
+//                 transformImageUri={uri => uri.startsWith('http') ? uri : `${process.env.IMAGE_BASE_URL}${uri}`}
+//               />
+//             </Highlight>
+//           </li>
+//         ))}
+//       </ul>
+//     </div>
+//     }
+//   </div>
+//   )
+// }
 
 
-export default SearchContainer;
+// export default SearchContainer;

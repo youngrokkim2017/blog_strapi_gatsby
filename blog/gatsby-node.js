@@ -417,7 +417,7 @@ exports.createPages = async ({ graphql, actions }) => {
     const next = index === 0 ? null : articles[index - 1].node;
 
     createPage({
-      path: `/article/${article.node.title.split(/[\s,%]+/).map((a) => a.toLowerCase()).join("-")}`,
+      path: `/article/${article.node.title.split(/[\s\.\,\\\/\#\!\$\%\^\&\*\;\:\{\}\=\-\_\`\~\(\)]+/).map((a) => a.toLowerCase()).join("-")}`,
       component: path.resolve(`src/templates/article.js`),
       context: {
         id: article.node.id,
@@ -455,25 +455,6 @@ exports.createPages = async ({ graphql, actions }) => {
       },
     });
   });
-
-  // // PAGINATE CATEGORIES
-  // categories.forEach((category, index) => {
-  //   const numPagesCategory = Math.ceil(category.node.articles.length / postsPerPage);
-  //   Array.from({ length: numPagesCategory }).forEach((_, i) => {
-  //     createPage({
-  //       // path: `/category/${category.node.title.split(" ").map((cat) => cat.toLowerCase()).join("-")}`,
-  //       path: i === 0 ? `/category/${category.node.title.split(" ").map((cat) => cat.toLowerCase()).join("-")}/1` : `/category/${category.node.title.split(" ").map((cat) => cat.toLowerCase()).join("-")}/${i + 1}`,
-  //       component: path.resolve(`src/templates/category.js`),
-  //       context: {
-  //         id: category.node.id,
-  //         limit: postsPerPage,
-  //         skip: i * postsPerPage,
-  //         numPagesCategory,
-  //         currentPage: i + 1,
-  //       },
-  //     });
-  //   })
-  // });
 
   // AUTHOR CONTENT TYPE
   authors.forEach(({ node }) => {
