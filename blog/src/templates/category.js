@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Link, graphql } from "gatsby"
 import Layout from "../components/layout"
-import ReactMarkdown from "react-markdown"
+// import ReactMarkdown from "react-markdown"
 
 const CategoryTemplate = ({ data }) => {
   const sortedByDate = data.strapiCategory.articles.sort((a, b) => {
@@ -38,55 +38,55 @@ const CategoryTemplate = ({ data }) => {
   }, [list]) //eslint-disable-line
   
   return (
-  <Layout>
-    <div className="">
-      <h2 className="font-normal mb-12 text-4xl leading-tight">{data.strapiCategory.title}</h2>
-      <ul>
-        {list.map(document => (
-        <li key={document.id} className="mb-4">
-        <div className="flex items-start">
-          {/* {document.image ?
-            <div className="mr-6">
-              <img src={document.image.publicURL} />
-            </div>
-            :
-            ""
-          } */}
-          <div>
-            <Link to={`/article/${document.title.split(/[\s,%]+/).map((category) => category.toLowerCase()).join("-")}`}>
-              <h2 className="font-normal mb-4 text-2xl leading-tight">{document.title}</h2>
-            </Link>
-            {/* <ReactMarkdown
-              source={`${document.content.slice(0, 300)}...`}
-              transformImageUri={uri => uri.startsWith('http') ? uri : `${process.env.IMAGE_BASE_URL}${uri}`}
-              className="mb-4"
-            /> */}
-            {data.allStrapiAuthors.edges.map(author => (
-              <p className='mb-2 text-base' key={author.node.id}>
-                {+author.node.id.split("_")[1] === document.author ?
-                  <Link 
-                    className="font-medium underline"
-                    to={`/author/${author.node.name.split(" ").map((a) => a.toLowerCase()).join("-")}`}
-                  >
-                    By {author.node.name}
-                  </Link>
+    <Layout>
+      <div className="">
+        <h2 className="font-normal mb-12 text-4xl leading-tight">{data.strapiCategory.title}</h2>
+        <ul>
+          {list.map(document => (
+            <li key={document.id} className="mb-4">
+              <div className="flex items-start">
+                {/* {document.image ?
+                  <div className="mr-6">
+                    <img src={document.image.publicURL} />
+                  </div>
                   :
                   ""
-                }
-              </p>
-            ))}
-          </div>
-          </div>
-        </li>
-        ))}
-      </ul>
-      {hasMore ? (
-        <button onClick={handleLoadMore}>Load More</button>
-      ) : (
-        <p>No more results</p>
-      )}
-    </div>
-  </Layout>
+                } */}
+                <div>
+                  <Link to={`/article/${document.title.split(/[\s,%]+/).map((category) => category.toLowerCase()).join("-")}`}>
+                    <h2 className="font-normal mb-4 text-2xl leading-tight">{document.title}</h2>
+                  </Link>
+                  {/* <ReactMarkdown
+                    source={`${document.content.slice(0, 300)}...`}
+                    transformImageUri={uri => uri.startsWith('http') ? uri : `${process.env.IMAGE_BASE_URL}${uri}`}
+                    className="mb-4"
+                  /> */}
+                  {data.allStrapiAuthors.edges.map(author => (
+                    <p className='mb-2 text-base' key={author.node.id}>
+                      {+author.node.id.split("_")[1] === document.author ?
+                        <Link 
+                          className="font-medium underline"
+                          to={`/author/${author.node.name.split(" ").map((a) => a.toLowerCase()).join("-")}`}
+                        >
+                          By {author.node.name}
+                        </Link>
+                        :
+                        ""
+                      }
+                    </p>
+                  ))}
+                </div>
+              </div>
+            </li>
+          ))}
+        </ul>
+        {hasMore ? (
+          <button onClick={handleLoadMore}>Load More</button>
+        ) : (
+          <p>No more results</p>
+        )}
+      </div>
+    </Layout>
   )
 }
 
