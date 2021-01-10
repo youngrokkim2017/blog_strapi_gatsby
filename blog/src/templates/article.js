@@ -7,36 +7,36 @@ import ReactMarkdown from "react-markdown"
 import Preview from "../components/preview"
 
 class ArticleTemplate extends React.Component {
-  constructor(props) {
-    super(props);
+  // constructor(props) {
+  //   super(props);
 
-    this.state = {
-      relatedArticles: [],
-    }
-  }
+  //   this.state = {
+  //     relatedArticles: [],
+  //   }
+  // }
 
   componentDidMount() {
-    const sortedByDate = this.props.data.allStrapiArticle.edges.sort((a, b) => {
-      let aDate = parseInt(a.node.published_at.split("T")[0].split("-").join(""))
-      let bDate = parseInt(b.node.published_at.split("T")[0].split("-").join(""))
-      return (bDate - aDate)
-    });
+    // const sortedByDate = this.props.data.allStrapiArticle.edges.sort((a, b) => {
+    //   let aDate = parseInt(a.node.published_at.split("T")[0].split("-").join(""))
+    //   let bDate = parseInt(b.node.published_at.split("T")[0].split("-").join(""))
+    //   return (bDate - aDate)
+    // });
 
-    // const sortedArticles = this.props.data.allStrapiArticle.edges.sort((a, b) => b.node.published_at - a.node.published_at).filter(document => (
-    let sortedArticles = sortedByDate.filter(document => (
-      // document.node.categories.length !== 0 && this.props.data.strapiArticle.categories.map(a => a.title).some(ele => document.node.categories.map(b => b.title).includes(ele)) && document.node.id !== this.props.data.strapiArticle.id
-      document.node.categories.length !== 0 && this.props.data.strapiArticle.categories.map(a => a.title)[0] === document.node.categories.map(b => b.title)[0] && document.node.id !== this.props.data.strapiArticle.id
-    )).slice(0, 10);
+    // // const sortedArticles = this.props.data.allStrapiArticle.edges.sort((a, b) => b.node.published_at - a.node.published_at).filter(document => (
+    // let sortedArticles = sortedByDate.filter(document => (
+    //   // document.node.categories.length !== 0 && this.props.data.strapiArticle.categories.map(a => a.title).some(ele => document.node.categories.map(b => b.title).includes(ele)) && document.node.id !== this.props.data.strapiArticle.id
+    //   document.node.categories.length !== 0 && this.props.data.strapiArticle.categories.map(a => a.title)[0] === document.node.categories.map(b => b.title)[0] && document.node.id !== this.props.data.strapiArticle.id
+    // )).slice(0, 10);
 
-    const temp = [];
-    while (sortedArticles.length !== 0) {
-      let randomIndex = Math.floor(Math.random() * sortedArticles.length);
-      temp.push(sortedArticles[randomIndex]);
-      sortedArticles.splice(randomIndex, 1);
-    }
-    sortedArticles = temp.slice(0, 3);
+    // const temp = [];
+    // while (sortedArticles.length !== 0) {
+    //   let randomIndex = Math.floor(Math.random() * sortedArticles.length);
+    //   temp.push(sortedArticles[randomIndex]);
+    //   sortedArticles.splice(randomIndex, 1);
+    // }
+    // sortedArticles = temp.slice(0, 3);
 
-    this.setState({ relatedArticles: sortedArticles })
+    // this.setState({ relatedArticles: sortedArticles })
 
     var sidebar = document.getElementById("sidebar");
     var element = document.getElementById('metadata');
@@ -73,39 +73,40 @@ class ArticleTemplate extends React.Component {
     }
 
     // const sortedByDate = data.allStrapiArticle.edges.sort((a, b) => {
-    //   let aDate = parseInt(a.node.published_at.split("T")[0].split("-").join(""))
-    //   let bDate = parseInt(b.node.published_at.split("T")[0].split("-").join(""))
-    //   return (bDate - aDate)
-    // })
+    const recentArticlesByDate = data.allStrapiArticle.edges.sort((a, b) => {
+      let aDate = parseInt(a.node.published_at.split("T")[0].split("-").join(""))
+      let bDate = parseInt(b.node.published_at.split("T")[0].split("-").join(""))
+      return (bDate - aDate)
+    })
+
+    const recentArticlesSidebar = recentArticlesByDate.filter(document => (
+      document.node.id !== this.props.data.strapiArticle.id
+    )).slice(0, 3)
 
     // const relatedArticles = data.allStrapiArticle.edges.sort((a, b) => b.node.published_at - a.node.published_at).filter(document => (
     // // const relatedArticles = data.allStrapiArticle.edges.sort((a, b) => b.published_at - a.published_at).filter(document => (
     //   document.node.categories.length !== 0 && data.strapiArticle.categories.map(a => a.title).some(ele => document.node.categories.map(b => b.title).includes(ele)) && document.node.id !== data.strapiArticle.id
     // )).slice(0, 3)
 
-    // let min, max;
-    // const relatedArticles = sortedByDate.filter(document => {
-    //   let conditionOne = document.node.categories.length !== 0;
-    //   let conditionTwo = document.node.id !== data.strapiArticle.id;
-    //   // let conditionThree = data.strapiArticle.categories.map(a => a.title).some(ele => document.node.categories.map(b => b.title).includes(ele))
-    //   // let min;
-    //   // let max;
+    const sortedByDate = this.props.data.allStrapiArticle.edges.sort((a, b) => {
+      let aDate = parseInt(a.node.published_at.split("T")[0].split("-").join(""))
+      let bDate = parseInt(b.node.published_at.split("T")[0].split("-").join(""))
+      return (bDate - aDate)
+    });
 
-    //   if (data.strapiArticle.categories.map(a => a.title).length > document.node.categories.map(b => b.title).length) {
-    //     max = data.strapiArticle.categories.map(a => a.title)
-    //     min = document.node.categories.map(b => b.title)
-    //   } else if (data.strapiArticle.categories.map(a => a.title).length < document.node.categories.map(b => b.title).length) {
-    //     max = document.node.categories.map(b => b.title)
-    //     min = data.strapiArticle.categories.map(a => a.title)
-    //   }
+    let relatedArticles = sortedByDate.filter(document => (
+      // document.node.categories.length !== 0 && this.props.data.strapiArticle.categories.map(a => a.title).some(ele => document.node.categories.map(b => b.title).includes(ele)) && document.node.id !== this.props.data.strapiArticle.id
+      document.node.categories.length !== 0 && this.props.data.strapiArticle.categories.map(a => a.title)[0] === document.node.categories.map(b => b.title)[0] && document.node.id !== this.props.data.strapiArticle.id
+    )).slice(0, 10);
 
-    //   let conditionThree = max.includes(min);
+    const temp = [];
+    while (relatedArticles.length !== 0) {
+      let randomIndex = Math.floor(Math.random() * relatedArticles.length);
+      temp.push(relatedArticles[randomIndex]);
+      relatedArticles.splice(randomIndex, 1);
+    }
 
-    //   return (conditionOne && conditionTwo && conditionThree)
-    // }).slice(0, 3)
-
-    // console.log(this.props, this.state)
-    // console.log(relatedArticles)
+    relatedArticles = temp.slice(0, 3);
 
     return (
       <Layout>
@@ -204,19 +205,34 @@ class ArticleTemplate extends React.Component {
                   </div>
                 </div>
                 <div className='flex-grow'>
-                  <div className="mt-12 lg:mt-0">
-                    <h2 className='text-2xl font-medium pb-2 mb-4 border-b border-black leading-none'>
-                      Related Articles
-                    </h2>
-                    <ul>
-                      {/* {relatedArticles.map(document => ( */}
-                      {this.state.relatedArticles.map(document => (
-                        <li key={document.node.id} className="mt-4 pb-4 border-b" style={{ borderBottomColor: '#e2e2e2' }}>
-                          <Preview article={document.node} format="small" />
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
+                  {data.strapiArticle.categories.length === 0 ?
+                    <div className="mt-12 lg:mt-0">
+                      <h2 className='text-2xl font-medium pb-2 mb-4 border-b border-black leading-none'>
+                        Recent Articles
+                      </h2>
+                      <ul>
+                        {recentArticlesSidebar.map(document => (
+                          <li key={document.node.id} className="mt-4 pb-4 border-b" style={{ borderBottomColor: '#e2e2e2' }}>
+                            <Preview article={document.node} format="small" />
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  :
+                    <div className="mt-12 lg:mt-0">
+                      <h2 className='text-2xl font-medium pb-2 mb-4 border-b border-black leading-none'>
+                        Related Articles
+                      </h2>
+                      <ul>
+                        {/* {this.state.relatedArticles.map(document => ( */}
+                        {relatedArticles.map(document => (
+                          <li key={document.node.id} className="mt-4 pb-4 border-b" style={{ borderBottomColor: '#e2e2e2' }}>
+                            <Preview article={document.node} format="small" />
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  }
                 </div>
               </div>
 

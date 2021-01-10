@@ -153,7 +153,8 @@ const SearchPage = ({ location }) => {
                   ""
                 }
                 <div>
-                  <Link to={`/article/${document.node.title.split(/[\s\.\,\\\/\#\!\$\%\^\&\*\;\:\{\}\=\-\_\`\~\(\)]+/).map((category) => category.toLowerCase()).join("-")}`} style={{ textDecoration: `none` }}>
+                  {/* <Link to={`/article/${document.node.title.split(/[\s!"\#$%&'()*+,\-./:;<=>?@\[\\\]^_‘{|}~]+/).map((category) => category.toLowerCase()).join("-")}`} style={{ textDecoration: `none` }}> */}
+                  <Link to={`/article/${document.node.title.split(/[\s!"#$%&'()*+,\-./:;<=>?@[\\\]^_‘{|}~]+/).map((category) => category.toLowerCase()).join("-")}`} style={{ textDecoration: `none` }}>
                     <h2 className="font-medium mb-2 text-2xl leading-tight">
                       <Highlight search={query}>{document.node.title}</Highlight>
                     </h2>
@@ -197,7 +198,8 @@ const SearchPage = ({ location }) => {
                   ""
                 }
                 <div>
-                  <Link to={`/article/${document.node.title.split(/[\s\.\,\\\/\#\!\$\%\^\&\*\;\:\{\}\=\-\_\`\~\(\)]+/).map((category) => category.toLowerCase()).join("-")}`} style={{ textDecoration: `none` }}>
+                  {/* <Link to={`/article/${document.node.title.split(/[\s!"\#$%&'()*+,\-./:;<=>?@\[\\\]^_‘{|}~]+/).map((a) => a.toLowerCase()).join("-")}`} style={{ textDecoration: `none` }}> */}
+                  <Link to={`/article/${document.node.title.split(/[\s!"#$%&'()*+,\-./:;<=>?@[\\\]^_‘{|}~]+/).map((a) => a.toLowerCase()).join("-")}`} style={{ textDecoration: `none` }}>
                     <h2 className="font-medium mb-2 text-2xl leading-tight">
                       <Highlight search={query}>{document.node.title}</Highlight>
                     </h2>
@@ -223,7 +225,7 @@ const SearchPage = ({ location }) => {
             // <li key={document.node.id}>
             //   <div className="flex items-start">
             //   <h2>
-            //     <Link to={`/article/${document.node.title.split(/[\s\.\,\\\/\#\!\$\%\^\&\*\;\:\{\}\=\-\_\`\~\(\)]+/).map((category) => category.toLowerCase()).join("-")}`} style={{ textDecoration: `none` }}>
+            //     <Link to={`/article/${document.node.title.split(/[\s!"\#$%&'()*+,\-./:;<=>?@\[\\\]^_‘{|}~).map((category) => category.toLowerCase()).join("-")}`} style={{ textDecoration: `none` }}>
             //       <Highlight search={query}>{document.node.title}</Highlight>
             //     </Link>
             //   </h2>
