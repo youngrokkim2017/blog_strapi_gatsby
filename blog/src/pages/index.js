@@ -25,6 +25,47 @@ const IndexPage = ({ data }) => {
   return (
     <Layout>
       <div className="bg-red-300">HOME PAGE</div>
+      <div>
+        <div>
+          CAROUSEL
+        </div>
+        <div>
+          <h2 className='text-2xl font-medium pb-2 mb-4 border-b border-black leading-none'>
+            Recent Articles
+          </h2>
+          <ul>
+            {recentArticles.map(document => (
+              <li key={document.node.id} className="mt-4 pb-4 border-b" style={{ borderBottomColor: '#e2e2e2' }}>
+                <Preview article={document.node} format="small" />
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div>
+          <h2 className='text-2xl font-medium pb-2 mb-4 border-b border-black leading-none'>
+            Labscope
+          </h2>
+          <ul>
+            {labscopeArticles.map(document => (
+              <li key={document.node.id} className="mt-4 pb-4 border-b" style={{ borderBottomColor: '#e2e2e2' }}>
+                <Preview article={document.node} format="small" />
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div>
+          <h2 className='text-2xl font-medium pb-2 mb-4 border-b border-black leading-none'>
+            Noteworthy
+          </h2>
+          <ul>
+            {noteworthyArticles.map(document => (
+              <li key={document.node.id} className="mt-4 pb-4 border-b" style={{ borderBottomColor: '#e2e2e2' }}>
+                <Preview article={document.node} format="small" />
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
     </Layout>
   )
 }
