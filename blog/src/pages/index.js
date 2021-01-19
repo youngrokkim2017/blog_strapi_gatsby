@@ -2,6 +2,7 @@ import React from "react";
 import Layout from "../components/layout"
 import { graphql } from "gatsby"
 // import { Link, graphql } from "gatsby"
+import { Carousel } from 'react-bootstrap'
 
 const IndexPage = ({ data }) => {
   const sortedByDate = this.props.data.allStrapiArticle.edges.sort((a, b) => {
@@ -26,8 +27,19 @@ const IndexPage = ({ data }) => {
     <Layout>
       <div className="bg-red-300">HOME PAGE</div>
       <div>
-        <div>
-          CAROUSEL
+        <div id="carousel">
+          <ul>
+            {recentArticles.map(document => (
+              <Carousel>
+                <Carousel.Item>
+                  {document.node.image ? <img src={document.node.image.publicURL} className="object-cover w-20 h-20" alt="" /> : ""}
+                  <Carousel.Caption>
+                    <h3>{document.node.title}</h3>
+                  </Carousel.Caption>
+                </Carousel.Item>
+              </Carousel>
+            ))}
+          </ul>
         </div>
         <div>
           <h2 className='text-2xl font-medium pb-2 mb-4 border-b border-black leading-none'>
