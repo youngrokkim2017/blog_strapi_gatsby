@@ -28,18 +28,16 @@ const IndexPage = ({ data }) => {
       <div className="bg-red-300">HOME PAGE</div>
       <div>
         <div id="carousel">
-          <ul>
+          <Carousel>
             {recentArticles.map(document => (
-              <Carousel>
-                <Carousel.Item>
-                  {document.node.image ? <img src={document.node.image.publicURL} className="object-cover w-20 h-20" alt="" /> : ""}
-                  <Carousel.Caption>
-                    <h3>{document.node.title}</h3>
-                  </Carousel.Caption>
-                </Carousel.Item>
-              </Carousel>
+              <Carousel.Item>
+                {document.node.image ? <img src={document.node.image.publicURL} className="object-cover w-20 h-20" alt="" /> : ""}
+                <Carousel.Caption>
+                  <h3>{document.node.title}</h3>
+                </Carousel.Caption>
+              </Carousel.Item>
             ))}
-          </ul>
+          </Carousel>
         </div>
         <div>
           <h2 className='text-2xl font-medium pb-2 mb-4 border-b border-black leading-none'>
