@@ -155,9 +155,9 @@ class SearchHeader extends React.Component {
                           </li>
                         ))}
                       </>
-                      <li>
+                      {/* <li>
                         <Link to="/archive/1">Archive</Link>
-                      </li>
+                      </li> */}
                     </ul>
                   </div>
                   <div>

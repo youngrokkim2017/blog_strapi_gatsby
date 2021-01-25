@@ -169,9 +169,9 @@ class Header extends React.Component {
                           </>
                         )}
                       />
-                      <li>
+                      {/* <li>
                         <Link to="/archive/1">Archive</Link>
-                      </li>
+                      </li> */}
                     </ul>
                   </div>
                   <div>

@@ -5,7 +5,8 @@ import { graphql } from "gatsby"
 import { Carousel } from 'react-bootstrap'
 
 const IndexPage = ({ data }) => {
-  const sortedByDate = this.props.data.allStrapiArticle.edges.sort((a, b) => {
+  // const sortedByDate = this.props.data.allStrapiArticle.edges.sort((a, b) => {
+  const sortedByDate = data.allStrapiArticle.edges.sort((a, b) => {
     let aDate = parseInt(a.node.published_at.split("T")[0].split("-").join(""))
     let bDate = parseInt(b.node.published_at.split("T")[0].split("-").join(""))
     return (bDate - aDate)
@@ -41,7 +42,7 @@ const IndexPage = ({ data }) => {
         </div>
         <div>
           <h2 className='text-2xl font-medium pb-2 mb-4 border-b border-black leading-none'>
-            Recent Articles
+            Latest
           </h2>
           <ul>
             {recentArticles.map(document => (
