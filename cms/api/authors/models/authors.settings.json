@@ -2,24 +2,22 @@
   "kind": "collectionType",
   "collectionName": "authors",
   "info": {
-    "name": "authors",
-    "description": ""
+    "name": "authors"
   },
   "options": {
     "increments": true,
     "timestamps": true,
-    "draftAndPublish": false
+    "draftAndPublish": true
   },
   "attributes": {
     "name": {
-      "type": "string",
-      "required": true
+      "type": "string"
     },
     "twitterURL": {
       "type": "string"
     },
     "about": {
-      "type": "text"
+      "type": "string"
     },
     "articles": {
       "via": "author",

@@ -3,7 +3,7 @@
     {
       "method": "GET",
       "path": "/magazine-issues",
-      "handler": "magazine-issues.find",
+      "handler": "magazine-issue.find",
       "config": {
         "policies": []
       }
@@ -11,7 +11,7 @@
     {
       "method": "GET",
       "path": "/magazine-issues/count",
-      "handler": "magazine-issues.count",
+      "handler": "magazine-issue.count",
       "config": {
         "policies": []
       }
@@ -19,7 +19,7 @@
     {
       "method": "GET",
       "path": "/magazine-issues/:id",
-      "handler": "magazine-issues.findOne",
+      "handler": "magazine-issue.findOne",
       "config": {
         "policies": []
       }
@@ -27,7 +27,7 @@
     {
       "method": "POST",
       "path": "/magazine-issues",
-      "handler": "magazine-issues.create",
+      "handler": "magazine-issue.create",
       "config": {
         "policies": []
       }
@@ -35,7 +35,7 @@
     {
       "method": "PUT",
       "path": "/magazine-issues/:id",
-      "handler": "magazine-issues.update",
+      "handler": "magazine-issue.update",
       "config": {
         "policies": []
       }
@@ -43,7 +43,7 @@
     {
       "method": "DELETE",
       "path": "/magazine-issues/:id",
-      "handler": "magazine-issues.delete",
+      "handler": "magazine-issue.delete",
       "config": {
         "policies": []
       }

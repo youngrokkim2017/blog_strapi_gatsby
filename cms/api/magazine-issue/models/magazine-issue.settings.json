@@ -2,13 +2,13 @@
   "kind": "collectionType",
   "collectionName": "magazine_issues",
   "info": {
-    "name": "Magazine Issue",
+    "name": "magazine issue",
     "description": ""
   },
   "options": {
     "increments": true,
     "timestamps": true,
-    "draftAndPublish": false
+    "draftAndPublish": true
   },
   "attributes": {
     "title": {
