@@ -29,16 +29,16 @@
       "required": false
     },
     "magazine": {
-      "via": "articles",
-      "model": "magazine-issues"
+      "model": "magazine-issues",
+      "via": "articles"
     },
     "categories": {
-      "collection": "category",
-      "via": "articles"
+      "via": "articles",
+      "collection": "category"
     },
     "author": {
-      "model": "authors",
-      "via": "articles"
+      "via": "articles",
+      "model": "authors"
     }
   }
 }

@@ -2,7 +2,7 @@
   "kind": "collectionType",
   "collectionName": "authors",
   "info": {
-    "name": "authors",
+    "name": "author",
     "description": ""
   },
   "options": {
@@ -22,8 +22,8 @@
       "type": "text"
     },
     "articles": {
-      "via": "author",
-      "collection": "article"
+      "collection": "article",
+      "via": "author"
     }
   }
 }

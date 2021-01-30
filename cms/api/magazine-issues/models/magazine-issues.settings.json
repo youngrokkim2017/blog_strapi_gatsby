@@ -32,8 +32,8 @@
       "type": "string"
     },
     "articles": {
-      "collection": "article",
-      "via": "magazine"
+      "via": "magazine",
+      "collection": "article"
     }
   }
 }

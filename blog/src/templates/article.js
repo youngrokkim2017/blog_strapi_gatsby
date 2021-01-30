@@ -26,7 +26,7 @@ class ArticleTemplate extends React.Component {
     let sortedArticles = sortedByDate.filter(document => (
       // document.node.categories.length !== 0 && this.props.data.strapiArticle.categories.map(a => a.title).some(ele => document.node.categories.map(b => b.title).includes(ele)) && document.node.id !== this.props.data.strapiArticle.id
       document.node.categories.length !== 0 && this.props.data.strapiArticle.categories.map(a => a.title)[0] === document.node.categories.map(b => b.title)[0] && document.node.id !== this.props.data.strapiArticle.id
-    )).slice(0, 10);
+    )).slice(0, 6);
 
     const temp = [];
     while (sortedArticles.length !== 0) {
@@ -165,7 +165,7 @@ class ArticleTemplate extends React.Component {
                 </div>
               </div>
               <div className="flex flex-wrap lg:flex-no-wrap">
-                <div className="flex-shrink-0 prose md:prose-lg max-w-full lg:max-w-2xl mr-8 tracking-normal text-black">
+                <div className={`flex-shrink-0 prose md:prose-lg max-w-full tracking-normal text-black ${data.strapiArticle.categories.length !== 0 ? 'lg:max-w-2xl mr-8' : 'mx-auto'}`}>
                   <div>
                     {data.strapiArticle.image ?
                       <img src={data.strapiArticle.image.publicURL} className="featured-img-container mb-8 mt-0 w-full" alt="" />
@@ -203,21 +203,27 @@ class ArticleTemplate extends React.Component {
                     </div>
                   </div>
                 </div>
-                <div className='flex-grow'>
-                  <div className="mt-12 lg:mt-0">
-                    <h2 className='text-2xl font-medium pb-2 mb-4 border-b border-black leading-none'>
-                      Related Articles
+
+                {data.strapiArticle.categories.length !== 0
+                  ?
+                  <div className='flex-grow'>
+                    <div className="mt-12 lg:mt-0">
+                      <h2 className='text-2xl font-medium pb-2 mb-4 border-b border-black leading-none'>
+                        Related Articles
                     </h2>
-                    <ul>
-                      {/* {relatedArticles.map(document => ( */}
-                      {this.state.relatedArticles.map(document => (
-                        <li key={document.node.id} className="mt-4 pb-4 border-b" style={{ borderBottomColor: '#e2e2e2' }}>
-                          <Preview article={document.node} format="small" />
-                        </li>
-                      ))}
-                    </ul>
+                      <ul>
+                        {this.state.relatedArticles.map(document => (
+                          <li key={document.node.id} className="mt-4 pb-4 border-b" style={{ borderBottomColor: '#e2e2e2' }}>
+                            <Preview article={document.node} format="small" />
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
                   </div>
-                </div>
+                  :
+                  ""
+                }
+
               </div>
 
             </div>
