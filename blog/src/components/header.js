@@ -159,8 +159,8 @@ class Header extends React.Component {
                             `}
                         render={data => (
                           <>
-                            {/* {data.allStrapiCategory.edges.map(document => ( */}
-                            {data.allStrapiCategory.edges.splice(0, data.allStrapiCategory.edges.length - 1).map(document => (
+                            {/* {data.allStrapiCategory.edges.splice(0, data.allStrapiCategory.edges.length - 1).map(document => ( */}
+                            {data.allStrapiCategory.edges.map(document => (
                               <li key={document.node.id}>
                                 <Link to={`/category/${document.node.title.split(" ").map((category) => category.toLowerCase()).join("-")}`}>
                                   {document.node.title}
@@ -170,9 +170,9 @@ class Header extends React.Component {
                           </>
                         )}
                       />
-                      <li>
+                      {/* <li>
                         <Link to="/archive/1">Archive</Link>
-                      </li>
+                      </li> */}
                     </ul>
                   </div>
                   <div>

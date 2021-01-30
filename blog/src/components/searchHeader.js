@@ -91,7 +91,7 @@ class SearchHeader extends React.Component {
     // }
     
     const { categories } = this.props;
-    const nonArchiveCategories = categories.splice(0, categories.length - 1);
+    // const nonArchiveCategories = categories.splice(0, categories.length - 1);
 
     return (
       <>
@@ -148,8 +148,8 @@ class SearchHeader extends React.Component {
                     <h2 className="uppercase font-semibold mb-6">Categories</h2>
                     <ul className="grid gap-4 grid-cols-3">
                       <>
-                        {/* {categories.map(document => ( */}
-                        {nonArchiveCategories.map(document => (
+                        {/* {nonArchiveCategories.map(document => ( */}
+                        {categories.map(document => (
                           <li key={document.node.id}>
                             <Link to={`/category/${document.node.title.split(" ").map((category) => category.toLowerCase()).join("-")}`}>
                               {document.node.title}
@@ -157,9 +157,9 @@ class SearchHeader extends React.Component {
                           </li>
                         ))}
                       </>
-                      <li>
+                      {/* <li>
                         <Link to="/archive/1">Archive</Link>
-                      </li>
+                      </li> */}
                     </ul>
                   </div>
                   <div>
