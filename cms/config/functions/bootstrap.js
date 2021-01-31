@@ -42,7 +42,7 @@ module.exports = () => {
             var magazine = null
         }
         else {
-            var magazine = await strapi.query('magazine-issues').findOne({ title: data.issue });
+            var magazine = await strapi.query('magazine-issue').findOne({ title: data.issue });
         }
 
         var entry = await strapi.query('article').create({
@@ -117,7 +117,7 @@ module.exports = () => {
 //     var issues = JSON.parse(issues);
 
 //     issues.forEach(issue => {
-//         strapi.query('magazine-issues').create({
+//         strapi.query('magazine-issue').create({
 //          title: issue.name
 //         })
 

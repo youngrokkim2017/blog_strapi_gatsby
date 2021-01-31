@@ -16,8 +16,7 @@
     },
     "articles": {
       "collection": "article",
-      "via": "categories",
-      "dominant": true
+      "via": "categories"
     }
   }
 }

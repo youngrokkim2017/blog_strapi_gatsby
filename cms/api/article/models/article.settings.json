@@ -28,17 +28,18 @@
       "plugin": "upload",
       "required": false
     },
-    "magazine": {
-      "model": "magazine-issues",
-      "via": "articles"
-    },
-    "categories": {
-      "via": "articles",
-      "collection": "category"
-    },
     "author": {
       "via": "articles",
       "model": "authors"
+    },
+    "categories": {
+      "via": "articles",
+      "collection": "category",
+      "dominant": true
+    },
+    "magazine": {
+      "via": "articles",
+      "model": "magazine-issue"
     }
   }
 }

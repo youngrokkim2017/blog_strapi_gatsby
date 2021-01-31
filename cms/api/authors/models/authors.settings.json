@@ -2,7 +2,7 @@
   "kind": "collectionType",
   "collectionName": "authors",
   "info": {
-    "name": "author",
+    "name": "authors",
     "description": ""
   },
   "options": {
@@ -12,14 +12,13 @@
   },
   "attributes": {
     "name": {
-      "type": "string",
-      "required": true
+      "type": "string"
     },
     "twitterURL": {
       "type": "string"
     },
     "about": {
-      "type": "text"
+      "type": "string"
     },
     "articles": {
       "collection": "article",
