@@ -29,12 +29,12 @@
       "required": false
     },
     "author": {
-      "model": "authors",
-      "via": "articles"
+      "via": "articles",
+      "model": "authors"
     },
     "categories": {
-      "collection": "category",
       "via": "articles",
+      "collection": "category",
       "dominant": true
     },
     "magazine": {

@@ -4,7 +4,7 @@ import MailchimpComponent from './mailchimp'
 
 const Footer = () => {
     return (
-        <nav className="border-t border-black mt-16 sans-serif bg-black text-white px-4 sm:px-0 pb-24">
+        <nav className="border-t border-black mt-16 sans-serif text-white px-4 sm:px-0 pb-24" style={{backgroundColor : '#003262'}}>
             <div className="container mx-auto mt-12">
                 <div className="block flex-grow lg:flex lg:w-auto space-y-8 lg:space-y-0">
                     <div className="text-md lg:flex-grow">

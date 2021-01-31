@@ -2,12 +2,13 @@
   "kind": "collectionType",
   "collectionName": "authors",
   "info": {
-    "name": "authors"
+    "name": "authors",
+    "description": ""
   },
   "options": {
     "increments": true,
     "timestamps": true,
-    "draftAndPublish": true
+    "draftAndPublish": false
   },
   "attributes": {
     "name": {
@@ -20,8 +21,8 @@
       "type": "string"
     },
     "articles": {
-      "via": "author",
-      "collection": "article"
+      "collection": "article",
+      "via": "author"
     }
   }
 }

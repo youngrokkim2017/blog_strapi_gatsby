@@ -3,6 +3,7 @@ import Layout from "../components/layout"
 import { graphql } from "gatsby"
 // import { Link, graphql } from "gatsby"
 import { Carousel } from 'react-bootstrap'
+import Preview from "../components/preview"
 
 const IndexPage = ({ data }) => {
   // const sortedByDate = this.props.data.allStrapiArticle.edges.sort((a, b) => {
@@ -26,7 +27,6 @@ const IndexPage = ({ data }) => {
 
   return (
     <Layout>
-      <div className="bg-red-300">HOME PAGE</div>
       <div>
         <div id="carousel">
           <Carousel>
@@ -96,6 +96,9 @@ export const splashQuery = graphql`
             publicURL
           }
           title
+          author {
+            name
+          }
           content
           categories {
             id
