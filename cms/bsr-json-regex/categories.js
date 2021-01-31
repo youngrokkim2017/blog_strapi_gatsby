@@ -1,26 +1,38 @@
 [
  {
-  "0":"Climate Change"
+  "name":"Archive"
  },
  {
-  "0":"Tech\/AI"
+  "name":"The Scientist Life"
  },
  {
-  "0":"Life Science"
+  "name":"Life Science"
  },
  {
-  "0":"The Universe"
+  "name":"The Universe"
  },
  {
-  "0":"Labscopes"
+  "name":"Noteworthy News"
  },
  {
-  "0":"People"
+  "name":"Tech\/AI"
  },
  {
-  "0":"Noteworthy News"
+  "name":"Climate Change"
  },
  {
-  "0":"The Scientist Life"
+  "name":"Life science"
+ },
+ {
+  "name":"Labscopes"
+ },
+ {
+  "name":"Climate change"
+ },
+ {
+  "name":"The universe"
+ },
+ {
+  "name":"People"
  }
 ]

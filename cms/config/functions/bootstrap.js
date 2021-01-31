@@ -14,7 +14,7 @@ const mime = require('mime');
  */
 
 module.exports = () => {
-    var data = require('fs').readFileSync('bsr-json-regex/export-2021-01-02.js', 'utf8');
+    var data = require('fs').readFileSync('bsr-json-regex/export-2021-01-30.js', 'utf8');
     var data = JSON.parse(data);
 
     async function create(data, files = {}) {
@@ -38,30 +38,30 @@ module.exports = () => {
             var author = await strapi.query('authors').findOne({ name: data.author });
         }
 
-        if (data.magazine === null){
+        if (data.issue === null){
             var magazine = null
         }
         else {
-            var magazine = await strapi.query('magazine-issues').findOne({ title: data.issue });
+            var magazine = await strapi.query('magazine-issue').findOne({ title: data.issue });
         }
 
-        // var entry = await strapi.query('article').create({
-        //     title: data.title,
-        //     published_at: data.created_at,
-        //     author: (author) ? author.id : null,
-        //     categories: categories,
-        //     magazine: (magazine) ? magazine.id : null,
-        //     content: data.markdown
-        // });
+        var entry = await strapi.query('article').create({
+            title: (data.title) ? data.title : null,
+            published_at: (data.created_at) ? data.created_at : null,
+            author: (author) ? author.id : null,
+            categories: (categories) ? categories : null,
+            magazine: (data.issue) ? magazine.id : null,
+            content: (data.markdown) ? data.markdown : null
+        });
 
-        // if (files) {
-        //     await strapi.entityService.uploadFiles(entry, files, {
-        //         model: strapi.models.article.modelName
-        //     });
-        //     return this.findOne({ id: entry.id });
-        // }
-        // // console.log(categories, author.id, magazine.id)
-        // return entry;
+        if (files) {
+            await strapi.entityService.uploadFiles(entry, files, {
+                model: strapi.models.article.modelName
+            });
+            return this.findOne({ id: entry.id });
+        }
+        // console.log(categories, author.id, magazine.id)
+        return entry;
     };
 
     var i = 0;
@@ -90,7 +90,7 @@ module.exports = () => {
         // strapi.query('article').findOne({ id: 22 }).then(val=>{console.log(val)});
         
     });
-    console.log(i+'posts for import');
+    console.log(i+' posts for import');
 
 
 //     var authors = require('fs').readFileSync('bsr-json-regex/authors.js', 'utf8');
@@ -99,6 +99,26 @@ module.exports = () => {
 //     authors.forEach(author => {
 //         strapi.query('authors').create({
 //          name: author.name
+//         })
+
+//     });
+
+//     var cats = require('fs').readFileSync('bsr-json-regex/categories.js', 'utf8');
+//     var cats = JSON.parse(cats);
+
+//     cats.forEach(cat => {
+//         strapi.query('category').create({
+//          title: cat.name
+//         })
+
+//     });
+
+//     var issues = require('fs').readFileSync('bsr-json-regex/issues.js', 'utf8');
+//     var issues = JSON.parse(issues);
+
+//     issues.forEach(issue => {
+//         strapi.query('magazine-issue').create({
+//          title: issue.name
 //         })
 
 //     });
