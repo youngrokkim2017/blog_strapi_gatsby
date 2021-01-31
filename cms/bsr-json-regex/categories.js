@@ -21,16 +21,7 @@
   "name":"Climate Change"
  },
  {
-  "name":"Life science"
- },
- {
   "name":"Labscopes"
- },
- {
-  "name":"Climate change"
- },
- {
-  "name":"The universe"
  },
  {
   "name":"People"
