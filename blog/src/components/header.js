@@ -92,7 +92,7 @@ class Header extends React.Component {
     return (
       <>
         <nav className="text-black mb-12 sans-serif bg-white z-50 sticky top-0 shadow-sm">
-          <div className={this.state.menuOpen ? 'border-none': 'border-b'} style={{ borderBottomColor: '#e2e2e2' }}>
+          <div className={this.state.menuOpen ? 'border-none': 'border-b'} style={{borderBottomColor : '#003262'}}>
             <div className="container mx-auto py-4">
               <div className="flex mx-auto items-center justify-between px-4 sm:px-0">
                 <div className="w-1/4">

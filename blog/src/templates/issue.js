@@ -8,7 +8,7 @@ import Layout from "../components/layout"
 const MagazineIssueTemplate = ({ data }) => (
   <Layout>
     <div className="">
-      <h2 className="font-normal mb-12 text-4xl leading-tight">{data.strapiMagazineIssue.issue}</h2>
+      <h2 className="font-normal mb-12 text-4xl leading-tight">{data.strapiMagazineIssue.title}</h2>
     </div>
   </Layout>
 )
@@ -19,7 +19,7 @@ export const query = graphql`
   query MagazineIssueTemplate($id: String!) {
     strapiMagazineIssue(id: { eq: $id }) {
       id
-      issue
+      title
     }
   }
 `

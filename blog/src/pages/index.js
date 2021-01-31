@@ -27,7 +27,6 @@ const IndexPage = ({ data }) => {
 
   return (
     <Layout>
-      <div className="bg-red-300">HOME PAGE</div>
       <div>
         <div id="carousel">
           <Carousel>
@@ -97,6 +96,9 @@ export const splashQuery = graphql`
             publicURL
           }
           title
+          author {
+            name
+          }
           content
           categories {
             id

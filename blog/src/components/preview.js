@@ -21,9 +21,13 @@ const Preview = ({ article, format }) => {
                         <h2 className="font-normal mb-2 text-base leading-tight">{article.title}</h2>
                     </Link>
                     <p className='text-sm'>
-                        {/* <Link to={`/author/${article.author.name.split(" ").map((a) => a.toLowerCase()).join("-")}`} className="font-medium underline">
+                        {article.author ?
+                        <Link to={`/author/${article.author.name.split(" ").map((a) => a.toLowerCase()).join("-")}`} className="font-medium underline">
                             {article.author.name}
-                        </Link> */}
+                        </Link>
+                        :
+                        ""
+                        }
                     </p>
                 </div>
                 {article.image ? <img src={article.image.publicURL} className="object-cover w-20 h-20" alt="" /> : ""}
