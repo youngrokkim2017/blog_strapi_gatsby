@@ -1,30 +1,30 @@
 [
  {
-  "name":"Anna Goldstein"
- },
- {
   "name":"Liz Boatman"
  },
  {
   "name":"Jessica Harvey"
  },
  {
-  "name":"Rachel Bernstein"
+  "name":"Anna Goldstein"
  },
  {
-  "name":"Guest Blogger"
+  "name":"Rachel Bernstein"
  },
  {
   "name":"Brian Lambson"
  },
  {
+  "name":"Guest Blogger"
+ },
+ {
   "name":"Chris Holdgraf"
  },
  {
-  "name":"achang"
+  "name":"Josh Shiode"
  },
  {
-  "name":"Josh Shiode"
+  "name":"achang"
  },
  {
   "name":"Jessica Smith"
@@ -60,175 +60,10 @@
   "name":"Alexandra Courtis"
  },
  {
-  "name":"Cheryl Hackworth"
- },
- {
-  "name":"Angie Morey"
- },
- {
-  "name":"Loren Bentley"
- },
- {
-  "name":"Sebastien Lounis"
- },
- {
-  "name":"Christopher Smallwood"
- },
- {
-  "name":"Rachel Hood"
- },
- {
-  "name":"Keith Cheveralls"
- },
- {
-  "name":"Mary Grace Lin"
- },
- {
-  "name":"Alexis Fedorchak"
- },
- {
-  "name":"Sandra Takei"
- },
- {
-  "name":"Mica Smith"
- },
- {
-  "name":"Audrey Chang"
- },
- {
-  "name":"Sharmistha Majumdar"
- },
- {
-  "name":"Brendan Borrell"
- },
- {
-  "name":"Jess Porter"
- },
- {
-  "name":"Sarita Shaevitz"
- },
- {
-  "name":"Rebecca Sutton"
- },
- {
   "name":"Daniel Freeman"
  },
  {
-  "name":"Mohan Ganesh"
- },
- {
-  "name":"Monica Smith"
- },
- {
-  "name":"Molly Sharlach"
- },
- {
-  "name":"Colleen Kirkhart"
- },
- {
-  "name":"Claudia Avalos"
- },
- {
-  "name":"Hector Huang"
- },
- {
-  "name":"Maya Sen"
- },
- {
-  "name":"Greg Alushin"
- },
- {
   "name":"BSR Design"
- },
- {
-  "name":"Robert Gibboni"
- },
- {
-  "name":"Azeen Ghorayshi"
- },
- {
-  "name":"James McGann"
- },
- {
-  "name":"Ginger Jui"
- },
- {
-  "name":"Crystal Chaw"
- },
- {
-  "name":"Alireza Moharrer"
- },
- {
-  "name":"Sisi Chen"
- },
- {
-  "name":"Phuongmai Truong"
- },
- {
-  "name":"Naomi Ondrasek"
- },
- {
-  "name":"Kaitlin Duffey"
- },
- {
-  "name":"Shirali Pandya"
- },
- {
-  "name":"Allison Kidder"
- },
- {
-  "name":"Nikki R. Kong"
- },
- {
-  "name":"Aaron Harrison"
- },
- {
-  "name":"Sharmistha Majumdar "
- },
- {
-  "name":"Lindsay Glesener "
- },
- {
-  "name":"Agnieszka Czeszumska"
- },
- {
-  "name":"Sean Doris"
- },
- {
-  "name":"Sam Sternberg"
- },
- {
-  "name":"Anna Lieb"
- },
- {
-  "name":"Anna Vlasits"
- },
- {
-  "name":"Tom Murray"
- },
- {
-  "name":"Teresa Lee"
- },
- {
-  "name":"Hillary Sardi\u00f1as "
- },
- {
-  "name":"Maria Zizka"
- },
- {
-  "name":"Christopher Ryan"
- },
- {
-  "name":"Allison Berke"
- },
- {
-  "name":"Joseph Williams"
- },
- {
-  "name":"Nicole Carlson"
- },
- {
-  "name":"Brad Balukjian"
  },
  {
   "name":"Holly Williams"
@@ -249,112 +84,19 @@
   "name":"Levi Gadye"
  },
  {
-  "name":"Sasha Harris-Lovett"
- },
- {
-  "name":"Tanya Dimitrova"
- },
- {
-  "name":"Virginia Emery"
- },
- {
-  "name":"Jessica Graves"
- },
- {
-  "name":"Joseph Jay Williams"
- },
- {
-  "name":"Joan Ball Damerow"
- },
- {
-  "name":"Ryan Morrie"
- },
- {
-  "name":"Maria Alvarellos"
- },
- {
-  "name":"Katelyn Begany"
- },
- {
-  "name":"Alexandra del Carpio"
- },
- {
-  "name":"Lowry Kirkby"
- },
- {
-  "name":"Piere Rodriguez"
- },
- {
   "name":"Mikel Delgado"
- },
- {
-  "name":"Kevin Doxzen"
- },
- {
-  "name":"Judy Savitskaya"
- },
- {
-  "name":"Charlene Bashore"
- },
- {
-  "name":"Sarah Hillenbrand"
- },
- {
-  "name":"Anum Azam"
- },
- {
-  "name":"Denia Djoki\u0107 and Sebastien Lounis"
- },
- {
-  "name":"Virgina Emery"
- },
- {
-  "name":"Michael Peterson"
- },
- {
-  "name":"Alexis Shusterman"
- },
- {
-  "name":"Georgeann Sack "
- },
- {
-  "name":"The BSR Team"
  },
  {
   "name":"David Litt"
  },
  {
+  "name":"Sarah Hillenbrand"
+ },
+ {
   "name":"Isabel Alter"
  },
  {
-  "name":"THE BSR TEAM"
- },
- {
-  "name":"Tchiki Davis"
- },
- {
-  "name":"Rachel Albert"
- },
- {
-  "name":"Zach Helft"
- },
- {
-  "name":"Catalina Casillas"
- },
- {
-  "name":"Matt Rubashkin"
- },
- {
-  "name":"Cindy Wang"
- },
- {
-  "name":"Alli Quan"
- },
- {
-  "name":"Nicole Beier"
- },
- {
-  "name":"Angela Kaczmarczyk"
+  "name":"Sean Doris"
  },
  {
   "name":"BSR Web Team"
@@ -363,55 +105,10 @@
   "name":"Audrey Haynes"
  },
  {
-  "name":"Helene Moorman"
- },
- {
-  "name":"Kavitha Ratnam"
- },
- {
-  "name":"Dharshi Devendran"
- },
- {
-  "name":"Jillian Swift, Melanie Miller, Alexandra McCleary, and Kirsten Vacca"
- },
- {
-  "name":"Preeya Khanna"
- },
- {
-  "name":"THE BERKELEY SCIENCE REVIEW"
+  "name":"Anna Lieb"
  },
  {
   "name":"Kris G. Hargraves"
- },
- {
-  "name":"Sara ElShafie"
- },
- {
-  "name":"Ioana Aanei, Chris Holdgraf,  and Antoine Wojdyla"
- },
- {
-  "name":"BERKELEY SCIENCE REVIEW"
- },
- {
-  "name":"James Anderson-Furgeson"
- },
- {
-  "name":"Daniel Aranki, Roel Dobbe, Jaime F. Fisac, and Cathy Wu"
- },
- {
-  "name":"Nicole Haloupek"
- },
- {
-  "name":"Madza Y. Farias-Virgens and Yevgeniya Sosnovskaya"
- },
- {
-  "name":"Allie George"
- },
- {
-  "name":"Emily Hartman"
- },
- {
-  "name":"Maxim Rabinovich"
  },
  {
   "name":"Jordan Axelson"
@@ -420,31 +117,10 @@
   "name":"Daniel Toker"
  },
  {
-  "name":"Anna Parker"
+  "name":"Anna Vlasits"
  },
  {
-  "name":"Kit Elsworth"
- },
- {
-  "name":"Piere Rodriguez-Aliaga"
- },
- {
-  "name":"Chloe Lessard"
- },
- {
-  "name":"Leela Velautham"
- },
- {
-  "name":"Dawn Lipscomb"
- },
- {
-  "name":"Amanda Tose"
- },
- {
-  "name":"Vanessa Carels"
- },
- {
-  "name":"Cathy Wu"
+  "name":"Emily Hartman"
  },
  {
   "name":"Lauren Borja"
@@ -453,46 +129,7 @@
   "name":"Emily Cook"
  },
  {
-  "name":"The Berkeley Science Review"
- },
- {
-  "name":"Kirsten Verster"
- },
- {
-  "name":"Sonia Travaglini"
- },
- {
-  "name":"Hayley McCausland"
- },
- {
-  "name":"David Faulkner"
- },
- {
-  "name":"Nicole Repina"
- },
- {
-  "name":"Anna Vlasits, Emily Hartman, and Rachel Hood"
- },
- {
-  "name":"Malak El-Quessny"
- },
- {
-  "name":"Claire Kunkle"
- },
- {
-  "name":"Andrew Sharo"
- },
- {
-  "name":"Kim Huynh"
- },
- {
-  "name":"Hope Henderson"
- },
- {
-  "name":"Raoul Martin"
- },
- {
-  "name":"Nina Pak"
+  "name":"Nicole Haloupek"
  },
  {
   "name":"Julie Adams"
@@ -504,40 +141,13 @@
   "name":"Erika Anderson"
  },
  {
-  "name":"Natalie Gibson"
- },
- {
   "name":"Allison Terbush"
  },
  {
-  "name":"Zichong Li"
+  "name":"Natalie Gibson"
  },
  {
-  "name":"Zeke Barger"
- },
- {
-  "name":"Isaac Marck"
- },
- {
-  "name":"Jonathan Liu"
- },
- {
-  "name":"Maya Emmons-Bell"
- },
- {
-  "name":"Antoine Wojdyla"
- },
- {
-  "name":" Lauren Borja"
- },
- {
-  "name":"Armbien Sabillo"
- },
- {
-  "name":"Tim Jeffers"
- },
- {
-  "name":"Dhruv Patel"
+  "name":"Alli Quan"
  },
  {
   "name":"Eric Copenhaver"
@@ -546,10 +156,10 @@
   "name":"Jo Downes Bairzin"
  },
  {
-  "name":"QinQin Yu"
+  "name":"Rachel Dzombak"
  },
  {
-  "name":"Rachel Dzombak"
+  "name":"QinQin Yu"
  },
  {
   "name":"Thomas Mittiga"
@@ -567,13 +177,619 @@
   "name":"Iskra Pollak Dorocic"
  },
  {
+  "name":"Shelley He"
+ },
+ {
+  "name":"Emilia Zin"
+ },
+ {
+  "name":"Virginia Markham"
+ },
+ {
+  "name":"Lisa Eshun-Wilson"
+ },
+ {
+  "name":"Darren Scioneaux"
+ },
+ {
+  "name":"Kristyn Kadala"
+ },
+ {
+  "name":"Vael Gates"
+ },
+ {
+  "name":"Pierce Gordon"
+ },
+ {
+  "name":"Laura Treers"
+ },
+ {
+  "name":"Arjun Narayanan"
+ },
+ {
+  "name":"Sierra Lear"
+ },
+ {
+  "name":"Layne Frechette"
+ },
+ {
+  "name":"Sophia Friesen"
+ },
+ {
+  "name":"Amanda Glazer"
+ },
+ {
+  "name":"Marie-C\u00e9cilia Duvernoy"
+ },
+ {
+  "name":"Nicole Farias"
+ },
+ {
+  "name":"Brett Simpson"
+ },
+ {
+  "name":"Ina Hollerer"
+ },
+ {
+  "name":"Andrew Saintsing"
+ },
+ {
+  "name":"Ying Zhao"
+ },
+ {
+  "name":"Sara Stoudt"
+ },
+ {
+  "name":"Deena Sabry"
+ },
+ {
+  "name":"Samvardhini Sridharan"
+ },
+ {
+  "name":"Alok Tripathy"
+ },
+ {
+  "name":"Celia Ford"
+ },
+ {
+  "name":"Phillip Frankino"
+ },
+ {
   "name":"Maiko Kitaoka"
  },
  {
-  "name":"Briana Boaz"
+  "name":"Jonathan Liu"
+ },
+ {
+  "name":"Denia Djokic"
+ },
+ {
+  "name":"Alireza Moharrer"
+ },
+ {
+  "name":"Chris Holdgraf"
+ },
+ {
+  "name":"Azeen Ghorayshi"
+ },
+ {
+  "name":"Naomi Ondrasek"
+ },
+ {
+  "name":"Sisi Chen and Mark DeWitt"
+ },
+ {
+  "name":"Adrienne Greene"
+ },
+ {
+  "name":"Jacques Bothma"
+ },
+ {
+  "name":"Jacqueline Chretien"
+ },
+ {
+  "name":"Keith Cheveralls"
+ },
+ {
+  "name":"Greg Alushin"
+ },
+ {
+  "name":"Claudia Avalos"
+ },
+ {
+  "name":"Maiko Kitaoka"
+ },
+ {
+  "name":"Prabudhya Bhattacharyya"
+ },
+ {
+  "name":"Amanda Bischoff"
+ },
+ {
+  "name":"Emma Steigerwald"
+ },
+ {
+  "name":"Anna Zaniewski"
+ },
+ {
+  "name":"Lina Nilsson"
+ },
+ {
+  "name":"Sheba Plamthottam"
+ },
+ {
+  "name":"Sheyna Gifford"
+ },
+ {
+  "name":"Robert Gibboni"
+ },
+ {
+  "name":"Amanda Alvarez"
+ },
+ {
+  "name":"Erin Jarvis"
+ },
+ {
+  "name":"Joan Ball"
+ },
+ {
+  "name":"Ginger Jui"
+ },
+ {
+  "name":"Susanne Kassube"
+ },
+ {
+  "name":"Zlatko Minev"
+ },
+ {
+  "name":"Molly Sharlach"
+ },
+ {
+  "name":"Nikki Kong"
+ },
+ {
+  "name":"Kristina Garfinkel"
+ },
+ {
+  "name":"Samantha Cheung"
+ },
+ {
+  "name":"Michael Cianfrocco"
+ },
+ {
+  "name":"Anaamika Campeau"
+ },
+ {
+  "name":"Joseph Williams"
+ },
+ {
+  "name":"Anna Vlasits"
+ },
+ {
+  "name":"Christopher Smallwood"
+ },
+ {
+  "name":"Hannah Ray"
+ },
+ {
+  "name":"Anand Sampat"
+ },
+ {
+  "name":"Allison Berke"
+ },
+ {
+  "name":"Kaitlin Duffey"
+ },
+ {
+  "name":"David Hershey"
+ },
+ {
+  "name":"Sam Sternberg"
+ },
+ {
+  "name":"Teresa Lee"
+ },
+ {
+  "name":"Lindsay Glesener"
+ },
+ {
+  "name":"Zoey Herm"
+ },
+ {
+  "name":"Angie Morey"
+ },
+ {
+  "name":"Cheryl Hackworth"
+ },
+ {
+  "name":"Loren Bentley"
+ },
+ {
+  "name":"Sebastien Lounis"
+ },
+ {
+  "name":"Aaron Harrison"
+ },
+ {
+  "name":"Christopher Ryan"
+ },
+ {
+  "name":"Shirali Pandya"
+ },
+ {
+  "name":"Sharmistha Majumdar"
+ },
+ {
+  "name":"Rachel Hood"
+ },
+ {
+  "name":"Mary Grace Lin"
+ },
+ {
+  "name":"Alexis Fedorchak"
+ },
+ {
+  "name":"Sandra Takei"
+ },
+ {
+  "name":"Mica Smith"
+ },
+ {
+  "name":"Audrey Chang"
+ },
+ {
+  "name":"Brendan Borrell"
+ },
+ {
+  "name":"Jess Porter"
+ },
+ {
+  "name":"Sarita Shaevitz"
+ },
+ {
+  "name":"Rebecca Sutton"
+ },
+ {
+  "name":"Mohan Ganesh"
+ },
+ {
+  "name":"Monica Smith"
+ },
+ {
+  "name":"Colleen Kirkhart"
+ },
+ {
+  "name":"Jessica Harvey"
+ },
+ {
+  "name":"Hector Huang"
+ },
+ {
+  "name":"Maya Sen"
+ },
+ {
+  "name":"James McGann"
+ },
+ {
+  "name":"Crystal Chaw"
+ },
+ {
+  "name":"Sisi Chen"
+ },
+ {
+  "name":"Phuongmai Truong"
+ },
+ {
+  "name":"Nikki R. Kong"
+ },
+ {
+  "name":"Allison Kidder"
+ },
+ {
+  "name":"Sharmistha Majumdar "
+ },
+ {
+  "name":"Lindsay Glesener "
+ },
+ {
+  "name":"Agnieszka Czeszumska"
+ },
+ {
+  "name":"Sean Doris"
+ },
+ {
+  "name":"Anna Lieb"
+ },
+ {
+  "name":"Tom Murray"
+ },
+ {
+  "name":"Maria Zizka"
+ },
+ {
+  "name":"Hillary Sardi\u00f1as "
+ },
+ {
+  "name":"Berkeley Science Review"
+ },
+ {
+  "name":"Nicole Carlson"
+ },
+ {
+  "name":"Brad Balukjian"
+ },
+ {
+  "name":"Sasha Harris-Lovett"
+ },
+ {
+  "name":"Alexandra del Carpio"
+ },
+ {
+  "name":"Tanya Dimitrova"
+ },
+ {
+  "name":"Ryan Morrie"
+ },
+ {
+  "name":"Joan Ball Damerow"
+ },
+ {
+  "name":"Jessica Graves"
+ },
+ {
+  "name":"Virginia Emery"
+ },
+ {
+  "name":"Joseph Jay Williams"
+ },
+ {
+  "name":"Maria Alvarellos"
+ },
+ {
+  "name":"Katelyn Begany"
+ },
+ {
+  "name":"Lowry Kirkby"
+ },
+ {
+  "name":"Piere Rodriguez"
+ },
+ {
+  "name":"Anum Azam"
+ },
+ {
+  "name":"Michael Peterson"
+ },
+ {
+  "name":"Kevin Doxzen"
+ },
+ {
+  "name":"Denia Djoki\u0107 and Sebastien Lounis"
+ },
+ {
+  "name":"Holly Williams"
+ },
+ {
+  "name":"Virgina Emery"
+ },
+ {
+  "name":"Alexandra Courtis"
+ },
+ {
+  "name":"Judy Savitskaya"
+ },
+ {
+  "name":"Sarah Hillenbrand"
+ },
+ {
+  "name":"Charlene Bashore"
+ },
+ {
+  "name":"Alexis Shusterman"
+ },
+ {
+  "name":"Georgeann Sack "
+ },
+ {
+  "name":"The BSR Team"
+ },
+ {
+  "name":"THE BSR TEAM"
+ },
+ {
+  "name":"Alli Quan"
+ },
+ {
+  "name":"Cindy Wang"
+ },
+ {
+  "name":"Catalina Casillas"
+ },
+ {
+  "name":"Matt Rubashkin"
+ },
+ {
+  "name":"Zach Helft"
+ },
+ {
+  "name":"Rachel Albert"
+ },
+ {
+  "name":"Tchiki Davis"
+ },
+ {
+  "name":"Angela Kaczmarczyk"
+ },
+ {
+  "name":"Nicole Beier"
+ },
+ {
+  "name":"Helene Moorman"
+ },
+ {
+  "name":"Kavitha Ratnam"
+ },
+ {
+  "name":"Dharshi Devendran"
+ },
+ {
+  "name":"Preeya Khanna"
+ },
+ {
+  "name":"Jillian Swift, Melanie Miller, Alexandra McCleary, and Kirsten Vacca"
+ },
+ {
+  "name":"THE BERKELEY SCIENCE REVIEW"
+ },
+ {
+  "name":"Emily Hartman"
+ },
+ {
+  "name":"Allie George"
+ },
+ {
+  "name":"Madza Y. Farias-Virgens and Yevgeniya Sosnovskaya"
+ },
+ {
+  "name":"Sara ElShafie"
+ },
+ {
+  "name":"Nicole Haloupek"
+ },
+ {
+  "name":"Ioana Aanei, Chris Holdgraf,  and Antoine Wojdyla"
+ },
+ {
+  "name":"Daniel Aranki, Roel Dobbe, Jaime F. Fisac, and Cathy Wu"
+ },
+ {
+  "name":"James Anderson-Furgeson"
+ },
+ {
+  "name":"BERKELEY SCIENCE REVIEW"
+ },
+ {
+  "name":"Maxim Rabinovich"
+ },
+ {
+  "name":"Anna Parker"
+ },
+ {
+  "name":"Daniel Toker"
+ },
+ {
+  "name":"Cathy Wu"
+ },
+ {
+  "name":"Vanessa Carels"
+ },
+ {
+  "name":"Amanda Tose"
+ },
+ {
+  "name":"Chloe Lessard"
+ },
+ {
+  "name":"Kit Elsworth"
+ },
+ {
+  "name":"Piere Rodriguez-Aliaga"
+ },
+ {
+  "name":"Leela Velautham"
+ },
+ {
+  "name":"Dawn Lipscomb"
+ },
+ {
+  "name":"Anna Vlasits, Emily Hartman, and Rachel Hood"
+ },
+ {
+  "name":"David Faulkner"
+ },
+ {
+  "name":"Nicole Repina"
+ },
+ {
+  "name":"Raoul Martin"
+ },
+ {
+  "name":"Hope Henderson"
+ },
+ {
+  "name":"The Berkeley Science Review"
+ },
+ {
+  "name":"Malak El-Quessny"
+ },
+ {
+  "name":"Claire Kunkle"
+ },
+ {
+  "name":"Andrew Sharo"
+ },
+ {
+  "name":"Kim Huynh"
+ },
+ {
+  "name":"Hayley McCausland"
+ },
+ {
+  "name":"Kirsten Verster"
+ },
+ {
+  "name":"Sonia Travaglini"
+ },
+ {
+  "name":"Nina Pak"
+ },
+ {
+  "name":" Lauren Borja"
+ },
+ {
+  "name":"Antoine Wojdyla"
+ },
+ {
+  "name":"Dhruv Patel"
+ },
+ {
+  "name":"Jonathan Liu"
+ },
+ {
+  "name":"Maya Emmons-Bell"
+ },
+ {
+  "name":"Tim Jeffers"
+ },
+ {
+  "name":"Zeke Barger"
+ },
+ {
+  "name":"Armbien Sabillo"
+ },
+ {
+  "name":"Isaac Marck"
+ },
+ {
+  "name":"Zichong Li"
+ },
+ {
+  "name":"Johnathan Maza"
  },
  {
   "name":"Katie Deets"
+ },
+ {
+  "name":"Kyle Hemes"
+ },
+ {
+  "name":"Soumya Govinda Remesh"
+ },
+ {
+  "name":"Karina Klonoski"
+ },
+ {
+  "name":"Chung-Kuan (Andy) Lin"
  },
  {
   "name":"Victor Villalobos"
@@ -582,28 +798,7 @@
   "name":"Will Berdanier"
  },
  {
-  "name":"Soumya Govinda Remesh"
- },
- {
-  "name":"Johnathan Maza"
- },
- {
-  "name":"Chung-Kuan (Andy) Lin"
- },
- {
-  "name":"Karina Klonoski"
- },
- {
-  "name":"Kyle Hemes"
- },
- {
-  "name":"Shelley He"
- },
- {
-  "name":"Emilia Zin"
- },
- {
-  "name":"Virginia Markham"
+  "name":"Briana Boaz"
  },
  {
   "name":"Diyala Shihadih"
@@ -627,7 +822,7 @@
   "name":"Priya Vijayakumar"
  },
  {
-  "name":"Lisa Eshun-Wilson"
+  "name":"Dat Mai"
  },
  {
   "name":"Carl Britto"
@@ -654,88 +849,46 @@
   "name":"Dana Goodacre"
  },
  {
-  "name":"Darren Scioneaux"
- },
- {
-  "name":"Kristyn Kadala"
- },
- {
-  "name":"Vael Gates"
- },
- {
-  "name":"Pierce Gordon"
- },
- {
-  "name":"Laura Treers"
+  "name":"Augusto Berrocal"
  },
  {
   "name":"Ammon Corl"
  },
  {
-  "name":"Augusto Berrocal"
- },
- {
-  "name":"Emily Hartman and Chrissy Stachl"
+  "name":"Vael Gates"
  },
  {
   "name":"Derek Bangs"
  },
  {
-  "name":"Prabudhya Bhattacharyya"
- },
- {
-  "name":"Alexandra Tsitsiklis"
+  "name":"Casey Smith"
  },
  {
   "name":"Vetri Velan"
  },
  {
-  "name":"Casey Smith"
+  "name":"Eric Lee"
+ },
+ {
+  "name":"Alexandra Tsitsiklis"
  },
  {
   "name":"Sierra Lear"
  },
  {
-  "name":"Eric Lee"
- },
- {
-  "name":"Arjun Narayanan"
- },
- {
-  "name":"Layne Frechette"
+  "name":"Emily Hartman and Chrissy Stachl"
  },
  {
   "name":"Sophia Friesen"
  },
  {
-  "name":"Amanda Glazer"
+  "name":"Mark O'Dair"
+ },
+ {
+  "name":"Clara Wong-Fannjiang"
  },
  {
   "name":"Marie-C\u00e9cilia Duvernoy"
- },
- {
-  "name":"Nicole Farias"
- },
- {
-  "name":"Brett Simpson"
- },
- {
-  "name":"Ina Hollerer"
- },
- {
-  "name":"Amanda Bischoff"
- },
- {
-  "name":"Emma Steigerwald"
- },
- {
-  "name":"Anna Zaniewski"
- },
- {
-  "name":"Prabudhya Bhattacharyya "
- },
- {
-  "name":"Mark O'Dair"
  },
  {
   "name":"Benjamin LaFrance"
@@ -744,40 +897,31 @@
   "name":"Bailey Bonet"
  },
  {
-  "name":"Jonathan Karr and Abrar Abidi"
- },
- {
   "name":"Shannon O'Brien"
  },
  {
-  "name":"Clara Wong-Fannjiang"
+  "name":"Jonathan Karr and Abrar Abidi"
  },
  {
-  "name":"Ying Zhao"
- },
- {
-  "name":"Sara Stoudt"
- },
- {
-  "name":"Deena Sabry"
- },
- {
-  "name":"BSR Issue 38 Team"
- },
- {
-  "name":"Rebecca Tarnopol"
+  "name":"Prabudhya Bhattacharyya "
  },
  {
   "name":"Alok Tripathy"
  },
  {
-  "name":"Antoine Wojdyla and Gautam Gunjala"
+  "name":"Rebecca Tarnopol"
+ },
+ {
+  "name":"Sara Stoudt"
+ },
+ {
+  "name":"BSR Issue 38 Team"
+ },
+ {
+  "name":"Kshitij Kulkarni"
  },
  {
   "name":"Ankit Kumar"
- },
- {
-  "name":"Lukas WinklerPrins"
  },
  {
   "name":"Tuesday Simmons"
@@ -786,37 +930,22 @@
   "name":"Stacy Li"
  },
  {
-  "name":"Kshitij Kulkarni"
+  "name":"Antoine Wojdyla and Gautam Gunjala"
  },
  {
-  "name":"Samvardhini Sridharan"
- },
- {
-  "name":"Celia Ford"
- },
- {
-  "name":"Phillip Frankino"
- },
- {
-  "name":"Vincent Su"
- },
- {
-  "name":"Emily Meschke"
+  "name":"Lukas WinklerPrins"
  },
  {
   "name":"Dominik Aylard"
  },
  {
-  "name":"Erin Akins"
+  "name":"Emily Meschke"
  },
  {
-  "name":"Emma Regan"
+  "name":"Vincent Su"
  },
  {
-  "name":"Orr Paradise"
- },
- {
-  "name":"Mattina Alonge"
+  "name":"Samvardhini Sridharan"
  },
  {
   "name":"Julie Fornaciari"
@@ -825,6 +954,15 @@
   "name":"Andrea Herman"
  },
  {
-  "name":""
+  "name":"Mattina Alonge"
+ },
+ {
+  "name":"Orr Paradise"
+ },
+ {
+  "name":"Emma Regan"
+ },
+ {
+  "name":"Erin Akins"
  }
 ]

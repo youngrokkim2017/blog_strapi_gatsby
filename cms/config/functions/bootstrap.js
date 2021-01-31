@@ -14,7 +14,7 @@ const mime = require('mime');
  */
 
 module.exports = () => {
-    var data = require('fs').readFileSync('bsr-json-regex/export-2021-01-09.js', 'utf8');
+    var data = require('fs').readFileSync('bsr-json-regex/export-2021-01-30.js', 'utf8');
     var data = JSON.parse(data);
 
     async function create(data, files = {}) {

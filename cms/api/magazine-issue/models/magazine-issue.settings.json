@@ -28,9 +28,6 @@
       "plugin": "upload",
       "required": false
     },
-    "issue": {
-      "type": "string"
-    },
     "articles": {
       "collection": "article",
       "via": "magazine"
