@@ -2,7 +2,7 @@
   "kind": "singleType",
   "collectionName": "abouts",
   "info": {
-    "name": "about",
+    "name": "About Us",
     "description": ""
   },
   "options": {
@@ -11,10 +11,7 @@
     "draftAndPublish": false
   },
   "attributes": {
-    "title": {
-      "type": "string"
-    },
-    "content": {
+    "markdown": {
       "type": "richtext"
     }
   }

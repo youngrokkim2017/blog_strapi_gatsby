@@ -2,17 +2,16 @@
   "kind": "singleType",
   "collectionName": "subscribes",
   "info": {
-    "name": "subscribe"
+    "name": "Subscribe",
+    "description": ""
   },
   "options": {
     "increments": true,
-    "timestamps": true
+    "timestamps": true,
+    "draftAndPublish": false
   },
   "attributes": {
-    "title": {
-      "type": "string"
-    },
-    "content": {
+    "markdown": {
       "type": "richtext"
     }
   }

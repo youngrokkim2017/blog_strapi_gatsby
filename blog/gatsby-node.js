@@ -386,6 +386,13 @@ exports.createPages = async ({ graphql, actions }) => {
             }
           }
         }
+        staff: allStrapiStaffListing {
+          edges {
+            node {
+              id
+            }
+          }
+        }
         subscribe: allStrapiSubscribe {
           edges {
             node {
@@ -407,6 +414,7 @@ exports.createPages = async ({ graphql, actions }) => {
   const authors = result.data.authors.edges;
   const issues = result.data.issues.edges;
   const about = result.data.about.edges;
+  const staff = result.data.staff.edges;
   const subscribe = result.data.subscribe.edges;
 
   // ARTICLE CONTENT TYPE
@@ -484,6 +492,17 @@ exports.createPages = async ({ graphql, actions }) => {
     createPage({
       path: `/about/`,
       component: path.resolve(`src/templates/about.js`),
+      context: {
+        id: node.id,
+      },
+    })
+  })
+
+  // STAFF
+  staff.forEach(({ node }) => {
+    createPage({
+      path: `/staff/`,
+      component: path.resolve(`src/templates/staff.js`),
       context: {
         id: node.id,
       },
