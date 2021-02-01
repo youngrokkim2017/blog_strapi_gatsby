@@ -13,7 +13,7 @@ const Preview = ({ article, format }) => {
 
     if (format === "small") {
         return (
-            <div className="flex items-start space-x-4">
+            <div className="flex items-start space-x-4 py-1">
                 <div className="flex-grow">
                     {/* <Link to={`/article/${article.title.split(/[\s!"\#$%&'()*+,\-./:;<=>?@\[\\\]^_‘{|}~]+/).map((category) => category.toLowerCase()).join("-")}`}> */}
                     <Link to={`/article/${article.title.split(/[\s!"#$%&'()*+,\-./:;<=>?@[\\\]^_‘{|}~]+/).map((category) => category.toLowerCase()).join("-")}`}>
@@ -34,13 +34,34 @@ const Preview = ({ article, format }) => {
             </div>
 
         )
+    } else if (format === "small-no-img") {
+        return (
+            <div className="flex items-start space-x-4 py-1">
+                <div className="flex-grow">
+                    {/* <Link to={`/article/${article.title.split(/[\s!"\#$%&'()*+,\-./:;<=>?@\[\\\]^_‘{|}~]+/).map((category) => category.toLowerCase()).join("-")}`}> */}
+                    <Link to={`/article/${article.title.split(/[\s!"#$%&'()*+,\-./:;<=>?@[\\\]^_‘{|}~]+/).map((category) => category.toLowerCase()).join("-")}`}>
+                        <h2 className="font-normal mb-2 text-base leading-tight">{article.title}</h2>
+                    </Link>
+                    <p className='text-sm'>
+                        {article.author ?
+                        <Link to={`/author/${article.author.name.split(" ").map((a) => a.toLowerCase()).join("-")}`} className="font-medium underline">
+                            {article.author.name}
+                        </Link>
+                        :
+                        ""
+                        }
+                    </p>
+                </div>
+            </div>
+
+        )
     } else if (format === "medium") {
         return (
-            <div className="flex items-start">
+            <div className="flex items-start py-2">
                 {article.image
                     ?
                     <div className="mr-6">
-                        <img src={article.image.publicURL} style={{ maxWidth: '210px' }} alt="" />
+                        <img src={article.image.publicURL} style={{ maxWidth: '200px' }} alt="" />
                     </div>
                     :
                     ""
@@ -56,9 +77,13 @@ const Preview = ({ article, format }) => {
                         className="mb-4 break-words"
                     /> */}
                     <p className='mb-1 text-base'>
-                        By <Link to={`/author/${article.author.name.split(" ").map((a) => a.toLowerCase()).join("-")}`} className="font-medium underline">
+                    {article.author ?
+                        <>By <Link to={`/author/${article.author.name.split(" ").map((a) => a.toLowerCase()).join("-")}`} className="font-medium underline">
                             {article.author.name}
-                        </Link>
+                        </Link></>
+                        :
+                        ""
+                    }
 
                     </p>
                     <p>

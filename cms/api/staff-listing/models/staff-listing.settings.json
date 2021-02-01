@@ -1,9 +1,8 @@
 {
   "kind": "singleType",
-  "collectionName": "abouts",
+  "collectionName": "staff_listings",
   "info": {
-    "name": "About Us",
-    "description": ""
+    "name": "Staff Listing"
   },
   "options": {
     "increments": true,
