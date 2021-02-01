@@ -1,7 +1,7 @@
 import React from 'react'
 import addToMailchimp from 'gatsby-plugin-mailchimp'
 
-class MailchimpComponent extends React.Component {
+class MailchimpComponentHome extends React.Component {
     state = {
         // name: null,
         email: null,
@@ -42,8 +42,8 @@ class MailchimpComponent extends React.Component {
             <div className="sans-serif">
                 <h2 className="font-bold mb-1">Sign up for the BSR Newsletter</h2>
                 <div>
-                    <p className="mb-4">Get an overview of our latest news, along with fascinating images and people. Sent about once a month.</p>
-                    <form onSubmit={this._handleSubmit} className="bg-gray-100 text-gray-600 flex items-center py-2 px-4 pr-2 border focus-within:border-blue-600">
+                    <p className="mb-4">Get an overview of our latest news, along with fascinating images and people.</p>
+                    <form onSubmit={this._handleSubmit} className="text-gray-600">
                         {/* <input
                             type="text"
                             onChange={this._handleChange}
@@ -55,9 +55,9 @@ class MailchimpComponent extends React.Component {
                             onChange={this._handleChange}
                             placeholder="Email address"
                             name="email"
-                            className="bg-transparent border-none w-full text-black placeholder-gray-600 leading-tight focus:outline-none mr-2"
+                            className="rounded outline-none w-full text-black placeholder-gray-600 leading-tight mr-2 py-2 px-4 pr-2 mb-4 border border-gray-400 focus-within:border-blue-600"
                         />
-                        <input type="submit" className="inline-block px-4 py-2 leading-none text-white flex-shrink-0 cursor-pointer bg-blue-600" value="Subscribe" />
+                        <input type="submit" className="w-full px-4 py-3 leading-none text-white flex-shrink-0 cursor-pointer bg-black rounded" value="Subscribe" />
                     </form>
                 </div>
             </div>
@@ -65,7 +65,7 @@ class MailchimpComponent extends React.Component {
     }
 }
 
-export default MailchimpComponent;
+export default MailchimpComponentHome;
 
 // class MailchimpComponent extends React.Component {
 //   // Since `addToMailchimp` returns a promise, you

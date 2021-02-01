@@ -166,7 +166,7 @@ class ArticleTemplate extends React.Component {
                 </div>
               </div>
               <div className="flex flex-wrap lg:flex-no-wrap">
-                <div className={`flex-grow prose tracking-normal text-black lg:max-w-2xl mr-8`}>
+                <div className="flex-grow flex-shrink-0 prose tracking-normal text-black lg:max-w-2xl w-full mr-8">
                   <div>
                     {data.strapiArticle.image ?
                       <img src={data.strapiArticle.image.publicURL} className="featured-img-container mb-8 mt-0 w-full" alt="" />
@@ -204,9 +204,9 @@ class ArticleTemplate extends React.Component {
                     </div>
                   </div>
                 </div>
-                <div className="flex-shrink-0">
+                <div className="flex-grow">
                   {data.strapiArticle.categories.length === 0 ?
-                    <div className="mt-12 lg:mt-0 max-w-sm">
+                    <div className="mt-12 lg:mt-0">
                       <h2 className='text-2xl font-medium pb-2 mb-4 border-b border-black leading-none'>
                         Recent Articles
                       </h2>
@@ -219,7 +219,7 @@ class ArticleTemplate extends React.Component {
                       </ul>
                     </div>
                   :
-                    <div className="mt-12 lg:mt-0 max-w-sm">
+                    <div className="mt-12 lg:mt-0">
                       <h2 className='text-2xl font-medium pb-2 mb-4 border-b border-black leading-none'>
                         Related Articles
                       </h2>

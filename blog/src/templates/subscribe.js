@@ -5,7 +5,6 @@ import Layout from "../components/layout"
 
 const SubscribeTemplate = ({ data }) => (
   <Layout>
-    <h1>{data.strapiSubscribe.title}</h1>
     <p>{data.strapiSubscribe.content}</p>
   </Layout>
 )
@@ -15,8 +14,7 @@ export default SubscribeTemplate;
 export const query = graphql`
   query SubscribeTemplate($id: String!) {
     strapiSubscribe(id: { eq: $id }) {
-      title
-      content
+      markdown
     }
   }
 `

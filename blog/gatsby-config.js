@@ -29,6 +29,7 @@ module.exports = {
         singleTypes: [
           `about`,
           `subscribe`,
+          `staff-listing`,
         ],
         queryLimit: 1000000,
       },
