@@ -30,7 +30,7 @@ const Preview = ({ article, format }) => {
                         }
                     </p>
                 </div>
-                {article.image ? <img src={article.image.publicURL} className="object-cover w-20 h-20" alt="" /> : ""}
+                {/* {article.image ? <img src={article.image.publicURL} className="object-cover w-20 h-20" alt="" /> : ""} */}
             </div>
 
         )
@@ -61,7 +61,7 @@ const Preview = ({ article, format }) => {
                 {article.image
                     ?
                     <div className="mr-6">
-                        <img src={article.image.publicURL} style={{ maxWidth: '200px' }} alt="" />
+                        {/* <img src={article.image.publicURL} style={{ maxWidth: '200px' }} alt="" /> */}
                     </div>
                     :
                     ""

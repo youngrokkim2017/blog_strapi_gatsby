@@ -11,6 +11,43 @@ import SearchHeader from '../components/searchHeader'
 import Footer from '../components/footer';
 
 const SearchPage = ({ location }) => {
+  // const data = useStaticQuery(graphql`
+  //   query SearchResultsQuery {
+  //     allStrapiArticle(
+  //       sort: { fields: [created_at], order: DESC }
+  //     ) {
+  //       edges {
+  //         node {
+  //           id
+  //           image {
+  //             publicURL
+  //           }
+  //           title
+  //           author {
+  //             id
+  //             name
+  //           }
+  //           content
+  //           categories {
+  //             id
+  //             title
+  //           }
+  //           published_at
+  //           updated_at
+  //         }
+  //       }
+  //     }
+  //     allStrapiCategory {
+  //       edges {
+  //         node {
+  //           id
+  //           title
+  //         }
+  //       }
+  //     }
+  //   }
+  // `)
+
   const data = useStaticQuery(graphql`
     query SearchResultsQuery {
       allStrapiArticle(
@@ -19,9 +56,6 @@ const SearchPage = ({ location }) => {
         edges {
           node {
             id
-            image {
-              publicURL
-            }
             title
             author {
               id
@@ -147,7 +181,7 @@ const SearchPage = ({ location }) => {
               <div className="flex items-start">
                 {document.node.image ?
                   <div className="mr-6">
-                    <img src={document.node.image.publicURL} style={{ maxWidth: '210px' }} alt="" />
+                    {/* <img src={document.node.image.publicURL} style={{ maxWidth: '210px' }} alt="" /> */}
                   </div>
                 :
                   ""
@@ -192,7 +226,7 @@ const SearchPage = ({ location }) => {
               <div className="flex items-start">
                 {document.node.image ?
                   <div className="mr-6">
-                    <img src={document.node.image.publicURL} style={{ maxWidth: '210px' }} alt="" />
+                    {/* <img src={document.node.image.publicURL} style={{ maxWidth: '210px' }} alt="" /> */}
                   </div>
                 :
                   ""
