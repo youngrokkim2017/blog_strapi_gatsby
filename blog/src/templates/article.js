@@ -166,13 +166,13 @@ class ArticleTemplate extends React.Component {
                 </div>
               </div>
               <div className="flex flex-wrap lg:flex-no-wrap">
-                <div className="flex-grow flex-shrink-0 prose tracking-normal text-black lg:max-w-2xl w-full mr-8">
+                <div className={`flex-grow prose tracking-normal text-black lg:max-w-2xl mr-8`}>
                   <div>
-                    {data.strapiArticle.image ?
+                    {/* {data.strapiArticle.image ?
                       <img src={data.strapiArticle.image.publicURL} className="featured-img-container mb-8 mt-0 w-full" alt="" />
                       :
                       ""
-                    }
+                    } */}
                   </div>
                   <ReactMarkdown
                     source={data.strapiArticle.content}
@@ -204,9 +204,9 @@ class ArticleTemplate extends React.Component {
                     </div>
                   </div>
                 </div>
-                <div className="flex-grow">
+                <div className="flex-shrink-0">
                   {data.strapiArticle.categories.length === 0 ?
-                    <div className="mt-12 lg:mt-0">
+                    <div className="mt-12 lg:mt-0 max-w-sm">
                       <h2 className='text-2xl font-medium pb-2 mb-4 border-b border-black leading-none'>
                         Recent Articles
                       </h2>
@@ -219,7 +219,7 @@ class ArticleTemplate extends React.Component {
                       </ul>
                     </div>
                   :
-                    <div className="mt-12 lg:mt-0">
+                    <div className="mt-12 lg:mt-0 max-w-sm">
                       <h2 className='text-2xl font-medium pb-2 mb-4 border-b border-black leading-none'>
                         Related Articles
                       </h2>
@@ -267,9 +267,6 @@ export const query = graphql`
             id
         name
       }
-      image {
-        publicURL
-      }
       categories {
             id
         title
@@ -279,9 +276,6 @@ export const query = graphql`
       edges {
         node {
           id
-          image {
-            publicURL
-          }
           title
           author {
             id
@@ -298,3 +292,47 @@ export const query = graphql`
     }
   }
 `
+
+// export const query = graphql`
+//   query ArticleTemplate($id: String!) {
+//     strapiArticle(id: {eq: $id }) {
+//       id
+//       title
+//       published_at
+//       updated_at
+//       content
+//       author {
+//             id
+//         name
+//       }
+//       image {
+//         publicURL
+//       }
+//       categories {
+//             id
+//         title
+//       }
+//     }
+//     allStrapiArticle {
+//       edges {
+//         node {
+//           id
+//           image {
+//             publicURL
+//           }
+//           title
+//           author {
+//             id
+//             name
+//           }
+//           content
+//           categories {
+//             id
+//             title
+//           }
+//           published_at
+//         }
+//       }
+//     }
+//   }
+// `

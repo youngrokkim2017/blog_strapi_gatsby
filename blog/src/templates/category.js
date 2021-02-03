@@ -40,8 +40,7 @@ const CategoryTemplate = ({ data }) => {
   return (
     <Layout>
       <div className="">
-        {/* <h2 className="font-normal mb-12 text-4xl leading-tight">{data.strapiCategory.title}</h2> */}
-        <h2 className='my-0 tracking-tight text-4xl sans-serif mb-6' style={{color : '#003262'}}>{data.strapiCategory.title}</h2>
+        <h2 className="font-normal mb-12 text-4xl leading-tight">{data.strapiCategory.title}</h2>
         <ul>
           {list.map(document => (
             <li key={document.id} className="mb-4">
@@ -105,9 +104,6 @@ export const query = graphql`
         author
         content
         magazine
-        image {
-          publicURL
-        }
         published_at
       }
     }
@@ -121,6 +117,34 @@ export const query = graphql`
     }
   }
 `
+
+// export const query = graphql`
+//   query CategoryTemplate($id: String!) {
+//     strapiCategory(id: { eq: $id }) {
+//       id
+//       title
+//       articles {
+//         id
+//         title
+//         author
+//         content
+//         magazine
+//         image {
+//           publicURL
+//         }
+//         published_at
+//       }
+//     }
+//     allStrapiAuthors {
+//       edges {
+//         node {
+//           id
+//           name
+//         }
+//       }
+//     }
+//   }
+// `
 
 // /////////////////////////////  INFINTE SCROLLING  ///////////////////////////
 
